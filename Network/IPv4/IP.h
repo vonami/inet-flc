@@ -64,6 +64,7 @@ class INET_API IP : public QueueBase
     int numDropped;
     int numUnroutable;
     int numForwarded;
+    cOutVector statQueueLength;
 
   protected:
     // utility: look up interface from arrivalGate()

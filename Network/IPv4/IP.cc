@@ -54,6 +54,8 @@ void IP::initialize()
     WATCH(numDropped);
     WATCH(numUnroutable);
     WATCH(numForwarded);
+
+    statQueueLength.setName( "IP queue length" );
 }
 
 void IP::updateDisplayString()
@@ -69,6 +71,7 @@ void IP::updateDisplayString()
 
 void IP::endService(cMessage *msg)
 {
+    statQueueLength.record( queue.length() );
     if (msg->arrivalGate()->isName("transportIn"))
     {
         handleMessageFromHL(msg);
