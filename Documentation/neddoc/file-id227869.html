@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/AutoRouting/NetworkConfigurator.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="NetworkConfigurator-id227931.html">NetworkConfigurator</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Configures \IP addresses and routing tables for a network.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This module does't connect to any other modules (it has no gates),</span>
+<span class="src-comment">// and should have only one instance in the whole model. The module</span>
+<span class="src-comment">// will only run once, at the beginning of the simulation.</span>
+<span class="src-comment">// When it runs, it will:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//   -#  assign \IP addresses to hosts and routers.</span>
+<span class="src-comment">//   -#  then it'll discover the topology of the network (using OMNeT++'s</span>
+<span class="src-comment">//       cTopology class), and calculate shortest paths;</span>
+<span class="src-comment">//   -#  finally, it will add routes which correspond to the shortest</span>
+<span class="src-comment">//       paths to the routing tables (see RoutingTable::addRoutingEntry()).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// How does it know which modules are routers, hosts, et.c that need to</span>
+<span class="src-comment">// be configured, and what is the network topology? The configurator</span>
+<span class="src-comment">// picks all modules of types listed in the moduleTypes parameter and</span>
+<span class="src-comment">// their connections, and builds a graph from it. Then it runs Dijstra's</span>
+<span class="src-comment">// shortest path algorithm on it.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// To avoid interference with the above algorithm, it's recommended that</span>
+<span class="src-comment">// no host or router should have its address set explicitly, and</span>
+<span class="src-comment">// no routes are set up manually. Practically, routing files (.irt, .mrt)</span>
+<span class="src-comment">// should be missing or empty.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// All the above takes place in initialization stage 2. (In stage 0,</span>
+<span class="src-comment">// interfaces register themselves in the InterfaceTable modules, and</span>
+<span class="src-comment">// in stage 1, routing files are read.)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> NetworkConfigurator
+    <span class="src-keyword">parameters</span>:
+        moduleTypes: <span class="src-keyword">string</span>; <span class="src-comment">// space-separated list of module types to be</span>
+                             <span class="src-comment">// considered part of the topology</span>
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

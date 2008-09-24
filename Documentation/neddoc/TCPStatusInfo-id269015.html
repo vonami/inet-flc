@@ -1,0 +1,186 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>TCPStatusInfo</i>
+</h2>
+<p><b>File: <a href="file-id268653.html">Transport/Contract/TCPCommand.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_t_c_p_status_info.html" target="_top">click here</a></b></p>
+<p>Sent with message kind TCP_I_STATUS, in response to command TCP_C_STATUS.
+For explanation of variables, see RFC 793 or TCPStateVariables in
+TCPConnection.h.</p>
+
+<p><b>See also:</b> <a href="TcpStatusInd-id268763.html">TcpStatusInd</a>, <a href="TcpCommandCode-id268675.html">TcpCommandCode</a>, <a href="TCP-id271256.html">TCP</a></p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id269015.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="TCPStatusInfo-id269015.html" title="class TCPStatusInfo" alt="TCPStatusInfo" coords="8,88,117,112">
+<area shape="rect" href="TCPCommand-id268543.html" title="class TCPCommand" alt="TCPCommand" coords="7,16,119,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="TCPCommand-id268543.html">TCPCommand</a></td>
+<td><p>Control info for TCP connections. This class is to be set as control info
+(see cMessage::setControlInfo()) on all messages exchanged between <a href="TCP-id271256.html">TCP</a> and
+application, in both directions. Some commands and indications
+(TCP_C_OPEN_xxx, TCP_I_STATUS) use subclasses.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">state</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">stateName</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">localAddr</td>
+<td width="100"><i>IPvXAddress</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">remoteAddr</td>
+<td width="100"><i>IPvXAddress</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">localPort</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">remotePort</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">snd_mss</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">snd_una</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">snd_nxt</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">snd_max</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">snd_wnd</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">snd_up</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">snd_wl1</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">snd_wl2</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">iss</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">rcv_nxt</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">rcv_wnd</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">rcv_up</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">irs</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">fin_ack_rcvd</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> TCPStatusInfo <span class="src-keyword">extends</span> TCPCommand
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> state;
+        <span class="src-keyword">string</span> stateName;
+
+        IPvXAddress localAddr;
+        IPvXAddress remoteAddr;
+        <span class="src-keyword">int</span> localPort;
+        <span class="src-keyword">int</span> remotePort;
+
+        <span class="src-keyword">int</span> snd_mss;
+
+        unsigned <span class="src-keyword">int</span> snd_una;
+        unsigned <span class="src-keyword">int</span> snd_nxt;
+        unsigned <span class="src-keyword">int</span> snd_max;
+        unsigned <span class="src-keyword">int</span> snd_wnd;
+        unsigned <span class="src-keyword">int</span> snd_up;
+        unsigned <span class="src-keyword">int</span> snd_wl1;
+        unsigned <span class="src-keyword">int</span> snd_wl2;
+        unsigned <span class="src-keyword">int</span> iss;
+
+        unsigned <span class="src-keyword">int</span> rcv_nxt;
+        unsigned <span class="src-keyword">int</span> rcv_wnd;
+        unsigned <span class="src-keyword">int</span> rcv_up;
+        unsigned <span class="src-keyword">int</span> irs;
+
+        <span class="src-keyword">bool</span> fin_ack_rcvd;
+};</pre>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>ErrAndCollDecider</i>
+</h2>
+<p><b>File: <a href="file-id251451.html">NetworkInterfaces/MF80211/phyLayer/decider/ErrAndCollDecider.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_err_and_coll_decider.html" target="_top">click here</a></b></p>
+<p>Decider module to use with digital channel modules like <a href="GilbertElliotSnr-id251940.html">GilbertElliotSnr</a></p>
+
+<p>This component has been taken over from Mobility Framework 1.0a5.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id251732.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="ErrAndCollDecider-id251732.html" title="simple ErrAndCollDecider" alt="ErrAndCollDecider" coords="7,16,148,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td width="150">snrThresholdLevel</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">lowergateIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> ErrAndCollDecider
+    <span class="src-keyword">parameters</span>:
+        debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        snrThresholdLevel: <span class="src-keyword">numeric</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">out:</span> uppergateOut;
+        <span class="src-keyword">in:</span> lowergateIn;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

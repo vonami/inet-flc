@@ -1,0 +1,133 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>IPControlInfo</i>
+</h2>
+<p><b>File: <a href="file-id227957.html">Network/Contract/IPControlInfo.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_p_control_info.html" target="_top">click here</a></b></p>
+<p>Control information for sending/receiving packets over IP.</p>
+
+<p>To send a packet over IP, fill in an <a href="IPControlInfo-id228197.html">IPControlInfo</a> object,
+attach it to the packet with the C++ method setControlInfo(),
+the send it to the <a href="IP-id231134.html">IP</a> module.</p>
+
+<p>When <a href="IP-id231134.html">IP</a> delivers packets to higher layers, it also attaches
+similar <a href="IPControlInfo-id228197.html">IPControlInfo</a> objects to them.</p>
+
+<p>When sending, the following fields are required:</p>
+
+  <ul><li>protocol: a value from <a href="IPProtocolId-id228413.html">IPProtocolId</a></li>
+
+  <li>destAddr</li></ul>
+
+<p>Optional fields:</p>
+
+  <ul><li>srcAddr: it will be set to the address of the outgoing interface</li>
+
+  <li>diffServCodePoint: used in DS_Field (RFC 2474) instead of TOS (default: 0)</li>
+
+  <li>timeToLive: default defined as module parameter</li>
+
+  <li>dontFragment: default: false</li></ul>
+
+<p>Not supported:</p>
+
+  <ul><li>options: IP Options currently not used</li>
+
+  <li>Identifier is currently always chosen by the IP layer</li></ul>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id228197.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="IPControlInfo-id228197.html" title="class IPControlInfo" alt="IPControlInfo" coords="7,16,111,40">
+</map><h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">customize</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">destAddr</td>
+<td width="100"><i>IPAddress</i></td>
+<td><p>destination <a href="IP-id231134.html">IP</a> address</p>
+</td>
+</tr>
+<tr>
+<td width="150">srcAddr</td>
+<td width="100"><i>IPAddress</i></td>
+<td><p>source <a href="IP-id231134.html">IP</a> address</p>
+</td>
+</tr>
+<tr>
+<td width="150">interfaceId</td>
+<td width="100"><i>int</i></td>
+<td><p>interface on which dgram was received/should
+be sent (see <a href="InterfaceTable-id227840.html">InterfaceTable</a>)</p>
+</td>
+</tr>
+<tr>
+<td width="150">protocol</td>
+<td width="100"><i>short</i></td>
+<td><p>encapsulated protocol</p>
+</td>
+</tr>
+<tr>
+<td width="150">diffServCodePoint</td>
+<td width="100"><i>unsigned char</i></td>
+<td><p>for QoS</p>
+</td>
+</tr>
+<tr>
+<td width="150">timeToLive</td>
+<td width="100"><i>short</i></td>
+<td><p>maximum hop count</p>
+</td>
+</tr>
+<tr>
+<td width="150">dontFragment</td>
+<td width="100"><i>bool</i></td>
+<td><p>"don't fragment" bit</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> IPControlInfo
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+        customize = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        IPAddress destAddr;   <span class="src-comment">// destination IP address</span>
+        IPAddress srcAddr;    <span class="src-comment">// source IP address</span>
+        <span class="src-keyword">int</span> interfaceId = <span class="src-number">-1</span>; <span class="src-comment">// interface on which dgram was received/should</span>
+                              <span class="src-comment">// be sent (see InterfaceTable)</span>
+        <span class="src-keyword">short</span> protocol <span class="src-keyword">enum</span>(IPProtocolId);  <span class="src-comment">// encapsulated protocol</span>
+        unsigned <span class="src-keyword">char</span> diffServCodePoint;  <span class="src-comment">// for QoS</span>
+        <span class="src-keyword">short</span> timeToLive;     <span class="src-comment">// maximum hop count</span>
+        <span class="src-keyword">bool</span> dontFragment;    <span class="src-comment">// "don't fragment" bit</span>
+};</pre>
+</body>
+</html>

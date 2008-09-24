@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/MF80211/macLayer/MacPkt.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="MacPkt-id251542.html">MacPkt</a><i> (message)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//**************************************************************************</span>
+<span class="src-comment">// * file:        MacPkt.msg</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * author:      Daniel Willkomm</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * copyright:   (C) 2004 Telecommunication Networks Group (TKN) at</span>
+<span class="src-comment">// *              Technische Universitaet Berlin, Germany.</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// *              This program is free software; you can redistribute it</span>
+<span class="src-comment">// *              and/or modify it under the terms of the GNU General Public</span>
+<span class="src-comment">// *              License as published by the Free Software Foundation; either</span>
+<span class="src-comment">// *              version 2 of the License, or (at your option) any later</span>
+<span class="src-comment">// *              version.</span>
+<span class="src-comment">// *              For further information see file COPYING</span>
+<span class="src-comment">// *              in the top level directory</span>
+<span class="src-comment">// **************************************************************************</span>
+<span class="src-comment">// * part of:     framework implementation developed by tkn</span>
+<span class="src-comment">// **************************************************************************/</span>
+
+cplusplus {{
+#include "MACAddress.h"
+}};
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> MACAddress;
+
+<span class="src-comment">//</span>
+<span class="src-comment">// A basic MAC (Media Access Control) packet format definition</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// subclass if you want to create your own MAC layer message class</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The basic MAC message only provides source and destination address</span>
+<span class="src-comment">// and and the channel it should be send on</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This component has been taken over from Mobility Framework 1.0a5.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @author Daniel Willkomm</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//# FIXME just temporary here</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> MacPkt
+{
+    <span class="src-keyword">fields</span>:
+        MACAddress destAddr; <span class="src-comment">// destination mac address</span>
+        MACAddress srcAddr; <span class="src-comment">// source mac address</span>
+        <span class="src-keyword">int</span> channelId=<span class="src-number">1</span>; <span class="src-comment">// channel to send / receive on</span>
+}
+</pre>
+</body>
+</html>

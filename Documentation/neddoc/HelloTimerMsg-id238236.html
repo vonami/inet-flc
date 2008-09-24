@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>HelloTimerMsg</i>
+</h2>
+<p><b>File: <a href="file-id237958.html">Network/RSVP_TE/SignallingMsg.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_hello_timer_msg.html" target="_top">click here</a></b></p>
+<p>FIXME missing documentation</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id238236.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="HelloTimerMsg-id238236.html" title="message HelloTimerMsg" alt="HelloTimerMsg" coords="7,88,121,112">
+<area shape="rect" href="SignallingMsg-id237919.html" title="message SignallingMsg" alt="SignallingMsg" coords="11,16,117,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="SignallingMsg-id237919.html">SignallingMsg</a></td>
+<td><p>FIXME missing documentation</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">peer</td>
+<td width="100"><i>IPAddress</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">command</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> HelloTimerMsg <span class="src-keyword">extends</span> SignallingMsg
+{
+    <span class="src-keyword">fields</span>:
+        IPAddress peer;
+
+        <span class="src-keyword">int</span> command = MSG_HELLO_TIMER;
+};</pre>
+</body>
+</html>

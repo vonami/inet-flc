@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>NAMTrace</i>
+</h2>
+<p><b>File: <a href="file-id272620.html">World/NAMTrace.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_n_a_m_trace.html" target="_top">click here</a></b></p>
+<p><a href="NAMTrace-id272601.html">NAMTrace</a> manages a "nam" trace file which can be played back with ns2's
+Network ANimator, nam. The trace is actually written by <a href="NAMTraceWriter-id272225.html">NAMTraceWriter</a>
+modules which should occur per host or router.</p>
+
+<p><b>See also:</b> <a href="NAMTraceWriter-id272225.html">NAMTraceWriter</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id272601.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="NAMTrace-id272601.html" title="simple NAMTrace" alt="NAMTrace" coords="7,16,97,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">logfile</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">prolog</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> NAMTrace
+    <span class="src-keyword">parameters</span>:
+        logfile : <span class="src-keyword">string</span>,
+        prolog : <span class="src-keyword">string</span>;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

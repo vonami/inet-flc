@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Applications/PingApp/PingApp.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="PingApp-id221440.html">PingApp</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2001 Monash University, Australia</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Generates ping requests and calculates the packet loss and round trip</span>
+<span class="src-comment">// parameters of the replies. </span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Start/stop time, interval etc can be specified via parameters. To disable,</span>
+<span class="src-comment">// specify empty destAddr or stopTime&lt;=startTime.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Every ping request is sent out with a sequence number, and replies are</span>
+<span class="src-comment">// expected to arrive in the same order. Whenever there's a jump in the</span>
+<span class="src-comment">// in the received ping responses' sequence number (e.g. 1, 2, 3, 5), then</span>
+<span class="src-comment">// the missing pings (number 4 in this example) is counted as lost.</span>
+<span class="src-comment">// Then if it still arrives later (that is, a reply with a sequence number</span>
+<span class="src-comment">// smaller than the largers one received so far) it will be counted as</span>
+<span class="src-comment">// out-of-sequence arrival. So the number of really lost pings will be</span>
+<span class="src-comment">// "lost" minus "out-of-order" (assuming there's no duplicate or bogus reply).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Uses PingPayload as payload for the ICMP(v6) Echo Request/Reply packets.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see PingPayload, ICMP, ICMPv6Core</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> PingApp
+    <span class="src-keyword">parameters</span>:
+        destAddr: <span class="src-keyword">string</span>, <span class="src-comment">// destination IP or IPv6 address</span>
+        srcAddr: <span class="src-keyword">string</span>, <span class="src-comment">// source IP or IPv6 address (useful with multi-homing)</span>
+        packetSize: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// of ping payload, in bytes</span>
+        interval: <span class="src-keyword">numeric</span>, <span class="src-comment">// time to wait between pings (can be random)</span>
+        hopLimit: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// TTL or hopLimit for IP packets</span>
+        count: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// stop after count ping requests, 0 means continuously</span>
+        startTime: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// send first ping at startTime</span>
+        stopTime: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// send no pings after stopTime, 0 means forever </span>
+        printPing: <span class="src-keyword">bool</span>; <span class="src-comment">// dump on stdout</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> pingIn;
+        <span class="src-keyword">out:</span> pingOut;
+        <span class="src-keyword">in:</span> pingv6In;
+        <span class="src-keyword">out:</span> pingv6Out;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

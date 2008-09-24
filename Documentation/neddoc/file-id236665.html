@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/RSVP_TE/IntServ.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="EroObj_t-id236936.html">EroObj_t</a><i> (struct)</i>
+</li>
+<li>
+<a href="FilterSpecObj_t-id236850.html">FilterSpecObj_t</a><i> (struct)</i>
+</li>
+<li>
+<a href="FlowDescriptor_t-id236972.html">FlowDescriptor_t</a><i> (struct)</i>
+</li>
+<li>
+<a href="FlowSpecObj_t-id236826.html">FlowSpecObj_t</a><i> (struct)</i>
+</li>
+<li>
+<a href="LabelRequestObj_t-id236875.html">LabelRequestObj_t</a><i> (struct)</i>
+</li>
+<li>
+<a href="RsvpHopObj_t-id236643.html">RsvpHopObj_t</a><i> (struct)</i>
+</li>
+<li>
+<a href="SenderDescriptor_t-id236901.html">SenderDescriptor_t</a><i> (struct)</i>
+</li>
+<li>
+<a href="SenderTemplateObj_t-id236762.html">SenderTemplateObj_t</a><i> (struct)</i>
+</li>
+<li>
+<a href="SenderTspecObj_t-id236798.html">SenderTspecObj_t</a><i> (struct)</i>
+</li>
+<li>
+<a href="SessionObj_t-id236723.html">SessionObj_t</a><i> (struct)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// (C) 2005 Vojtech Janota</span>
+<span class="src-comment">// (C) 2003 Xuan Thang Nguyen</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This library is free software, you can redistribute it</span>
+<span class="src-comment">// and/or modify</span>
+<span class="src-comment">// it under  the terms of the GNU Lesser General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation;</span>
+<span class="src-comment">// either version 2 of the License, or any later version.</span>
+<span class="src-comment">// The library is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="src-comment">// See the GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// This file defines data structures used in IntServ services</span>
+<span class="src-comment">//</span>
+
+cplusplus {{
+#include "IPAddress.h"
+typedef std::vector&lt;IPAddress&gt; IPAddressVector;
+typedef std::vector&lt;<span class="src-keyword">struct</span> EroObj_t&gt; EroVector;
+typedef std::vector&lt;<span class="src-keyword">struct</span> FlowDescriptor_t&gt; FlowDescriptorVector;
+}}
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPAddress;
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPAddressVector;
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> EroVector;
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Intserv/RSVP: Session Structure</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> SessionObj_t
+{
+  <span class="src-keyword">fields</span>:
+    <span class="src-keyword">int</span> Tunnel_Id;
+    <span class="src-keyword">int</span> Extended_Tunnel_Id;
+    IPAddress DestAddress;
+    <span class="src-keyword">int</span> setupPri;
+    <span class="src-keyword">int</span> holdingPri;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Intserv/RSVP: RSVP HOP Structure</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> RsvpHopObj_t
+{
+  <span class="src-keyword">fields</span>:
+    IPAddress Next_Hop_Address;
+    IPAddress Logical_Interface_Handle;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Intserv/RSVP: Sender Template Structure</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> SenderTemplateObj_t
+{
+  <span class="src-keyword">fields</span>:
+    IPAddress SrcAddress;
+    <span class="src-keyword">int</span> Lsp_Id = <span class="src-number">-1</span>;
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Intserv/RSVP: Sender Tspec Structure</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> SenderTspecObj_t
+{
+  <span class="src-keyword">fields</span>:
+    <span class="src-keyword">double</span> req_bandwidth = <span class="src-number">0</span>;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Intserv/RSVP: Sender Tspec Structure</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> FlowSpecObj_t <span class="src-keyword">extends</span> SenderTspecObj_t  {<span class="src-keyword">fields</span>:}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Intserv/RSVP: Sender Template Structure</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> FilterSpecObj_t <span class="src-keyword">extends</span> SenderTemplateObj_t {<span class="src-keyword">fields</span>:}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Intserv/RSVP: Label Request Object Structure</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> LabelRequestObj_t
+{
+  <span class="src-keyword">fields</span>:
+    <span class="src-comment">// request;</span>
+    <span class="src-keyword">int</span> prot;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Intserv/RSVP: Sender Descriptor Structure</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> SenderDescriptor_t
+{
+  <span class="src-keyword">fields</span>:
+    SenderTemplateObj_t Sender_Template_Object;
+    SenderTspecObj_t Sender_Tspec_Object;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Intserv/RSVP: Explicit Routing Object Structure</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> EroObj_t
+{
+  <span class="src-keyword">fields</span>:
+    <span class="src-keyword">bool</span> L = <span class="src-keyword">false</span>;
+    IPAddress node;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Intserv/RSVP: Flow Descriptor Structure</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> FlowDescriptor_t
+{
+  <span class="src-keyword">fields</span>:
+    FlowSpecObj_t Flowspec_Object;
+    FilterSpecObj_t Filter_Spec_Object;
+    IPAddressVector RRO;
+    <span class="src-keyword">int</span> label;
+};
+</pre>
+</body>
+</html>

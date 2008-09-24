@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/EtherSwitch/MACRelayUnitPP.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="MACRelayUnitPP-id243803.html">MACRelayUnitPP</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2003 CTIE, Monash University</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// A MACRelayUnit implementation which models one CPU assigned to each</span>
+<span class="src-comment">// incoming port, working with shared memory but separate queues.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// It also models fixed delay for precessing each frame.</span>
+<span class="src-comment">// Finite memory is taken into account by dropping frames if</span>
+<span class="src-comment">// total number of bits enqueued exceed a given limit.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// A simple scheme for sending PAUSE frames is built in (although</span>
+<span class="src-comment">// users will probably change it). When the buffer level goes</span>
+<span class="src-comment">// above a high watermark, PAUSE frames are sent on all ports.</span>
+<span class="src-comment">// The watermark and the pause time is configurable; use zero</span>
+<span class="src-comment">// values to disable the PAUSE feature.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> MACRelayUnitPP
+    <span class="src-keyword">parameters</span>:
+        addressTableFile : <span class="src-keyword">string</span>,  <span class="src-comment">// see MACRelayUnit</span>
+        addressTableSize : <span class="src-keyword">numeric</span>, <span class="src-comment">// see MACRelayUnit</span>
+        agingTime : <span class="src-keyword">numeric</span>,        <span class="src-comment">// see MACRelayUnit</span>
+        processingTime : <span class="src-keyword">numeric</span>,   <span class="src-comment">// processing time of one frame</span>
+        bufferSize : <span class="src-keyword">numeric</span>,       <span class="src-comment">// memory (bytes)</span>
+        highWatermark : <span class="src-keyword">numeric</span>,    <span class="src-comment">// buffer usage threshold to send PAUSE frame (bytes)</span>
+        pauseUnits : <span class="src-keyword">numeric</span>,       <span class="src-comment">// time to put in PAUSE frames (in units of 512 bit times)</span>
+        writeScalars: <span class="src-keyword">bool</span>;         <span class="src-comment">// enable/disable recording statistics in omnetpp.sca</span>
+
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span>  lowerLayerIn[];       <span class="src-comment">// see MACRelayUnit</span>
+        <span class="src-keyword">out:</span> lowerLayerOut[];      <span class="src-comment">// see MACRelayUnit</span>
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

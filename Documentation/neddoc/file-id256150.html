@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Nodes/INET/BurstHost.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="BurstHost-id256128.html">BurstHost</a><i> (compound-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2000 Institut fuer Telematik, Universitaet Karlsruhe</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-keyword">import</span>
+    "NotificationBoard",
+    "InterfaceTable",
+    "RoutingTable",
+    "NetworkLayer",
+    "IPTrafficGenerator",
+    "PPPInterface";
+
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Definition of an IP node with a transport generator that connects</span>
+<span class="src-comment">// to IP directly, without TCP or UDP.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">module</span> BurstHost
+    <span class="src-keyword">parameters</span>:
+        trafGenType : <span class="src-keyword">string</span>,
+        IPForward : <span class="src-keyword">bool</span>,
+        routingFile : <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+    <span class="src-keyword">submodules</span>:
+        notificationBoard: NotificationBoard;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">83</span>,<span class="src-number">66</span>;i=block/control";
+        interfaceTable: InterfaceTable;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">83</span>,<span class="src-number">136</span>;i=block/table";
+        routingTable: RoutingTable;
+            <span class="src-keyword">parameters</span>:
+                IPForward = IPForward,
+                routerId = "",
+                routingFile = routingFile;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">83</span>,<span class="src-number">206</span>;i=block/table";
+        trafGen: trafGenType <span class="src-keyword">like</span> IPTrafficGenerator;
+            <span class="src-keyword">display</span>: "i=block/app;p=<span class="src-number">198</span>,<span class="src-number">86</span>";
+        networkLayer: NetworkLayer;
+            <span class="src-keyword">gatesizes</span>:
+                ifIn[<span class="src-number">1</span>],
+                ifOut[<span class="src-number">1</span>];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">198</span>,<span class="src-number">173</span>;i=block/fork;q=queue";
+        ppp: PPPInterface[<span class="src-number">1</span>];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">198</span>,<span class="src-number">262</span>,row,<span class="src-number">90</span>;q=txQueue;i=block/ifcard";
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        <span class="src-comment">// transport connections</span>
+        networkLayer.UDPOut <span class="src-keyword">--&gt;</span> trafGen.from_ip;
+        networkLayer.UDPIn <span class="src-keyword">&lt;--</span> trafGen.to_ip;
+
+        <span class="src-comment">// connections to network outside</span>
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-number">0</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> ppp[i].physIn;
+            out[i] <span class="src-keyword">&lt;--</span> ppp[i].physOut;
+            ppp[i].netwOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[i];
+            ppp[i].netwIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[i];
+        <span class="src-keyword">endfor</span>;
+
+<span class="src-keyword">endmodule</span>
+</pre>
+</body>
+</html>

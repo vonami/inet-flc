@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>RTPPayloadReceiver</i>
+</h2>
+<p><b>File: <a href="file-id270809.html">Transport/RTP/RTPPayloadReceiver.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_r_t_p_payload_receiver.html" target="_top">click here</a></b></p>
+<p>(no description)</p>
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id270819.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="RTPPayloadReceiver-id270819.html" title="simple RTPPayloadReceiver" alt="RTPPayloadReceiver" coords="7,16,159,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">outputFileName</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">fromProfile</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">toProfile</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> RTPPayloadReceiver
+
+	<span class="src-keyword">parameters</span>:
+		outputFileName: <span class="src-keyword">string</span>;
+		
+	<span class="src-keyword">gates</span>:
+		<span class="src-keyword">in:</span> fromProfile;
+		<span class="src-keyword">out:</span> toProfile;
+
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

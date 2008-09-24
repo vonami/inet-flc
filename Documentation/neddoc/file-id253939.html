@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/PPP/PPPFrame.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="PPPFrame-id253928.html">PPPFrame</a><i> (message)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// PPP header+trailer length:</span>
+<span class="src-comment">//    - Flag(8) + Address(8) + Control(8) + Protocol(16) + FCS(16) = 7 octets.</span>
+<span class="src-comment">// (The terminating Flag is not counted, as rfc1331 states that</span>
+<span class="src-comment">// only one Flag is required between back-to-back frames.)</span>
+<span class="src-comment">//</span>
+cplusplus {{
+#include "INETDefs.h"
+<span class="src-keyword">const</span> <span class="src-keyword">int</span> PPP_OVERHEAD_BYTES = <span class="src-number">7</span>;
+}}
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// PPP frame.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Constant-value header fields are not modelled:</span>
+<span class="src-comment">// Flag (=0x7e), address (=0xff), control (=0x03), CRC (bitError())</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// CRC is modelled only via cMessage's bit error attribute.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Protocol field is not modelled because types of encapsulated messages</span>
+<span class="src-comment">// wil be determined from their class (using C++ dynamic_cast).</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> PPPFrame
+{
+    <span class="src-keyword">fields</span>:
+};
+</pre>
+</body>
+</html>

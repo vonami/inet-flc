@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>UDPEchoApp</i>
+</h2>
+<p><b>File: <a href="file-id224687.html">Applications/UDPApp/UDPEchoApp.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_u_d_p_echo_app.html" target="_top">click here</a></b></p>
+<p>Similar to <a href="UDPBasicApp-id224765.html">UDPBasicApp</a>, but it sends back the packet after reception.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id224850.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="UDPEchoApp-id224850.html" title="simple UDPEchoApp" alt="UDPEchoApp" coords="7,16,116,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">local_port</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">dest_port</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">message_length</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>(bits)</p>
+</td>
+</tr>
+<tr>
+<td width="150">message_freq</td>
+<td width="100"><i>numeric</i></td>
+<td><p>should usually be a random value, e.g. exponential(1)</p>
+</td>
+</tr>
+<tr>
+<td width="150">dest_addresses</td>
+<td width="100"><i>string</i></td>
+<td><p>list of IP addresses, separated by spaces</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">from_udp</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">to_udp</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> UDPEchoApp
+    <span class="src-keyword">parameters</span>:
+        local_port : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        dest_port : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        message_length : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// (bits)</span>
+        message_freq : <span class="src-keyword">numeric</span>, <span class="src-comment">// should usually be a random value, e.g. exponential(1)</span>
+        dest_addresses: <span class="src-keyword">string</span>; <span class="src-comment">// list of \IP addresses, separated by spaces</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> from_udp;
+        <span class="src-keyword">out:</span> to_udp;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

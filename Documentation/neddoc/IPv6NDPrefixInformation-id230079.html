@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>IPv6NDPrefixInformation</i>
+</h2>
+<p><b>File: <a href="file-id230242.html">Network/ICMPv6/IPv6NDMessage.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_pv6_n_d_prefix_information.html" target="_top">click here</a></b></p>
+<p>IPv6ND Prefix Information
+RFC 2461 Section 4.6.2</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id230079.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="IPv6NDPrefixInformation-id230079.html" title="class IPv6NDPrefixInformation" alt="IPv6NDPrefixInformation" coords="7,16,196,40">
+</map><h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">prefixLength</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">onlinkFlag</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">autoAddressConfFlag</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">validLifetime</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">preferredLifetime</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">prefix</td>
+<td width="100"><i>IPv6Address</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> IPv6NDPrefixInformation
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        unsigned <span class="src-keyword">int</span> prefixLength;
+        <span class="src-keyword">bool</span> onlinkFlag;
+        <span class="src-keyword">bool</span> autoAddressConfFlag;
+        unsigned <span class="src-keyword">int</span> validLifetime;
+        unsigned <span class="src-keyword">int</span> preferredLifetime;
+        IPv6Address prefix;
+}</pre>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>Dummy</i>
+</h2>
+<p><b>File: <a href="file-id228995.html">Network/Extras/Dummy.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_dummy.html" target="_top">click here</a></b></p>
+<p>Implementation of a failed router. Does nothing and simply discards any
+incoming messages. </p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id228968.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="Dummy-id228968.html" title="simple Dummy" alt="Dummy" coords="147,88,219,112">
+<area shape="rect" href="FailedRouter-id256530.html" title="module FailedRouter" alt="FailedRouter" coords="7,16,103,40">
+<area shape="rect" href="LDP_FAILED-id262980.html" title="module LDP_FAILED" alt="LDP_FAILED" coords="127,16,239,40">
+<area shape="rect" href="RSVP_FAILED-id264094.html" title="module RSVP_FAILED" alt="RSVP_FAILED" coords="263,16,383,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="FailedRouter-id256530.html">FailedRouter</a></td>
+<td><p>A failed IP router. Simply discards all packets it receives, and that's all.</p>
+</td>
+</tr>
+<tr>
+<td><a href="LDP_FAILED-id262980.html">LDP_FAILED</a></td>
+<td><p>Failed router. Discards all incoming traffic and generates nothing. Its
+interface (gates, parameters) is fully compatible with the <a href="RSVP_LSR-id264429.html">RSVP_LSR</a> router
+and node failures may thus be simulated by replacing the <a href="RSVP_LSR-id264429.html">RSVP_LSR</a>
+with FAILED_LSR.</p>
+</td>
+</tr>
+<tr>
+<td><a href="RSVP_FAILED-id264094.html">RSVP_FAILED</a></td>
+<td><p>Failed router. Discards all incoming traffic and generates nothing. Its
+interface (gates, parameters) is fully compatible with the <a href="RSVP_LSR-id264429.html">RSVP_LSR</a> router
+and node failures may thus be simulated by replacing the <a href="RSVP_LSR-id264429.html">RSVP_LSR</a>
+with FAILED_LSR.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ethIn [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ethOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> Dummy
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+        <span class="src-keyword">in:</span> ethIn[];
+        <span class="src-keyword">out:</span> ethOut[];
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

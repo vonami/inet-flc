@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>Ieee80211ReassociationRequestFrameBody</i>
+</h2>
+<p><b>File: <a href="file-id248080.html">NetworkInterfaces/Ieee80211/Mgmt/Ieee80211MgmtFrames.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_reassociation_request_frame_body.html" target="_top">click here</a></b></p>
+<p>Re-association request frame body format (same as association)</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id248513.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="Ieee80211ReassociationRequestFrameBody-id248513.html" title="class Ieee80211ReassociationRequestFrameBody" alt="Ieee80211ReassociationRequestFrameBody" coords="7,88,295,112">
+<area shape="rect" href="Ieee80211AssociationRequestFrameBody-id248464.html" title="class Ieee80211AssociationRequestFrameBody" alt="Ieee80211AssociationRequestFrameBody" coords="13,16,288,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="Ieee80211AssociationRequestFrameBody-id248464.html">Ieee80211AssociationRequestFrameBody</a></td>
+<td><p>Association request frame body format</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">bodyLength</td>
+<td width="100"><i></i></td>
+<td><p>assuming a 8-character SSID and 4 supported datarate</p>
+</td>
+</tr>
+<tr>
+<td width="150">currentAP</td>
+<td width="100"><i>MACAddress</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> Ieee80211ReassociationRequestFrameBody <span class="src-keyword">extends</span> Ieee80211AssociationRequestFrameBody
+{
+    <span class="src-keyword">fields</span>:
+        bodyLength = <span class="src-number">26</span>; <span class="src-comment">// assuming a 8-character SSID and 4 supported datarate</span>
+        MACAddress currentAP;
+};</pre>
+</body>
+</html>

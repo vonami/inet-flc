@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Enum <i>TcpCommandCode</i>
+</h2>
+<p><b>File: <a href="file-id268653.html">Transport/Contract/TCPCommand.msg</a></b></p>
+<p>TCP command codes, sent by the application to <a href="TCP-id271256.html">TCP</a>. These constants
+should be set as message kind on a message sent to the <a href="TCP-id271256.html">TCP</a> entity.</p>
+
+<p><b>See also:</b> <a href="TCPCommand-id268543.html">TCPCommand</a>, <a href="TCPOpenCommand-id268798.html">TCPOpenCommand</a>, <a href="TCP-id271256.html">TCP</a></p>
+
+<h3 class="subtitle">Enum values:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">TCP_C_OPEN_ACTIVE</td>
+<td width="100"><i>1</i></td>
+<td><p>active open (must carry <a href="TCPOpenCommand-id268798.html">TCPOpenCommand</a>)</p>
+</td>
+</tr>
+<tr>
+<td width="150">TCP_C_OPEN_PASSIVE</td>
+<td width="100"><i>2</i></td>
+<td><p>passive open (must carry <a href="TCPOpenCommand-id268798.html">TCPOpenCommand</a>)</p>
+</td>
+</tr>
+<tr>
+<td width="150">TCP_C_SEND</td>
+<td width="100"><i>3</i></td>
+<td><p>send data (set on data packet)</p>
+</td>
+</tr>
+<tr>
+<td width="150">TCP_C_CLOSE</td>
+<td width="100"><i>5</i></td>
+<td><p>"I have no more data to send"</p>
+</td>
+</tr>
+<tr>
+<td width="150">TCP_C_ABORT</td>
+<td width="100"><i>6</i></td>
+<td><p>abort connection</p>
+</td>
+</tr>
+<tr>
+<td width="150">TCP_C_STATUS</td>
+<td width="100"><i>7</i></td>
+<td><p>request status info (TCP_I_STATUS) from <a href="TCP-id271256.html">TCP</a></p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">enum</span> TcpCommandCode
+{
+    TCP_C_OPEN_ACTIVE = <span class="src-number">1</span>;   <span class="src-comment">// active open (must carry TCPOpenCommand)</span>
+    TCP_C_OPEN_PASSIVE = <span class="src-number">2</span>;  <span class="src-comment">// passive open (must carry TCPOpenCommand)</span>
+    TCP_C_SEND = <span class="src-number">3</span>;          <span class="src-comment">// send data (set on data packet)</span>
+    TCP_C_CLOSE = <span class="src-number">5</span>;         <span class="src-comment">// "I have no more data to send"</span>
+    TCP_C_ABORT = <span class="src-number">6</span>;         <span class="src-comment">// abort connection</span>
+    TCP_C_STATUS = <span class="src-number">7</span>;        <span class="src-comment">// request status info (TCP_I_STATUS) from TCP</span>
+};</pre>
+</body>
+</html>

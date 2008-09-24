@@ -1,0 +1,370 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>QuaggaRouter</i>
+</h2>
+<p><b>File: <a href="file-id258212.html">Nodes/INET/QuaggaRouter.ned</a></b></p>
+<p>Quagga-based IP router.</p>
+
+<img class="screenshot" src="QuaggaRouter__Nodes_INET_QuaggaRouter_ned.png" ismap usemap="#screenshot" width="357" height="511"><map name="screenshot"><area shape="rect" coords="298,28 344,74" href="NAMTraceWriter-id272225.html" title="namTrace: NAMTraceWriter" alt="namTrace: NAMTraceWriter">
+<area shape="rect" coords="28,28 74,74" href="NotificationBoard-id225662.html" title="notificationBoard: NotificationBoard" alt="notificationBoard: NotificationBoard">
+<area shape="rect" coords="118,28 164,74" href="InterfaceTable-id227840.html" title="interfaceTable: InterfaceTable" alt="interfaceTable: InterfaceTable">
+<area shape="rect" coords="208,28 254,74" href="RoutingTable-id231049.html" title="routingTable: RoutingTable" alt="routingTable: RoutingTable">
+<area shape="rect" coords="168,309 214,355" href="NetworkLayer-id256856.html" title="networkLayer: NetworkLayer" alt="networkLayer: NetworkLayer">
+<area shape="rect" coords="58,425 104,471" href="PPPInterface-id253450.html" title="ppp: PPPInterface" alt="ppp: PPPInterface">
+<area shape="rect" coords="113,425 159,471" href="EthernetInterface-id241239.html" title="eth: EthernetInterface" alt="eth: EthernetInterface">
+<area shape="rect" coords="168,218 214,264" href="TCP-id271256.html" title="tcp: TCP" alt="tcp: TCP">
+<area shape="rect" coords="268,218 314,264" href="UDP-id272076.html" title="udp: UDP" alt="udp: UDP">
+<area shape="rect" coords="118,118 164,164" href="Daemon-id235711.html" title="zebra: Daemon" alt="zebra: Daemon">
+<area shape="rect" coords="218,118 264,164" href="Daemon-id235711.html" title="ospfd: Daemon" alt="ospfd: Daemon"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id258126.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="QuaggaRouter-id258126.html" title="module QuaggaRouter" alt="QuaggaRouter" coords="593,16,703,40">
+<area shape="rect" href="NotificationBoard-id225662.html" title="simple NotificationBoard" alt="NotificationBoard" coords="7,88,140,112">
+<area shape="rect" href="InterfaceTable-id227840.html" title="simple InterfaceTable" alt="InterfaceTable" coords="164,88,271,112">
+<area shape="rect" href="RoutingTable-id231049.html" title="simple RoutingTable" alt="RoutingTable" coords="295,88,396,112">
+<area shape="rect" href="Daemon-id235711.html" title="simple Daemon" alt="Daemon" coords="420,88,492,112">
+<area shape="rect" href="EthernetInterface-id241239.html" title="module EthernetInterface" alt="EthernetInterface" coords="516,88,644,112">
+<area shape="rect" href="PPPInterface-id253450.html" title="module PPPInterface" alt="PPPInterface" coords="668,88,767,112">
+<area shape="rect" href="NetworkLayer-id256856.html" title="module NetworkLayer" alt="NetworkLayer" coords="791,88,903,112">
+<area shape="rect" href="TCP-id271256.html" title="simple TCP" alt="TCP" coords="927,88,999,112">
+<area shape="rect" href="UDP-id272076.html" title="simple UDP" alt="UDP" coords="1023,88,1095,112">
+<area shape="rect" href="NAMTraceWriter-id272225.html" title="simple NAMTraceWriter" alt="NAMTraceWriter" coords="1119,88,1252,112">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="Daemon-id235711.html">Daemon</a></td>
+<td><i>(no description)</i></td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">EthernetInterface</a></td>
+<td><p>Ethernet network interface. Corresponds to the prototype <a href="NetworkInterface-id238963.html">NetworkInterface</a>.
+Complements <a href="EtherMAC-id240352.html">EtherMAC</a> and <a href="EtherEncap-id241164.html">EtherEncap</a> with an output queue for QoS and
+RED support.</p>
+</td>
+</tr>
+<tr>
+<td><a href="InterfaceTable-id227840.html">InterfaceTable</a></td>
+<td><p>Keeps the table of network interfaces.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NAMTraceWriter-id272225.html">NAMTraceWriter</a></td>
+<td><p>When placed inside a host or router, it writes a NAM trace, based on 
+notifications it receives via the <a href="NotificationBoard-id225662.html">NotificationBoard</a>. Expects to find 
+a <a href="NAMTrace-id272601.html">NAMTrace</a> module named "nam" at network level.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">NetworkLayer</a></td>
+<td><p>Network layer of an IP node.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NotificationBoard-id225662.html">NotificationBoard</a></td>
+<td><p>Using <a href="NotificationBoard-id225662.html">NotificationBoard</a>, modules can now notify each other about
+"events" such as routing table changes, interface status changes (up/down),
+interface configuration changes, wireless handovers, changes in the state
+of the wireless channel, mobile node position changes, etc.</p>
+</td>
+</tr>
+<tr>
+<td><a href="PPPInterface-id253450.html">PPPInterface</a></td>
+<td><p>PPP interface. Complements the <a href="PPP-id253311.html">PPP</a> module with an output queue
+for QoS and RED support.</p>
+</td>
+</tr>
+<tr>
+<td><a href="RoutingTable-id231049.html">RoutingTable</a></td>
+<td><p>Stores the routing table. (Per-interface configuration is stored in 
+<a href="InterfaceTable-id227840.html">InterfaceTable</a>.)</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">TCP</a></td>
+<td><p>TCP protocol implementation. Supports RFC 793, RFC 1122, RFC 2001.
+Compatible with both IPv4 and <a href="IPv6-id232445.html">IPv6</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="UDP-id272076.html">UDP</a></td>
+<td><p><a href="UDP-id272076.html">UDP</a> protocol implementation, for IPv4 and <a href="IPv6-id232445.html">IPv6</a>.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">namid</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">routingFile</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">routingDaemon</td>
+<td width="100"><i>string</i></td>
+<td><p>"ripd", "ospfd", etc.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ethIn [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ethOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.proxyARP</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="IP-id231134.html">ip</a>.procDelay</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.retryTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number seconds <a href="ARP-id227137.html">ARP</a> waits between retries to resolve an IP address</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.retryCount</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number of times <a href="ARP-id227137.html">ARP</a> will attempt to resolve an IP address</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.cacheTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number seconds unused entries in the cache will time out</p>
+</td>
+</tr>
+<tr>
+<td><a href="PPPInterface-id253450.html">ppp[*]</a>.queueType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.queueType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.promiscuous</td>
+<td width="100"><i>bool</i></td>
+<td><p>if true, all packets are received, otherwise only the
+ones with matching destination MAC address</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.address</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address as hex string (12 hex digits), or
+"auto". "auto" values will be replaced by
+a generated MAC address in init stage 0.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.txrate</td>
+<td width="100"><i>numeric</i></td>
+<td><p>maximum data rate supported by this station (bit/s);
+actually chosen speed may be lower due to auto-
+configuration. 0 means fully auto-configured.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.duplexEnabled</td>
+<td width="100"><i>bool</i></td>
+<td><p>whether duplex mode can be enabled or not; whether
+MAC will actually use duplex mode depends on the result
+of the auto-configuration process (duplex is only
+possible with DTE-to-DTE connection).</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherEncap-id241164.html">encap</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">tcp</a>.mss</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>maximum segment size</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">tcp</a>.advertisedWindow</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>in bytes (Note: normally, NIC queues should be at least this size)</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">tcp</a>.tcpAlgorithmClass</td>
+<td width="100"><i>string</i></td>
+<td><p>TCPTahoe/TCPReno/TCPNoCongestionControl/DumbTCP</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">tcp</a>.sendQueueClass</td>
+<td width="100"><i>string</i></td>
+<td><p>TCPVirtualDataSendQueue/TCPMsgBasedSendQueue</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">tcp</a>.receiveQueueClass</td>
+<td width="100"><i>string</i></td>
+<td><p>TCPVirtualDataRcvQueue/TCPMsgBasedRcvQueue</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">tcp</a>.recordStats</td>
+<td width="100"><i>bool</i></td>
+<td><p>recording seqNum etc. into output vectors on/off</p>
+</td>
+</tr>
+<tr>
+<td><a href="Daemon-id235711.html">zebra</a>.fsroot</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Daemon-id235711.html">ospfd</a>.fsroot</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> QuaggaRouter
+    <span class="src-keyword">parameters</span>:
+        namid: <span class="src-keyword">numeric</span>,
+        routingFile: <span class="src-keyword">string</span>,
+        routingDaemon: <span class="src-keyword">string</span>; <span class="src-comment">// "ripd", "ospfd", etc.</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+        <span class="src-keyword">in:</span> ethIn[];
+        <span class="src-keyword">out:</span> ethOut[];
+    <span class="src-keyword">submodules</span>:
+        namTrace: NAMTraceWriter;
+            <span class="src-keyword">parameters</span>:
+                namid = namid;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">330</span>,<span class="src-number">60</span>;i=block/sink";
+        notificationBoard: NotificationBoard;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">60</span>,<span class="src-number">60</span>;i=block/control";
+        interfaceTable: InterfaceTable;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">150</span>,<span class="src-number">60</span>;i=block/table";
+        routingTable: RoutingTable;
+            <span class="src-keyword">parameters</span>:
+                IPForward = <span class="src-keyword">true</span>,
+                routerId = "auto",
+                routingFile = routingFile;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">240</span>,<span class="src-number">60</span>;i=block/table";
+        networkLayer: NetworkLayer;
+            <span class="src-keyword">gatesizes</span>:
+                ifIn[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)],
+                ifOut[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">200</span>,<span class="src-number">341</span>;i=block/fork;q=queue";
+        ppp: PPPInterface[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">90</span>,<span class="src-number">457</span>,row,<span class="src-number">110</span>;q=l2queue;i=block/ifcard";
+        eth: EthernetInterface[<span class="src-keyword">sizeof</span>(ethOut)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">145</span>,<span class="src-number">457</span>,row,<span class="src-number">110</span>;q=l2queue;i=block/ifcard";
+        tcp: TCP;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">200</span>,<span class="src-number">250</span>;i=block/wheelbarrow";
+        udp: UDP;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">300</span>,<span class="src-number">250</span>;i=block/wheelbarrow";
+        zebra: Daemon;
+            <span class="src-keyword">parameters</span>:
+                server = "zebra";
+            <span class="src-keyword">display</span>: "p=<span class="src-number">150</span>, <span class="src-number">150</span>;i=block/cogwheel";
+        ospfd: Daemon;
+            <span class="src-keyword">parameters</span>:
+                server = routingDaemon;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">250</span>, <span class="src-number">150</span>;i=block/cogwheel";
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        <span class="src-comment">// connections to network outside</span>
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(out)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> ppp[i].physIn;
+            out[i] <span class="src-keyword">&lt;--</span> ppp[i].physOut;
+            ppp[i].netwOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[i];
+            ppp[i].netwIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[i];
+        <span class="src-keyword">endfor</span>;
+
+        tcp.to_ip <span class="src-keyword">--&gt;</span> networkLayer.TCPIn;
+        tcp.from_ip <span class="src-keyword">&lt;--</span> networkLayer.TCPOut;
+
+        udp.to_ip <span class="src-keyword">--&gt;</span> networkLayer.UDPIn;
+        udp.from_ip <span class="src-keyword">&lt;--</span> networkLayer.UDPOut;
+
+        zebra.tcpIn <span class="src-keyword">&lt;--</span> tcp.to_appl++;
+        zebra.tcpOut <span class="src-keyword">--&gt;</span> tcp.from_appl++;
+
+        ospfd.tcpIn <span class="src-keyword">&lt;--</span> tcp.to_appl++;
+        ospfd.tcpOut <span class="src-keyword">--&gt;</span> tcp.from_appl++;
+
+        ospfd.udpIn <span class="src-keyword">&lt;--</span> udp.to_app++;
+        ospfd.udpOut <span class="src-keyword">--&gt;</span> udp.from_app++;
+
+        ospfd.ipOut <span class="src-keyword">--&gt;</span> networkLayer.OSPFIn;
+        ospfd.ipIn <span class="src-keyword">&lt;--</span> networkLayer.OSPFOut;
+
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(ethOut)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            ethIn[i] <span class="src-keyword">--&gt;</span> eth[i].physIn;
+            ethOut[i] <span class="src-keyword">&lt;--</span> eth[i].physOut;
+            eth[i].netwOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[<span class="src-keyword">sizeof</span>(out)+i];
+            eth[i].netwIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[<span class="src-keyword">sizeof</span>(out)+i];
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

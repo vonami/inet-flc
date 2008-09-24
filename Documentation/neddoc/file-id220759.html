@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Applications/TCPApp/TCPGenericSrvApp.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="TCPGenericSrvApp-id220613.html">TCPGenericSrvApp</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Generic server application for modelling TCP-based request-reply style</span>
+<span class="src-comment">// protocols or applications.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Requires message object preserving sendQueue/receiveQueue classes</span>
+<span class="src-comment">// to be used with TCP (that is, TCPMsgBasedSendQueue and TCPMsgBasedRcvQueue;</span>
+<span class="src-comment">// TCPVirtualBytesSendQueue/RcvQueue are not good).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The module accepts any number of incoming \TCP connections, and expects</span>
+<span class="src-comment">// to receive messages of class GenericAppMsg on them. A message should</span>
+<span class="src-comment">// contain how large the reply should be (number of bytes). TCPGenericSrvApp</span>
+<span class="src-comment">// will just change the length of the received message accordingly, and send</span>
+<span class="src-comment">// back the same message object. The reply can be delayed by a constant time</span>
+<span class="src-comment">// (replyDelay parameter).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Compatible with both IPv4 and IPv6.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see GenericAppMsg, TCPBasicClientApp, TelnetApp</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> TCPGenericSrvApp
+    <span class="src-keyword">parameters</span>:
+        address: <span class="src-keyword">string</span>, <span class="src-comment">// local address; may be left empty ("")</span>
+        port: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// port number to listen on</span>
+        replyDelay: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> tcpIn;
+        <span class="src-keyword">out:</span> tcpOut;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

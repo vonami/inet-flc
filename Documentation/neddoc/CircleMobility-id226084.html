@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>CircleMobility</i>
+</h2>
+<p><b>File: <a href="file-id226039.html">Mobility/CircleMobility.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_circle_mobility.html" target="_top">click here</a></b></p>
+<p>Moves the node around a circle.</p>
+
+<p><b>See also:</b> <a href="ChannelControl-id272488.html">ChannelControl</a></p>
+
+<p><b>Author:</b> Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id226084.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="CircleMobility-id226084.html" title="simple CircleMobility" alt="CircleMobility" coords="7,16,113,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td width="150">cx</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>x coord of the center of the circle</p>
+</td>
+</tr>
+<tr>
+<td width="150">cy</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>y coord of the center of the circle</p>
+</td>
+</tr>
+<tr>
+<td width="150">r</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>radius of the circle</p>
+</td>
+</tr>
+<tr>
+<td width="150">speed</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>speed of the host (in m/s)</p>
+</td>
+</tr>
+<tr>
+<td width="150">startAngle</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>starting angle (degreees)</p>
+</td>
+</tr>
+<tr>
+<td width="150">updateInterval</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>time interval to update the hosts position</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> CircleMobility
+    <span class="src-keyword">parameters</span>:
+        debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        cx: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// x coord of the center of the circle</span>
+        cy: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// y coord of the center of the circle</span>
+        r: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// radius of the circle</span>
+        speed: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// speed of the host (in m/s)</span>
+        startAngle: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// starting angle (degreees)</span>
+        updateInterval : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// time interval to update the hosts position</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

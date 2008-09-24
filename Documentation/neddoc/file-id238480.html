@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/TED/LinkStatePacket.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="LinkStateMsg-id238531.html">LinkStateMsg</a><i> (message)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// (C) 2005 Vojtech Janota</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This library is free software, you can redistribute it</span>
+<span class="src-comment">// and/or modify</span>
+<span class="src-comment">// it under  the terms of the GNU Lesser General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation;</span>
+<span class="src-comment">// either version 2 of the License, or any later version.</span>
+<span class="src-comment">// The library is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="src-comment">// See the GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+
+
+cplusplus {{
+#include "TED_m.h"
+}}
+
+<span class="src-comment">// Represents a link in the TED and in LinkStateMsg packets; from TED.msg.</span>
+<span class="src-keyword">struct</span> TELinkStateInfo;
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Packet for disseminating link state information (TELinkStateInfo[]) by the</span>
+<span class="src-comment">// LinkStateRouting module which implements a minimalistic link state routing</span>
+<span class="src-comment">// protocol.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> LinkStateMsg
+{
+    <span class="src-keyword">fields</span>:
+        TELinkStateInfo linkInfo[];
+
+        <span class="src-keyword">bool</span> request = <span class="src-keyword">false</span>; <span class="src-comment">// if true, receiver is expected to send back its own link state database to the sender --FIXME really needed?</span>
+        <span class="src-comment">// bool ack = false; -- apparently unused, removed -- TODO check with Vojta</span>
+
+        <span class="src-keyword">int</span> command = LINK_STATE_MESSAGE; <span class="src-comment">// FIXME maybe do without this...</span>
+};
+</pre>
+</body>
+</html>

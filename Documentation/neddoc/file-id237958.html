@@ -1,0 +1,182 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/RSVP_TE/SignallingMsg.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="HelloTimeoutMsg-id238278.html">HelloTimeoutMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="HelloTimerMsg-id238236.html">HelloTimerMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="PathNotifyMsg-id238319.html">PathNotifyMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="PsbTimeoutMsg-id238074.html">PsbTimeoutMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="PsbTimerMsg-id237946.html">PsbTimerMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="RsbCommitTimerMsg-id238155.html">RsbCommitTimerMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="RsbRefreshTimerMsg-id238114.html">RsbRefreshTimerMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="RsbTimeoutMsg-id238196.html">RsbTimeoutMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="SignallingMsg-id237919.html">SignallingMsg</a><i> (message)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// (C) 2005 Vojtech Janota</span>
+<span class="src-comment">// (C) 2003 Xuan Thang Nguyen</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This library is free software, you can redistribute it</span>
+<span class="src-comment">// and/or modify</span>
+<span class="src-comment">// it under  the terms of the GNU Lesser General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation;</span>
+<span class="src-comment">// either version 2 of the License, or any later version.</span>
+<span class="src-comment">// The library is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="src-comment">// See the GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+
+cplusplus {{
+#include "IPAddress.h"
+#include "IntServ.h"
+
+#define MSG_PSB_TIMER               <span class="src-number">1</span>
+#define MSG_PSB_TIMEOUT             <span class="src-number">2</span>
+
+#define MSG_RSB_REFRESH_TIMER       <span class="src-number">3</span>
+#define MSG_RSB_COMMIT_TIMER        <span class="src-number">4</span>
+#define MSG_RSB_TIMEOUT             <span class="src-number">5</span>
+
+#define MSG_HELLO_TIMER             <span class="src-number">6</span>
+#define MSG_HELLO_TIMEOUT           <span class="src-number">7</span>
+
+#define MSG_PATH_NOTIFY             <span class="src-number">8</span>
+
+#define PATH_CREATED                <span class="src-number">1</span>
+#define PATH_UNFEASIBLE             <span class="src-number">2</span>
+#define PATH_FAILED                 <span class="src-number">3</span>
+#define PATH_PREEMPTED              <span class="src-number">4</span>
+#define PATH_RETRY                  <span class="src-number">5</span>
+}}
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPAddress;
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> SessionObj_t;
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> SenderTemplateObj_t;
+
+<span class="src-comment">//</span>
+<span class="src-comment">// FIXME missing documentation</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> SignallingMsg
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> command = <span class="src-number">0</span>;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// FIXME missing documentation</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> PsbTimerMsg <span class="src-keyword">extends</span> SignallingMsg
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> id;
+
+        <span class="src-keyword">int</span> command = MSG_PSB_TIMER;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// FIXME missing documentation</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> PsbTimeoutMsg <span class="src-keyword">extends</span> SignallingMsg
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> id;
+
+        <span class="src-keyword">int</span> command = MSG_PSB_TIMEOUT;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// FIXME missing documentation</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> RsbRefreshTimerMsg <span class="src-keyword">extends</span> SignallingMsg
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> id;
+
+        <span class="src-keyword">int</span> command = MSG_RSB_REFRESH_TIMER;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// FIXME missing documentation</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> RsbCommitTimerMsg <span class="src-keyword">extends</span> SignallingMsg
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> id;
+
+        <span class="src-keyword">int</span> command = MSG_RSB_COMMIT_TIMER;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// FIXME missing documentation</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> RsbTimeoutMsg <span class="src-keyword">extends</span> SignallingMsg
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> id;
+
+        <span class="src-keyword">int</span> command = MSG_RSB_TIMEOUT;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// FIXME missing documentation</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> HelloTimerMsg <span class="src-keyword">extends</span> SignallingMsg
+{
+    <span class="src-keyword">fields</span>:
+        IPAddress peer;
+
+        <span class="src-keyword">int</span> command = MSG_HELLO_TIMER;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// FIXME missing documentation</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> HelloTimeoutMsg <span class="src-keyword">extends</span> SignallingMsg
+{
+    <span class="src-keyword">fields</span>:
+        IPAddress peer;
+
+        <span class="src-keyword">int</span> command = MSG_HELLO_TIMEOUT;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// FIXME missing documentation</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> PathNotifyMsg <span class="src-keyword">extends</span> SignallingMsg
+{
+    <span class="src-keyword">fields</span>:
+        SessionObj_t session;
+        SenderTemplateObj_t sender;
+
+        <span class="src-keyword">int</span> status;
+
+        <span class="src-keyword">int</span> command = MSG_PATH_NOTIFY;
+};
+</pre>
+</body>
+</html>

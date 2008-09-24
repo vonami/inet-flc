@@ -1,0 +1,127 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>RTPLayer</i>
+</h2>
+<p><b>File: <a href="file-id270432.html">Transport/RTP/RTPLayer.ned</a></b></p>
+<p>(no description)</p>
+<img class="screenshot" src="RTPLayer__Transport_RTP_RTPLayer_ned.png" ismap usemap="#screenshot" width="247" height="138"><map name="screenshot"><area shape="rect" coords="68,26 110,52" href="RTPModule-id270718.html" title="rtpModule: rtpModuleType like RTPModule" alt="rtpModule: rtpModuleType like RTPModule">
+<area shape="rect" coords="133,74 175,100" href="RTCPModule-id269546.html" title="rtcpModule: rtcpModuleType like RTCPModule" alt="rtcpModule: rtcpModuleType like RTCPModule"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id270474.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="RTPLayer-id270474.html" title="module RTPLayer" alt="RTPLayer" coords="79,88,161,112">
+<area shape="rect" href="RTCPModule-id269546.html" title="simple RTCPModule" alt="RTCPModule" coords="7,160,111,184">
+<area shape="rect" href="RTPModule-id270718.html" title="simple RTPModule" alt="RTPModule" coords="135,160,228,184">
+<area shape="rect" href="RTPHost-id269911.html" title="module RTPHost" alt="RTPHost" coords="84,16,156,40">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="RTCPModule-id269546.html">RTCPModule</a></td>
+<td><i>(no description)</i></td>
+</tr>
+<tr>
+<td><a href="RTPModule-id270718.html">RTPModule</a></td>
+<td><i>(no description)</i></td>
+</tr>
+</table>
+<h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="RTPHost-id269911.html">RTPHost</a></td>
+<td><i>(no description)</i></td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">rtpModuleType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">rtcpModuleType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">fromApp</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">fromSocketLayerRTP</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">fromSocketLayerRTCP</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">toApp</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">toSocketLayerRTP</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">toSocketLayerRTCP</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable"><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr></table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> RTPLayer
+
+	<span class="src-keyword">parameters</span>:
+		rtpModuleType: <span class="src-keyword">string</span>,
+		rtcpModuleType: <span class="src-keyword">string</span>;
+
+	<span class="src-keyword">gates</span>:
+		<span class="src-keyword">in:</span> fromApp, fromSocketLayerRTP, fromSocketLayerRTCP;
+		<span class="src-keyword">out:</span> toApp, toSocketLayerRTP, toSocketLayerRTCP;
+
+	<span class="src-keyword">submodules</span>:
+		rtpModule: rtpModuleType <span class="src-keyword">like</span> RTPModule;
+		rtcpModule: rtcpModuleType <span class="src-keyword">like</span> RTCPModule;
+
+	<span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+		fromApp <span class="src-keyword">--&gt;</span> rtpModule.fromApp;
+		toApp <span class="src-keyword">&lt;--</span> rtpModule.toApp;
+		rtpModule.toRTCP <span class="src-keyword">--&gt;</span> rtcpModule.fromRTP;
+		rtpModule.fromRTCP <span class="src-keyword">&lt;--</span> rtcpModule.toRTP;
+		rtpModule.toSocketLayer <span class="src-keyword">--&gt;</span> toSocketLayerRTP;
+		rtpModule.fromSocketLayer <span class="src-keyword">&lt;--</span> fromSocketLayerRTP;
+		rtcpModule.toSocketLayer <span class="src-keyword">--&gt;</span> toSocketLayerRTCP;
+		rtcpModule.fromSocketLayer <span class="src-keyword">&lt;--</span> fromSocketLayerRTCP;
+
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

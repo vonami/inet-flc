@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/RSVP_TE/RSVPPacket.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="RSVPMessage-id237252.html">RSVPMessage</a><i> (message)</i>
+</li>
+<li>
+<a href="RSVPPacket-id237278.html">RSVPPacket</a><i> (message)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// (C) 2005 Vojtech Janota</span>
+<span class="src-comment">// (C) 2003 Xuan Thang Nguyen</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This library is free software, you can redistribute it</span>
+<span class="src-comment">// and/or modify</span>
+<span class="src-comment">// it under  the terms of the GNU Lesser General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation;</span>
+<span class="src-comment">// either version 2 of the License, or any later version.</span>
+<span class="src-comment">// The library is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="src-comment">// See the GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+
+
+cplusplus {{
+#include "IntServ_m.h"
+
+#define PATH_MESSAGE   <span class="src-number">1</span>
+#define RESV_MESSAGE   <span class="src-number">2</span>
+#define PTEAR_MESSAGE  <span class="src-number">3</span>
+#define RTEAR_MESSAGE  <span class="src-number">4</span>
+#define PERROR_MESSAGE <span class="src-number">5</span>
+#define RERROR_MESSAGE <span class="src-number">6</span>
+#define HELLO_MESSAGE   <span class="src-number">7</span>
+}}
+
+<span class="src-keyword">struct</span> SessionObj_t;
+<span class="src-keyword">struct</span> RsvpHopObj_t;
+<span class="src-keyword">struct</span> SenderTemplateObj_t;
+<span class="src-keyword">struct</span> SenderTspecObj_t;
+<span class="src-keyword">struct</span> FlowSpecObj_t;
+<span class="src-keyword">struct</span> FilterSpecObj_t;
+<span class="src-keyword">struct</span> LabelRequestObj_t;
+<span class="src-keyword">struct</span> SenderDescriptor_t;
+<span class="src-keyword">struct</span> FlowDescriptor_t;
+<span class="src-keyword">struct</span> EroObj_t;
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// \RSVP message common part</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> RSVPMessage
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> rsvpKind;
+}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// FIXME missing documentation</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> RSVPPacket <span class="src-keyword">extends</span> RSVPMessage
+{
+    <span class="src-keyword">properties</span>:
+        customize=<span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        SessionObj_t session;
+        <span class="src-keyword">bool</span> checksumValid = <span class="src-keyword">true</span>;
+};
+</pre>
+</body>
+</html>

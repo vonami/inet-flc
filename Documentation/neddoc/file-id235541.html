@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/OSPFv2/OSPFTimer.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="OSPFTimer-id235647.html">OSPFTimer</a><i> (message)</i>
+</li>
+<li>
+<a href="OSPFTimerType-id235585.html">OSPFTimerType</a><i> (enum)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-keyword">enum</span> OSPFTimerType {
+    InterfaceHelloTimer                = <span class="src-number">0</span>;
+    InterfaceWaitTimer                 = <span class="src-number">1</span>;
+    InterfaceAcknowledgementTimer      = <span class="src-number">3</span>;
+    NeighborInactivityTimer            = <span class="src-number">4</span>;
+    NeighborPollTimer                  = <span class="src-number">5</span>;
+    NeighborDDRetransmissionTimer      = <span class="src-number">6</span>;
+    NeighborUpdateRetransmissionTimer  = <span class="src-number">7</span>;
+    NeighborRequestRetransmissionTimer = <span class="src-number">8</span>;
+    DatabaseAgeTimer                   = <span class="src-number">9</span>;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an OSPF Timer</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> OSPFTimer <span class="src-keyword">extends</span> cMessage
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">char</span>   timerKind <span class="src-keyword">enum</span>(OSPFTimerType) = InterfaceHelloTimer;
+};
+</pre>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>TCPCommand</i>
+</h2>
+<p><b>File: <a href="file-id268653.html">Transport/Contract/TCPCommand.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_t_c_p_command.html" target="_top">click here</a></b></p>
+<p>Control info for TCP connections. This class is to be set as control info
+(see cMessage::setControlInfo()) on all messages exchanged between <a href="TCP-id271256.html">TCP</a> and
+application, in both directions. Some commands and indications
+(TCP_C_OPEN_xxx, TCP_I_STATUS) use subclasses.</p>
+
+<p>connId identifies the connection locally within the application (internally,
+<a href="TCP-id271256.html">TCP</a> uses the (app gate index, connId) pair to identify the socket).
+connId is to be chosen by the application in the open command.</p>
+
+<p><b>See also:</b> <a href="TcpCommandCode-id268675.html">TcpCommandCode</a>, <a href="TcpStatusInd-id268763.html">TcpStatusInd</a>, <a href="TCPOpenCommand-id268798.html">TCPOpenCommand</a>, <a href="TCPStatusInfo-id269015.html">TCPStatusInfo</a>, <a href="TCP-id271256.html">TCP</a></p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id268543.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="TCPCommand-id268543.html" title="class TCPCommand" alt="TCPCommand" coords="324,16,436,40">
+<area shape="rect" href="TCPErrorInfo-id268608.html" title="class TCPErrorInfo" alt="TCPErrorInfo" coords="7,88,113,112">
+<area shape="rect" href="TCPOpenCommand-id268798.html" title="class TCPOpenCommand" alt="TCPOpenCommand" coords="137,88,284,112">
+<area shape="rect" href="TCPSendCommand-id268919.html" title="class TCPSendCommand" alt="TCPSendCommand" coords="308,88,452,112">
+<area shape="rect" href="TCPConnectInfo-id268949.html" title="class TCPConnectInfo" alt="TCPConnectInfo" coords="476,88,601,112">
+<area shape="rect" href="TCPStatusInfo-id269015.html" title="class TCPStatusInfo" alt="TCPStatusInfo" coords="625,88,735,112">
+</map><h3 class="subtitle">Known subclasses:</h3>
+<table>
+<tr>
+<td><a href="TCPErrorInfo-id268608.html">TCPErrorInfo</a></td>
+<td><p>Currently not in use.</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCPOpenCommand-id268798.html">TCPOpenCommand</a></td>
+<td><p>Control info to be used for active or passive <a href="TCP-id271256.html">TCP</a> open.</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCPSendCommand-id268919.html">TCPSendCommand</a></td>
+<td><p>Control info to be used with the SEND command.</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCPConnectInfo-id268949.html">TCPConnectInfo</a></td>
+<td><p>Sent with message kind TCP_I_ESTABLISHED, to let the app know
+about the local and remote <a href="IP-id231134.html">IP</a> address and port.</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCPStatusInfo-id269015.html">TCPStatusInfo</a></td>
+<td><p>Sent with message kind TCP_I_STATUS, in response to command TCP_C_STATUS.
+For explanation of variables, see RFC 793 or TCPStateVariables in
+TCPConnection.h.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">connId</td>
+<td width="100"><i>int</i></td>
+<td><p>identifies the socket within the application</p>
+</td>
+</tr>
+<tr>
+<td width="150">userId</td>
+<td width="100"><i>int</i></td>
+<td><p>id than can be freely used by the app</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> TCPCommand
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> connId = <span class="src-number">-1</span>;   <span class="src-comment">// identifies the socket within the application</span>
+        <span class="src-keyword">int</span> userId = <span class="src-number">-1</span>;   <span class="src-comment">// id than can be freely used by the app</span>
+};</pre>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>EthernetInterface2</i>
+</h2>
+<p><b>File: <a href="file-id241723.html">NetworkInterfaces/Ethernet/EthernetInterface2.ned</a></b></p>
+<p>Ethernet network interface, which supports full-duplex operation only.
+Corresponds to the prototype <a href="NetworkInterface-id238963.html">NetworkInterface</a>.
+Complements <a href="EtherMAC2-id240348.html">EtherMAC2</a> and <a href="EtherEncap-id241164.html">EtherEncap</a> with an output queue for QoS and
+RED support.</p>
+
+<p><b>See also:</b> <a href="EthernetInterface-id241239.html">EthernetInterface</a>, <a href="EthernetInterfaceNoQueue-id242071.html">EthernetInterfaceNoQueue</a></p>
+
+<img class="screenshot" src="EthernetInterface2__NetworkInterfaces_Ethernet_EthernetInterface2_ned.png" ismap usemap="#screenshot" width="190" height="296"><map name="screenshot"><area shape="rect" coords="60,39 106,85" href="OutputQueue-id236035.html" title="queue: queueType like OutputQueue" alt="queue: queueType like OutputQueue">
+<area shape="rect" coords="84,199 130,245" href="EtherMAC2-id240348.html" title="mac: EtherMAC2" alt="mac: EtherMAC2">
+<area shape="rect" coords="84,119 130,165" href="EtherEncap-id241164.html" title="encap: EtherEncap" alt="encap: EtherEncap"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id241696.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="EthernetInterface2-id241696.html" title="module EthernetInterface2" alt="EthernetInterface2" coords="109,16,245,40">
+<area shape="rect" href="OutputQueue-id236035.html" title="simple OutputQueue" alt="OutputQueue" coords="7,88,108,112">
+<area shape="rect" href="EtherEncap-id241164.html" title="simple EtherEncap" alt="EtherEncap" coords="132,88,223,112">
+<area shape="rect" href="EtherMAC2-id240348.html" title="simple EtherMAC2" alt="EtherMAC2" coords="247,88,340,112">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="EtherEncap-id241164.html">EtherEncap</a></td>
+<td><p>Performs Ethernet II encapsulation/decapsulation.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC2-id240348.html">EtherMAC2</a></td>
+<td><p>Ethernet MAC which supports full duplex operation ONLY.</p>
+</td>
+</tr>
+<tr>
+<td><a href="OutputQueue-id236035.html">OutputQueue</a></td>
+<td><p>Prototype for per-NIC output queues. Concrete queues can implement
+drop-tail, RED etc. policy.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">queueType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">physIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">netwIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">physOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">netwOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="EtherMAC2-id240348.html">mac</a>.promiscuous</td>
+<td width="100"><i>bool</i></td>
+<td><p>if true, all packets are received, otherwise only the
+ones with matching destination MAC address</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC2-id240348.html">mac</a>.address</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address as hex string (12 hex digits), or
+"auto". "auto" values will be replaced by
+a generated MAC address in init stage 0.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC2-id240348.html">mac</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherEncap-id241164.html">encap</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> EthernetInterface2
+    <span class="src-keyword">parameters</span>:
+        queueType: <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> physIn;
+        <span class="src-keyword">in:</span> netwIn;
+        <span class="src-keyword">out:</span> physOut;
+        <span class="src-keyword">out:</span> netwOut;
+    <span class="src-keyword">submodules</span>:
+        queue: queueType <span class="src-keyword">like</span> OutputQueue;
+            <span class="src-keyword">display</span>: "i=block/queue;p=<span class="src-number">92</span>,<span class="src-number">71</span>;q=l2queue";
+        mac: EtherMAC2;
+            <span class="src-keyword">parameters</span>:
+                queueModule = "queue",
+                txQueueLimit = <span class="src-number">1</span>; <span class="src-comment">// queue sends one packet at a time</span>
+            <span class="src-keyword">display</span>: "i=block/rxtx;p=<span class="src-number">116</span>,<span class="src-number">231</span>";
+        encap: EtherEncap;
+            <span class="src-keyword">display</span>: "i=block/square;p=<span class="src-number">116</span>,<span class="src-number">151</span>";
+    <span class="src-keyword">connections</span>:
+        netwIn <span class="src-keyword">--&gt;</span> queue.in;
+        queue.out <span class="src-keyword">--&gt;</span> encap.upperLayerIn;
+        netwOut <span class="src-keyword">&lt;--</span> encap.upperLayerOut <span class="src-keyword">display</span> "m=n";
+        encap.lowerLayerOut <span class="src-keyword">--&gt;</span> mac.upperLayerIn;
+        encap.lowerLayerIn <span class="src-keyword">&lt;--</span> mac.upperLayerOut;
+        mac.physIn <span class="src-keyword">&lt;--</span> physIn;
+        mac.physOut <span class="src-keyword">--&gt;</span> physOut;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

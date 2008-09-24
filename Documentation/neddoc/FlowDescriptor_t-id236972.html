@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Struct <i>FlowDescriptor_t</i>
+</h2>
+<p><b>File: <a href="file-id236665.html">Network/RSVP_TE/IntServ.msg</a></b></p>
+<p>Intserv/<a href="RSVP-id236175.html">RSVP</a>: Flow Descriptor Structure</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id236972.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="FlowDescriptor_t-id236972.html" title="struct FlowDescriptor_t" alt="FlowDescriptor_t" coords="7,16,135,40">
+</map><h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">Flowspec_Object</td>
+<td width="100"><i>FlowSpecObj_t</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">Filter_Spec_Object</td>
+<td width="100"><i>FilterSpecObj_t</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">RRO</td>
+<td width="100"><i>IPAddressVector</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">label</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">struct</span> FlowDescriptor_t
+{
+  <span class="src-keyword">fields</span>:
+    FlowSpecObj_t Flowspec_Object;
+    FilterSpecObj_t Filter_Spec_Object;
+    IPAddressVector RRO;
+    <span class="src-keyword">int</span> label;
+};</pre>
+</body>
+</html>

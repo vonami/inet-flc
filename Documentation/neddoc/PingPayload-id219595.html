@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>PingPayload</i>
+</h2>
+<p><b>File: <a href="file-id219614.html">Applications/PingApp/PingPayload.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ping_payload.html" target="_top">click here</a></b></p>
+<p>Represents payload in an <a href="ICMP-id230662.html">ICMP</a>/<a href="ICMPv6-id229107.html">ICMPv6</a> Echo Request/Reply.</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id219595.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="PingPayload-id219595.html" title="message PingPayload" alt="PingPayload" coords="7,16,100,40">
+</map><h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">originatorId</td>
+<td width="100"><i>long</i></td>
+<td><p>sender module id()</p>
+</td>
+</tr>
+<tr>
+<td width="150">seqNo</td>
+<td width="100"><i>long</i></td>
+<td><p>sequence number</p>
+</td>
+</tr>
+<tr>
+<td width="150">data</td>
+<td width="100"><i>unsigned char[]</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> PingPayload
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">long</span> originatorId; <span class="src-comment">// sender module id()</span>
+        <span class="src-keyword">long</span> seqNo; <span class="src-comment">// sequence number</span>
+        unsigned <span class="src-keyword">char</span> data[];
+};</pre>
+</body>
+</html>

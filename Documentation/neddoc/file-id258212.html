@@ -1,0 +1,128 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Nodes/INET/QuaggaRouter.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="QuaggaRouter-id258126.html">QuaggaRouter</a><i> (compound-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2005 Vojta Janota</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-keyword">import</span>
+    "NotificationBoard",
+    "InterfaceTable",
+    "RoutingTable",
+    "PPPInterface",
+    "EthernetInterface",
+    "NetworkLayer",
+    "UDP",
+    "Daemon";
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Quagga-based \IP router.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">module</span> QuaggaRouter
+    <span class="src-keyword">parameters</span>:
+        namid: <span class="src-keyword">numeric</span>,
+        routingFile: <span class="src-keyword">string</span>,
+        routingDaemon: <span class="src-keyword">string</span>; <span class="src-comment">// "ripd", "ospfd", etc.</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+        <span class="src-keyword">in:</span> ethIn[];
+        <span class="src-keyword">out:</span> ethOut[];
+    <span class="src-keyword">submodules</span>:
+        namTrace: NAMTraceWriter;
+            <span class="src-keyword">parameters</span>:
+                namid = namid;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">330</span>,<span class="src-number">60</span>;i=block/sink";
+        notificationBoard: NotificationBoard;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">60</span>,<span class="src-number">60</span>;i=block/control";
+        interfaceTable: InterfaceTable;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">150</span>,<span class="src-number">60</span>;i=block/table";
+        routingTable: RoutingTable;
+            <span class="src-keyword">parameters</span>:
+                IPForward = <span class="src-keyword">true</span>,
+                routerId = "auto",
+                routingFile = routingFile;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">240</span>,<span class="src-number">60</span>;i=block/table";
+        networkLayer: NetworkLayer;
+            <span class="src-keyword">gatesizes</span>:
+                ifIn[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)],
+                ifOut[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">200</span>,<span class="src-number">341</span>;i=block/fork;q=queue";
+        ppp: PPPInterface[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">90</span>,<span class="src-number">457</span>,row,<span class="src-number">110</span>;q=l2queue;i=block/ifcard";
+        eth: EthernetInterface[<span class="src-keyword">sizeof</span>(ethOut)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">145</span>,<span class="src-number">457</span>,row,<span class="src-number">110</span>;q=l2queue;i=block/ifcard";
+        tcp: TCP;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">200</span>,<span class="src-number">250</span>;i=block/wheelbarrow";
+        udp: UDP;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">300</span>,<span class="src-number">250</span>;i=block/wheelbarrow";
+        zebra: Daemon;
+            <span class="src-keyword">parameters</span>:
+                server = "zebra";
+            <span class="src-keyword">display</span>: "p=<span class="src-number">150</span>, <span class="src-number">150</span>;i=block/cogwheel";
+        ospfd: Daemon;
+            <span class="src-keyword">parameters</span>:
+                server = routingDaemon;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">250</span>, <span class="src-number">150</span>;i=block/cogwheel";
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        <span class="src-comment">// connections to network outside</span>
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(out)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> ppp[i].physIn;
+            out[i] <span class="src-keyword">&lt;--</span> ppp[i].physOut;
+            ppp[i].netwOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[i];
+            ppp[i].netwIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[i];
+        <span class="src-keyword">endfor</span>;
+
+        tcp.to_ip <span class="src-keyword">--&gt;</span> networkLayer.TCPIn;
+        tcp.from_ip <span class="src-keyword">&lt;--</span> networkLayer.TCPOut;
+
+        udp.to_ip <span class="src-keyword">--&gt;</span> networkLayer.UDPIn;
+        udp.from_ip <span class="src-keyword">&lt;--</span> networkLayer.UDPOut;
+
+        zebra.tcpIn <span class="src-keyword">&lt;--</span> tcp.to_appl++;
+        zebra.tcpOut <span class="src-keyword">--&gt;</span> tcp.from_appl++;
+
+        ospfd.tcpIn <span class="src-keyword">&lt;--</span> tcp.to_appl++;
+        ospfd.tcpOut <span class="src-keyword">--&gt;</span> tcp.from_appl++;
+
+        ospfd.udpIn <span class="src-keyword">&lt;--</span> udp.to_app++;
+        ospfd.udpOut <span class="src-keyword">--&gt;</span> udp.from_app++;
+
+        ospfd.ipOut <span class="src-keyword">--&gt;</span> networkLayer.OSPFIn;
+        ospfd.ipIn <span class="src-keyword">&lt;--</span> networkLayer.OSPFOut;
+
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(ethOut)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            ethIn[i] <span class="src-keyword">--&gt;</span> eth[i].physIn;
+            ethOut[i] <span class="src-keyword">&lt;--</span> eth[i].physOut;
+            eth[i].netwOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[<span class="src-keyword">sizeof</span>(out)+i];
+            eth[i].netwIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[<span class="src-keyword">sizeof</span>(out)+i];
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span>
+</pre>
+</body>
+</html>

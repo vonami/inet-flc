@@ -1,0 +1,65 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Enum <i>Ieee80211PrimConfirmCode</i>
+</h2>
+<p><b>File: <a href="file-id249388.html">NetworkInterfaces/Ieee80211/Mgmt/Ieee80211Primitives.msg</a></b></p>
+<p>IEEE 802.11 confirm codes, sent by the management entity to the agent,
+in response to the agents's requests.
+These constants should be set as message kind on the messages.</p>
+
+<p><b>See also:</b> <a href="Ieee80211PrimRequestCode-id249529.html">Ieee80211PrimRequestCode</a>, <a href="Ieee80211MgmtSTA-id247429.html">Ieee80211MgmtSTA</a>, <a href="Ieee80211AgentSTA-id246827.html">Ieee80211AgentSTA</a></p>
+
+<h3 class="subtitle">Enum values:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">PR_SCAN_CONFIRM</td>
+<td width="100"><i>1</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">PR_AUTHENTICATE_CONFIRM</td>
+<td width="100"><i>2</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">PR_DEAUTHENTICATE_CONFIRM</td>
+<td width="100"><i>3</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">PR_ASSOCIATE_CONFIRM</td>
+<td width="100"><i>4</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">PR_REASSOCIATE_CONFIRM</td>
+<td width="100"><i>5</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">PR_DISASSOCIATE_CONFIRM</td>
+<td width="100"><i>6</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">enum</span> Ieee80211PrimConfirmCode
+{
+    PR_SCAN_CONFIRM = <span class="src-number">1</span>;
+    PR_AUTHENTICATE_CONFIRM = <span class="src-number">2</span>;
+    PR_DEAUTHENTICATE_CONFIRM = <span class="src-number">3</span>;
+    PR_ASSOCIATE_CONFIRM = <span class="src-number">4</span>;
+    PR_REASSOCIATE_CONFIRM = <span class="src-number">5</span>;
+    PR_DISASSOCIATE_CONFIRM = <span class="src-number">6</span>;
+};</pre>
+</body>
+</html>

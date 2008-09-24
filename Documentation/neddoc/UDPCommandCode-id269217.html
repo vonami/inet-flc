@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Enum <i>UDPCommandCode</i>
+</h2>
+<p><b>File: <a href="file-id269296.html">Transport/Contract/UDPControlInfo.msg</a></b></p>
+<p>UDP command codes, sent by the application to <a href="UDP-id272076.html">UDP</a>. These constants
+should be set as message kind on a message sent to the <a href="UDP-id272076.html">UDP</a> entity.</p>
+
+<p><b>See also:</b> <a href="UDPControlInfo-id269416.html">UDPControlInfo</a>, <a href="UDPStatusInd-id269289.html">UDPStatusInd</a>, <a href="UDP-id272076.html">UDP</a></p>
+
+<h3 class="subtitle">Enum values:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">UDP_C_DATA</td>
+<td width="100"><i>0</i></td>
+<td><p>datagram to send (must carry <a href="UDPControlInfo-id269416.html">UDPControlInfo</a>)</p>
+</td>
+</tr>
+<tr>
+<td width="150">UDP_C_BIND</td>
+<td width="100"><i>1</i></td>
+<td><p>fill srcPort and srcAddr in <a href="UDPControlInfo-id269416.html">UDPControlInfo</a></p>
+</td>
+</tr>
+<tr>
+<td width="150">UDP_C_CONNECT</td>
+<td width="100"><i>2</i></td>
+<td><p>fill destAddr and destPort in <a href="UDPControlInfo-id269416.html">UDPControlInfo</a></p>
+</td>
+</tr>
+<tr>
+<td width="150">UDP_C_UNBIND</td>
+<td width="100"><i>3</i></td>
+<td><p>fill sockId in <a href="UDPControlInfo-id269416.html">UDPControlInfo</a></p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">enum</span> UDPCommandCode
+{
+    UDP_C_DATA = <span class="src-number">0</span>;    <span class="src-comment">// datagram to send (must carry UDPControlInfo)</span>
+    UDP_C_BIND = <span class="src-number">1</span>;    <span class="src-comment">// fill srcPort and srcAddr in UDPControlInfo</span>
+    UDP_C_CONNECT = <span class="src-number">2</span>; <span class="src-comment">// fill destAddr and destPort in UDPControlInfo</span>
+    UDP_C_UNBIND = <span class="src-number">3</span>;  <span class="src-comment">// fill sockId in UDPControlInfo</span>
+};</pre>
+</body>
+</html>

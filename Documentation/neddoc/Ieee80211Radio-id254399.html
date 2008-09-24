@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>Ieee80211Radio</i>
+</h2>
+<p><b>File: <a href="file-id254315.html">NetworkInterfaces/Radio/Ieee80211Radio.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_radio.html" target="_top">click here</a></b></p>
+<p>Physical layer for the IEEE 802.11 models. Its external interface
+(including gates and how it communicates with other modules)
+is the same as the <a href="Radio-id254697.html">Radio</a> module's.</p>
+
+<p>The implementation is largely based on the Mobility Framework's
+<a href="SnrEval80211-id252310.html">SnrEval80211</a> and <a href="Decider80211-id251628.html">Decider80211</a> modules.</p>
+
+<p><b>See also:</b> <a href="Radio-id254697.html">Radio</a></p>
+
+<p><b>Author:</b> Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id254399.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="Ieee80211Radio-id254399.html" title="simple Ieee80211Radio" alt="Ieee80211Radio" coords="373,88,480,112">
+<area shape="rect" href="Ieee80211Nic-id244350.html" title="module Ieee80211Nic" alt="Ieee80211Nic" coords="7,16,100,40">
+<area shape="rect" href="Ieee80211NicAdhoc-id244189.html" title="module Ieee80211NicAdhoc" alt="Ieee80211NicAdhoc" coords="124,16,260,40">
+<area shape="rect" href="Ieee80211NicAP-id244686.html" title="module Ieee80211NicAP" alt="Ieee80211NicAP" coords="284,16,399,40">
+<area shape="rect" href="Ieee80211NicAPSimplified-id245071.html" title="module Ieee80211NicAPSimplified" alt="Ieee80211NicAPSimplified" coords="423,16,604,40">
+<area shape="rect" href="Ieee80211NicSTA-id245326.html" title="module Ieee80211NicSTA" alt="Ieee80211NicSTA" coords="628,16,751,40">
+<area shape="rect" href="Ieee80211NicSTASimplified-id245578.html" title="module Ieee80211NicSTASimplified" alt="Ieee80211NicSTASimplified" coords="775,16,964,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="Ieee80211Nic-id244350.html">Ieee80211Nic</a></td>
+<td><p>This NIC implements an 802.11 network interface card.
+It can be configured via the mgmtType parameter to act
+as an AP or a STA, or for ad-hoc mode.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAdhoc-id244189.html">Ieee80211NicAdhoc</a></td>
+<td><p>This NIC implements an 802.11 network interface card in ad-hoc mode.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">Ieee80211NicAP</a></td>
+<td><p>This NIC implements an 802.11 network interface card,
+in an AP, using infrastructure mode.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">Ieee80211NicAPSimplified</a></td>
+<td><p>This NIC implements an infrastructure mode 802.11 network interface card
+for a wireless Access Point (AP), but using a simplified mgmt module
+that does not support handovers.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTA-id245326.html">Ieee80211NicSTA</a></td>
+<td><p>This NIC implements an 802.11 network interface card,
+in a STA, using infrastructure mode.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">Ieee80211NicSTASimplified</a></td>
+<td><p>This NIC implements an infrastructure mode 802.11 network interface card
+for a host (STA), but using a simplified mgmt module that does not
+support handovers.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">channelNumber</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>channel identifier</p>
+</td>
+</tr>
+<tr>
+<td width="150">transmitterPower</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>power used for transmission of messages (in mW)</p>
+</td>
+</tr>
+<tr>
+<td width="150">bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>(in bits/s)</p>
+</td>
+</tr>
+<tr>
+<td width="150">thermalNoise</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>base noise level (dBm)</p>
+</td>
+</tr>
+<tr>
+<td width="150">pathLossAlpha</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>used by the path loss calculation</p>
+</td>
+</tr>
+<tr>
+<td width="150">snirThreshold</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>if signal-noise ratio is below this threshold, frame is considered noise (in dB)</p>
+</td>
+</tr>
+<tr>
+<td width="150">sensitivity</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>received signals with power below sensitivity are ignored</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateIn</td>
+<td width="100"><i>input</i></td>
+<td><p>from higher layer protocol (MAC)</p>
+</td>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td><p>to decider (decider connects to higher layer protocol, i.e. the MAC)</p>
+</td>
+</tr>
+<tr>
+<td width="150">radioIn</td>
+<td width="100"><i>input</i></td>
+<td><p>to receive frames (<a href="AirFrame-id252991.html">AirFrame</a>) on the radio channel</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> Ieee80211Radio
+    <span class="src-keyword">parameters</span>:
+        channelNumber: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// channel identifier</span>
+        transmitterPower : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// power used for transmission of messages (in mW)</span>
+        bitrate: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// (in bits/s)</span>
+        thermalNoise: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// base noise level (dBm)</span>
+        pathLossAlpha: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// used by the path loss calculation</span>
+        snirThreshold: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// if signal-noise ratio is below this threshold, frame is considered noise (in dB)</span>
+        sensitivity: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// received signals with power below sensitivity are ignored</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn;   <span class="src-comment">// from higher layer protocol (MAC)</span>
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// to decider (decider connects to higher layer protocol, i.e. the MAC)</span>
+        <span class="src-keyword">in:</span> radioIn; <span class="src-comment">// to receive frames (AirFrame) on the radio channel</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

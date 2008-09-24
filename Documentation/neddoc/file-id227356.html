@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/ARP/ARPPacket.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="ARPOpcode-id227401.html">ARPOpcode</a><i> (enum)</i>
+</li>
+<li>
+<a href="ARPPacket-id227492.html">ARPPacket</a><i> (message)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPAddress;
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> MACAddress;
+
+cplusplus {{
+#include "IPAddress.h"
+#include "MACAddress.h"
+
+<span class="src-comment">// ARP header length for IPv4 (4-byte addresses) and 802 LANs (6-byte MAC addrs)</span>
+#define ARP_HEADER_BYTES   <span class="src-number">28</span>
+}};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// The list of practically important ARP opcodes</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> ARPOpcode
+{
+    ARP_REQUEST = <span class="src-number">1</span>;      <span class="src-comment">// Request. RFC 826</span>
+    ARP_REPLY = <span class="src-number">2</span>;        <span class="src-comment">// Reply. RFC 826, RFC 1868</span>
+    ARP_RARP_REQUEST = <span class="src-number">3</span>; <span class="src-comment">// Request Reverse. RFC 903</span>
+    ARP_RARP_REPLY = <span class="src-number">4</span>;   <span class="src-comment">// Reply Reverse. RFC 903</span>
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// ARP packet. This is a specialized version: prepared for IEEE 802 hardware</span>
+<span class="src-comment">// addresses and IPv4. Packet fields are therefore represented by C++ classes</span>
+<span class="src-comment">// MACAddress and IPAddress. Also, some ARP protocol header fields are</span>
+<span class="src-comment">// not modelled explicitly (their values are implied):</span>
+<span class="src-comment">//   - hardwareType (not needed for modelling);</span>
+<span class="src-comment">//   - protocol type (0x800 IPv4)</span>
+<span class="src-comment">//   - hardware address length (6)</span>
+<span class="src-comment">//   - protocol address length (4)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> ARPPacket
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> opcode <span class="src-keyword">enum</span>(ARPOpcode);
+        MACAddress srcMACAddress;
+        MACAddress destMACAddress;
+        IPAddress srcIPAddress;
+        IPAddress destIPAddress;
+};
+</pre>
+</body>
+</html>

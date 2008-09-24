@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>IPTrafficGenerator</i>
+</h2>
+<p><b>File: <a href="file-id223663.html">Applications/Generic/IPTrafficGenerator.ned</a></b></p>
+<p>Prototype for modules that generate traffic directly over <a href="IP-id231134.html">IP</a>.</p>
+
+<p><b>See also:</b> <a href="IPTrafGen-id221937.html">IPTrafGen</a>, <a href="IPTrafSink-id223660.html">IPTrafSink</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id223690.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="IPTrafficGenerator-id223690.html" title="simple IPTrafficGenerator" alt="IPTrafficGenerator" coords="7,88,148,112">
+<area shape="rect" href="BurstHost-id256128.html" title="module BurstHost" alt="BurstHost" coords="39,16,116,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="BurstHost-id256128.html">BurstHost</a></td>
+<td><p>Definition of an <a href="IP-id231134.html">IP</a> node with a transport generator that connects
+to <a href="IP-id231134.html">IP</a> directly, without <a href="TCP-id271256.html">TCP</a> or <a href="UDP-id272076.html">UDP</a>.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">from_ip</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">from_ipv6</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">to_ip</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">to_ipv6</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> IPTrafficGenerator
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> from_ip, from_ipv6;
+        <span class="src-keyword">out:</span> to_ip, to_ipv6;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/Queue/DropTailQoSQueue.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="DropTailQoSQueue-id235904.html">DropTailQoSQueue</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2005 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Drop-tail queue with QoS support, to be used in network interfaces.</span>
+<span class="src-comment">// Performs priority queueing.</span>
+<span class="src-comment">// Conforms to the OutputQueue interface.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> DropTailQoSQueue
+    <span class="src-keyword">parameters</span>:
+        frameCapacity: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,  <span class="src-comment">// per-subqueue capacity</span>
+        classifierClass: <span class="src-keyword">string</span>;  <span class="src-comment">// class that inherits from IQoSClassifier</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in;
+        <span class="src-keyword">out:</span> out;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

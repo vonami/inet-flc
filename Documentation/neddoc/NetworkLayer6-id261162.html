@@ -1,0 +1,221 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>NetworkLayer6</i>
+</h2>
+<p><b>File: <a href="file-id261075.html">Nodes/IPv6/NetworkLayer6.ned</a></b></p>
+<p>Represents an <a href="IPv6-id232445.html">IPv6</a> network layer (L3).</p>
+
+<p>The module has ports to connect to a higher layer (<a href="TCP-id271256.html">TCP</a>,<a href="UDP-id272076.html">UDP</a>) and
+several network interfaces.</p>
+
+<img class="screenshot" src="NetworkLayer6__Nodes_IPv6_NetworkLayer6_ned.png" ismap usemap="#screenshot" width="366" height="244"><map name="screenshot"><area shape="rect" coords="52,97 98,143" href="IPv6-id232445.html" title="ipv6: IPv6" alt="ipv6: IPv6">
+<area shape="rect" coords="176,47 222,93" href="ICMPv6-id229107.html" title="icmpv6: ICMPv6" alt="icmpv6: ICMPv6">
+<area shape="rect" coords="256,55 286,85" href="IPv6ErrorHandling-id232510.html" title="ipv6ErrorHandling: IPv6ErrorHandling" alt="ipv6ErrorHandling: IPv6ErrorHandling">
+<area shape="rect" coords="176,139 222,185" href="IPv6NeighbourDiscovery-id229263.html" title="neighbourDiscovery: IPv6NeighbourDiscovery" alt="neighbourDiscovery: IPv6NeighbourDiscovery"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id261162.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="NetworkLayer6-id261162.html" title="module NetworkLayer6" alt="NetworkLayer6" coords="208,88,325,112">
+<area shape="rect" href="ICMPv6-id229107.html" title="simple ICMPv6" alt="ICMPv6" coords="7,160,79,184">
+<area shape="rect" href="IPv6NeighbourDiscovery-id229263.html" title="simple IPv6NeighbourDiscovery" alt="IPv6NeighbourDiscovery" coords="103,160,281,184">
+<area shape="rect" href="IPv6-id232445.html" title="simple IPv6" alt="IPv6" coords="305,160,377,184">
+<area shape="rect" href="IPv6ErrorHandling-id232510.html" title="simple IPv6ErrorHandling" alt="IPv6ErrorHandling" coords="401,160,540,184">
+<area shape="rect" href="Router6-id261869.html" title="module Router6" alt="Router6" coords="173,16,245,40">
+<area shape="rect" href="StandardHost6-id262388.html" title="module StandardHost6" alt="StandardHost6" coords="269,16,379,40">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="ICMPv6-id229107.html">ICMPv6</a></td>
+<td><p><a href="ICMPv6-id229107.html">ICMPv6</a> implementation.</p>
+</td>
+</tr>
+<tr>
+<td><a href="IPv6-id232445.html">IPv6</a></td>
+<td><p>Implements the IPv6 protocol.</p>
+</td>
+</tr>
+<tr>
+<td><a href="IPv6ErrorHandling-id232510.html">IPv6ErrorHandling</a></td>
+<td><p>Handles error notifications that arrive from other protocol modules.</p>
+</td>
+</tr>
+<tr>
+<td><a href="IPv6NeighbourDiscovery-id229263.html">IPv6NeighbourDiscovery</a></td>
+<td><p>Implements IPv6 Neighbour Discovery.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="Router6-id261869.html">Router6</a></td>
+<td><p>IPv6 router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="StandardHost6-id262388.html">StandardHost6</a></td>
+<td><p>IPv6 host with <a href="TCP-id271256.html">TCP</a>, <a href="UDP-id272076.html">UDP</a> layers and applications.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">ifIn [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ifOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">TCPIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">TCPOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">UDPIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">UDPOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">RSVPIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">RSVPOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">OSPFIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">OSPFOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">pingIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">pingOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">errorOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="IPv6-id232445.html">ipv6</a>.procDelay</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> NetworkLayer6
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> ifIn[];
+        <span class="src-keyword">out:</span> ifOut[];
+        <span class="src-keyword">in:</span> TCPIn;
+        <span class="src-keyword">out:</span> TCPOut;
+        <span class="src-keyword">in:</span> UDPIn;
+        <span class="src-keyword">out:</span> UDPOut;
+        <span class="src-keyword">in:</span> RSVPIn;
+        <span class="src-keyword">out:</span> RSVPOut;
+        <span class="src-keyword">in:</span> OSPFIn;
+        <span class="src-keyword">out:</span> OSPFOut;
+        <span class="src-keyword">in:</span> pingIn;
+        <span class="src-keyword">out:</span> pingOut;
+        <span class="src-keyword">out:</span> errorOut;
+    <span class="src-keyword">submodules</span>:
+        ipv6: IPv6;
+            <span class="src-keyword">parameters</span>:
+                protocolMapping = "<span class="src-number">6</span>:<span class="src-number">0</span>,<span class="src-number">17</span>:<span class="src-number">1</span>,<span class="src-number">46</span>:<span class="src-number">2</span>,<span class="src-number">89</span>:<span class="src-number">3</span>";
+            <span class="src-keyword">gatesizes</span>:
+                transportIn[<span class="src-number">4</span>],
+                transportOut[<span class="src-number">4</span>],
+                queueIn[<span class="src-keyword">sizeof</span>(ifIn)],
+                queueOut[<span class="src-keyword">sizeof</span>(ifIn)];
+            <span class="src-keyword">display</span>: "i=block/network2;p=<span class="src-number">84</span>,<span class="src-number">129</span>";
+        icmpv6: ICMPv6;
+            <span class="src-keyword">display</span>: "i=block/control;p=<span class="src-number">208</span>,<span class="src-number">79</span>";
+        ipv6ErrorHandling: IPv6ErrorHandling;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">280</span>,<span class="src-number">79</span>;i=block/process_s";
+        neighbourDiscovery: IPv6NeighbourDiscovery;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">208</span>,<span class="src-number">171</span>;i=block/<span class="src-keyword">network</span>";
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:  <span class="src-comment">// FIXME remove 'nocheck'!</span>
+        <span class="src-comment">// IPv6 to transport Layer</span>
+        ipv6.transportOut[<span class="src-number">0</span>] <span class="src-keyword">--&gt;</span> TCPOut <span class="src-keyword">display</span> "m=n";
+        ipv6.transportIn[<span class="src-number">0</span>] <span class="src-keyword">&lt;--</span> TCPIn <span class="src-keyword">display</span> "m=n";
+
+        ipv6.transportOut[<span class="src-number">1</span>] <span class="src-keyword">--&gt;</span> UDPOut <span class="src-keyword">display</span> "m=n";
+        ipv6.transportIn[<span class="src-number">1</span>] <span class="src-keyword">&lt;--</span> UDPIn <span class="src-keyword">display</span> "m=n";
+
+        ipv6.transportOut[<span class="src-number">2</span>] <span class="src-keyword">--&gt;</span> RSVPOut <span class="src-keyword">display</span> "m=n";
+        ipv6.transportIn[<span class="src-number">2</span>] <span class="src-keyword">&lt;--</span> RSVPIn <span class="src-keyword">display</span> "m=n";
+
+        ipv6.transportOut[<span class="src-number">3</span>] <span class="src-keyword">--&gt;</span> OSPFOut <span class="src-keyword">display</span> "m=n";
+        ipv6.transportIn[<span class="src-number">3</span>] <span class="src-keyword">&lt;--</span> OSPFIn <span class="src-keyword">display</span> "m=n";
+
+        <span class="src-comment">// IPv6 to ICMPv6</span>
+        ipv6.icmpOut <span class="src-keyword">--&gt;</span> icmpv6.fromIPv6;
+        ipv6.icmpIn <span class="src-keyword">&lt;--</span> icmpv6.toIPv6;
+
+        <span class="src-comment">// ICMPv6 to IPv6ErrorHandling</span>
+        icmpv6.errorOut <span class="src-keyword">--&gt;</span> ipv6ErrorHandling.in;
+
+        <span class="src-comment">// ICMPv6 to ping I/O</span>
+        icmpv6.pingOut <span class="src-keyword">--&gt;</span> pingOut;
+        icmpv6.pingIn <span class="src-keyword">&lt;--</span> pingIn;
+
+        <span class="src-comment">// IPv6 to Neighbour Discovery</span>
+        ipv6.ndOut <span class="src-keyword">--&gt;</span> neighbourDiscovery.fromIPv6;
+        ipv6.ndIn <span class="src-keyword">&lt;--</span> neighbourDiscovery.toIPv6;
+
+        <span class="src-comment">// IPv6 to L2</span>
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(ifOut)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            ifIn[i] <span class="src-keyword">--&gt;</span> ipv6.queueIn[i] <span class="src-keyword">display</span> "m=s";
+            ifOut[i] <span class="src-keyword">&lt;--</span> ipv6.queueOut[i] <span class="src-keyword">display</span> "m=s";
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

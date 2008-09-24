@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/MF80211/phyLayer/snrEval/SnrEval.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="SnrEval-id252171.html">SnrEval</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//***************************************************************************</span>
+<span class="src-comment">// * file:        SnrEval.ned</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * author:      Marc Loebbers, Andras Varga, Levente Meszaros</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * copyright:   (C) 2004 Telecommunication Networks Group (TKN) at</span>
+<span class="src-comment">// *              Technische Universitaet Berlin, Germany.</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// *              This program is free software; you can redistribute it</span>
+<span class="src-comment">// *              and/or modify it under the terms of the GNU General Public</span>
+<span class="src-comment">// *              License as published by the Free Software Foundation; either</span>
+<span class="src-comment">// *              version 2 of the License, or (at your option) any later</span>
+<span class="src-comment">// *              version.</span>
+<span class="src-comment">// *              For further information see file COPYING</span>
+<span class="src-comment">// *              in the top level directory</span>
+<span class="src-comment">// ***************************************************************************</span>
+<span class="src-comment">// * part of:     framework implementation developed by tkn</span>
+<span class="src-comment">// **************************************************************************/</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents the radio. Frames received from higher layers (typically the</span>
+<span class="src-comment">// MAC protocol) are transmitted on the radio channel, using the global</span>
+<span class="src-comment">// ChannelControl module. Frames received on the radio channel will have</span>
+<span class="src-comment">// their signal-noise ratio evaluated and passed up to the decider.</span>
+<span class="src-comment">// (It is the decider's task to determine whether the frame was received</span>
+<span class="src-comment">// correctly, and pass it up to the MAC layer).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The receive/transmit channel (frequency) can be changed by sending</span>
+<span class="src-comment">// SnrEval a blank cMessage with PHY_C_CONFIGURERADIO as message kind, and</span>
+<span class="src-comment">// a PhyControlInfo object attached to it as control info, to hold the</span>
+<span class="src-comment">// new channel number. If the radio is currently transmitting, the channel</span>
+<span class="src-comment">// switch will actually take place after the transmission is completed.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This component has been taken over from Mobility Framework 1.0a5.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//# FIXME merge docu with BasicSnrEval's</span>
+<span class="src-keyword">simple</span> SnrEval
+    <span class="src-keyword">parameters</span>:
+        channelNumber: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// channel identifier</span>
+        debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        transmitterPower : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        bitrate: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        headerLength: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        thermalNoise: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        pathLossAlpha: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        sensitivity: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn;   <span class="src-comment">// from higher layer protocol (MAC)</span>
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// to decider (decider connects to higher layer protocol, i.e. the MAC)</span>
+        <span class="src-keyword">in:</span> radioIn; <span class="src-comment">// to receive frames (AirFrame) on the radio channel</span>
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

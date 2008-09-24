@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Enum <i>ARPOpcode</i>
+</h2>
+<p><b>File: <a href="file-id227356.html">Network/ARP/ARPPacket.msg</a></b></p>
+<p>The list of practically important <a href="ARP-id227137.html">ARP</a> opcodes</p>
+
+<h3 class="subtitle">Enum values:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">ARP_REQUEST</td>
+<td width="100"><i>1</i></td>
+<td><p>Request. RFC 826</p>
+</td>
+</tr>
+<tr>
+<td width="150">ARP_REPLY</td>
+<td width="100"><i>2</i></td>
+<td><p>Reply. RFC 826, RFC 1868</p>
+</td>
+</tr>
+<tr>
+<td width="150">ARP_RARP_REQUEST</td>
+<td width="100"><i>3</i></td>
+<td><p>Request Reverse. RFC 903</p>
+</td>
+</tr>
+<tr>
+<td width="150">ARP_RARP_REPLY</td>
+<td width="100"><i>4</i></td>
+<td><p>Reply Reverse. RFC 903</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">enum</span> ARPOpcode
+{
+    ARP_REQUEST = <span class="src-number">1</span>;      <span class="src-comment">// Request. RFC 826</span>
+    ARP_REPLY = <span class="src-number">2</span>;        <span class="src-comment">// Reply. RFC 826, RFC 1868</span>
+    ARP_RARP_REQUEST = <span class="src-number">3</span>; <span class="src-comment">// Request Reverse. RFC 903</span>
+    ARP_RARP_REPLY = <span class="src-number">4</span>;   <span class="src-comment">// Reply Reverse. RFC 903</span>
+};</pre>
+</body>
+</html>

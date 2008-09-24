@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>TCPSinkApp</i>
+</h2>
+<p><b>File: <a href="file-id221713.html">Applications/TCPApp/TCPSinkApp.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_t_c_p_sink_app.html" target="_top">click here</a></b></p>
+<p>Accepts any number of incoming <a href="TCP-id271256.html">TCP</a> connections, and discards whatever
+arrives on them.
+Compatible with both IPv4 and <a href="IPv6-id232445.html">IPv6</a>.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id221723.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="TCPSinkApp-id221723.html" title="simple TCPSinkApp" alt="TCPSinkApp" coords="7,16,108,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">address</td>
+<td width="100"><i>string</i></td>
+<td><p>may be left empty ("")</p>
+</td>
+</tr>
+<tr>
+<td width="150">port</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>port number to listen on</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">tcpIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">tcpOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> TCPSinkApp
+    <span class="src-keyword">parameters</span>:
+        address: <span class="src-keyword">string</span>, <span class="src-comment">// may be left empty ("")</span>
+        port: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// port number to listen on</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> tcpIn;
+        <span class="src-keyword">out:</span> tcpOut;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

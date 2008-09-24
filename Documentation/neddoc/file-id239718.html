@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/Ethernet/EtherBus.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="EtherBus-id240678.html">EtherBus</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2003 CTIE, Monash University</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// A generic bus model.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// in[i], out[i] gate pairs represent taps. Messages arriving on a tap</span>
+<span class="src-comment">// travel on the bus on both directions, and copies of it are sent out</span>
+<span class="src-comment">// on every other tap after delays proportional to their distances.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Tap connections should have zero delays and zero data rates!</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Messages are not interpreted by the bus model in any way, thus the bus</span>
+<span class="src-comment">// model is not specific to Ethernet in any way. Messages may</span>
+<span class="src-comment">// represent anything, from the beginning of a frame transmission to</span>
+<span class="src-comment">// end (or abortion) of transmission.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> EtherBus
+    <span class="src-keyword">parameters</span>:
+        positions : <span class="src-keyword">string</span>,  <span class="src-comment">// positions of taps on the cable in meters, as a sequence</span>
+                             <span class="src-comment">// of numbers separated by spaces. If there are too</span>
+                             <span class="src-comment">// few values, the distance between the last two positions</span>
+                             <span class="src-comment">// is repeated, or 5 meters is used.</span>
+        propagationSpeed : <span class="src-keyword">numeric</span>,
+                             <span class="src-comment">// signal propagation speed on the bus, in m/s</span>
+                             <span class="src-comment">// (typically 200,000 m/s)</span>
+        writeScalars: <span class="src-keyword">bool</span>;  <span class="src-comment">// enable/disable recording statistics in omnetpp.sca</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];    <span class="src-comment">// to stations; each in[k], out[k] pair represents a tap</span>
+        <span class="src-keyword">out:</span> out[];  <span class="src-comment">// to stations; each in[k], out[k] pair represents a tap</span>
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

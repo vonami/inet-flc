@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>Ieee802Ctrl</i>
+</h2>
+<p><b>File: <a href="file-id239055.html">NetworkInterfaces/Contract/Ieee802Ctrl.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee802_ctrl.html" target="_top">click here</a></b></p>
+<p>Control structure for communication between LLC and higher layers</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id239221.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="Ieee802Ctrl-id239221.html" title="class Ieee802Ctrl" alt="Ieee802Ctrl" coords="7,16,92,40">
+</map><h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">src</td>
+<td width="100"><i>MACAddress</i></td>
+<td><p>src MAC address (can be left empty when sending)</p>
+</td>
+</tr>
+<tr>
+<td width="150">dest</td>
+<td width="100"><i>MACAddress</i></td>
+<td><p>dest MAC address</p>
+</td>
+</tr>
+<tr>
+<td width="150">etherType</td>
+<td width="100"><i>int</i></td>
+<td><p>used with <a href="EthernetIIFrame-id242350.html">EthernetIIFrame</a></p>
+</td>
+</tr>
+<tr>
+<td width="150">ssap</td>
+<td width="100"><i>int</i></td>
+<td><p>used with IEEE 802 LLC (see <a href="EtherFrameWithLLC-id242381.html">EtherFrameWithLLC</a>)</p>
+</td>
+</tr>
+<tr>
+<td width="150">dsap</td>
+<td width="100"><i>int</i></td>
+<td><p>used with IEEE 802 LLC (see <a href="EtherFrameWithLLC-id242381.html">EtherFrameWithLLC</a>)</p>
+</td>
+</tr>
+<tr>
+<td width="150">pauseUnits</td>
+<td width="100"><i>int</i></td>
+<td><p>used with IEEE802CTRL_SENDPAUSE</p>
+</td>
+</tr>
+<tr>
+<td width="150">inputPort</td>
+<td width="100"><i>int</i></td>
+<td><p>convenience field, used between <a href="IPv6-id232445.html">IPv6</a> and IPv6ND</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> Ieee802Ctrl
+{
+    <span class="src-keyword">fields</span>:
+        MACAddress src;  <span class="src-comment">// src MAC address (can be left empty when sending)</span>
+        MACAddress dest; <span class="src-comment">// dest MAC address</span>
+        <span class="src-keyword">int</span> etherType;   <span class="src-comment">// used with EthernetIIFrame</span>
+        <span class="src-keyword">int</span> ssap;        <span class="src-comment">// used with IEEE 802 LLC (see EtherFrameWithLLC)</span>
+        <span class="src-keyword">int</span> dsap;        <span class="src-comment">// used with IEEE 802 LLC (see EtherFrameWithLLC)</span>
+        <span class="src-keyword">int</span> pauseUnits;  <span class="src-comment">// used with IEEE802CTRL_SENDPAUSE</span>
+        <span class="src-keyword">int</span> inputPort;   <span class="src-comment">// convenience field, used between IPv6 and IPv6ND</span>
+};</pre>
+</body>
+</html>

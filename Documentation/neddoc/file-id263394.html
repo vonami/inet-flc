@@ -1,0 +1,141 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Nodes/MPLS/LDP_LSR.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="LDP_LSR-id263362.html">LDP_LSR</a><i> (compound-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// This library is free software, you can redistribute it</span>
+<span class="src-comment">// and/or modify</span>
+<span class="src-comment">// it under  the terms of the GNU Lesser General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation;</span>
+<span class="src-comment">// either version 2 of the License, or any later version.</span>
+<span class="src-comment">// The library is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="src-comment">// See the GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-keyword">import</span>
+    "NotificationBoard",
+    "RoutingTable",
+    "InterfaceTable",
+    "NetworkLayer",
+    "LDP",
+    "TCP",
+    "UDP",
+    "LinkStateRouting",
+    "TED",
+    "MPLS",
+    "PPPInterface",
+    "LIBTable",
+    "NAMTraceWriter";
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// An LDP-capable router.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// LDP Capable Routers are main building blocks for an LDP MPLS network.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">module</span> LDP_LSR
+    <span class="src-keyword">parameters</span>:
+        holdTime: <span class="src-keyword">numeric</span>,
+        helloInterval: <span class="src-keyword">numeric</span>,
+
+        namid: <span class="src-keyword">numeric</span>,
+
+        peers: <span class="src-keyword">string</span>,
+        routerId: <span class="src-keyword">string</span>,
+        routingFile: <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+
+    <span class="src-keyword">submodules</span>:
+        notificationBoard: NotificationBoard;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">70</span>,<span class="src-number">60</span>;i=block/control";
+        interfaceTable: InterfaceTable;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">70</span>,<span class="src-number">150</span>;i=block/table";
+        routingTable: RoutingTable;
+            <span class="src-keyword">parameters</span>:
+                IPForward = <span class="src-keyword">true</span>,
+                routerId = routerId,
+                routingFile = routingFile;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">70</span>,<span class="src-number">240</span>;i=block/table";
+        ldp: LDP;
+            <span class="src-keyword">parameters</span>:
+                holdTime = holdTime,
+                helloInterval = helloInterval;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">222</span>,<span class="src-number">67</span>;i=block/control";
+        ted: TED;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">340</span>,<span class="src-number">244</span>;i=block/table";
+        linkStateRouting: LinkStateRouting;
+            <span class="src-keyword">parameters</span>:
+                peers = peers;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">360</span>,<span class="src-number">150</span>;i=block/network2";
+        tcp: TCP;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">177</span>,<span class="src-number">145</span>;i=block/wheelbarrow";
+        udp: UDP;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">267</span>,<span class="src-number">145</span>;i=block/transport";
+        networkLayer: NetworkLayer;
+            <span class="src-keyword">gatesizes</span>:
+                ifIn[<span class="src-keyword">sizeof</span>(out)],
+                ifOut[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">224</span>,<span class="src-number">223</span>;i=block/fork";
+        ppp: PPPInterface[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">105</span>,<span class="src-number">388</span>,row,<span class="src-number">90</span>;q=l2queue;i=block/ifcard";
+        mpls: MPLS;
+            <span class="src-keyword">parameters</span>:
+                <span class="src-comment">//peers = peers,</span>
+                classifier = "ldp";
+            <span class="src-keyword">gatesizes</span>:
+                netwIn[<span class="src-keyword">sizeof</span>(out)],
+                netwOut[<span class="src-keyword">sizeof</span>(out)],
+                ifIn[<span class="src-keyword">sizeof</span>(out)],
+                ifOut[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">224</span>,<span class="src-number">302</span>;i=block/switch";
+        libTable: LIBTable;
+            <span class="src-keyword">parameters</span>:
+            <span class="src-keyword">display</span>: "p=<span class="src-number">340</span>,<span class="src-number">305</span>;i=block/table2";
+        namTrace: NAMTraceWriter;
+            <span class="src-keyword">parameters</span>:
+                namid = namid;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">70</span>,<span class="src-number">310</span>;i=old/floppy1";
+
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        linkStateRouting.to_ip <span class="src-keyword">--&gt;</span> networkLayer.OSPFIn;
+        linkStateRouting.from_ip <span class="src-keyword">&lt;--</span> networkLayer.OSPFOut;
+
+        ldp.tcpIn <span class="src-keyword">&lt;--</span> tcp.to_appl++;
+        ldp.tcpOut <span class="src-keyword">--&gt;</span> tcp.from_appl++;
+
+        ldp.udpOut <span class="src-keyword">--&gt;</span> udp.from_app++;
+        ldp.udpIn <span class="src-keyword">&lt;--</span> udp.to_app++;
+
+        udp.to_ip <span class="src-keyword">--&gt;</span> networkLayer.UDPIn;
+        udp.from_ip <span class="src-keyword">&lt;--</span> networkLayer.UDPOut;
+
+        tcp.to_ip <span class="src-keyword">--&gt;</span> networkLayer.TCPIn;
+        tcp.from_ip <span class="src-keyword">&lt;--</span> networkLayer.TCPOut;
+
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(out)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> ppp[i].physIn;
+            out[i] <span class="src-keyword">&lt;--</span> ppp[i].physOut;
+
+            ppp[i].netwOut <span class="src-keyword">--&gt;</span> mpls.ifIn[i];
+            ppp[i].netwIn <span class="src-keyword">&lt;--</span> mpls.ifOut[i];
+
+            mpls.netwOut[i] <span class="src-keyword">--&gt;</span> networkLayer.ifIn[i];
+            mpls.netwIn[i] <span class="src-keyword">&lt;--</span> networkLayer.ifOut[i];
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span>
+</pre>
+</body>
+</html>

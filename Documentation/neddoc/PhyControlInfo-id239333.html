@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>PhyControlInfo</i>
+</h2>
+<p><b>File: <a href="file-id239344.html">NetworkInterfaces/Contract/PhyControlInfo.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_phy_control_info.html" target="_top">click here</a></b></p>
+<p>Control info for controlling the physical layer (the radio).</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id239333.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="PhyControlInfo-id239333.html" title="class PhyControlInfo" alt="PhyControlInfo" coords="7,16,124,40">
+</map><h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">channelNumber</td>
+<td width="100"><i>int</i></td>
+<td><p>with PHY_C_CONFIGURERADIO: the channel to switch to</p>
+</td>
+</tr>
+<tr>
+<td width="150">bitrate</td>
+<td width="100"><i>double</i></td>
+<td><p>with PHY_C_CONFIGURERADIO: the bitrate to switch to</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> PhyControlInfo
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb=<span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> channelNumber = <span class="src-number">-1</span>; <span class="src-comment">// with PHY_C_CONFIGURERADIO: the channel to switch to</span>
+        <span class="src-keyword">double</span> bitrate = <span class="src-number">-1</span>; <span class="src-comment">// with PHY_C_CONFIGURERADIO: the bitrate to switch to</span>
+};</pre>
+</body>
+</html>

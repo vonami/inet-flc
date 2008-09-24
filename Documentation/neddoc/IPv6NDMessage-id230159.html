@@ -1,0 +1,111 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>IPv6NDMessage</i>
+</h2>
+<p><b>File: <a href="file-id230242.html">Network/ICMPv6/IPv6NDMessage.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_pv6_n_d_message.html" target="_top">click here</a></b></p>
+<p>Neighbour Discovery for <a href="IPv6-id232445.html">IPv6</a>.
+RFC 2461</p>
+
+<p><a href="ICMP-id230662.html">ICMP</a> fields inherited from <a href="ICMPv6Message-id229703.html">ICMPv6Message</a>:</p>
+
+  <ul><ul><li>Type</li></ul></ul>
+
+<p><a href="ICMP-id230662.html">ICMP</a> fields not implemented:</p>
+
+  <ul><ul><li>Checksum</li>
+
+  <li>Reserved</li></ul></ul>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id230159.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="IPv6NDMessage-id230159.html" title="message IPv6NDMessage" alt="IPv6NDMessage" coords="432,88,555,112">
+<area shape="rect" href="IPv6RouterSolicitation-id230206.html" title="message IPv6RouterSolicitation" alt="IPv6RouterSolicitation" coords="7,160,167,184">
+<area shape="rect" href="IPv6RouterAdvertisement-id230337.html" title="message IPv6RouterAdvertisement" alt="IPv6RouterAdvertisement" coords="191,160,377,184">
+<area shape="rect" href="IPv6NeighbourSolicitation-id230452.html" title="message IPv6NeighbourSolicitation" alt="IPv6NeighbourSolicitation" coords="401,160,585,184">
+<area shape="rect" href="IPv6NeighbourAdvertisement-id230500.html" title="message IPv6NeighbourAdvertisement" alt="IPv6NeighbourAdvertisement" coords="609,160,820,184">
+<area shape="rect" href="IPv6Redirect-id230577.html" title="message IPv6Redirect" alt="IPv6Redirect" coords="844,160,940,184">
+<area shape="rect" href="ICMPv6Message-id229703.html" title="message ICMPv6Message" alt="ICMPv6Message" coords="432,16,555,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="ICMPv6Message-id229703.html">ICMPv6Message</a></td>
+<td><p>Represents an <a href="ICMPv6-id229107.html">ICMPv6</a> packet.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Known subclasses:</h3>
+<table>
+<tr>
+<td><a href="IPv6RouterSolicitation-id230206.html">IPv6RouterSolicitation</a></td>
+<td><p><a href="Router-id259068.html">Router</a> Solicitation Message Format
+RFC 2461 Section 4.1</p>
+</td>
+</tr>
+<tr>
+<td><a href="IPv6RouterAdvertisement-id230337.html">IPv6RouterAdvertisement</a></td>
+<td><p><a href="Router-id259068.html">Router</a> Advertisement Message Format
+RFC 2461 Section 4.2</p>
+</td>
+</tr>
+<tr>
+<td><a href="IPv6NeighbourSolicitation-id230452.html">IPv6NeighbourSolicitation</a></td>
+<td><p>Neighbour Solicitation Message Format
+RFC 2461 Section 4.3</p>
+</td>
+</tr>
+<tr>
+<td><a href="IPv6NeighbourAdvertisement-id230500.html">IPv6NeighbourAdvertisement</a></td>
+<td><p>Neighbour Advertisement Message Format
+RFC 2461 Section 4.4</p>
+</td>
+</tr>
+<tr>
+<td><a href="IPv6Redirect-id230577.html">IPv6Redirect</a></td>
+<td><p>Redirect Message Format
+RFC 2461 Section 4.5</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td><p>customize=true;</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">code</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> IPv6NDMessage <span class="src-keyword">extends</span> ICMPv6Message
+{
+    <span class="src-keyword">properties</span>:
+        <span class="src-comment">//customize=true;</span>
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> code = <span class="src-number">0</span>;
+};</pre>
+</body>
+</html>

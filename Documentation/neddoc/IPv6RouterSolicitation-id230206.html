@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>IPv6RouterSolicitation</i>
+</h2>
+<p><b>File: <a href="file-id230242.html">Network/ICMPv6/IPv6NDMessage.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_pv6_router_solicitation.html" target="_top">click here</a></b></p>
+<p><a href="Router-id259068.html">Router</a> Solicitation Message Format
+RFC 2461 Section 4.1</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id230206.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="IPv6RouterSolicitation-id230206.html" title="message IPv6RouterSolicitation" alt="IPv6RouterSolicitation" coords="7,88,167,112">
+<area shape="rect" href="IPv6NDMessage-id230159.html" title="message IPv6NDMessage" alt="IPv6NDMessage" coords="25,16,148,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="IPv6NDMessage-id230159.html">IPv6NDMessage</a></td>
+<td><p>Neighbour Discovery for <a href="IPv6-id232445.html">IPv6</a>.
+RFC 2461</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">sourceLinkLayerAddress</td>
+<td width="100"><i>MACAddress</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> IPv6RouterSolicitation <span class="src-keyword">extends</span> IPv6NDMessage
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-comment">//Possible Options</span>
+        MACAddress sourceLinkLayerAddress;
+};</pre>
+</body>
+</html>

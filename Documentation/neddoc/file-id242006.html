@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/Ethernet/EthernetInterfaceNoQueue.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="EthernetInterfaceNoQueue-id242071.html">EthernetInterfaceNoQueue</a><i> (compound-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-keyword">import</span>
+    "EtherMAC",
+    "EtherEncap";
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Ethernet network interface. Assumes inifinite queue.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see EthernetInterface</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">module</span> EthernetInterfaceNoQueue
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> physIn, netwIn;
+        <span class="src-keyword">out:</span> physOut, netwOut;
+    <span class="src-keyword">submodules</span>:
+        mac: EtherMAC;
+            <span class="src-keyword">parameters</span>: 
+                queueModule = "",
+                txQueueLimit = <span class="src-number">100000</span>; <span class="src-comment">// prevents overflow in bogus simulations</span>
+            <span class="src-keyword">display</span>: "i=block/rxtx;p=<span class="src-number">100</span>,<span class="src-number">160</span>;q=txQueue";
+        encap: EtherEncap;
+            <span class="src-keyword">display</span>: "i=block/square;p=<span class="src-number">100</span>,<span class="src-number">80</span>";
+    <span class="src-keyword">connections</span>:
+        netwIn <span class="src-keyword">--&gt;</span> encap.upperLayerIn;
+        netwOut <span class="src-keyword">&lt;--</span> encap.upperLayerOut;
+        encap.lowerLayerOut <span class="src-keyword">--&gt;</span> mac.upperLayerIn;
+        encap.lowerLayerIn <span class="src-keyword">&lt;--</span> mac.upperLayerOut;
+        mac.physIn <span class="src-keyword">&lt;--</span> physIn;
+        mac.physOut <span class="src-keyword">--&gt;</span> physOut;
+<span class="src-keyword">endmodule</span>
+</pre>
+</body>
+</html>

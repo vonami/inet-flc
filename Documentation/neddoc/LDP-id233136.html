@@ -1,0 +1,99 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>LDP</i>
+</h2>
+<p><b>File: <a href="file-id233162.html">Network/LDP/LDP.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_l_d_p.html" target="_top">click here</a></b></p>
+<p>Handles and processes <a href="LDP-id233136.html">LDP</a> messages.</p>
+
+<p>The <a href="LDP-id233136.html">LDP</a> protocol is used by one LSR (Label Switched Router) to inform
+another LSR of the label bindings it has made. The LSR uses this protocol
+to establish label switched paths through a network by mapping network layer
+routing information directly to data-link layer switched paths.</p>
+
+<p>Operations</p>
+
+<p>All <a href="LDP-id233136.html">LDP</a> message types are subclassed from <a href="LDPPacket-id233476.html">LDPPacket</a>, and include
+<a href="LDPHello-id233592.html">LDPHello</a>, <a href="LDPNotify-id233634.html">LDPNotify</a>, <a href="LDPLabelRequest-id233564.html">LDPLabelRequest</a>, <a href="LDPIni-id233668.html">LDPIni</a> and <a href="LDPAddress-id233725.html">LDPAddress</a>.</p>
+
+<p>Message processing in the <a href="LDP-id233136.html">LDP</a> module is explained in
+<a href="ldp-processing.html"><a href="LDP-id233136.html">LDP</a> Message Processing</a></p>
+
+<p><b>Author:</b> Andras Varga, Vojta Janota</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id233136.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="LDP-id233136.html" title="simple LDP" alt="LDP" coords="12,88,84,112">
+<area shape="rect" href="LDP_LSR-id263362.html" title="module LDP_LSR" alt="LDP_LSR" coords="7,16,89,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="LDP_LSR-id263362.html">LDP_LSR</a></td>
+<td><p>An <a href="LDP-id233136.html">LDP</a>-capable router.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">holdTime</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">helloInterval</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">tcpIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">udpIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">tcpOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">udpOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> LDP
+    <span class="src-keyword">parameters</span>:
+        holdTime : <span class="src-keyword">numeric</span>,
+        helloInterval : <span class="src-keyword">numeric</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> tcpIn;
+        <span class="src-keyword">in:</span> udpIn;
+        <span class="src-keyword">out:</span> tcpOut;
+        <span class="src-keyword">out:</span> udpOut;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

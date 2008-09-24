@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>WirelessMac</i>
+</h2>
+<p><b>File: <a href="file-id252422.html">NetworkInterfaces/MFCore/WirelessMac.ned</a></b></p>
+<p>This is not an actual MAC implementation, just a prototype for wireless MAC's
+that use a MF (Mobility Framework)-based physical layer.</p>
+
+<p>This component has been taken over from Mobility Framework 1.0a5.</p>
+
+<p><b>Author:</b> Daniel Willkomm, Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id252850.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="WirelessMac-id252850.html" title="simple WirelessMac" alt="WirelessMac" coords="7,16,103,40">
+</map><h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateIn</td>
+<td width="100"><i>input</i></td>
+<td><p>from the network layer</p>
+</td>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td><p>to the network layer</p>
+</td>
+</tr>
+<tr>
+<td width="150">lowergateIn</td>
+<td width="100"><i>input</i></td>
+<td><p>from the physical layer</p>
+</td>
+</tr>
+<tr>
+<td width="150">lowergateOut</td>
+<td width="100"><i>output</i></td>
+<td><p>to the physical layer</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> WirelessMac
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn; <span class="src-comment">// from the network layer</span>
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// to the network layer</span>
+        <span class="src-keyword">in:</span> lowergateIn; <span class="src-comment">// from the physical layer</span>
+        <span class="src-keyword">out:</span> lowergateOut; <span class="src-comment">// to the physical layer</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

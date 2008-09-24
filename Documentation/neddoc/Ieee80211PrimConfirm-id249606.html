@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>Ieee80211PrimConfirm</i>
+</h2>
+<p><b>File: <a href="file-id249388.html">NetworkInterfaces/Ieee80211/Mgmt/Ieee80211Primitives.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_prim_confirm.html" target="_top">click here</a></b></p>
+<p>Base class for confirm primitives</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id249606.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="Ieee80211PrimConfirm-id249606.html" title="class Ieee80211PrimConfirm" alt="Ieee80211PrimConfirm" coords="277,16,437,40">
+<area shape="rect" href="Ieee80211Prim_ScanConfirm-id249824.html" title="class Ieee80211Prim_ScanConfirm" alt="Ieee80211Prim_ScanConfirm" coords="7,88,207,112">
+<area shape="rect" href="Ieee80211Prim_AuthenticateConfirm-id249898.html" title="class Ieee80211Prim_AuthenticateConfirm" alt="Ieee80211Prim_AuthenticateConfirm" coords="231,88,484,112">
+<area shape="rect" href="Ieee80211Prim_AssociateConfirm-id250013.html" title="class Ieee80211Prim_AssociateConfirm" alt="Ieee80211Prim_AssociateConfirm" coords="508,88,737,112">
+</map><h3 class="subtitle">Known subclasses:</h3>
+<table>
+<tr>
+<td><a href="Ieee80211Prim_ScanConfirm-id249824.html">Ieee80211Prim_ScanConfirm</a></td>
+<td><p>Losely based on MLME-SCAN.confirm
+Possible result codes: SUCCESS, INVALID_PARAMETERS</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Prim_AuthenticateConfirm-id249898.html">Ieee80211Prim_AuthenticateConfirm</a></td>
+<td><p>Losely based on MLME-AUTHENTICATE.confirm.
+Possible result codes: SUCCESS, INVALID_PARAMETERS, TIMEOUT, TOO_MANY_SIMULTANEOUS_REQUESTS, REFUSED</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Prim_AssociateConfirm-id250013.html">Ieee80211Prim_AssociateConfirm</a></td>
+<td><p>Losely based on MLME-ASSOCIATE.confirm
+Possible result codes: SUCCESS, INVALID_PARAMETERS, TIMEOUT, REFUSED</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">resultCode</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> Ieee80211PrimConfirm
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> resultCode <span class="src-keyword">enum</span>(Ieee80211PrimResultCode);
+};</pre>
+</body>
+</html>

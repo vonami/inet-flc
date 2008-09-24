@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>GenericRadio</i>
+</h2>
+<p><b>File: <a href="file-id254077.html">NetworkInterfaces/Radio/GenericRadio.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_generic_radio.html" target="_top">click here</a></b></p>
+<p>Generic radio module. The implementation is largely based on the
+Mobility Framework's <a href="SnrEval-id252171.html">SnrEval</a> and Decider modules.</p>
+
+<p><b>See also:</b> <a href="Radio-id254697.html">Radio</a></p>
+
+<p><b>Author:</b> Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id254136.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="GenericRadio-id254136.html" title="simple GenericRadio" alt="GenericRadio" coords="7,16,108,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">channelNumber</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>channel identifier</p>
+</td>
+</tr>
+<tr>
+<td width="150">transmitterPower</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>power used for transmission of messages (in mW)</p>
+</td>
+</tr>
+<tr>
+<td width="150">bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>(in bits/s)</p>
+</td>
+</tr>
+<tr>
+<td width="150">thermalNoise</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>base noise level (dBm)</p>
+</td>
+</tr>
+<tr>
+<td width="150">pathLossAlpha</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>used by the path loss calculation</p>
+</td>
+</tr>
+<tr>
+<td width="150">snirThreshold</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>if signal-noise ratio is below this threshold, frame is considered noise (in dB)</p>
+</td>
+</tr>
+<tr>
+<td width="150">sensitivity</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>received signals with power below sensitivity are ignored</p>
+</td>
+</tr>
+<tr>
+<td width="150">headerLengthBits</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>length of physical layer framing (preamble, etc)</p>
+</td>
+</tr>
+<tr>
+<td width="150">bandwidth</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>signal bandwidth, used for bit error calculation</p>
+</td>
+</tr>
+<tr>
+<td width="150">modulation</td>
+<td width="100"><i>string</i></td>
+<td><p>"BPSK", "16-QAM", "256-QAM" or "null"; selects bit error calculation method</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateIn</td>
+<td width="100"><i>input</i></td>
+<td><p>from higher layer protocol (MAC)</p>
+</td>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td><p>to decider (decider connects to higher layer protocol, i.e. the MAC)</p>
+</td>
+</tr>
+<tr>
+<td width="150">radioIn</td>
+<td width="100"><i>input</i></td>
+<td><p>to receive frames (<a href="AirFrame-id252991.html">AirFrame</a>) on the radio channel</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> GenericRadio
+    <span class="src-keyword">parameters</span>:
+        channelNumber: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// channel identifier</span>
+        transmitterPower : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// power used for transmission of messages (in mW)</span>
+        bitrate: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// (in bits/s)</span>
+        thermalNoise: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// base noise level (dBm)</span>
+        pathLossAlpha: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// used by the path loss calculation</span>
+        snirThreshold: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// if signal-noise ratio is below this threshold, frame is considered noise (in dB)</span>
+        sensitivity: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// received signals with power below sensitivity are ignored</span>
+        headerLengthBits: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// length of physical layer framing (preamble, etc)</span>
+        bandwidth: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// signal bandwidth, used for bit error calculation</span>
+        modulation: <span class="src-keyword">string</span>; <span class="src-comment">// "BPSK", "16-QAM", "256-QAM" or "null"; selects bit error calculation method</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn;   <span class="src-comment">// from higher layer protocol (MAC)</span>
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// to decider (decider connects to higher layer protocol, i.e. the MAC)</span>
+        <span class="src-keyword">in:</span> radioIn; <span class="src-comment">// to receive frames (AirFrame) on the radio channel</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

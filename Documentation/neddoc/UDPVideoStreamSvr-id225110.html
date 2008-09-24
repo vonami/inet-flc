@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>UDPVideoStreamSvr</i>
+</h2>
+<p><b>File: <a href="file-id225091.html">Applications/UDPApp/UDPVideoStreamSvr.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_u_d_p_video_stream_svr.html" target="_top">click here</a></b></p>
+<p>Video stream server. To be used with <a href="UDPVideoStreamCli-id224954.html">UDPVideoStreamCli</a>.</p>
+
+<p>The server will wait for incoming "video streaming requests".
+When a request arrives, it draws a random video stream size
+using the videoSize parameter, and starts streaming to the client.
+During streaming, it will send UDP packets of size packetLen at every
+waitInterval, until videoSize is reached. The parameters packetLen
+and waitInterval can be set to constant values to create CBR traffic,
+or to random values (e.g. waitInterval=uniform(1e-6, 1.01e-6)) to
+accomodate jitter.</p>
+
+<p>The server can serve several clients, and several streams per client.</p>
+
+<p><b>See also:</b> <a href="UDPVideoStreamCli-id224954.html">UDPVideoStreamCli</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id225110.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="UDPVideoStreamSvr-id225110.html" title="simple UDPVideoStreamSvr" alt="UDPVideoStreamSvr" coords="7,16,161,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">serverPort</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>port to listen on</p>
+</td>
+</tr>
+<tr>
+<td width="150">waitInterval</td>
+<td width="100"><i>numeric</i></td>
+<td><p>can be random, to accomodate jitter</p>
+</td>
+</tr>
+<tr>
+<td width="150">packetLen</td>
+<td width="100"><i>numeric</i></td>
+<td><p>bytes; can be random</p>
+</td>
+</tr>
+<tr>
+<td width="150">videoSize</td>
+<td width="100"><i>numeric</i></td>
+<td><p>bytes; can be random</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">from_udp</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">to_udp</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> UDPVideoStreamSvr
+    <span class="src-keyword">parameters</span>:
+        serverPort: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// port to listen on</span>
+        waitInterval: <span class="src-keyword">numeric</span>,     <span class="src-comment">// can be random, to accomodate jitter</span>
+        packetLen: <span class="src-keyword">numeric</span>,        <span class="src-comment">// bytes; can be random</span>
+        videoSize: <span class="src-keyword">numeric</span>;        <span class="src-comment">// bytes; can be random</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> from_udp;
+        <span class="src-keyword">out:</span> to_udp;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

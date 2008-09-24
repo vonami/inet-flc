@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<p><center><h1>INET Framework for OMNeT++/OMNEST</h1></center>
+<center>release 2006-10-20</center></p>
+
+<p>INET Framework contains IPv4, IPv6, TCP, UDP protocol implementations,
+and several application models. The framework also includes an MPLS model
+with RSVP-TE and LDP signalling. Link-layer models are PPP, Ethernet and 802.11.
+Static routing can be set up using network autoconfigurators, or one can use
+routing protocol implementations.
+</p>
+
+<p>The INET Framework supports wireless and mobile simulations as well. Support
+for mobility and wireless communication has been derived from the
+<a href="http://mobility-fw.sourceforge.net" target="_blank">Mobility Framework</a>.</p>
+
+<p><b>This release features a new <a href="ieee80211.html">IEEE 802.11 model</a>,
+which supports both ad-hoc and infrastructure mode.</b></p>
+
+<p>There are several other bugfixes and improvements as well; see the
+<tt>WHATSNEW</tt> file in the distribution.</p>
+
+<p>Recent additions: MPLS, RSVP-TE and LDP models revised/rewritten (Vojta Janota);
+dynamic routing (OSPFv2 and RIP) provided by the Quagga Linux/*nix routing daemon
+(ported into the INET Framework by Vojta Janota);
+and a cleanroom OSPFv2 model (by Andras Babos).</p>
+
+<p><a href="history.html">History and contributors</a>.</p>
+
+<p>Introductory material:</p>
+
+  <ul><li><a href="inet-architecture.html">INET Framework architecture</a> <b>(NEW!)</b></li>
+
+  <li><a href="../walkthrough/tutorial.html" target="_top">Guided Tour</a></li>
+
+  <li><a href="../tcp-tutorial/index.html" target="_top">Getting started with <a href="TCP-id271256.html">TCP</a></a></li></ul>
+
+<p>A few useful starting points for browsing the documentation:</p>
+
+  <ul><li>the <a href="full-usage-diagram.html">Usage Diagram</a>
+   includes all modules and networks</li>
+
+  <li>example networks: NClients, BulkTransfer, MulticastNetwork,
+   ARPTest, MixedLAN, etc.</li>
+
+  <li>hosts, routers, switches: <a href="StandardHost-id259540.html">StandardHost</a>, <a href="Router-id259068.html">Router</a>, <a href="EtherSwitch-id242754.html">EtherSwitch</a>, <a href="EtherHub-id241079.html">EtherHub</a>,
+   etc.</li>
+
+  <li>network interfaces: <a href="EthernetInterface-id241239.html">EthernetInterface</a>, <a href="PPPInterface-id253450.html">PPPInterface</a>, <a href="Ieee80211NicAdhoc-id244189.html">Ieee80211NicAdhoc</a>,
+   <a href="Ieee80211NicSTA-id245326.html">Ieee80211NicSTA</a></li>
+
+  <li><a href="ieee80211.html">IEEE 802.11 models</a>, both ad-hoc and infrastructure
+   mode are supported</li>
+
+  <li>IP layer: <a href="IP-id231134.html">IP</a>, <a href="ARP-id227137.html">ARP</a> and <a href="ICMP-id230662.html">ICMP</a>; <a href="RoutingTable-id231049.html">RoutingTable</a></li>
+
+  <li>IPv6 support: <a href="IPv6-id232445.html">IPv6</a>, <a href="IPv6NeighbourDiscovery-id229263.html">IPv6NeighbourDiscovery</a>, <a href="ICMPv6-id229107.html">ICMPv6</a>, <a href="RoutingTable6-id232346.html">RoutingTable6</a>;
+   see <a href="ipv6overview.html">IPv6 model overview</a></li>
+
+  <li>transport layer: <a href="TCP-id271256.html">TCP</a>, <a href="UDP-id272076.html">UDP</a></li>
+
+  <li><a href="InterfaceTable-id227840.html">InterfaceTable</a> and <a href="NotificationBoard-id225662.html">NotificationBoard</a> are there in every
+   host and router model</li>
+
+  <li>queues in router network interfaces: <a href="DropTailQueue-id235937.html">DropTailQueue</a>, <a href="REDQueue-id236337.html">REDQueue</a>,
+   <a href="DropTailQoSQueue-id235904.html">DropTailQoSQueue</a>.</li>
+
+  <li><a href="FlatNetworkConfigurator-id227631.html">FlatNetworkConfigurator</a> automatically assigns IP addresses and
+   sets up static routes;</li>
+
+  <li><a href="ScenarioManager-id272727.html">ScenarioManager</a> lets you change things in the model in the middle
+   of the simulation to study transient behaviour</li>
+
+  <li>message classes: <a href="IPDatagram-id232002.html">IPDatagram</a>, <a href="TCPSegment-id271106.html">TCPSegment</a>, <a href="UDPPacket-id272161.html">UDPPacket</a>, <a href="EthernetIIFrame-id242350.html">EthernetIIFrame</a>,
+   <a href="ARPPacket-id227492.html">ARPPacket</a>, <a href="PPPFrame-id253928.html">PPPFrame</a>, <a href="GenericAppMsg-id224442.html">GenericAppMsg</a>, <a href="EtherAppReq-id223505.html">EtherAppReq</a>, etc.</li>
+
+  <li>control info classes (used in communication between protocol layers):
+   <a href="IPControlInfo-id228197.html">IPControlInfo</a>, <a href="TCPCommand-id268543.html">TCPCommand</a>, <a href="UDPControlInfo-id269416.html">UDPControlInfo</a>, <a href="Ieee802Ctrl-id239221.html">Ieee802Ctrl</a>, etc.</li>
+
+  <li>application models: <a href="UDPVideoStreamSvr-id225110.html">UDPVideoStreamSvr</a>, <a href="UDPVideoStreamCli-id224954.html">UDPVideoStreamCli</a>, <a href="UDPApp-id224556.html">UDPApp</a>,
+   <a href="TCPSessionApp-id220885.html">TCPSessionApp</a>, <a href="TCPBasicClientApp-id219784.html">TCPBasicClientApp</a>, <a href="TCPGenericSrvApp-id220613.html">TCPGenericSrvApp</a>, <a href="TCPSinkApp-id221723.html">TCPSinkApp</a>,
+   <a href="TCPSrvHostApp-id224178.html">TCPSrvHostApp</a>, <a href="EtherAppCli-id204767.html">EtherAppCli</a>, <a href="EtherAppSrv-id204484.html">EtherAppSrv</a>, <a href="PingApp-id221440.html">PingApp</a>, etc.</li>
+
+  <li>wireless support: <a href="ChannelControl-id272488.html">ChannelControl</a>, <a href="Nic80211-id250122.html">Nic80211</a></li>
+
+  <li>mobility: <a href="MobileHost-id255482.html">MobileHost</a>; mobility models such as <a href="TurtleMobility-id227222.html">TurtleMobility</a>,
+   <a href="BonnMotionMobility-id225866.html">BonnMotionMobility</a>, <a href="ANSimMobility-id225804.html">ANSimMobility</a>, <a href="RandomWPMobility-id226892.html">RandomWPMobility</a>, <a href="MassMobility-id226628.html">MassMobility</a></li>
+
+  <li>MPLS models: the core modules are <a href="MPLS-id233905.html">MPLS</a>, <a href="LIBTable-id233773.html">LIBTable</a>, <a href="LDP-id233136.html">LDP</a>, <a href="RSVP-id236175.html">RSVP</a>, <a href="TED-id238461.html">TED</a>,
+   <a href="LinkStateRouting-id238439.html">LinkStateRouting</a>; MPLS-enabled routers are <a href="LDP_LSR-id263362.html">LDP_LSR</a>, <a href="RSVP_LSR-id264429.html">RSVP_LSR</a>;
+   see also the list of <a href="standards.html">implemented standards</a></li>
+
+  <li>dynamic routing is provided by the <a href="Daemon-id235711.html">Daemon</a> module (the Quagga routing
+   daemon ported into the INET Framework) used inside <a href="QuaggaRouter-id258126.html">QuaggaRouter</a>;
+   alternatively one can run <a href="OSPFRouter-id257692.html">OSPFRouter</a> which relies on the <a href="OSPFRouting-id234017.html">OSPFRouting</a>
+   module;</li>
+
+  <li>support for recording <i>nam</i> traces is provided by <a href="NAMTrace-id272601.html">NAMTrace</a> and
+   <a href="NAMTraceWriter-id272225.html">NAMTraceWriter</a></li></ul>
+
+<p>Related documentation:</p>
+
+  <ul><li><a href="../doxy/index.html" target="_top">C++ source documentation (Doxygen)</a></li></ul>
+
+<hr>
+<p>Generated by opp_neddoc.</p>
+</body>
+</html>

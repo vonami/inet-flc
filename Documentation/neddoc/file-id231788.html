@@ -1,0 +1,200 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/IPv4/IPDatagram.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="IPDatagram-id232002.html">IPDatagram</a><i> (message)</i>
+</li>
+<li>
+<a href="IPOption-id231873.html">IPOption</a><i> (enum)</i>
+</li>
+<li>
+<a href="IPRecordRouteOption-id231647.html">IPRecordRouteOption</a><i> (class)</i>
+</li>
+<li>
+<a href="IPSourceRoutingOption-id231760.html">IPSourceRoutingOption</a><i> (class)</i>
+</li>
+<li>
+<a href="IPTimestampOption-id231686.html">IPTimestampOption</a><i> (class)</i>
+</li>
+<li>
+<a href="TimestampFlag-id231930.html">TimestampFlag</a><i> (enum)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2000 Institut fuer Telematik, Universitaet Karlsruhe</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPAddress;
+<span class="src-keyword">enum</span> IPProtocolId;
+
+cplusplus {{
+#include "IPAddress.h"
+#include "IPProtocolId_m.h"
+
+<span class="src-comment">// default IP header length: 20 bytes</span>
+<span class="src-keyword">const</span> <span class="src-keyword">int</span> IP_HEADER_BYTES = <span class="src-number">20</span>;
+
+<span class="src-comment">// maximum IP header length (base+options): 60 = 4 * 15 bytes</span>
+<span class="src-keyword">const</span> <span class="src-keyword">int</span> IP_MAX_HEADER_BYTES = <span class="src-number">60</span>;
+
+<span class="src-comment">// option entry number</span>
+<span class="src-keyword">const</span> unsigned <span class="src-keyword">int</span> MAX_IPADDR_OPTION_ENTRIES = <span class="src-number">9</span>;
+<span class="src-keyword">const</span> unsigned <span class="src-keyword">int</span> MAX_TIMESTAMP_OPTION_ENTRIES = <span class="src-number">4</span>;
+
+}};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// IP options. Beware: these are not the "official" (RFC) codes!</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> IPOption
+{
+    IPOPTION_NO_OPTION = <span class="src-number">0</span>;
+    IPOPTION_RECORD_ROUTE = <span class="src-number">1</span>;
+    IPOPTION_TIMESTAMP = <span class="src-number">2</span>;
+    IPOPTION_LOOSE_SOURCE_ROUTING = <span class="src-number">3</span>;
+    IPOPTION_STRICT_SOURCE_ROUTING = <span class="src-number">4</span>;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// The timestamp flag uses the same numeric values as the IP Protocol</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> TimestampFlag
+{
+    IP_TIMESTAMP_TIMESTAMP_ONLY = <span class="src-number">0</span>;
+    IP_TIMESTAMP_WITH_ADDRESS = <span class="src-number">1</span>;
+    IP_TIMESTAMP_SENDER_INIT_ADDRESS = <span class="src-number">3</span>;
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Option structure: Record Route</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> IPRecordRouteOption
+{
+    <span class="src-keyword">fields</span>:
+        IPAddress recordAddress[MAX_IPADDR_OPTION_ENTRIES];
+        <span class="src-keyword">short</span> nextAddressPtr;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Option structure: Timestamp</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> IPTimestampOption
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> flag <span class="src-keyword">enum</span>(TimestampFlag);
+        <span class="src-keyword">short</span> overflow;
+        <span class="src-keyword">short</span> nextAddressPtr;
+
+        <span class="src-comment">// use either up to 4 addresses with timestamps or</span>
+        <span class="src-comment">// only up to 9 timestamps, according to the flag</span>
+        IPAddress recordAddress[MAX_TIMESTAMP_OPTION_ENTRIES];
+        simtime_t recordTimestamp[MAX_IPADDR_OPTION_ENTRIES];
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Option Structure: Source Routing</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> IPSourceRoutingOption
+{
+    <span class="src-keyword">fields</span>:
+        IPAddress recordAddress[MAX_IPADDR_OPTION_ENTRIES];
+        <span class="src-keyword">short</span> nextAddressPtr;
+        <span class="src-keyword">short</span> lastAddressPtr;
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an IP datagram.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Uses the following cMessage fields:</span>
+<span class="src-comment">//    - length () / setLength(err)  in bits</span>
+<span class="src-comment">//    - hasBitError() / setBitError()</span>
+<span class="src-comment">//    - timestamp() / setTimestamp (simtime) used in timestamp option</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Additional length fields defined in this class are in bytes</span>
+<span class="src-comment">// (totalLength()=length()/8 and header_length), or 8 bytes (fragment_offset).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Only only one of the option fields can exist at a time.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> IPDatagram
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">short</span> version = <span class="src-number">4</span>;
+        <span class="src-keyword">short</span> headerLength = IP_HEADER_BYTES;
+
+        IPAddress srcAddress;
+        IPAddress destAddress;
+
+        <span class="src-keyword">int</span> transportProtocol <span class="src-keyword">enum</span>(IPProtocolId) = IP_PROT_NONE;
+        <span class="src-keyword">short</span> timeToLive;
+        <span class="src-keyword">int</span> identification;
+        <span class="src-keyword">bool</span> moreFragments;
+        <span class="src-keyword">bool</span> dontFragment;
+        <span class="src-keyword">int</span> fragmentOffset;
+        unsigned <span class="src-keyword">char</span> diffServCodePoint;
+
+        <span class="src-keyword">int</span> optionCode <span class="src-keyword">enum</span>(IPOption) = IPOPTION_NO_OPTION;  <span class="src-comment">//# FIXME modify header length when options are present</span>
+        IPRecordRouteOption recordRoute;
+        IPTimestampOption timestampOption;
+        IPSourceRoutingOption sourceRoutingOption; <span class="src-comment">// optionCode determines if strict or loose source routing</span>
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Some old code regarding options and header length</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// header length is always set automatically</span>
+<span class="src-comment">//short headerLength() { return header_length; }</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// fields for options</span>
+<span class="src-comment">//IPOption optionType() { return option_code; }</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//    if no option exists, return NULL,</span>
+<span class="src-comment">//    otherwise, return pointer to appropriate structure;</span>
+<span class="src-comment">//    conversion needs to be done by calling function */</span>
+<span class="src-comment">//void *optionField();</span>
+
+<span class="src-comment">// existing option is overwritten when setXXXOption is called</span>
+<span class="src-comment">//void setRecordRoute (const RecordRouteOptionField&amp;);</span>
+<span class="src-comment">//void setTimestampOption (const TimestampOptionField&amp;);</span>
+<span class="src-comment">//void setSourceRoutingOption(bool looseSourceRouting, const SourceRoutingOptionField&amp;);</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// private function</span>
+<span class="src-comment">//void IPDatagram::setOptionHeaderLength()</span>
+<span class="src-comment">//{</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//      // HeaderLength is set automatically to maximum with option</span>
+<span class="src-comment">//      setLength(length() - headerLength()*8);</span>
+<span class="src-comment">//      header_length = IP_MAX_HEADER_BYTES;</span>
+<span class="src-comment">//      setLength(length() + headerLength()*8);</span>
+<span class="src-comment">//}</span>
+<span class="src-comment">//</span>
+</pre>
+</body>
+</html>

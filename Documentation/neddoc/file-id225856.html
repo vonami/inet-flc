@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Mobility/BonnMotionMobility.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="BonnMotionMobility-id225866.html">BonnMotionMobility</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2005 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Uses the native file format of BonnMotion (http://www.cs.uni-bonn.de/IV/BonnMotion/).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The file is a plain text file, where every line describes the motion</span>
+<span class="src-comment">// of one host. A line consists of one or more (t, x, y) triplets of real</span>
+<span class="src-comment">// numbers, like:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// t1 x1 y1 t2 x2 y2 t3 x3 y3 t4 x4 y4 ...</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The meaning is that the given node gets to (xk,yk) at tk. There's no</span>
+<span class="src-comment">// separate notation for wait, so x and y coordinates will be repeated there.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @author Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> BonnMotionMobility
+    <span class="src-keyword">parameters</span>:
+        debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        traceFile: <span class="src-keyword">string</span>, <span class="src-comment">// the BonnMotion trace file</span>
+        nodeId: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// selects line in trace file; -1 gets substituted to parent module's index</span>
+        updateInterval : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// time interval to update the hosts position</span>
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

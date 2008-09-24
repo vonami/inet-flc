@@ -1,0 +1,137 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/IPv6/IPv6ExtensionHeaders.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="IPv6AuthenticationHeader-id233072.html">IPv6AuthenticationHeader</a><i> (class)</i>
+</li>
+<li>
+<a href="IPv6DestinationOptionsHeader-id233039.html">IPv6DestinationOptionsHeader</a><i> (class)</i>
+</li>
+<li>
+<a href="IPv6EncapsulatingSecurityPayloadHeader-id233103.html">IPv6EncapsulatingSecurityPayloadHeader</a><i> (class)</i>
+</li>
+<li>
+<a href="IPv6FragmentHeader-id232854.html">IPv6FragmentHeader</a><i> (class)</i>
+</li>
+<li>
+<a href="IPv6HopByHopOptionsHeader-id232963.html">IPv6HopByHopOptionsHeader</a><i> (class)</i>
+</li>
+<li>
+<a href="IPv6RoutingHeader-id232795.html">IPv6RoutingHeader</a><i> (class)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2005 Wei Yang, Ng</span>
+<span class="src-comment">// Copyright (C) 2005 Andras Varga</span>
+<span class="src-comment">// Copyright (C) 2001-2004 CTIE, Monash University</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU Lesser General Public</span>
+<span class="src-comment">// License as published by the Free Software Foundation; either</span>
+<span class="src-comment">// version 2.1 of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU Lesser General Public</span>
+<span class="src-comment">// License along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+cplusplus {{
+#include "IPv6Address.h"
+#include "IPv6Datagram.h"
+}}
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPv6Address;
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPv6ExtensionHeader;
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Hop-by-Hop Options Header.</span>
+<span class="src-comment">// RFC 2460 Section 4.3</span>
+<span class="src-comment">// Next Header Value: 0</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> IPv6HopByHopOptionsHeader <span class="src-keyword">extends</span> IPv6ExtensionHeader
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Routing Header</span>
+<span class="src-comment">// RFC 2460 Section 4.4</span>
+<span class="src-comment">// Next Header Value: 43</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> IPv6RoutingHeader <span class="src-keyword">extends</span> IPv6ExtensionHeader
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        unsigned <span class="src-keyword">char</span> routingType;
+        unsigned <span class="src-keyword">char</span> segmentsLeft;
+        IPv6Address address[];
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Fragment Header</span>
+<span class="src-comment">// RFC 2460 Section 4.5</span>
+<span class="src-comment">// Next Header Value: 44</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> IPv6FragmentHeader <span class="src-keyword">extends</span> IPv6ExtensionHeader
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        unsigned <span class="src-keyword">short</span> fragmentOffset;
+        unsigned <span class="src-keyword">int</span> identification;  <span class="src-comment">// datagram ID: identifies which datagram this fragment belongs to.</span>
+        <span class="src-keyword">bool</span> moreFragments; <span class="src-comment">//Is this the last fragment?</span>
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Destination Options Header</span>
+<span class="src-comment">// RFC 2460 Section 4.6</span>
+<span class="src-comment">// Next Header Value: 60</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> IPv6DestinationOptionsHeader <span class="src-keyword">extends</span> IPv6ExtensionHeader
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Authentication Header</span>
+<span class="src-comment">// RFC 2402</span>
+<span class="src-comment">// Not Implemented</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> IPv6AuthenticationHeader <span class="src-keyword">extends</span> IPv6ExtensionHeader
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Encapsulating Security Payload Header</span>
+<span class="src-comment">// RFC 2406</span>
+<span class="src-comment">// Not Implemented</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> IPv6EncapsulatingSecurityPayloadHeader <span class="src-keyword">extends</span> IPv6ExtensionHeader
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+};
+</pre>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>inet-index.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2000 Institut fuer Telematik, Universitaet Karlsruhe</span>
+<span class="src-comment">// Copyright (C) 2003 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// @titlepage</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;center&gt;&lt;h1&gt;INET Framework for OMNeT++/OMNEST&lt;/h1&gt;&lt;/center&gt;</span>
+<span class="src-comment">// &lt;center&gt;release 2006-10-20&lt;/center&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;nohtml&gt;INET Framework contains IPv4, IPv6, TCP, UDP protocol implementations,</span>
+<span class="src-comment">// and several application models. The framework also includes an MPLS model</span>
+<span class="src-comment">// with \RSVP-TE and LDP signalling. Link-layer models are PPP, Ethernet and 802.11.</span>
+<span class="src-comment">// Static routing can be set up using network autoconfigurators, or one can use</span>
+<span class="src-comment">// routing protocol implementations.</span>
+<span class="src-comment">// &lt;/nohtml&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The INET Framework supports wireless and mobile simulations as well. Support</span>
+<span class="src-comment">// for mobility and wireless communication has been derived from the</span>
+<span class="src-comment">// &lt;a href="http://mobility-fw.sourceforge.net" target="_blank"&gt;Mobility Framework&lt;/a&gt;.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;b&gt;This release features a new &lt;a href="ieee80211.html"&gt;IEEE 802.11 model&lt;/a&gt;,</span>
+<span class="src-comment">// which supports both ad-hoc and infrastructure mode.&lt;/b&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// There are several other bugfixes and improvements as well; see the</span>
+<span class="src-comment">// &lt;tt&gt;WHATSNEW&lt;/tt&gt; file in the distribution.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Recent additions: \MPLS, \RSVP-TE and \LDP models revised/rewritten (Vojta Janota);</span>
+<span class="src-comment">// dynamic routing (OSPFv2 and RIP) provided by the Quagga Linux/*nix routing daemon</span>
+<span class="src-comment">// (ported into the INET Framework by Vojta Janota);</span>
+<span class="src-comment">// and a cleanroom \OSPFv2 model (by Andras Babos).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;a href="history.html"&gt;History and contributors&lt;/a&gt;.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Introductory material:</span>
+<span class="src-comment">//  - &lt;a href="inet-architecture.html"&gt;INET Framework architecture&lt;/a&gt; &lt;b&gt;(NEW!)&lt;/b&gt;</span>
+<span class="src-comment">//  - &lt;a href="../walkthrough/tutorial.html" target="_top"&gt;Guided Tour&lt;/a&gt;</span>
+<span class="src-comment">//  - &lt;a href="../tcp-tutorial/index.html" target="_top"&gt;Getting started with TCP&lt;/a&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// A few useful starting points for browsing the documentation:</span>
+<span class="src-comment">//  - the &lt;a href="full-usage-diagram.html"&gt;Usage Diagram&lt;/a&gt;</span>
+<span class="src-comment">//    includes all modules and networks</span>
+<span class="src-comment">//  - example networks: NClients, BulkTransfer, MulticastNetwork,</span>
+<span class="src-comment">//    ARPTest, MixedLAN, etc.</span>
+<span class="src-comment">//  - hosts, routers, switches: StandardHost, Router, EtherSwitch, EtherHub,</span>
+<span class="src-comment">//    etc.</span>
+<span class="src-comment">//  - network interfaces: EthernetInterface, PPPInterface, Ieee80211NicAdhoc,</span>
+<span class="src-comment">//    Ieee80211NicSTA</span>
+<span class="src-comment">//  - &lt;a href="ieee80211.html"&gt;IEEE 802.11 models&lt;/a&gt;, both ad-hoc and infrastructure</span>
+<span class="src-comment">//    mode are supported</span>
+<span class="src-comment">//  - \IP layer: IP, ARP and ICMP; RoutingTable</span>
+<span class="src-comment">//  - \IPv6 support: IPv6, IPv6NeighbourDiscovery, ICMPv6, RoutingTable6;</span>
+<span class="src-comment">//    see &lt;a href="ipv6overview.html"&gt;\IPv6 model overview&lt;/a&gt;</span>
+<span class="src-comment">//  - transport layer: TCP, UDP</span>
+<span class="src-comment">//  - InterfaceTable and NotificationBoard are there in every</span>
+<span class="src-comment">//    host and router model</span>
+<span class="src-comment">//  - queues in router network interfaces: DropTailQueue, REDQueue,</span>
+<span class="src-comment">//    DropTailQoSQueue.</span>
+<span class="src-comment">//  - FlatNetworkConfigurator automatically assigns \IP addresses and</span>
+<span class="src-comment">//    sets up static routes;</span>
+<span class="src-comment">//  - ScenarioManager lets you change things in the model in the middle</span>
+<span class="src-comment">//    of the simulation to study transient behaviour</span>
+<span class="src-comment">//  - message classes: IPDatagram, TCPSegment, UDPPacket, EthernetIIFrame,</span>
+<span class="src-comment">//    ARPPacket, PPPFrame, GenericAppMsg, EtherAppReq, etc.</span>
+<span class="src-comment">//  - control info classes (used in communication between protocol layers):</span>
+<span class="src-comment">//    IPControlInfo, TCPCommand, UDPControlInfo, Ieee802Ctrl, etc.</span>
+<span class="src-comment">//  - application models: UDPVideoStreamSvr, UDPVideoStreamCli, UDPApp,</span>
+<span class="src-comment">//    TCPSessionApp, TCPBasicClientApp, TCPGenericSrvApp, TCPSinkApp,</span>
+<span class="src-comment">//    TCPSrvHostApp, EtherAppCli, EtherAppSrv, PingApp, etc.</span>
+<span class="src-comment">//  - wireless support: ChannelControl, Nic80211</span>
+<span class="src-comment">//  - mobility: MobileHost; mobility models such as TurtleMobility,</span>
+<span class="src-comment">//    BonnMotionMobility, ANSimMobility, RandomWPMobility, MassMobility</span>
+<span class="src-comment">//  - \MPLS models: the core modules are MPLS, LIBTable, LDP, RSVP, TED,</span>
+<span class="src-comment">//    LinkStateRouting; \MPLS-enabled routers are LDP_LSR, RSVP_LSR;</span>
+<span class="src-comment">//    see also the list of &lt;a href="standards.html"&gt;implemented standards&lt;/a&gt;</span>
+<span class="src-comment">//  - dynamic routing is provided by the Daemon module (the Quagga routing</span>
+<span class="src-comment">//    daemon ported into the INET Framework) used inside QuaggaRouter;</span>
+<span class="src-comment">//    alternatively one can run OSPFRouter which relies on the OSPFRouting</span>
+<span class="src-comment">//    module;</span>
+<span class="src-comment">//  - support for recording &lt;i&gt;nam&lt;/i&gt; traces is provided by NAMTrace and</span>
+<span class="src-comment">//    NAMTraceWriter</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Related documentation:</span>
+<span class="src-comment">//   - &lt;a href="../doxy/index.html" target="_top"&gt;C++ source documentation (Doxygen)&lt;/a&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @page history.html, History</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The predecessor of the INET framework was written by Klaus</span>
+<span class="src-comment">// Wehrle, Jochen Reber, Dirk Holzhausen, Volker Boehm, Verena Kahmann,</span>
+<span class="src-comment">// Ulrich Kaage and others at the University of Karlsruhe during 2000-2001,</span>
+<span class="src-comment">// under the name IPSuite.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The \MPLS, \LDP and \RSVP-TE models were built as an add-on to IPSuite</span>
+<span class="src-comment">// during 2003 by Xuan Thang Nguyen (Xuan.T.Nguyen@uts.edu.au) and other</span>
+<span class="src-comment">// students at the University of Technology, Sydney under supervision of</span>
+<span class="src-comment">// Dr Robin Brown. The package consisted of around 10,000 LOCs, and was</span>
+<span class="src-comment">// published at http://charlie.it.uts.edu.au/~tkaphan/xtn/capstone (now</span>
+<span class="src-comment">// unavailable).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// After a period of IPSuite being unmaintained, Andras Varga took over</span>
+<span class="src-comment">// the development in July 2003. Through a series of snapshot releases in</span>
+<span class="src-comment">// 2003-2004, modules got completely reorganized, documented, and many of them</span>
+<span class="src-comment">// rewritten from scratch. The \MPLS models (including \RSVP-TE, \LDP, etc)</span>
+<span class="src-comment">// also got refactored and merged into the codebase. The complete change log</span>
+<span class="src-comment">// is available</span>
+<span class="src-comment">// &lt;a href="http://ctieware.eng.monash.edu.au/twiki/bin/view/Simulation/IPSuiteLogOfChanges" target="_top"&gt;here&lt;/a&gt;.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// During 2004, Andras added a new, modular and extensible \TCP implementation,</span>
+<span class="src-comment">// application models, Ethernet implementation and an all-in-one \IP model</span>
+<span class="src-comment">// to replace the earlier, modularized one.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The package was renamed INET Framework in October 2004.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Support for wireless and mobile networks got added during summer 2005</span>
+<span class="src-comment">// by using code from the Mobility Framework.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The \MPLS models (including \LDP and \RSVP-TE) got revised and mostly</span>
+<span class="src-comment">// rewritten from scratch by Vojta Janota in the first half of 2005</span>
+<span class="src-comment">// for his diploma thesis. After further refinements by Vojta, the new code</span>
+<span class="src-comment">// got merged into the INET CVS in fall 2005, and got eventually released</span>
+<span class="src-comment">// in the March 2006 INET snapshot.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The OSPFv2 model was created by Andras Babos during 2004 for his diploma</span>
+<span class="src-comment">// thesis which was submitted early 2005. After several refinements and fixes,</span>
+<span class="src-comment">// the code got merged into the INET Framework in 2005, and became part of the</span>
+<span class="src-comment">// March 2006 INET snapshot.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The Quagga routing daemon was ported into the INET Framework also by Vojta</span>
+<span class="src-comment">// Janota. During fall 2005 and the months after, ripd and ospfd got ported,</span>
+<span class="src-comment">// and the methodology of porting got refined. It is planned to port further</span>
+<span class="src-comment">// Quagga daemons after March 2006.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Based on experience from the IPv6Suite (from Ahmet Sekercioglu's group at</span>
+<span class="src-comment">// CTIE, Monash University, Melbourne) and IPv6SuiteWithINET (Andras's effort</span>
+<span class="src-comment">// to refactor IPv6Suite and merge it with INET early 2005), Wei Yang Ng</span>
+<span class="src-comment">// (Monash Uni) implemented a new \IPv6 model from scratch for the</span>
+<span class="src-comment">// INET Framework in 2005 for his diploma thesis, under guidance from Andras</span>
+<span class="src-comment">// who was visiting Monash between February and June 2005. This \IPv6 model</span>
+<span class="src-comment">// got first included in the July 2005 INET snapshot, and gradually refined</span>
+<span class="src-comment">// afterwards.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Several other people have contributed to the INET Framework by providing</span>
+<span class="src-comment">// feedback, reporting bugs, suggesting features and contributing patches;</span>
+<span class="src-comment">// I'd like to acknowledge their help here as well.</span>
+<span class="src-comment">//</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Applications/TCPApp/GenericAppMsg.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="GenericAppMsg-id224442.html">GenericAppMsg</a><i> (message)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+cplusplus {{
+#include "INETDefs.h"
+}}
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Message class for generic request-reply style applications.</span>
+<span class="src-comment">// The client sends a GenericAppMsg which contains the number of</span>
+<span class="src-comment">// bytes the client wants the server to send back as reply.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This way intelligence (behaviour specific to the modelled application,</span>
+<span class="src-comment">// e.g. HTTP, SMB, database protocol) needs only to be present in</span>
+<span class="src-comment">// the client, and the server model can be kept simple and dumb.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see TCPGenericSrvApp, TCPGenericCliAppBase (C++ only)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> GenericAppMsg
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> expectedReplyLength;  <span class="src-comment">// in bytes</span>
+        <span class="src-keyword">double</span> replyDelay;  <span class="src-comment">// reply after this many seconds</span>
+        <span class="src-keyword">bool</span> close;  <span class="src-comment">// with TCP: if true, server should close the</span>
+                     <span class="src-comment">// connection after sending the reply</span>
+};
+</pre>
+</body>
+</html>

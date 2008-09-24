@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>IGMP</i>
+</h2>
+<p><b>File: <a href="file-id230768.html">Network/IPv4/IGMP.ned</a></b></p>
+<p>Placeholder for the <a href="IGMP-id230741.html">IGMP</a> protocol</p>
+
+<p>author: Andras Varga</p>
+
+<img class="screenshot" src="IGMP__Network_IPv4_IGMP_ned.png" ismap usemap="#screenshot" width="542" height="422"><map name="screenshot"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id230741.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="IGMP-id230741.html" title="module IGMP" alt="IGMP" coords="27,88,99,112">
+<area shape="rect" href="NetworkLayer-id256856.html" title="module NetworkLayer" alt="NetworkLayer" coords="7,16,119,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="NetworkLayer-id256856.html">NetworkLayer</a></td>
+<td><p>Network layer of an IP node.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">localIn</td>
+<td width="100"><i>input</i></td>
+<td><p>delivered <a href="IGMP-id230741.html">IGMP</a> packets</p>
+</td>
+</tr>
+<tr>
+<td width="150">sendOut</td>
+<td width="100"><i>output</i></td>
+<td><p>to <a href="IP-id231134.html">IP</a></p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable"><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr></table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> IGMP
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> localIn;  <span class="src-comment">// delivered IGMP packets</span>
+        <span class="src-keyword">out:</span> sendOut; <span class="src-comment">// to IP</span>
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

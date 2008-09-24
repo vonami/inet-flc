@@ -1,0 +1,116 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>PPP</i>
+</h2>
+<p><b>File: <a href="file-id253255.html">NetworkInterfaces/PPP/PPP.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_p_p_p.html" target="_top">click here</a></b></p>
+<p>PPP implementation.</p>
+
+<p>Packets are encapsulated in <a href="PPPFrame-id253928.html">PPPFrame</a>.</p>
+
+<p>PPP is a complex protocol with strong support for link configuration
+and maintenance. This model ignores those details, and only performs
+simple encapsulation/decapsulation and queuing.</p>
+
+<p>In routers, PPP relies on an external queue module (see <a href="OutputQueue-id236035.html">OutputQueue</a>)
+to model finite buffer, implement QoS and/or RED, and requests packets
+from this external queue one-by-one.</p>
+
+<p>In hosts, no such queue is used, so PPP contains an internal
+queue named txQueue to queue up packets waiting for transmission.
+Conceptually, txQueue is of infinite size, but for better diagnostics
+one can specify a hard limit in the txQueueLimit parameter -- if this is
+exceeded, the simulation stops with an error.</p>
+
+<p>There is no buffering done on received packets -- they are just decapsulated
+and sent up immediately.</p>
+
+<p><b>See also:</b> <a href="PPPInterface-id253450.html">PPPInterface</a>, <a href="OutputQueue-id236035.html">OutputQueue</a>, <a href="PPPFrame-id253928.html">PPPFrame</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id253311.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="PPP-id253311.html" title="simple PPP" alt="PPP" coords="97,88,169,112">
+<area shape="rect" href="PPPInterface-id253450.html" title="module PPPInterface" alt="PPPInterface" coords="7,16,105,40">
+<area shape="rect" href="PPPInterfaceNoQueue-id253676.html" title="module PPPInterfaceNoQueue" alt="PPPInterfaceNoQueue" coords="129,16,292,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="PPPInterface-id253450.html">PPPInterface</a></td>
+<td><p>PPP interface. Complements the <a href="PPP-id253311.html">PPP</a> module with an output queue
+for QoS and RED support.</p>
+</td>
+</tr>
+<tr>
+<td><a href="PPPInterfaceNoQueue-id253676.html">PPPInterfaceNoQueue</a></td>
+<td><p>PPP interface. Assumes inifinite queue.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">txQueueLimit</td>
+<td width="100"><i>numeric</i></td>
+<td><p>only used if queueModule==""; zero means infinite</p>
+</td>
+</tr>
+<tr>
+<td width="150">queueModule</td>
+<td width="100"><i>string</i></td>
+<td><p>name of external (QoS,RED,etc) queue module</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">physIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">physOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">netwIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">netwOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> PPP
+    <span class="src-keyword">parameters</span>:
+        txQueueLimit: <span class="src-keyword">numeric</span>,  <span class="src-comment">// only used if queueModule==""; zero means infinite</span>
+        queueModule: <span class="src-keyword">string</span>;    <span class="src-comment">// name of external (QoS,RED,etc) queue module</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> physIn;
+        <span class="src-keyword">out:</span> physOut;
+        <span class="src-keyword">in:</span> netwIn;
+        <span class="src-keyword">out:</span> netwOut;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

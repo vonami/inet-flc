@@ -1,0 +1,183 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>NicCsma</i>
+</h2>
+<p><b>File: <a href="file-id250477.html">NetworkInterfaces/MF80211/NicCsma.ned</a></b></p>
+<p>The CsmaNic contains a csma-like MAC layer.
+The <a href="SnrEval-id252171.html">SnrEval</a> module is used as the mac needs a RadioState to be published.
+However as still the <a href="BasicDecider-id252553.html">BasicDecider</a> is used all messages will be delivered to
+the MAC and no packets get lost</p>
+
+<p>This nic is intended to be used in order to test the implementation
+of the csma protocol.</p>
+
+<p>IMPORTANT:<br> In order to work with the <a href="ChannelControl-id272488.html">ChannelControl</a> module the snrEval
+module has to be called "snrEval" in the ned file.</p>
+
+<p>This component has been taken over from Mobility Framework 1.0a5.</p>
+
+<p><b>See also:</b> BasicMacLayer, <a href="BasicDecider-id252553.html">BasicDecider</a>, <a href="BasicSnrEval-id252457.html">BasicSnrEval</a></p>
+
+<p><b>Author:</b> Marc Loebbers</p>
+
+<img class="screenshot" src="NicCsma__NetworkInterfaces_MF80211_NicCsma_ned.png" ismap usemap="#screenshot" width="180" height="317"><map name="screenshot"><area shape="rect" coords="64,55 110,101" href="CSMAMacLayer-id251079.html" title="mac: CSMAMacLayer" alt="mac: CSMAMacLayer">
+<area shape="rect" coords="82,133 112,163" href="BasicDecider-id252553.html" title="decider: BasicDecider" alt="decider: BasicDecider">
+<area shape="rect" coords="64,204 110,250" href="SnrEval-id252171.html" title="snrEval: SnrEval" alt="snrEval: SnrEval"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id250564.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="NicCsma-id250564.html" title="module NicCsma" alt="NicCsma" coords="156,16,228,40">
+<area shape="rect" href="CSMAMacLayer-id251079.html" title="simple CSMAMacLayer" alt="CSMAMacLayer" coords="7,88,132,112">
+<area shape="rect" href="SnrEval-id252171.html" title="simple SnrEval" alt="SnrEval" coords="156,88,228,112">
+<area shape="rect" href="BasicDecider-id252553.html" title="simple BasicDecider" alt="BasicDecider" coords="252,88,348,112">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="BasicDecider-id252553.html">BasicDecider</a></td>
+<td><p>Module to decide whether a frame is received correctly or is
+lost due to bit errors, interference...</p>
+</td>
+</tr>
+<tr>
+<td><a href="CSMAMacLayer-id251079.html">CSMAMacLayer</a></td>
+<td><p>CSMA MAC protocol</p>
+</td>
+</tr>
+<tr>
+<td><a href="SnrEval-id252171.html">SnrEval</a></td>
+<td><p>Represents the radio. Frames received from higher layers (typically the
+MAC protocol) are transmitted on the radio channel, using the global
+<a href="ChannelControl-id272488.html">ChannelControl</a> module. Frames received on the radio channel will have
+their signal-noise ratio evaluated and passed up to the decider.
+(It is the decider's task to determine whether the frame was received
+correctly, and pass it up to the MAC layer).</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateIn</td>
+<td width="100"><i>input</i></td>
+<td><p>to upper layers</p>
+</td>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td><p>from upper layers</p>
+</td>
+</tr>
+<tr>
+<td width="150">radioIn</td>
+<td width="100"><i>input</i></td>
+<td><p>to receive AirFrames</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="CSMAMacLayer-id251079.html">mac</a>.debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td><a href="CSMAMacLayer-id251079.html">mac</a>.headerLength</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="CSMAMacLayer-id251079.html">mac</a>.queueLength</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="BasicDecider-id252553.html">decider</a>.coreDebug</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>debug switch for the core framework</p>
+</td>
+</tr>
+<tr>
+<td><a href="SnrEval-id252171.html">snrEval</a>.channelNumber</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>channel identifier</p>
+</td>
+</tr>
+<tr>
+<td><a href="SnrEval-id252171.html">snrEval</a>.debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td><a href="SnrEval-id252171.html">snrEval</a>.transmitterPower</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SnrEval-id252171.html">snrEval</a>.bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SnrEval-id252171.html">snrEval</a>.headerLength</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SnrEval-id252171.html">snrEval</a>.thermalNoise</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SnrEval-id252171.html">snrEval</a>.pathLossAlpha</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SnrEval-id252171.html">snrEval</a>.sensitivity</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> NicCsma
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn; <span class="src-comment">// to upper layers</span>
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// from upper layers</span>
+        <span class="src-keyword">in:</span> radioIn; <span class="src-comment">// to receive AirFrames</span>
+     <span class="src-keyword">submodules</span>:
+        mac: CSMAMacLayer;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">96</span>,<span class="src-number">87</span>;i=block/layer";
+        decider: BasicDecider;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">106</span>,<span class="src-number">157</span>;i=block/process_s";
+        snrEval: SnrEval;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">96</span>,<span class="src-number">236</span>;i=block/wrxtx";
+    <span class="src-keyword">connections</span>:
+        radioIn <span class="src-keyword">--&gt;</span> snrEval.radioIn;
+        decider.uppergateOut <span class="src-keyword">--&gt;</span> mac.lowergateIn <span class="src-keyword">display</span> "m=m,<span class="src-number">50</span>,<span class="src-number">50</span>,<span class="src-number">75</span>,<span class="src-number">0</span>";
+        snrEval.uppergateIn <span class="src-keyword">&lt;--</span> mac.lowergateOut <span class="src-keyword">display</span> "m=m,<span class="src-number">25</span>,<span class="src-number">0</span>,<span class="src-number">25</span>,<span class="src-number">0</span>";
+        snrEval.uppergateOut <span class="src-keyword">--&gt;</span> decider.lowergateIn <span class="src-keyword">display</span> "m=m,<span class="src-number">73</span>,<span class="src-number">0</span>,<span class="src-number">50</span>,<span class="src-number">50</span>";
+
+        mac.uppergateOut <span class="src-keyword">--&gt;</span> uppergateOut;
+        mac.uppergateIn <span class="src-keyword">&lt;--</span> uppergateIn;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

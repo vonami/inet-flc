@@ -1,0 +1,65 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/Contract/PhyControlInfo.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="PhyCommandCode-id239398.html">PhyCommandCode</a><i> (enum)</i>
+</li>
+<li>
+<a href="PhyControlInfo-id239333.html">PhyControlInfo</a><i> (class)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2006 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU Lesser General Public</span>
+<span class="src-comment">// License as published by the Free Software Foundation; either</span>
+<span class="src-comment">// version 2.1 of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU Lesser General Public</span>
+<span class="src-comment">// License along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+cplusplus {{
+#include "INETDefs.h"
+}}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Command codes for controlling the physical layer (the radio). These constants</span>
+<span class="src-comment">// should be set as message kind on a message sent to the radio module.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see PhyControlInfo</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> PhyCommandCode
+{
+    PHY_C_CONFIGURERADIO = <span class="src-number">1</span>;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Control info for controlling the physical layer (the radio).</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> PhyControlInfo
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb=<span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> channelNumber = <span class="src-number">-1</span>; <span class="src-comment">// with PHY_C_CONFIGURERADIO: the channel to switch to</span>
+        <span class="src-keyword">double</span> bitrate = <span class="src-number">-1</span>; <span class="src-comment">// with PHY_C_CONFIGURERADIO: the bitrate to switch to</span>
+};
+</pre>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>SnrEval80211</i>
+</h2>
+<p><b>File: <a href="file-id252258.html">NetworkInterfaces/MF80211/phyLayer/snrEval/SnrEval80211.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_snr_eval80211.html" target="_top">click here</a></b></p>
+<p>This component has been taken over from Mobility Framework 1.0a5.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id252310.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="SnrEval80211-id252310.html" title="simple SnrEval80211" alt="SnrEval80211" coords="7,88,103,112">
+<area shape="rect" href="Nic80211-id250122.html" title="module Nic80211" alt="Nic80211" coords="19,16,91,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="Nic80211-id250122.html">Nic80211</a></td>
+<td><p>This NIC implements an 802.11 network interface card.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">channelNumber</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>channel identifier</p>
+</td>
+</tr>
+<tr>
+<td width="150">debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td width="150">transmitterPower</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">headerLength</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">carrierFrequency</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">thermalNoise</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">pathLossAlpha</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">sensitivity</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">radioIn</td>
+<td width="100"><i>input</i></td>
+<td><p>to receive AirFrames</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> SnrEval80211
+    <span class="src-keyword">parameters</span>:
+        channelNumber: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// channel identifier</span>
+        debug: <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        transmitterPower : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        bitrate: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        headerLength: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        carrierFrequency: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        thermalNoise: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        pathLossAlpha: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        sensitivity: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn;
+        <span class="src-keyword">out:</span> uppergateOut;
+        <span class="src-keyword">in:</span> radioIn; <span class="src-comment">// to receive AirFrames</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

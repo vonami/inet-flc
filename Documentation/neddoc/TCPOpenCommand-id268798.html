@@ -1,0 +1,135 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>TCPOpenCommand</i>
+</h2>
+<p><b>File: <a href="file-id268653.html">Transport/Contract/TCPCommand.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_t_c_p_open_command.html" target="_top">click here</a></b></p>
+<p>Control info to be used for active or passive <a href="TCP-id271256.html">TCP</a> open.</p>
+
+<p>localAddr, remoteAddr, localPort, remotePort should be self-explanatory.
+localAddr is optional because <a href="TCP-id271256.html">TCP</a> can learn it from <a href="IP-id231134.html">IP</a> when a packet
+is received from the peer; localPort is optional because <a href="TCP-id271256.html">TCP</a> supports
+ephemeral ports.</p>
+
+<p>The sendQueueClass, receiveQueueClass and tcpAlgorithmClass fields
+allow per-connection <a href="TCP-id271256.html">TCP</a> configuration. These fields may contain
+names of classes subclassed from TCPSendQueue, TCPReceiveQueue
+and TCPAlgorithm, respectively. If not set, module parameters with
+similar names are used.</p>
+
+<p>The fork parameter is used with passive open, and controls what happens
+when an incoming connection is received. With fork=true, it emulates
+the Unix accept(2) syscall semantics: a new connection structure
+is created for the connection (with a new connId, see in <a href="TCPCommand-id268543.html">TCPCommand</a>),
+and the connection structure with the old connId remains listening.
+With fork=false, all the above does not happen: the first connection
+is accepted (with the original connId), and further incoming connections
+will be refused by <a href="TCP-id271256.html">TCP</a> by sending an RST segment.</p>
+
+<p><b>See also:</b> <a href="TcpCommandCode-id268675.html">TcpCommandCode</a>, <a href="TCP-id271256.html">TCP</a></p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id268798.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="TCPOpenCommand-id268798.html" title="class TCPOpenCommand" alt="TCPOpenCommand" coords="7,88,153,112">
+<area shape="rect" href="TCPCommand-id268543.html" title="class TCPCommand" alt="TCPCommand" coords="24,16,136,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="TCPCommand-id268543.html">TCPCommand</a></td>
+<td><p>Control info for TCP connections. This class is to be set as control info
+(see cMessage::setControlInfo()) on all messages exchanged between <a href="TCP-id271256.html">TCP</a> and
+application, in both directions. Some commands and indications
+(TCP_C_OPEN_xxx, TCP_I_STATUS) use subclasses.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">localAddr</td>
+<td width="100"><i>IPvXAddress</i></td>
+<td><p>may be left empty</p>
+</td>
+</tr>
+<tr>
+<td width="150">remoteAddr</td>
+<td width="100"><i>IPvXAddress</i></td>
+<td><p>required for active open</p>
+</td>
+</tr>
+<tr>
+<td width="150">localPort</td>
+<td width="100"><i>int</i></td>
+<td><p>required for passive open</p>
+</td>
+</tr>
+<tr>
+<td width="150">remotePort</td>
+<td width="100"><i>int</i></td>
+<td><p>required for active open</p>
+</td>
+</tr>
+<tr>
+<td width="150">fork</td>
+<td width="100"><i>bool</i></td>
+<td><p>used only for passive open</p>
+</td>
+</tr>
+<tr>
+<td width="150">sendQueueClass</td>
+<td width="100"><i>string</i></td>
+<td><p>may be left empty</p>
+</td>
+</tr>
+<tr>
+<td width="150">receiveQueueClass</td>
+<td width="100"><i>string</i></td>
+<td><p>may be left empty</p>
+</td>
+</tr>
+<tr>
+<td width="150">tcpAlgorithmClass</td>
+<td width="100"><i>string</i></td>
+<td><p>may be left empty</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> TCPOpenCommand <span class="src-keyword">extends</span> TCPCommand
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        IPvXAddress localAddr; <span class="src-comment">// may be left empty</span>
+        IPvXAddress remoteAddr;<span class="src-comment">// required for active open</span>
+        <span class="src-keyword">int</span> localPort = <span class="src-number">-1</span>;       <span class="src-comment">// required for passive open</span>
+        <span class="src-keyword">int</span> remotePort = <span class="src-number">-1</span>;      <span class="src-comment">// required for active open</span>
+        <span class="src-keyword">bool</span> fork = <span class="src-keyword">false</span>;        <span class="src-comment">// used only for passive open</span>
+        <span class="src-keyword">string</span> sendQueueClass;    <span class="src-comment">// may be left empty</span>
+        <span class="src-keyword">string</span> receiveQueueClass; <span class="src-comment">// may be left empty</span>
+        <span class="src-keyword">string</span> tcpAlgorithmClass; <span class="src-comment">// may be left empty</span>
+};</pre>
+</body>
+</html>

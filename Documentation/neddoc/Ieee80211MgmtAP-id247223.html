@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>Ieee80211MgmtAP</i>
+</h2>
+<p><b>File: <a href="file-id247168.html">NetworkInterfaces/Ieee80211/Mgmt/Ieee80211MgmtAP.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_mgmt_a_p.html" target="_top">click here</a></b></p>
+<p>Used in 802.11 infrastructure mode: handles management frames for
+an access point (AP). It relies on a connected <a href="Ieee80211Mac-id246064.html">Ieee80211Mac</a> for actual
+reception and transmission of frames.</p>
+
+<p>When simulating an AP that has other (Ethernet or wireless) interfaces
+as well, this module can be connected to a <a href="MACRelayUnit-id243370.html">MACRelayUnit</a> which performs
+bridging of Ethernet frames. This module will perform conversion from/to
+<a href="EtherFrame-id242304.html">EtherFrame</a> for <a href="MACRelayUnit-id243370.html">MACRelayUnit</a>.</p>
+
+<p>This module never switches channels, that is, it will operate on the channel
+the physical layer is configured for (see channelNumber in <a href="Ieee80211Radio-id254399.html">Ieee80211Radio</a>).</p>
+
+<p><b>Author:</b> Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id247223.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="Ieee80211MgmtAP-id247223.html" title="simple Ieee80211MgmtAP" alt="Ieee80211MgmtAP" coords="7,88,137,112">
+<area shape="rect" href="Ieee80211NicAP-id244686.html" title="module Ieee80211NicAP" alt="Ieee80211NicAP" coords="15,16,129,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="Ieee80211NicAP-id244686.html">Ieee80211NicAP</a></td>
+<td><p>This NIC implements an 802.11 network interface card,
+in an AP, using infrastructure mode.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">ssid</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">beaconInterval</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">frameCapacity</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>maximum queue length</p>
+</td>
+</tr>
+<tr>
+<td width="150">numAuthSteps</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>use 2 for Open System auth, 4 for WEP
+dataRate: numeric; XXX TBD</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateIn</td>
+<td width="100"><i>input</i></td>
+<td><p>from <a href="MACRelayUnit-id243370.html">MACRelayUnit</a>; can be left unconnected</p>
+</td>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td><p>to <a href="MACRelayUnit-id243370.html">MACRelayUnit</a>; can be left unconnected</p>
+</td>
+</tr>
+<tr>
+<td width="150">macIn</td>
+<td width="100"><i>input</i></td>
+<td><p>from <a href="Ieee80211Mac-id246064.html">Ieee80211Mac</a></p>
+</td>
+</tr>
+<tr>
+<td width="150">macOut</td>
+<td width="100"><i>output</i></td>
+<td><p>to <a href="Ieee80211Mac-id246064.html">Ieee80211Mac</a></p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> Ieee80211MgmtAP
+    <span class="src-keyword">parameters</span>:
+        ssid: <span class="src-keyword">string</span>,
+        beaconInterval: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        frameCapacity: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// maximum queue length</span>
+        numAuthSteps: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// use 2 for Open System auth, 4 for WEP</span>
+        <span class="src-comment">//dataRate: numeric; XXX TBD</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn; <span class="src-comment">// from MACRelayUnit; can be left unconnected</span>
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// to MACRelayUnit; can be left unconnected</span>
+        <span class="src-keyword">in:</span> macIn; <span class="src-comment">// from Ieee80211Mac</span>
+        <span class="src-keyword">out:</span> macOut; <span class="src-comment">// to Ieee80211Mac</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

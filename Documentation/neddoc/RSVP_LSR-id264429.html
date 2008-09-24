@@ -1,0 +1,314 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>RSVP_LSR</i>
+</h2>
+<p><b>File: <a href="file-id264480.html">Nodes/MPLS/RSVP_LSR.ned</a></b></p>
+<p>An RSVP-TE capable router.</p>
+
+<p>RSVP occupies the Transport layer; however, it is not a transport protocol
+itself. RSVP uses transport protocols to route packets. <a href="TED-id238461.html">TED</a> is used
+to calculate shortest paths.</p>
+
+<img class="screenshot" src="RSVP_LSR__Nodes_MPLS_RSVP_LSR_ned.png" ismap usemap="#screenshot" width="368" height="380"><map name="screenshot"><area shape="rect" coords="42,25 88,71" href="NotificationBoard-id225662.html" title="notificationBoard: NotificationBoard" alt="notificationBoard: NotificationBoard">
+<area shape="rect" coords="36,106 82,152" href="RoutingTable-id231049.html" title="routingTable: RoutingTable" alt="routingTable: RoutingTable">
+<area shape="rect" coords="36,176 82,222" href="InterfaceTable-id227840.html" title="interfaceTable: InterfaceTable" alt="interfaceTable: InterfaceTable">
+<area shape="rect" coords="280,171 326,217" href="TED-id238461.html" title="ted: TED" alt="ted: TED">
+<area shape="rect" coords="222,83 268,129" href="LinkStateRouting-id238439.html" title="linkStateRouting: LinkStateRouting" alt="linkStateRouting: LinkStateRouting">
+<area shape="rect" coords="124,35 170,81" href="RSVP-id236175.html" title="rsvp: RSVP" alt="rsvp: RSVP">
+<area shape="rect" coords="298,35 344,81" href="SimpleClassifier-id236441.html" title="classifier: SimpleClassifier" alt="classifier: SimpleClassifier">
+<area shape="rect" coords="160,163 206,209" href="NetworkLayer-id256856.html" title="networkLayer: NetworkLayer" alt="networkLayer: NetworkLayer">
+<area shape="rect" coords="56,297 102,343" href="PPPInterface-id253450.html" title="ppp: PPPInterface" alt="ppp: PPPInterface">
+<area shape="rect" coords="149,253 217,269" href="MPLS-id233905.html" title="mpls: MPLS" alt="mpls: MPLS">
+<area shape="rect" coords="280,236 326,282" href="LIBTable-id233773.html" title="libTable: LIBTable" alt="libTable: LIBTable">
+<area shape="rect" coords="44,245 78,277" href="NAMTraceWriter-id272225.html" title="namTrace: NAMTraceWriter" alt="namTrace: NAMTraceWriter"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id264429.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="RSVP_LSR-id264429.html" title="module RSVP_LSR" alt="RSVP_LSR" coords="663,16,756,40">
+<area shape="rect" href="NotificationBoard-id225662.html" title="simple NotificationBoard" alt="NotificationBoard" coords="7,88,140,112">
+<area shape="rect" href="InterfaceTable-id227840.html" title="simple InterfaceTable" alt="InterfaceTable" coords="164,88,271,112">
+<area shape="rect" href="RoutingTable-id231049.html" title="simple RoutingTable" alt="RoutingTable" coords="295,88,396,112">
+<area shape="rect" href="LIBTable-id233773.html" title="simple LIBTable" alt="LIBTable" coords="420,88,495,112">
+<area shape="rect" href="MPLS-id233905.html" title="simple MPLS" alt="MPLS" coords="519,88,591,112">
+<area shape="rect" href="RSVP-id236175.html" title="simple RSVP" alt="RSVP" coords="615,88,687,112">
+<area shape="rect" href="SimpleClassifier-id236441.html" title="simple SimpleClassifier" alt="SimpleClassifier" coords="711,88,828,112">
+<area shape="rect" href="LinkStateRouting-id238439.html" title="simple LinkStateRouting" alt="LinkStateRouting" coords="852,88,980,112">
+<area shape="rect" href="TED-id238461.html" title="simple TED" alt="TED" coords="1004,88,1076,112">
+<area shape="rect" href="PPPInterface-id253450.html" title="module PPPInterface" alt="PPPInterface" coords="1100,88,1199,112">
+<area shape="rect" href="NetworkLayer-id256856.html" title="module NetworkLayer" alt="NetworkLayer" coords="1223,88,1335,112">
+<area shape="rect" href="NAMTraceWriter-id272225.html" title="simple NAMTraceWriter" alt="NAMTraceWriter" coords="1359,88,1492,112">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="InterfaceTable-id227840.html">InterfaceTable</a></td>
+<td><p>Keeps the table of network interfaces.</p>
+</td>
+</tr>
+<tr>
+<td><a href="LIBTable-id233773.html">LIBTable</a></td>
+<td><p>Stores the LIB (Label Information Base), accessed by <a href="MPLS-id233905.html">MPLS</a> and its 
+associated control protocols (<a href="RSVP-id236175.html">RSVP</a>, <a href="LDP-id233136.html">LDP</a>) via direct C++ method calls.</p>
+</td>
+</tr>
+<tr>
+<td><a href="LinkStateRouting-id238439.html">LinkStateRouting</a></td>
+<td><p>This module implements a very minimalistic link state routing protcol.
+Apart from the basic topology information, the current link usage
+is distributed to all participants in the network (by means of flooding).</p>
+</td>
+</tr>
+<tr>
+<td><a href="MPLS-id233905.html">MPLS</a></td>
+<td><p>Implements the MPLS protocol.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NAMTraceWriter-id272225.html">NAMTraceWriter</a></td>
+<td><p>When placed inside a host or router, it writes a NAM trace, based on 
+notifications it receives via the <a href="NotificationBoard-id225662.html">NotificationBoard</a>. Expects to find 
+a <a href="NAMTrace-id272601.html">NAMTrace</a> module named "nam" at network level.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">NetworkLayer</a></td>
+<td><p>Network layer of an IP node.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NotificationBoard-id225662.html">NotificationBoard</a></td>
+<td><p>Using <a href="NotificationBoard-id225662.html">NotificationBoard</a>, modules can now notify each other about
+"events" such as routing table changes, interface status changes (up/down),
+interface configuration changes, wireless handovers, changes in the state
+of the wireless channel, mobile node position changes, etc.</p>
+</td>
+</tr>
+<tr>
+<td><a href="PPPInterface-id253450.html">PPPInterface</a></td>
+<td><p>PPP interface. Complements the <a href="PPP-id253311.html">PPP</a> module with an output queue
+for QoS and RED support.</p>
+</td>
+</tr>
+<tr>
+<td><a href="RSVP-id236175.html">RSVP</a></td>
+<td><p>Implements RSVP-TE, a signalling protocol for <a href="MPLS-id233905.html">MPLS</a>. The module
+processes RSVP-TE messages, installs labels and does the reservation
+along LSP paths.</p>
+</td>
+</tr>
+<tr>
+<td><a href="RoutingTable-id231049.html">RoutingTable</a></td>
+<td><p>Stores the routing table. (Per-interface configuration is stored in 
+<a href="InterfaceTable-id227840.html">InterfaceTable</a>.)</p>
+</td>
+</tr>
+<tr>
+<td><a href="SimpleClassifier-id236441.html">SimpleClassifier</a></td>
+<td><p>TODO documentation</p>
+</td>
+</tr>
+<tr>
+<td><a href="TED-id238461.html">TED</a></td>
+<td><p>Traffic Engineering Database. Stores network topology with detailed
+link information, including total and reserved bandwidths.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">namid</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">peers</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">routerId</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">routingFile</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="RSVP-id236175.html">rsvp</a>.traffic</td>
+<td width="100"><i>xml</i></td>
+<td><p>specifies paths to set up</p>
+</td>
+</tr>
+<tr>
+<td><a href="RSVP-id236175.html">rsvp</a>.helloInterval</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="RSVP-id236175.html">rsvp</a>.helloTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SimpleClassifier-id236441.html">classifier</a>.conf</td>
+<td width="100"><i>xml</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.proxyARP</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="IP-id231134.html">ip</a>.procDelay</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.retryTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number seconds <a href="ARP-id227137.html">ARP</a> waits between retries to resolve an IP address</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.retryCount</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number of times <a href="ARP-id227137.html">ARP</a> will attempt to resolve an IP address</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.cacheTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number seconds unused entries in the cache will time out</p>
+</td>
+</tr>
+<tr>
+<td><a href="PPPInterface-id253450.html">ppp[*]</a>.queueType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="LIBTable-id233773.html">libTable</a>.conf</td>
+<td width="100"><i>xml</i></td>
+<td><p>table contents to be loaded on startup</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> RSVP_LSR
+    <span class="src-keyword">parameters</span>:
+    
+        namid : <span class="src-keyword">numeric</span>,
+    
+        peers: <span class="src-keyword">string</span>,
+        routerId: <span class="src-keyword">string</span>,
+        routingFile: <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+
+    <span class="src-keyword">submodules</span>:
+        notificationBoard: NotificationBoard;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">74</span>,<span class="src-number">57</span>;i=block/control";
+        routingTable: RoutingTable;
+            <span class="src-keyword">parameters</span>:
+                IPForward = <span class="src-keyword">true</span>,
+                routerId = routerId,
+                routingFile = routingFile;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">68</span>,<span class="src-number">138</span>;i=block/table";
+        interfaceTable: InterfaceTable;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">68</span>,<span class="src-number">208</span>;i=block/table";
+        ted: TED;
+            <span class="src-keyword">display</span>: "i=block/table;p=<span class="src-number">312</span>,<span class="src-number">203</span>";
+        linkStateRouting: LinkStateRouting;
+            <span class="src-keyword">parameters</span>:
+                peers = peers;
+            <span class="src-keyword">display</span>: "i=block/network2;p=<span class="src-number">254</span>,<span class="src-number">115</span>";
+        rsvp: RSVP;
+            <span class="src-keyword">parameters</span>:
+                peers = peers;
+            <span class="src-keyword">display</span>: "i=block/control;p=<span class="src-number">156</span>,<span class="src-number">67</span>";
+        classifier: SimpleClassifier;
+            <span class="src-keyword">display</span>: "i=block/classifier;p=<span class="src-number">330</span>,<span class="src-number">67</span>";
+        networkLayer: NetworkLayer;
+            <span class="src-keyword">gatesizes</span>:
+                ifIn[<span class="src-keyword">sizeof</span>(out)],
+                ifOut[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">192</span>,<span class="src-number">195</span>;i=block/fork";
+        ppp: PPPInterface[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">88</span>,<span class="src-number">329</span>,row,<span class="src-number">90</span>;q=l2queue;i=block/ifcard";
+        mpls: MPLS;
+            <span class="src-keyword">parameters</span>:
+                <span class="src-comment">//peers = peers;</span>
+                classifier = "classifier";
+            <span class="src-keyword">gatesizes</span>:
+                netwIn[<span class="src-keyword">sizeof</span>(out)],
+                netwOut[<span class="src-keyword">sizeof</span>(out)],
+                ifIn[<span class="src-keyword">sizeof</span>(out)],
+                ifOut[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "o=#ff8000;p=<span class="src-number">192</span>,<span class="src-number">270</span>;b=<span class="src-number">66</span>,<span class="src-number">14</span>";
+        libTable: LIBTable;
+            <span class="src-keyword">display</span>: "i=block/table2;p=<span class="src-number">312</span>,<span class="src-number">268</span>";
+        namTrace: NAMTraceWriter;
+            <span class="src-keyword">parameters</span>:
+                 namid = namid;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">70</span>,<span class="src-number">270</span>;i=old/floppy1";
+
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        linkStateRouting.to_ip <span class="src-keyword">--&gt;</span> networkLayer.OSPFIn;
+        linkStateRouting.from_ip <span class="src-keyword">&lt;--</span> networkLayer.OSPFOut;
+
+        rsvp.to_ip <span class="src-keyword">--&gt;</span> networkLayer.RSVPIn;
+        rsvp.from_ip <span class="src-keyword">&lt;--</span> networkLayer.RSVPOut;
+
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(out)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> ppp[i].physIn;
+            out[i] <span class="src-keyword">&lt;--</span> ppp[i].physOut;
+
+            ppp[i].netwOut <span class="src-keyword">--&gt;</span> mpls.ifIn[i];
+            ppp[i].netwIn <span class="src-keyword">&lt;--</span> mpls.ifOut[i];
+
+            mpls.netwOut[i] <span class="src-keyword">--&gt;</span> networkLayer.ifIn[i];
+            mpls.netwIn[i] <span class="src-keyword">&lt;--</span> networkLayer.ifOut[i];
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

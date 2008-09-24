@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Transport/RTP/RTPHost.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="RTPHost-id269911.html">RTPHost</a><i> (compound-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">// the original file was included in the UDP sockets example</span>
+
+<span class="src-keyword">import</span>
+    "NetworkLayer",
+    "UDP",
+    "UDPModule",
+    "socketlayer",
+    "RTPLayer",
+    "RTPApplication";
+
+
+<span class="src-keyword">module</span> RTPHost
+
+    <span class="src-keyword">parameters</span>:
+        debug: <span class="src-keyword">bool</span>,
+        profileName : <span class="src-keyword">string</span>,
+        destinationAddress : <span class="src-keyword">string</span>,
+        portNumber : <span class="src-keyword">numeric</span>,
+        bandwidth : <span class="src-keyword">numeric</span>,
+        fileName : <span class="src-keyword">string</span>,
+        payloadType : <span class="src-keyword">numeric</span>,
+        <span class="src-comment">// network information</span>
+        numOfProcessors : <span class="src-keyword">numeric</span>,
+        routingFile : <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+
+    <span class="src-keyword">submodules</span>:
+        application: RTPApplication;
+            <span class="src-keyword">parameters</span>:
+                <span class="src-comment">//#commonName = nodename,</span>
+                profileName = profileName,
+                destinationAddress = destinationAddress,
+                portNumber = portNumber,
+                bandwidth = bandwidth,
+                fileName = fileName,
+                payloadType = payloadType;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">77</span>,<span class="src-number">52</span>;b=<span class="src-number">40</span>,<span class="src-number">24</span>";
+        rtpLayer: RTPLayer;
+            <span class="src-keyword">parameters</span>:
+                rtpModuleType = "RTPEndsystemModule",
+                rtcpModuleType = "RTCPEndsystemModule";
+            <span class="src-keyword">display</span>: "p=<span class="src-number">178</span>,<span class="src-number">54</span>;b=<span class="src-number">40</span>,<span class="src-number">24</span>";
+        socketLayer: SocketLayer;
+            <span class="src-keyword">parameters</span>:
+                debug = <span class="src-keyword">false</span>;
+            <span class="src-keyword">gatesizes</span>:
+                from_appl[<span class="src-number">2</span>],
+                to_appl[<span class="src-number">2</span>];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">180</span>,<span class="src-number">164</span>;b=<span class="src-number">40</span>,<span class="src-number">24</span>";
+        udpModule: UDPModule;
+            <span class="src-keyword">parameters</span>:
+                debug = <span class="src-keyword">false</span>;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">87</span>,<span class="src-number">166</span>;i=block/transport";
+        networkLayer: NetworkLayer;
+            <span class="src-keyword">parameters</span>:
+                IPForward = <span class="src-keyword">false</span>,
+                routingFile = routingFile;
+            <span class="src-keyword">gatesizes</span>:
+                ifIn[<span class="src-keyword">sizeof</span>(out)],
+                ifOut[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">87</span>,<span class="src-number">242</span>;i=block/fork";
+        ppp : PPPInterface[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">80</span>,<span class="src-number">300</span>,row;q=queue;i=block/ifcard";
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        <span class="src-comment">// transport connections</span>
+        application.toRTP <span class="src-keyword">--&gt;</span> rtpLayer.fromApp;
+        application.fromRTP <span class="src-keyword">&lt;--</span> rtpLayer.toApp;
+        rtpLayer.toSocketLayerRTP <span class="src-keyword">--&gt;</span> socketLayer.from_appl[<span class="src-number">0</span>];
+        rtpLayer.fromSocketLayerRTP <span class="src-keyword">&lt;--</span> socketLayer.to_appl[<span class="src-number">0</span>];
+        rtpLayer.toSocketLayerRTCP <span class="src-keyword">--&gt;</span> socketLayer.from_appl[<span class="src-number">1</span>];
+        rtpLayer.fromSocketLayerRTCP <span class="src-keyword">&lt;--</span> socketLayer.to_appl[<span class="src-number">1</span>];
+        socketLayer.to_udp <span class="src-keyword">--&gt;</span> udpModule.from_socket;
+        socketLayer.from_udp <span class="src-keyword">&lt;--</span> udpModule.to_socket;
+        networkLayer.UDPOut <span class="src-keyword">--&gt;</span> udpModule.from_ip;
+        networkLayer.UDPIn <span class="src-keyword">&lt;--</span> udpModule.to_ip;
+
+        <span class="src-comment">// connections to network outside</span>
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(out)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> ppp[i].physIn;
+            out[i] <span class="src-keyword">&lt;--</span> ppp[i].physOut;
+            ppp[i].netwOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[i];
+            ppp[i].netwIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[i];
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span>
+</pre>
+</body>
+</html>

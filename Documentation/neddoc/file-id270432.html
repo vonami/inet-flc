@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Transport/RTP/RTPLayer.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="RTPLayer-id270474.html">RTPLayer</a><i> (compound-module)</i>
+</li></ul>
+<pre class="src"><span class="src-keyword">import</span> "RTPModule", "RTCPModule";
+
+<span class="src-keyword">module</span> RTPLayer
+
+	<span class="src-keyword">parameters</span>:
+		rtpModuleType: <span class="src-keyword">string</span>,
+		rtcpModuleType: <span class="src-keyword">string</span>;
+
+	<span class="src-keyword">gates</span>:
+		<span class="src-keyword">in:</span> fromApp, fromSocketLayerRTP, fromSocketLayerRTCP;
+		<span class="src-keyword">out:</span> toApp, toSocketLayerRTP, toSocketLayerRTCP;
+
+	<span class="src-keyword">submodules</span>:
+		rtpModule: rtpModuleType <span class="src-keyword">like</span> RTPModule;
+		rtcpModule: rtcpModuleType <span class="src-keyword">like</span> RTCPModule;
+
+	<span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+		fromApp <span class="src-keyword">--&gt;</span> rtpModule.fromApp;
+		toApp <span class="src-keyword">&lt;--</span> rtpModule.toApp;
+		rtpModule.toRTCP <span class="src-keyword">--&gt;</span> rtcpModule.fromRTP;
+		rtpModule.fromRTCP <span class="src-keyword">&lt;--</span> rtcpModule.toRTP;
+		rtpModule.toSocketLayer <span class="src-keyword">--&gt;</span> toSocketLayerRTP;
+		rtpModule.fromSocketLayer <span class="src-keyword">&lt;--</span> fromSocketLayerRTP;
+		rtcpModule.toSocketLayer <span class="src-keyword">--&gt;</span> toSocketLayerRTCP;
+		rtcpModule.fromSocketLayer <span class="src-keyword">&lt;--</span> fromSocketLayerRTCP;
+
+<span class="src-keyword">endmodule</span>
+</pre>
+</body>
+</html>

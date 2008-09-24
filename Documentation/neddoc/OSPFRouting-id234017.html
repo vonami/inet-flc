@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>OSPFRouting</i>
+</h2>
+<p><b>File: <a href="file-id233874.html">Network/OSPFv2/OSPFRouting.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_o_s_p_f_routing.html" target="_top">click here</a></b></p>
+<p>Implements OSPFRouting.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id234017.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="OSPFRouting-id234017.html" title="simple OSPFRouting" alt="OSPFRouting" coords="7,88,111,112">
+<area shape="rect" href="OSPFRouter-id257692.html" title="module OSPFRouter" alt="OSPFRouter" coords="11,16,107,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="OSPFRouter-id257692.html">OSPFRouter</a></td>
+<td><p>IP router.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">ospfConfigFile</td>
+<td width="100"><i>string</i></td>
+<td><p>xml file containing the full OSPF AS configuration</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">from_ip</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">to_ip</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> OSPFRouting
+    <span class="src-keyword">parameters</span>:
+        ospfConfigFile: <span class="src-keyword">string</span>; <span class="src-comment">// xml file containing the full OSPF AS configuration</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> from_ip;
+        <span class="src-keyword">out:</span> to_ip;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

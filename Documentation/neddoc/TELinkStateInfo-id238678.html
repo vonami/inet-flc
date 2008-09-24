@@ -1,0 +1,109 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Struct <i>TELinkStateInfo</i>
+</h2>
+<p><b>File: <a href="file-id238687.html">Network/TED/TED.msg</a></b></p>
+<p>Represents a link in the <a href="TED-id238461.html">TED</a> and in <a href="LinkStateMsg-id238531.html">LinkStateMsg</a> packets.</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id238678.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="TELinkStateInfo-id238678.html" title="struct TELinkStateInfo" alt="TELinkStateInfo" coords="7,16,129,40">
+</map><h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">advrouter</td>
+<td width="100"><i>IPAddress</i></td>
+<td><p>routerId of originator of this link state entry</p>
+</td>
+</tr>
+<tr>
+<td width="150">linkid</td>
+<td width="100"><i>IPAddress</i></td>
+<td><p>identifies link within advrouter; set to peer's address</p>
+</td>
+</tr>
+<tr>
+<td width="150">local</td>
+<td width="100"><i>IPAddress</i></td>
+<td><p>address of local interface of this link</p>
+</td>
+</tr>
+<tr>
+<td width="150">remote</td>
+<td width="100"><i>IPAddress</i></td>
+<td><p>address of "gateway" to peer</p>
+</td>
+</tr>
+<tr>
+<td width="150">metric</td>
+<td width="100"><i>double</i></td>
+<td><p>link metric</p>
+</td>
+</tr>
+<tr>
+<td width="150">MaxBandwidth</td>
+<td width="100"><i>double</i></td>
+<td><p>maximum bandwidth (bps)</p>
+</td>
+</tr>
+<tr>
+<td width="150">UnResvBandwidth</td>
+<td width="100"><i>double[8]</i></td>
+<td><p>unreserved bandwidths --FIXME indexed by what?</p>
+</td>
+</tr>
+<tr>
+<td width="150">timestamp</td>
+<td width="100"><i>double</i></td>
+<td><p>time of originating this entry</p>
+</td>
+</tr>
+<tr>
+<td width="150">sourceId</td>
+<td width="100"><i>unsigned int</i></td>
+<td><p>FIXME looks like this is the same as advrouter -- really needed?</p>
+</td>
+</tr>
+<tr>
+<td width="150">messageId</td>
+<td width="100"><i>unsigned int</i></td>
+<td><p>id assigned to originating <a href="LinkStateMsg-id238531.html">LinkStateMsg</a> (FIXME or?)</p>
+</td>
+</tr>
+<tr>
+<td width="150">state</td>
+<td width="100"><i>bool</i></td>
+<td><p>false = down, true = up</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">struct</span> TELinkStateInfo
+{
+    <span class="src-keyword">fields</span>:
+        IPAddress advrouter; <span class="src-comment">// routerId of originator of this link state entry</span>
+        IPAddress linkid;    <span class="src-comment">// identifies link within advrouter; set to peer's address</span>
+        IPAddress local;     <span class="src-comment">// address of local interface of this link</span>
+        IPAddress remote;    <span class="src-comment">// address of "gateway" to peer</span>
+        <span class="src-keyword">double</span> metric;       <span class="src-comment">// link metric</span>
+        <span class="src-keyword">double</span> MaxBandwidth; <span class="src-comment">// maximum bandwidth (bps)</span>
+        <span class="src-keyword">double</span> UnResvBandwidth[<span class="src-number">8</span>]; <span class="src-comment">// unreserved bandwidths --FIXME indexed by what?</span>
+
+        <span class="src-keyword">double</span> timestamp;    <span class="src-comment">// time of originating this entry</span>
+        unsigned <span class="src-keyword">int</span> sourceId;  <span class="src-comment">// FIXME looks like this is the same as advrouter -- really needed?</span>
+        unsigned <span class="src-keyword">int</span> messageId; <span class="src-comment">// id assigned to originating LinkStateMsg (FIXME or?)</span>
+        <span class="src-keyword">bool</span> state;          <span class="src-comment">// false = down, true = up</span>
+};</pre>
+</body>
+</html>

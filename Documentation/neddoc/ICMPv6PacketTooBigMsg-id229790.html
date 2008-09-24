@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>ICMPv6PacketTooBigMsg</i>
+</h2>
+<p><b>File: <a href="file-id229550.html">Network/ICMPv6/ICMPv6Message.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_c_m_pv6_packet_too_big_msg.html" target="_top">click here</a></b></p>
+<p>(no description)</p>
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id229790.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="ICMPv6PacketTooBigMsg-id229790.html" title="message ICMPv6PacketTooBigMsg" alt="ICMPv6PacketTooBigMsg" coords="7,88,196,112">
+<area shape="rect" href="ICMPv6Message-id229703.html" title="message ICMPv6Message" alt="ICMPv6Message" coords="40,16,163,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="ICMPv6Message-id229703.html">ICMPv6Message</a></td>
+<td><p>Represents an <a href="ICMPv6-id229107.html">ICMPv6</a> packet.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">code</td>
+<td width="100"><i>int</i></td>
+<td><p>Set to 0 by sender and ignored by receiver.</p>
+</td>
+</tr>
+<tr>
+<td width="150">MTU</td>
+<td width="100"><i>int</i></td>
+<td><p>MTU of next-hop link</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> ICMPv6PacketTooBigMsg <span class="src-keyword">extends</span> ICMPv6Message
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> code; <span class="src-comment">//Set to 0 by sender and ignored by receiver.</span>
+        <span class="src-keyword">int</span> MTU; <span class="src-comment">//MTU of next-hop link</span>
+}</pre>
+</body>
+</html>

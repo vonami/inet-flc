@@ -1,0 +1,150 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Nodes/Wireless/WirelessHostSimplified.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a><i> (compound-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2006 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-keyword">import</span>
+    "NotificationBoard",
+    "InterfaceTable",
+    "RoutingTable",
+    "TCPApp.ned",
+    "TCP.ned",
+    "UDP",
+    "UDPApp",
+    "NetworkLayer",
+    "PingApp",
+    "PPPInterface",
+    "EthernetInterface",
+    "Ieee80211NicSTASimplified";
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Models a host with one wireless (802.11b) card in infrastructure mode,</span>
+<span class="src-comment">// but using a simplified NIC that does not support handovers.</span>
+<span class="src-comment">// This module is basically a StandardHost with an Ieee80211NicSTASimplified</span>
+<span class="src-comment">// added. It should be used in conjunction with WirelessAPSimplified,</span>
+<span class="src-comment">// or any other AP model which contains Ieee80211NicAPSimplified.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see WirelessAP, WirelessAPSimplified, WirelessAPWithEth, WirelessAPWithEthSimplified</span>
+<span class="src-comment">// @see WirelessHost, WirelessHostSimplified</span>
+<span class="src-comment">// @see MobileHost, MFMobileHost</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">module</span> WirelessHostSimplified
+    <span class="src-keyword">parameters</span>:
+        numTcpApps: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        numUdpApps: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        tcpAppType: <span class="src-keyword">string</span>,
+        udpAppType: <span class="src-keyword">string</span>,
+        IPForward: <span class="src-keyword">bool</span>,
+        routingFile: <span class="src-keyword">string</span>,
+        mobilityType: <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+        <span class="src-keyword">in:</span> ethIn[];
+        <span class="src-keyword">out:</span> ethOut[];
+        <span class="src-keyword">in:</span> radioIn;
+    <span class="src-keyword">submodules</span>:
+        notificationBoard: NotificationBoard;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">60</span>,<span class="src-number">70</span>;i=block/control";
+        interfaceTable: InterfaceTable;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">60</span>,<span class="src-number">150</span>;i=block/table";
+        routingTable: RoutingTable;
+            <span class="src-keyword">parameters</span>:
+                IPForward = IPForward,
+                routerId = "",
+                routingFile = routingFile;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">60</span>,<span class="src-number">230</span>;i=block/table";
+        tcpApp: tcpAppType[numTcpApps] <span class="src-keyword">like</span> TCPApp;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">163</span>,<span class="src-number">67</span>;i=block/app";
+        tcp: TCP;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">163</span>,<span class="src-number">154</span>;i=block/wheelbarrow";
+        udpApp: udpAppType[numUdpApps] <span class="src-keyword">like</span> UDPApp;
+            <span class="src-keyword">display</span>: "i=block/app;p=<span class="src-number">272</span>,<span class="src-number">67</span>";
+        udp: UDP;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">272</span>,<span class="src-number">154</span>;i=block/transport";
+        pingApp: PingApp;
+            <span class="src-keyword">display</span>: "i=block/app;p=<span class="src-number">343</span>,<span class="src-number">200</span>";
+        networkLayer: NetworkLayer;
+            <span class="src-keyword">parameters</span>:
+                proxyARP = <span class="src-keyword">false</span>;
+            <span class="src-keyword">gatesizes</span>:
+                ifIn[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)+<span class="src-number">1</span>],
+                ifOut[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)+<span class="src-number">1</span>];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">248</span>,<span class="src-number">247</span>;i=block/fork;q=queue";
+        ppp: PPPInterface[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">205</span>,<span class="src-number">350</span>,row,<span class="src-number">90</span>;q=txQueue;i=block/ifcard";
+        eth: EthernetInterface[<span class="src-keyword">sizeof</span>(ethOut)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">240</span>,<span class="src-number">350</span>,row,<span class="src-number">90</span>;q=txQueue;i=block/ifcard";
+        wlan: Ieee80211NicSTASimplified;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">120</span>,<span class="src-number">350</span>;q=queue;i=block/ifcard";
+        mobility: mobilityType <span class="src-keyword">like</span> BasicMobility;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">58</span>,<span class="src-number">301</span>;i=block/cogwheel_s";
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span>numTcpApps-<span class="src-number">1</span> <span class="src-keyword">do</span>
+            tcpApp[i].tcpOut <span class="src-keyword">--&gt;</span> tcp.from_appl++;
+            tcpApp[i].tcpIn <span class="src-keyword">&lt;--</span> tcp.to_appl++;
+        <span class="src-keyword">endfor</span>;
+
+        tcp.to_ip <span class="src-keyword">--&gt;</span> networkLayer.TCPIn;
+        tcp.from_ip <span class="src-keyword">&lt;--</span> networkLayer.TCPOut;
+
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span>numUdpApps-<span class="src-number">1</span> <span class="src-keyword">do</span>
+            udpApp[i].to_udp <span class="src-keyword">--&gt;</span> udp.from_app++;
+            udpApp[i].from_udp <span class="src-keyword">&lt;--</span> udp.to_app++;
+        <span class="src-keyword">endfor</span>;
+
+        udp.to_ip <span class="src-keyword">--&gt;</span> networkLayer.UDPIn;
+        udp.from_ip <span class="src-keyword">&lt;--</span> networkLayer.UDPOut;
+
+        networkLayer.pingOut <span class="src-keyword">--&gt;</span> pingApp.pingIn;
+        networkLayer.pingIn <span class="src-keyword">&lt;--</span> pingApp.pingOut;
+
+        <span class="src-comment">// connections to network outside</span>
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(out)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> ppp[i].physIn;
+            out[i] <span class="src-keyword">&lt;--</span> ppp[i].physOut;
+            ppp[i].netwOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[i];
+            ppp[i].netwIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[i];
+        <span class="src-keyword">endfor</span>;
+
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(ethOut)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            ethIn[i] <span class="src-keyword">--&gt;</span> eth[i].physIn;
+            ethOut[i] <span class="src-keyword">&lt;--</span> eth[i].physOut;
+            eth[i].netwOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[<span class="src-keyword">sizeof</span>(out)+i];
+            eth[i].netwIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[<span class="src-keyword">sizeof</span>(out)+i];
+        <span class="src-keyword">endfor</span>;
+
+        radioIn <span class="src-keyword">--&gt;</span> wlan.radioIn;
+        wlan.uppergateOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)];
+        wlan.uppergateIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)];
+<span class="src-keyword">endmodule</span>
+</pre>
+</body>
+</html>

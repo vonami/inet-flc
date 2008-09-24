@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/EtherSwitch/MACRelayUnit.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="MACRelayUnit-id243370.html">MACRelayUnit</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2003 CTIE, Monash University</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Prototype for modules providing Ethernet switch functionality.</span>
+<span class="src-comment">// These modules handle the mapping between ports and MAC addresses,</span>
+<span class="src-comment">// and forward frames (EtherFrame) to appropriate ports.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Functions:</span>
+<span class="src-comment">// - relays frames based on their dest MAC addresses (dest--&gt;port mapping)</span>
+<span class="src-comment">// - models finite buffer size (drops) and finite processing power (latency, queueing)</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Address caching is modeled by a fixed-size lookup table.</span>
+<span class="src-comment">// When the table is full, the oldest address is kicked out of the cache.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Entries are also deleted if their age exceeds a certain limit.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// If needed, address tables can be pre-loaded from text files at the beginning</span>
+<span class="src-comment">// of the simulation; this controlled by the addressTableFile module parameter.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This module is not a concrete implementation, it just defines gates and</span>
+<span class="src-comment">// parameters a MACRelayUnit should have. Concrete inplementations add</span>
+<span class="src-comment">// capacity and performance aspects to the model (number of frames processed</span>
+<span class="src-comment">// per second, amount of memory available in the switch, etc.)</span>
+<span class="src-comment">// C++ implementations can subclass from the class &lt;tt&gt;MACRelayUnitBase&lt;/tt&gt;.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Known implementations are MACRelayUnitNP and MACRelayUnitPP.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> MACRelayUnit
+    <span class="src-keyword">parameters</span>:
+        addressTableFile : <span class="src-keyword">string</span>,  <span class="src-comment">// set to empty string if not used</span>
+        addressTableSize : <span class="src-keyword">numeric</span>, <span class="src-comment">// max size of address table</span>
+        agingTime : <span class="src-keyword">numeric</span>;        <span class="src-comment">// max idle time for address table entries</span>
+                                    <span class="src-comment">// (if expires, entry is removed from the table)</span>
+
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span>  lowerLayerIn[];
+        <span class="src-keyword">out:</span> lowerLayerOut[];
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

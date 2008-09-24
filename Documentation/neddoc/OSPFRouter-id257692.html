@@ -1,0 +1,265 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>OSPFRouter</i>
+</h2>
+<p><b>File: <a href="file-id257548.html">Nodes/INET/OSPFRouter.ned</a></b></p>
+<p>IP router.</p>
+
+<img class="screenshot" src="OSPFRouter__Nodes_INET_OSPFRouter_ned.png" ismap usemap="#screenshot" width="325" height="311"><map name="screenshot"><area shape="rect" coords="28,28 74,74" href="NotificationBoard-id225662.html" title="notificationBoard: NotificationBoard" alt="notificationBoard: NotificationBoard">
+<area shape="rect" coords="28,108 74,154" href="InterfaceTable-id227840.html" title="interfaceTable: InterfaceTable" alt="interfaceTable: InterfaceTable">
+<area shape="rect" coords="28,188 74,234" href="RoutingTable-id231049.html" title="routingTable: RoutingTable" alt="routingTable: RoutingTable">
+<area shape="rect" coords="268,108 314,154" href="OSPFRouting-id234017.html" title="ospf: OSPFRouting" alt="ospf: OSPFRouting">
+<area shape="rect" coords="168,108 214,154" href="NetworkLayer-id256856.html" title="networkLayer: NetworkLayer" alt="networkLayer: NetworkLayer">
+<area shape="rect" coords="58,225 104,271" href="PPPInterface-id253450.html" title="ppp: PPPInterface" alt="ppp: PPPInterface">
+<area shape="rect" coords="113,225 159,271" href="EthernetInterface-id241239.html" title="eth: EthernetInterface" alt="eth: EthernetInterface"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id257692.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="OSPFRouter-id257692.html" title="module OSPFRouter" alt="OSPFRouter" coords="424,16,520,40">
+<area shape="rect" href="NotificationBoard-id225662.html" title="simple NotificationBoard" alt="NotificationBoard" coords="7,88,140,112">
+<area shape="rect" href="InterfaceTable-id227840.html" title="simple InterfaceTable" alt="InterfaceTable" coords="164,88,271,112">
+<area shape="rect" href="RoutingTable-id231049.html" title="simple RoutingTable" alt="RoutingTable" coords="295,88,396,112">
+<area shape="rect" href="OSPFRouting-id234017.html" title="simple OSPFRouting" alt="OSPFRouting" coords="420,88,524,112">
+<area shape="rect" href="EthernetInterface-id241239.html" title="module EthernetInterface" alt="EthernetInterface" coords="548,88,676,112">
+<area shape="rect" href="PPPInterface-id253450.html" title="module PPPInterface" alt="PPPInterface" coords="700,88,799,112">
+<area shape="rect" href="NetworkLayer-id256856.html" title="module NetworkLayer" alt="NetworkLayer" coords="823,88,935,112">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="EthernetInterface-id241239.html">EthernetInterface</a></td>
+<td><p>Ethernet network interface. Corresponds to the prototype <a href="NetworkInterface-id238963.html">NetworkInterface</a>.
+Complements <a href="EtherMAC-id240352.html">EtherMAC</a> and <a href="EtherEncap-id241164.html">EtherEncap</a> with an output queue for QoS and
+RED support.</p>
+</td>
+</tr>
+<tr>
+<td><a href="InterfaceTable-id227840.html">InterfaceTable</a></td>
+<td><p>Keeps the table of network interfaces.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">NetworkLayer</a></td>
+<td><p>Network layer of an IP node.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NotificationBoard-id225662.html">NotificationBoard</a></td>
+<td><p>Using <a href="NotificationBoard-id225662.html">NotificationBoard</a>, modules can now notify each other about
+"events" such as routing table changes, interface status changes (up/down),
+interface configuration changes, wireless handovers, changes in the state
+of the wireless channel, mobile node position changes, etc.</p>
+</td>
+</tr>
+<tr>
+<td><a href="OSPFRouting-id234017.html">OSPFRouting</a></td>
+<td><p>Implements OSPFRouting.</p>
+</td>
+</tr>
+<tr>
+<td><a href="PPPInterface-id253450.html">PPPInterface</a></td>
+<td><p>PPP interface. Complements the <a href="PPP-id253311.html">PPP</a> module with an output queue
+for QoS and RED support.</p>
+</td>
+</tr>
+<tr>
+<td><a href="RoutingTable-id231049.html">RoutingTable</a></td>
+<td><p>Stores the routing table. (Per-interface configuration is stored in 
+<a href="InterfaceTable-id227840.html">InterfaceTable</a>.)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">routingFile</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ethIn [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ethOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="OSPFRouting-id234017.html">ospf</a>.ospfConfigFile</td>
+<td width="100"><i>string</i></td>
+<td><p>xml file containing the full OSPF AS configuration</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.proxyARP</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="IP-id231134.html">ip</a>.procDelay</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.retryTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number seconds <a href="ARP-id227137.html">ARP</a> waits between retries to resolve an IP address</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.retryCount</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number of times <a href="ARP-id227137.html">ARP</a> will attempt to resolve an IP address</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.cacheTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number seconds unused entries in the cache will time out</p>
+</td>
+</tr>
+<tr>
+<td><a href="PPPInterface-id253450.html">ppp[*]</a>.queueType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.queueType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.promiscuous</td>
+<td width="100"><i>bool</i></td>
+<td><p>if true, all packets are received, otherwise only the
+ones with matching destination MAC address</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.address</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address as hex string (12 hex digits), or
+"auto". "auto" values will be replaced by
+a generated MAC address in init stage 0.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.txrate</td>
+<td width="100"><i>numeric</i></td>
+<td><p>maximum data rate supported by this station (bit/s);
+actually chosen speed may be lower due to auto-
+configuration. 0 means fully auto-configured.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.duplexEnabled</td>
+<td width="100"><i>bool</i></td>
+<td><p>whether duplex mode can be enabled or not; whether
+MAC will actually use duplex mode depends on the result
+of the auto-configuration process (duplex is only
+possible with DTE-to-DTE connection).</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherEncap-id241164.html">encap</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> OSPFRouter
+    <span class="src-keyword">parameters</span>:
+        routingFile: <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+        <span class="src-keyword">in:</span> ethIn[];
+        <span class="src-keyword">out:</span> ethOut[];
+    <span class="src-keyword">submodules</span>:
+        notificationBoard: NotificationBoard;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">60</span>,<span class="src-number">60</span>;i=block/control";
+        interfaceTable: InterfaceTable;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">60</span>,<span class="src-number">140</span>;i=block/table";
+        routingTable: RoutingTable;
+            <span class="src-keyword">parameters</span>:
+                IPForward = <span class="src-keyword">true</span>,
+                routerId = "auto",
+                routingFile = routingFile;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">60</span>,<span class="src-number">220</span>;i=block/table";
+        ospf: OSPFRouting;
+            <span class="src-keyword">parameters</span>:
+            <span class="src-keyword">display</span>: "p=<span class="src-number">300</span>,<span class="src-number">140</span>,row;i=block/network2";
+        networkLayer: NetworkLayer;
+            <span class="src-keyword">gatesizes</span>:
+                ifIn[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)],
+                ifOut[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">200</span>,<span class="src-number">140</span>;i=block/fork;q=queue";
+        ppp: PPPInterface[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">90</span>,<span class="src-number">257</span>,row,<span class="src-number">110</span>;q=l2queue;i=block/ifcard";
+        eth: EthernetInterface[<span class="src-keyword">sizeof</span>(ethOut)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">145</span>,<span class="src-number">257</span>,row,<span class="src-number">110</span>;q=l2queue;i=block/ifcard";
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        ospf.to_ip <span class="src-keyword">--&gt;</span> networkLayer.OSPFIn;
+        ospf.from_ip <span class="src-keyword">&lt;--</span> networkLayer.OSPFOut;
+
+        <span class="src-comment">// connections to network outside</span>
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(out)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> ppp[i].physIn;
+            out[i] <span class="src-keyword">&lt;--</span> ppp[i].physOut;
+            ppp[i].netwOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[i];
+            ppp[i].netwIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[i];
+        <span class="src-keyword">endfor</span>;
+
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(ethOut)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            ethIn[i] <span class="src-keyword">--&gt;</span> eth[i].physIn;
+            ethOut[i] <span class="src-keyword">&lt;--</span> eth[i].physOut;
+            eth[i].netwOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[<span class="src-keyword">sizeof</span>(out)+i];
+            eth[i].netwIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[<span class="src-keyword">sizeof</span>(out)+i];
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

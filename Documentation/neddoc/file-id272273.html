@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>World/ChannelControl.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="ChannelControl-id272488.html">ChannelControl</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//***************************************************************************</span>
+<span class="src-comment">// * file:        ChannelControl.ned</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * author:      Andras Varga, Steffen Sroka, Daniel Willkomm</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * copyright:   (C) 2004 Telecommunication Networks Group (TKN) at</span>
+<span class="src-comment">// *              Technische Universitaet Berlin, Germany.</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// *              This program is free software; you can redistribute it</span>
+<span class="src-comment">// *              and/or modify it under the terms of the GNU General Public</span>
+<span class="src-comment">// *              License as published by the Free Software Foundation; either</span>
+<span class="src-comment">// *              version 2 of the License, or (at your option) any later</span>
+<span class="src-comment">// *              version.</span>
+<span class="src-comment">// *              For further information see file COPYING</span>
+<span class="src-comment">// *              in the top level directory</span>
+<span class="src-comment">// ***************************************************************************</span>
+<span class="src-comment">// * part of:     framework implementation developed by tkn</span>
+<span class="src-comment">// **************************************************************************/</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// ChannelControl has exactly one instance in every network model that </span>
+<span class="src-comment">// contains mobile or wireless nodes. This module gets informed about the </span>
+<span class="src-comment">// location and movement of nodes, and determines which nodes are within</span>
+<span class="src-comment">// communication or interference distance. This info is then used by the </span>
+<span class="src-comment">// radio interfaces of nodes at transmissions.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Side effect: updates the containing compound module's display string</span>
+<span class="src-comment">// according to the given playground size (sets &lt;tt&gt;"p=0,0;b=$playgroundSizeX,</span>
+<span class="src-comment">// $playgroundSizeY"&lt;/tt&gt;).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This ChannelControl is a different implementation from the one in </span>
+<span class="src-comment">// Mobility Framework 1.0a5: here we use sendDirect(), while the MF version </span>
+<span class="src-comment">// used normal send() and dynamic connections.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @author Andras Varga (based on MF's ChannelControl by Steffen Sroka and Daniel Willkomm)</span>
+<span class="src-comment">// @see BasicMobility</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> ChannelControl
+    <span class="src-keyword">parameters</span>:
+        coreDebug: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// debug switch for core framework</span>
+        playgroundSizeX: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// x size of the playground (in meters)</span>
+        playgroundSizeY: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// y size of the playground (in meters)</span>
+        pMax: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// maximum sending power used for this network (in mW)</span>
+        sat: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// signal attenuation threshold (in dBm)</span>
+        alpha: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// path loss coefficient</span>
+        carrierFrequency: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// carrier frequency of the channel (in Hz)</span>
+        numChannels: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// number of radio channels (frequencies)</span>
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

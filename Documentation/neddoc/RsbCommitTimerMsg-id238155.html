@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>RsbCommitTimerMsg</i>
+</h2>
+<p><b>File: <a href="file-id237958.html">Network/RSVP_TE/SignallingMsg.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_rsb_commit_timer_msg.html" target="_top">click here</a></b></p>
+<p>FIXME missing documentation</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id238155.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="RsbCommitTimerMsg-id238155.html" title="message RsbCommitTimerMsg" alt="RsbCommitTimerMsg" coords="7,88,167,112">
+<area shape="rect" href="SignallingMsg-id237919.html" title="message SignallingMsg" alt="SignallingMsg" coords="33,16,140,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="SignallingMsg-id237919.html">SignallingMsg</a></td>
+<td><p>FIXME missing documentation</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">id</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">command</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> RsbCommitTimerMsg <span class="src-keyword">extends</span> SignallingMsg
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> id;
+
+        <span class="src-keyword">int</span> command = MSG_RSB_COMMIT_TIMER;
+};</pre>
+</body>
+</html>

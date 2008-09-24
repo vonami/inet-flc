@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/MPLS/MPLS.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="MPLS-id233905.html">MPLS</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// (C) 2005 Vojtech Janota</span>
+<span class="src-comment">// (C) 2003 Xuan Thang Nguyen</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This library is free software, you can redistribute it</span>
+<span class="src-comment">// and/or modify</span>
+<span class="src-comment">// it under  the terms of the GNU Lesser General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation;</span>
+<span class="src-comment">// either version 2 of the License, or any later version.</span>
+<span class="src-comment">// The library is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="src-comment">// See the GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Implements the \MPLS protocol.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// MPLS module is added between layer 2 and 3 in the OSI model for fast packet</span>
+<span class="src-comment">// switching. MPLS should be transparent to signalling protocols. Signalling</span>
+<span class="src-comment">// protocol currently implemented in this simulation is \RSVP-TE.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Operations</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// MPLS packets are represented by the message class MPLSPacket.</span>
+<span class="src-comment">// The local LIB (Label Information Base) is stored in a LIBTable module</span>
+<span class="src-comment">// in the LSR.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// For most of the time, the MPLS module will do the label swapping and</span>
+<span class="src-comment">// message forwarding. Upon receiving a labelled packet from another LSR, the</span>
+<span class="src-comment">// MPLS first extract the incoming interface and incoming label pair, and then</span>
+<span class="src-comment">// look up the local LIB table. If an outgoing label and an outgoing interface</span>
+<span class="src-comment">// can be found, the module will perform appropriate label operations (PUSH,</span>
+<span class="src-comment">// POP, SWAP) based on the "outLabel" vector containing label and operation</span>
+<span class="src-comment">// pairs.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Collaborations</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// MPLS module is required to interact with L2 (Link Layer) and L3 (Network</span>
+<span class="src-comment">// Layer) in the OSI model. In addition, it needs to obtain label information</span>
+<span class="src-comment">// from the LIB component and label query result from the LDP module. Messages</span>
+<span class="src-comment">// the model communicates with L2 and Network Layers are L2 packets (PPP,</span>
+<span class="src-comment">// Frame Relay, ATM, Ethernet, etc.), and \IP native packets. Specifically,</span>
+<span class="src-comment">// MPLS module encapsulates \IP packet and is encapsulated in L2 packet.</span>
+<span class="src-comment">// Different L2 protocols may require different methods of encapsulation to</span>
+<span class="src-comment">// inherit the L2's QoS. This implementation follows a generic approach; it</span>
+<span class="src-comment">// assumes no information of QoS from the link layer.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> MPLS
+    <span class="src-keyword">parameters</span>:
+        classifier : <span class="src-keyword">string</span>; <span class="src-comment">// a module which implements the IClassifier C++ interface</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> netwIn[];
+        <span class="src-keyword">out:</span> netwOut[];
+        <span class="src-keyword">in:</span> ifIn[];
+        <span class="src-keyword">out:</span> ifOut[];
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

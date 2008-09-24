@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/Ethernet/EtherEncap.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="EtherEncap-id241164.html">EtherEncap</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2003 CTIE, Monash University</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Performs Ethernet II encapsulation/decapsulation.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Expected environment:</span>
+<span class="src-comment">// - lowerLayerIn, lowerLayerOut gates should be connected to Ethernet EtherMAC</span>
+<span class="src-comment">// - upperLayerIn, upperLayerOut gates should be connected to higher layer</span>
+<span class="src-comment">//   protocol or application</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Functionality:</span>
+<span class="src-comment">// - packets coming from upper layers will be encapsulated in EthernetIIFrame</span>
+<span class="src-comment">//   and sent to MAC. EtherType is taken from the Ieee802Ctrl structure attached</span>
+<span class="src-comment">//   to the message as control info (see setControlInfo(), controlInfo()</span>
+<span class="src-comment">//   methods). Src address will be filled in by EtherMAC.</span>
+<span class="src-comment">// - also accepts SENDPAUSE command (message kind=IEEE802CTRL_SENDPAUSE) from</span>
+<span class="src-comment">//   higher layer: send PAUSE frame, as described in</span>
+<span class="src-comment">//   &lt;a href="ether-pause.html"&gt;PAUSE frames&lt;/a&gt;.</span>
+<span class="src-comment">// - Ethernet frames arriving from MAC will be decapsulated, and sent up to the</span>
+<span class="src-comment">//   higher layers. Accepts EtherFrameWithLLC and EtherFrameWithSNAP too.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> EtherEncap
+    <span class="src-keyword">parameters</span>:
+        writeScalars: <span class="src-keyword">bool</span>; <span class="src-comment">// enable/disable recording statistics in omnetpp.sca</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> upperLayerIn;   <span class="src-comment">// higher layer</span>
+        <span class="src-keyword">out:</span> upperLayerOut; <span class="src-comment">// higher layer</span>
+        <span class="src-keyword">in:</span> lowerLayerIn;   <span class="src-comment">// to Ethernet MAC</span>
+        <span class="src-keyword">out:</span> lowerLayerOut; <span class="src-comment">// to Ethernet MAC</span>
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>IPv6ControlInfo</i>
+</h2>
+<p><b>File: <a href="file-id228842.html">Network/Contract/IPv6ControlInfo.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_pv6_control_info.html" target="_top">click here</a></b></p>
+<p>Control information for sending/receiving packets over IPv6.</p>
+
+<p>To send a packet over IPv6, fill in an <a href="IPv6ControlInfo-id228808.html">IPv6ControlInfo</a> object,
+attach it to the packet with the C++ method setControlInfo(),
+the send it to the <a href="IPv6-id232445.html">IPv6</a> module.</p>
+
+<p>When <a href="IPv6-id232445.html">IPv6</a> delivers packets to higher layers, it also attaches
+similar <a href="IPv6ControlInfo-id228808.html">IPv6ControlInfo</a> objects to them.</p>
+
+<p>When sending, the following fields are required:</p>
+
+  <ul><li>protocol: a value from <a href="IPProtocolId-id228413.html">IPProtocolId</a></li>
+
+  <li>destAddr</li></ul>
+
+<p>Optional fields:</p>
+
+  <ul><li>srcAddr: it will be set to the address of the outgoing interface</li>
+
+  <li>timeToLive</li></ul>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id228808.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="IPv6ControlInfo-id228808.html" title="class IPv6ControlInfo" alt="IPv6ControlInfo" coords="7,16,127,40">
+</map><h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">customize</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">protocol</td>
+<td width="100"><i>int</i></td>
+<td><p>transport layer protocol</p>
+</td>
+</tr>
+<tr>
+<td width="150">destAddr</td>
+<td width="100"><i>IPv6Address</i></td>
+<td><p>destination <a href="IPv6-id232445.html">IPv6</a> address</p>
+</td>
+</tr>
+<tr>
+<td width="150">srcAddr</td>
+<td width="100"><i>IPv6Address</i></td>
+<td><p>source <a href="IPv6-id232445.html">IPv6</a> address</p>
+</td>
+</tr>
+<tr>
+<td width="150">hopLimit</td>
+<td width="100"><i>short</i></td>
+<td><p>hop limit</p>
+</td>
+</tr>
+<tr>
+<td width="150">interfaceId</td>
+<td width="100"><i>int</i></td>
+<td><p>interface on which dgram was received/should
+be sent (see <a href="InterfaceTable-id227840.html">InterfaceTable</a>)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> IPv6ControlInfo
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb=<span class="src-keyword">true</span>;
+        customize = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> protocol <span class="src-keyword">enum</span>(IPProtocolId);  <span class="src-comment">// transport layer protocol</span>
+        IPv6Address destAddr; <span class="src-comment">// destination IPv6 address</span>
+        IPv6Address srcAddr;  <span class="src-comment">// source IPv6 address</span>
+        <span class="src-keyword">short</span> hopLimit;       <span class="src-comment">// hop limit</span>
+        <span class="src-keyword">int</span> interfaceId = <span class="src-number">-1</span>; <span class="src-comment">// interface on which dgram was received/should</span>
+                              <span class="src-comment">// be sent (see InterfaceTable)</span>
+};</pre>
+</body>
+</html>

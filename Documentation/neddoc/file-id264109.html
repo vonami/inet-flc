@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Nodes/MPLS/RSVP_FAILED.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="RSVP_FAILED-id264094.html">RSVP_FAILED</a><i> (compound-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// This library is free software, you can redistribute it</span>
+<span class="src-comment">// and/or modify</span>
+<span class="src-comment">// it under  the terms of the GNU Lesser General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation;</span>
+<span class="src-comment">// either version 2 of the License, or any later version.</span>
+<span class="src-comment">// The library is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="src-comment">// See the GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+
+<span class="src-keyword">import</span>
+    "Dummy";
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Failed router. Discards all incoming traffic and generates nothing. Its</span>
+<span class="src-comment">// interface (gates, parameters) is fully compatible with the RSVP_LSR router</span>
+<span class="src-comment">// and node failures may thus be simulated by replacing the RSVP_LSR</span>
+<span class="src-comment">// with \FAILED_LSR.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">module</span> RSVP_FAILED
+    <span class="src-keyword">parameters</span>:
+        namid : <span class="src-keyword">numeric</span>,
+    
+        peers : <span class="src-keyword">string</span>,
+        routerId : <span class="src-keyword">string</span>,
+        routingFile : <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+
+    <span class="src-keyword">submodules</span>:
+        dummy: Dummy;
+            <span class="src-keyword">gatesizes</span>:
+                in[<span class="src-keyword">sizeof</span>(in)],
+                out[<span class="src-keyword">sizeof</span>(out)];
+
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(out)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> dummy.in[i];
+                dummy.out[i] <span class="src-keyword">--&gt;</span> out[i];
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span>
+</pre>
+</body>
+</html>

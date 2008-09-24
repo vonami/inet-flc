@@ -1,0 +1,154 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>IPDatagram</i>
+</h2>
+<p><b>File: <a href="file-id231788.html">Network/IPv4/IPDatagram.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_p_datagram.html" target="_top">click here</a></b></p>
+<p>Represents an <a href="IP-id231134.html">IP</a> datagram.</p>
+
+<p>Uses the following cMessage fields:</p>
+
+  <ul><ul><li>length () / setLength(err)  in bits</li>
+
+  <li>hasBitError() / setBitError()</li>
+
+  <li>timestamp() / setTimestamp (simtime) used in timestamp option</li></ul></ul>
+
+<p>Additional length fields defined in this class are in bytes
+(totalLength()=length()/8 and header_length), or 8 bytes (fragment_offset).</p>
+
+<p>Only only one of the option fields can exist at a time.</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id232002.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="IPDatagram-id232002.html" title="message IPDatagram" alt="IPDatagram" coords="7,16,100,40">
+</map><h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">version</td>
+<td width="100"><i>short</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">headerLength</td>
+<td width="100"><i>short</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">srcAddress</td>
+<td width="100"><i>IPAddress</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">destAddress</td>
+<td width="100"><i>IPAddress</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">transportProtocol</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">timeToLive</td>
+<td width="100"><i>short</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">identification</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">moreFragments</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">dontFragment</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">fragmentOffset</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">diffServCodePoint</td>
+<td width="100"><i>unsigned char</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">optionCode</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">recordRoute</td>
+<td width="100"><i>IPRecordRouteOption</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">timestampOption</td>
+<td width="100"><i>IPTimestampOption</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">sourceRoutingOption</td>
+<td width="100"><i>IPSourceRoutingOption</i></td>
+<td><p>optionCode determines if strict or loose source routing</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> IPDatagram
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">short</span> version = <span class="src-number">4</span>;
+        <span class="src-keyword">short</span> headerLength = IP_HEADER_BYTES;
+
+        IPAddress srcAddress;
+        IPAddress destAddress;
+
+        <span class="src-keyword">int</span> transportProtocol <span class="src-keyword">enum</span>(IPProtocolId) = IP_PROT_NONE;
+        <span class="src-keyword">short</span> timeToLive;
+        <span class="src-keyword">int</span> identification;
+        <span class="src-keyword">bool</span> moreFragments;
+        <span class="src-keyword">bool</span> dontFragment;
+        <span class="src-keyword">int</span> fragmentOffset;
+        unsigned <span class="src-keyword">char</span> diffServCodePoint;
+
+        <span class="src-keyword">int</span> optionCode <span class="src-keyword">enum</span>(IPOption) = IPOPTION_NO_OPTION;  <span class="src-comment">//# FIXME modify header length when options are present</span>
+        IPRecordRouteOption recordRoute;
+        IPTimestampOption timestampOption;
+        IPSourceRoutingOption sourceRoutingOption; <span class="src-comment">// optionCode determines if strict or loose source routing</span>
+};</pre>
+</body>
+</html>

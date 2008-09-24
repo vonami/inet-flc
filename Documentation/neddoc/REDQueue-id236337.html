@@ -1,0 +1,147 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>REDQueue</i>
+</h2>
+<p><b>File: <a href="file-id236121.html">Network/Queue/REDQueue.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_r_e_d_queue.html" target="_top">click here</a></b></p>
+<p>RED (Random Early Detection) queue, to be used in routers' network
+interfaces. Conforms to the <a href="OutputQueue-id236035.html">OutputQueue</a> interface.</p>
+
+<p>Implements the original RED algorithm from
+"Random Early Detection Gateways for Congestion Avoidance" by
+Sally Floyd and Van Jacobson, 1993.</p>
+
+<p>The code is based on the algorithm described on p10 of the paper:</p>
+
+<p><pre>
+Initialization:
+   avg &lt;- 0
+   count &lt;- -1
+for each packet arrival
+   calculate the new average queue size avg:
+       if the queue is nonempty
+           avg &lt;- (1-wq)*avg + wq*q
+       else
+           m &lt;- f(time-q_time)
+           avg &lt;- (1-wq)^m * avg
+   if minth &lt;= avg &lt; maxth
+       increment count
+       calculate probability pa:
+           pb &lt;- maxp*(avg-minth) / (maxth-minth)
+           pa &lt;- pb / (1-count*pb)
+       with probability pa:
+           mark the arriving packet
+           count &lt;- 0
+   else if maxth &lt;= avg
+       mark the arriving packet
+       count &lt;- 0
+   else count &lt;- -1
+when queue becomes empty
+   q_time &lt;- time
+
+Saved Variables:
+   - avg: average queue size
+   - q_time: start of the queue idle time
+   - count: packets since last marked packet
+
+Fixed parameters:
+   - wq: queue weight
+   - minth: minimum threshold for queue
+   - maxth: maximum threshold for queue
+   - maxp: maximum value for pb
+
+Other:
+   - pa: current packet-marking probability
+   - q: current queue size
+   - time: current time
+   - f(t): a linear function of the time t
+</pre></p>
+
+<p>The function f() is supposed to estimate the number of packets
+that could have arrived during the idle interval.
+We use <i>f(t) = pkrate * t</i>, where <i>pkrate = 1/s</i>,
+s being the typical transmission time for a small packet
+as mentioned in Section 11 of the paper.</p>
+
+<p>Example parameter values: wq = 0.002, minth = 5 packets, maxth = 15 packets,
+maxp = 1/50 = 0.02 and pkrate = 12000 (~1K packets on 100Mbps link).</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id236337.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="REDQueue-id236337.html" title="simple REDQueue" alt="REDQueue" coords="7,16,95,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">wq</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>queue weight</p>
+</td>
+</tr>
+<tr>
+<td width="150">minth</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>minimum threshold for avg queue length</p>
+</td>
+</tr>
+<tr>
+<td width="150">maxth</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>maximum threshold for avg queue length (=buffer capacity)</p>
+</td>
+</tr>
+<tr>
+<td width="150">maxp</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>maximum value for pb</p>
+</td>
+</tr>
+<tr>
+<td width="150">pkrate</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>arrivals per sec (see comment above)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> REDQueue
+    <span class="src-keyword">parameters</span>:
+        wq: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,    <span class="src-comment">// queue weight</span>
+        minth: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// minimum threshold for avg queue length</span>
+        maxth: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// maximum threshold for avg queue length (=buffer capacity)</span>
+        maxp: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,  <span class="src-comment">// maximum value for pb</span>
+        pkrate: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>;  <span class="src-comment">// arrivals per sec (see comment above)</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in;
+        <span class="src-keyword">out:</span> out;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

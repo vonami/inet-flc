@@ -1,0 +1,286 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/Ieee80211/Mgmt/Ieee80211Primitives.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="Ieee80211BSSType-id249298.html">Ieee80211BSSType</a><i> (enum)</i>
+</li>
+<li>
+<a href="Ieee80211PrimConfirm-id249606.html">Ieee80211PrimConfirm</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211PrimConfirmCode-id249230.html">Ieee80211PrimConfirmCode</a><i> (enum)</i>
+</li>
+<li>
+<a href="Ieee80211PrimRequest-id249593.html">Ieee80211PrimRequest</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211PrimRequestCode-id249529.html">Ieee80211PrimRequestCode</a><i> (enum)</i>
+</li>
+<li>
+<a href="Ieee80211PrimResultCode-id249339.html">Ieee80211PrimResultCode</a><i> (enum)</i>
+</li>
+<li>
+<a href="Ieee80211Prim_AssociateConfirm-id250013.html">Ieee80211Prim_AssociateConfirm</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211Prim_AssociateRequest-id249976.html">Ieee80211Prim_AssociateRequest</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211Prim_AuthenticateConfirm-id249898.html">Ieee80211Prim_AuthenticateConfirm</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211Prim_AuthenticateRequest-id249856.html">Ieee80211Prim_AuthenticateRequest</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211Prim_BSSDescription-id249755.html">Ieee80211Prim_BSSDescription</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211Prim_DeauthenticateRequest-id249930.html">Ieee80211Prim_DeauthenticateRequest</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211Prim_DisassociateRequest-id250069.html">Ieee80211Prim_DisassociateRequest</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211Prim_ReassociateConfirm-id250051.html">Ieee80211Prim_ReassociateConfirm</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211Prim_ReassociateRequest-id250033.html">Ieee80211Prim_ReassociateRequest</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211Prim_ScanConfirm-id249824.html">Ieee80211Prim_ScanConfirm</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211Prim_ScanRequest-id249633.html">Ieee80211Prim_ScanRequest</a><i> (class)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2006 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Required for MACAddress declarations</span>
+<span class="src-comment">//</span>
+cplusplus
+{{
+#include "Ieee80211MgmtFrames_m.h"
+}};
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> MACAddress;
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> Ieee80211SupportedRatesElement;
+<span class="src-keyword">enum</span> Ieee80211ReasonCode;
+
+<span class="src-comment">//</span>
+<span class="src-comment">// IEEE 802.11 command codes, sent by the agent to the management entity.</span>
+<span class="src-comment">// These constants should be set as message kind on the messages.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see Ieee80211PrimConfirmCode, Ieee80211MgmtSTA, Ieee80211AgentSTA</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> Ieee80211PrimRequestCode
+{
+    PR_SCAN_REQUEST = <span class="src-number">1</span>;
+    PR_AUTHENTICATE_REQUEST = <span class="src-number">2</span>;
+    PR_DEAUTHENTICATE_REQUEST = <span class="src-number">3</span>;
+    PR_ASSOCIATE_REQUEST = <span class="src-number">4</span>;
+    PR_REASSOCIATE_REQUEST = <span class="src-number">5</span>;
+    PR_DISASSOCIATE_REQUEST = <span class="src-number">6</span>;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// IEEE 802.11 confirm codes, sent by the management entity to the agent,</span>
+<span class="src-comment">// in response to the agents's requests.</span>
+<span class="src-comment">// These constants should be set as message kind on the messages.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see Ieee80211PrimRequestCode, Ieee80211MgmtSTA, Ieee80211AgentSTA</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> Ieee80211PrimConfirmCode
+{
+    PR_SCAN_CONFIRM = <span class="src-number">1</span>;
+    PR_AUTHENTICATE_CONFIRM = <span class="src-number">2</span>;
+    PR_DEAUTHENTICATE_CONFIRM = <span class="src-number">3</span>;
+    PR_ASSOCIATE_CONFIRM = <span class="src-number">4</span>;
+    PR_REASSOCIATE_CONFIRM = <span class="src-number">5</span>;
+    PR_DISASSOCIATE_CONFIRM = <span class="src-number">6</span>;
+};
+
+<span class="src-keyword">enum</span> Ieee80211BSSType
+{
+    BSSTYPE_ANY = <span class="src-number">0</span>;
+    BSSTYPE_INFRASTRUCTURE = <span class="src-number">1</span>;
+    BSSTYPE_INDEPENDENT = <span class="src-number">2</span>;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Values for the resultCode field in confirm primitives, sent from</span>
+<span class="src-comment">// the management entity to the agent.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see Ieee80211PrimConfirmCode, Ieee80211MgmtSTA, Ieee80211AgentSTA</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> Ieee80211PrimResultCode
+{
+    PRC_SUCCESS = <span class="src-number">0</span>;
+    PRC_INVALID_PARAMETERS = <span class="src-number">1</span>;
+    PRC_TIMEOUT = <span class="src-number">2</span>;
+    PRC_TOO_MANY_SIMULTANEOUS_REQUESTS = <span class="src-number">3</span>;
+    PRC_REFUSED = <span class="src-number">4</span>;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Base class for request primitives</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211PrimRequest
+{
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Base class for confirm primitives</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211PrimConfirm
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> resultCode <span class="src-keyword">enum</span>(Ieee80211PrimResultCode);
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Losely based on MLME-SCAN.request.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211Prim_ScanRequest <span class="src-keyword">extends</span> Ieee80211PrimRequest
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> BSSType <span class="src-keyword">enum</span>(Ieee80211BSSType); <span class="src-comment">// determines type of BSS's to include in the scan</span>
+        MACAddress BSSID; <span class="src-comment">// specific BSSID to scan for (default: any)</span>
+        <span class="src-keyword">string</span> SSID;      <span class="src-comment">// SSID to scan for SSID (default: any)</span>
+        <span class="src-keyword">bool</span> activeScan;  <span class="src-comment">// whether to perform active or passive scanning</span>
+        <span class="src-keyword">double</span> probeDelay; <span class="src-comment">// delay (in ìs) to be used prior to transmitting a Probe frame during active scanning</span>
+        <span class="src-keyword">int</span> channelList[]; <span class="src-comment">// list of channels to scan (default: all channels)</span>
+        <span class="src-keyword">double</span> minChannelTime; <span class="src-comment">// minimum time to spend on each channel when scanning</span>
+        <span class="src-keyword">double</span> maxChannelTime; <span class="src-comment">// maximum time to spend on each channel when scanning</span>
+};
+
+<span class="src-keyword">class</span> Ieee80211Prim_BSSDescription
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> channelNumber;
+        MACAddress BSSID;
+        <span class="src-keyword">string</span> SSID;
+        Ieee80211SupportedRatesElement supportedRates;
+        <span class="src-keyword">double</span> beaconInterval;
+
+        <span class="src-keyword">double</span> rxPower; <span class="src-comment">// received power from AP; not part of the standard</span>
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Losely based on MLME-SCAN.confirm</span>
+<span class="src-comment">// Possible result codes: SUCCESS, INVALID_PARAMETERS</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211Prim_ScanConfirm <span class="src-keyword">extends</span> Ieee80211PrimConfirm
+{
+    <span class="src-keyword">fields</span>:
+        Ieee80211Prim_BSSDescription bssList[];
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Losely based on MLME-AUTHENTICATE.request.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Note: the "authType" parameter (Open System, Shared Key, etc) is omitted.</span>
+<span class="src-comment">// The authentication procedure is simulated by this model by exchanging</span>
+<span class="src-comment">// a number of "dummy" authentication frames without real contents,</span>
+<span class="src-comment">// and it is configured in the AP how many authentication steps it requires.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211Prim_AuthenticateRequest <span class="src-keyword">extends</span> Ieee80211PrimRequest
+{
+    <span class="src-keyword">fields</span>:
+        MACAddress address;
+        <span class="src-keyword">double</span> timeout;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Losely based on MLME-AUTHENTICATE.confirm.</span>
+<span class="src-comment">// Possible result codes: SUCCESS, INVALID_PARAMETERS, TIMEOUT, TOO_MANY_SIMULTANEOUS_REQUESTS, REFUSED</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211Prim_AuthenticateConfirm <span class="src-keyword">extends</span> Ieee80211PrimConfirm
+{
+    <span class="src-keyword">fields</span>:
+        MACAddress address;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Losely based on MLME-DEAUTHENTICATE.request</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// NOTE: there is no Deauthenticate Confirm, because Deauthenticate Request </span>
+<span class="src-comment">// takes place immediately, and nothing can go wrong (there is no reply </span>
+<span class="src-comment">// from the AP to wait for)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211Prim_DeauthenticateRequest <span class="src-keyword">extends</span> Ieee80211PrimRequest
+{
+    <span class="src-keyword">fields</span>:
+        MACAddress address;
+        <span class="src-keyword">int</span> reasonCode <span class="src-keyword">enum</span>(Ieee80211ReasonCode);
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Losely based on MLME-ASSOCIATE.request</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211Prim_AssociateRequest <span class="src-keyword">extends</span> Ieee80211PrimRequest
+{
+    <span class="src-keyword">fields</span>:
+        MACAddress address;
+        <span class="src-keyword">double</span> timeout;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Losely based on MLME-ASSOCIATE.confirm</span>
+<span class="src-comment">// Possible result codes: SUCCESS, INVALID_PARAMETERS, TIMEOUT, REFUSED</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211Prim_AssociateConfirm <span class="src-keyword">extends</span> Ieee80211PrimConfirm
+{
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// MLME-REASSOCIATE.request is very similar to MLME-ASSOCIATE.request</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211Prim_ReassociateRequest <span class="src-keyword">extends</span> Ieee80211Prim_AssociateRequest
+{
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// MLME-REASSOCIATE.confirm is very similar to MLME-ASSOCIATE.confirm</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211Prim_ReassociateConfirm <span class="src-keyword">extends</span> Ieee80211Prim_AssociateConfirm
+{
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Losely based on MLME-DISASSOCIATE.request.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// NOTE: there is no Disassociate Confirm, because Disassociate Request </span>
+<span class="src-comment">// takes place immediately, and nothing can go wrong (there is no reply </span>
+<span class="src-comment">// from the AP to wait for)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211Prim_DisassociateRequest <span class="src-keyword">extends</span> Ieee80211PrimRequest
+{
+    <span class="src-keyword">fields</span>:
+        MACAddress address;
+        <span class="src-keyword">int</span> reasonCode <span class="src-keyword">enum</span>(Ieee80211ReasonCode);
+};
+</pre>
+</body>
+</html>

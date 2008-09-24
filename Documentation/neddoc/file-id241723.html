@@ -1,0 +1,74 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/Ethernet/EthernetInterface2.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="EthernetInterface2-id241696.html">EthernetInterface2</a><i> (compound-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2006 Levente Meszaros</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-keyword">import</span>
+    "EtherMAC2",
+    "EtherEncap",
+    "OutputQueue";
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Ethernet network interface, which supports full-duplex operation only.</span>
+<span class="src-comment">// Corresponds to the prototype NetworkInterface.</span>
+<span class="src-comment">// Complements EtherMAC2 and EtherEncap with an output queue for QoS and</span>
+<span class="src-comment">// RED support.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see EthernetInterface, EthernetInterfaceNoQueue</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">module</span> EthernetInterface2
+    <span class="src-keyword">parameters</span>:
+        queueType: <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> physIn;
+        <span class="src-keyword">in:</span> netwIn;
+        <span class="src-keyword">out:</span> physOut;
+        <span class="src-keyword">out:</span> netwOut;
+    <span class="src-keyword">submodules</span>:
+        queue: queueType <span class="src-keyword">like</span> OutputQueue;
+            <span class="src-keyword">display</span>: "i=block/queue;p=<span class="src-number">92</span>,<span class="src-number">71</span>;q=l2queue";
+        mac: EtherMAC2;
+            <span class="src-keyword">parameters</span>:
+                queueModule = "queue",
+                txQueueLimit = <span class="src-number">1</span>; <span class="src-comment">// queue sends one packet at a time</span>
+            <span class="src-keyword">display</span>: "i=block/rxtx;p=<span class="src-number">116</span>,<span class="src-number">231</span>";
+        encap: EtherEncap;
+            <span class="src-keyword">display</span>: "i=block/square;p=<span class="src-number">116</span>,<span class="src-number">151</span>";
+    <span class="src-keyword">connections</span>:
+        netwIn <span class="src-keyword">--&gt;</span> queue.in;
+        queue.out <span class="src-keyword">--&gt;</span> encap.upperLayerIn;
+        netwOut <span class="src-keyword">&lt;--</span> encap.upperLayerOut <span class="src-keyword">display</span> "m=n";
+        encap.lowerLayerOut <span class="src-keyword">--&gt;</span> mac.upperLayerIn;
+        encap.lowerLayerIn <span class="src-keyword">&lt;--</span> mac.upperLayerOut;
+        mac.physIn <span class="src-keyword">&lt;--</span> physIn;
+        mac.physOut <span class="src-keyword">--&gt;</span> physOut;
+<span class="src-keyword">endmodule</span>
+</pre>
+</body>
+</html>

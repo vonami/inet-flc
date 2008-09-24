@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/MFCore/SnrControlInfo.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="SnrControlInfo-id252996.html">SnrControlInfo</a><i> (class)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//**************************************************************************</span>
+<span class="src-comment">// * file:        SnrControlInfo.msg</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * author:      Marc Loebbers</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * copyright:   (C) 2004 Telecommunication Networks Group (TKN) at</span>
+<span class="src-comment">// *              Technische Universitaet Berlin, Germany.</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// *              This program is free software; you can redistribute it</span>
+<span class="src-comment">// *              and/or modify it under the terms of the GNU General Public</span>
+<span class="src-comment">// *              License as published by the Free Software Foundation; either</span>
+<span class="src-comment">// *              version 2 of the License, or (at your option) any later</span>
+<span class="src-comment">// *              version.</span>
+<span class="src-comment">// *              For further information see file COPYING</span>
+<span class="src-comment">// *              in the top level directory</span>
+<span class="src-comment">// ***************************************************************************</span>
+<span class="src-comment">// * part of:     framework implementation developed by tkn</span>
+<span class="src-comment">// **************************************************************************/</span>
+
+cplusplus {{
+#include "INETDefs.h"
+#include "SnrList.h"
+}}
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> SnrList;
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Control Info class that is used to send SNR information from</span>
+<span class="src-comment">// snrEval to decider</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This class is used by the snrEval to send SNR information</span>
+<span class="src-comment">// to the decider. After recieving a packet from the channel the</span>
+<span class="src-comment">// snrEval calculates SNR information, writes this into the SnrControlInfo</span>
+<span class="src-comment">// and attaches the ControlInfo to the Airframe.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This control info can be used for complex information,</span>
+<span class="src-comment">// i.e. different SNR levels over the transmission time of this</span>
+<span class="src-comment">// packet. The parameter snrList is a dynamic list (see</span>
+<span class="src-comment">// http://www.sgi.com/tech/stl/List.html). The list entries are</span>
+<span class="src-comment">// defined by the struct SnrListEntry, which only contains two</span>
+<span class="src-comment">// parameters of type double, time and SNR. These values are a certain</span>
+<span class="src-comment">// SNR level and the time at which this SNR level started. The thing</span>
+<span class="src-comment">// is that you can't manipulate the list directly in the class.</span>
+<span class="src-comment">// Instead you have to create your own list with 'SnrList</span>
+<span class="src-comment">// listName;'. Furthermore you have to create a new object of the struct</span>
+<span class="src-comment">// SnrListEntry everytime you add something to the list.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// So, every list entry should look something like this:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// SnrListEntry listEntry;&lt;br&gt;</span>
+<span class="src-comment">// listEntry.time = snrStartingTime;&lt;br&gt;</span>
+<span class="src-comment">// listEntry.snr  = snrLevel;&lt;br&gt;</span>
+<span class="src-comment">// listName.push_back( listEntry );</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// When the list is complete and you want to send the message, you</span>
+<span class="src-comment">// have to give the list to the control info  before attaching it to</span>
+<span class="src-comment">// the AirFrame.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// SnrControlInfo* cInfo = new SnrControlInfo;&lt;br&gt;</span>
+<span class="src-comment">// cInfo-&gt;setSnrList( listName );&lt;br&gt;</span>
+<span class="src-comment">// msg-&gt;setControlInfo( cInfo );</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// When receiving an AirFrame (in the deceider module) you probably want to</span>
+<span class="src-comment">// read the list. Therefore you have to get a copy of that list:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// SnrControlInfo* cInfo = new SnrControlInfo;&lt;br&gt;</span>
+<span class="src-comment">// cInfo = static_cast&lt;SnrControlInfo*&gt;(msg-&gt;removeControlInfo());&lt;br&gt;</span>
+<span class="src-comment">// SnrList receivedList* = new SnrList;&lt;br&gt;</span>
+<span class="src-comment">// receivedList = cInfo-&gt;getSnrList();&lt;br&gt;</span>
+<span class="src-comment">// delete cInfo;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This component has been taken over from Mobility Framework 1.0a5.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @author Marc Loebbers</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> SnrControlInfo
+{
+    <span class="src-keyword">fields</span>:
+        SnrList snrList;
+};
+</pre>
+</body>
+</html>

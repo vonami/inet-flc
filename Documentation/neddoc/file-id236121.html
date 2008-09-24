@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/Queue/REDQueue.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="REDQueue-id236337.html">REDQueue</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2005 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// RED (Random Early Detection) queue, to be used in routers' network</span>
+<span class="src-comment">// interfaces. Conforms to the OutputQueue interface.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Implements the original RED algorithm from</span>
+<span class="src-comment">// "Random Early Detection Gateways for Congestion Avoidance" by</span>
+<span class="src-comment">// Sally Floyd and Van Jacobson, 1993.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The code is based on the algorithm described on p10 of the paper:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;pre&gt;</span>
+<span class="src-comment">// Initialization:</span>
+<span class="src-comment">//    avg &lt;- 0</span>
+<span class="src-comment">//    count &lt;- -1</span>
+<span class="src-comment">// for each packet arrival</span>
+<span class="src-comment">//    calculate the new average queue size avg:</span>
+<span class="src-comment">//        if the queue is nonempty</span>
+<span class="src-comment">//            avg &lt;- (1-wq)*avg + wq*q</span>
+<span class="src-comment">//        else</span>
+<span class="src-comment">//            m &lt;- f(time-q_time)</span>
+<span class="src-comment">//            avg &lt;- (1-wq)^m * avg</span>
+<span class="src-comment">//    if minth &lt;= avg &lt; maxth</span>
+<span class="src-comment">//        increment count</span>
+<span class="src-comment">//        calculate probability pa:</span>
+<span class="src-comment">//            pb &lt;- maxp*(avg-minth) / (maxth-minth)</span>
+<span class="src-comment">//            pa &lt;- pb / (1-count*pb)</span>
+<span class="src-comment">//        with probability pa:</span>
+<span class="src-comment">//            mark the arriving packet</span>
+<span class="src-comment">//            count &lt;- 0</span>
+<span class="src-comment">//    else if maxth &lt;= avg</span>
+<span class="src-comment">//        mark the arriving packet</span>
+<span class="src-comment">//        count &lt;- 0</span>
+<span class="src-comment">//    else count &lt;- -1</span>
+<span class="src-comment">// when queue becomes empty</span>
+<span class="src-comment">//    q_time &lt;- time</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Saved Variables:</span>
+<span class="src-comment">//    - avg: average queue size</span>
+<span class="src-comment">//    - q_time: start of the queue idle time</span>
+<span class="src-comment">//    - count: packets since last marked packet</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Fixed parameters:</span>
+<span class="src-comment">//    - wq: queue weight</span>
+<span class="src-comment">//    - minth: minimum threshold for queue</span>
+<span class="src-comment">//    - maxth: maximum threshold for queue</span>
+<span class="src-comment">//    - maxp: maximum value for pb</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Other:</span>
+<span class="src-comment">//    - pa: current packet-marking probability</span>
+<span class="src-comment">//    - q: current queue size</span>
+<span class="src-comment">//    - time: current time</span>
+<span class="src-comment">//    - f(t): a linear function of the time t</span>
+<span class="src-comment">// &lt;/pre&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The function f() is supposed to estimate the number of packets</span>
+<span class="src-comment">// that could have arrived during the idle interval.</span>
+<span class="src-comment">// We use &lt;i&gt;f(t) = pkrate * t&lt;/i&gt;, where &lt;i&gt;pkrate = 1/s&lt;/i&gt;,</span>
+<span class="src-comment">// s being the typical transmission time for a small packet</span>
+<span class="src-comment">// as mentioned in Section 11 of the paper.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Example parameter values: wq = 0.002, minth = 5 packets, maxth = 15 packets,</span>
+<span class="src-comment">// maxp = 1/50 = 0.02 and pkrate = 12000 (~1K packets on 100Mbps link).</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> REDQueue
+    <span class="src-keyword">parameters</span>:
+        wq: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,    <span class="src-comment">// queue weight</span>
+        minth: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// minimum threshold for avg queue length</span>
+        maxth: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// maximum threshold for avg queue length (=buffer capacity)</span>
+        maxp: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,  <span class="src-comment">// maximum value for pb</span>
+        pkrate: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>;  <span class="src-comment">// arrivals per sec (see comment above)</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in;
+        <span class="src-keyword">out:</span> out;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>Ieee80211MgmtAPSimplified</i>
+</h2>
+<p><b>File: <a href="file-id247284.html">NetworkInterfaces/Ieee80211/Mgmt/Ieee80211MgmtAPSimplified.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_mgmt_a_p_simplified.html" target="_top">click here</a></b></p>
+<p>Used in 802.11 infrastructure mode: handles management frames for
+an access point (AP). It relies on a connected <a href="Ieee80211Mac-id246064.html">Ieee80211Mac</a> for actual
+reception and transmission of frames.</p>
+
+<p>This management module variant does not implement beacons, probes,
+authentication and association -- it simply treats all stations
+as associated all the time. This also means that you cannot use this
+module in a simulation that involves handovers; for that you need
+to use the full version, <a href="Ieee80211MgmtAP-id247223.html">Ieee80211MgmtAP</a>.</p>
+
+<p>When simulating an AP that has other (Ethernet or wireless) interfaces
+as well, this module can be connected to a <a href="MACRelayUnit-id243370.html">MACRelayUnit</a> which performs
+bridging of Ethernet frames. This module will perform conversion from/to
+<a href="EtherFrame-id242304.html">EtherFrame</a> for <a href="MACRelayUnit-id243370.html">MACRelayUnit</a>.</p>
+
+<p>This module never switches channels, that is, it will operate on the channel
+the physical layer is configured for (see channelNumber in <a href="Ieee80211Radio-id254399.html">Ieee80211Radio</a>).</p>
+
+<p><b>Author:</b> Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id247334.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="Ieee80211MgmtAPSimplified-id247334.html" title="simple Ieee80211MgmtAPSimplified" alt="Ieee80211MgmtAPSimplified" coords="7,88,207,112">
+<area shape="rect" href="Ieee80211NicAPSimplified-id245071.html" title="module Ieee80211NicAPSimplified" alt="Ieee80211NicAPSimplified" coords="16,16,197,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">Ieee80211NicAPSimplified</a></td>
+<td><p>This NIC implements an infrastructure mode 802.11 network interface card
+for a wireless Access Point (AP), but using a simplified mgmt module
+that does not support handovers.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">frameCapacity</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateIn</td>
+<td width="100"><i>input</i></td>
+<td><p>from <a href="MACRelayUnit-id243370.html">MACRelayUnit</a>; can be left unconnected</p>
+</td>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td><p>to <a href="MACRelayUnit-id243370.html">MACRelayUnit</a>; can be left unconnected</p>
+</td>
+</tr>
+<tr>
+<td width="150">macIn</td>
+<td width="100"><i>input</i></td>
+<td><p>from <a href="Ieee80211Mac-id246064.html">Ieee80211Mac</a></p>
+</td>
+</tr>
+<tr>
+<td width="150">macOut</td>
+<td width="100"><i>output</i></td>
+<td><p>to <a href="Ieee80211Mac-id246064.html">Ieee80211Mac</a></p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> Ieee80211MgmtAPSimplified
+    <span class="src-keyword">parameters</span>:
+        frameCapacity: <span class="src-keyword">numeric</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn; <span class="src-comment">// from MACRelayUnit; can be left unconnected</span>
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// to MACRelayUnit; can be left unconnected</span>
+        <span class="src-keyword">in:</span> macIn; <span class="src-comment">// from Ieee80211Mac</span>
+        <span class="src-keyword">out:</span> macOut; <span class="src-comment">// to Ieee80211Mac</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

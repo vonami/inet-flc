@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>TCPEchoApp</i>
+</h2>
+<p><b>File: <a href="file-id220623.html">Applications/TCPApp/TCPEchoApp.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_t_c_p_echo_app.html" target="_top">click here</a></b></p>
+<p>Accepts any number of incoming <a href="TCP-id271256.html">TCP</a> connections, and sends back the
+messages that arrive on them, The lengths of the messages are
+multiplied by echoFactor before sending them back (echoFactor=1 will
+result in sending back the same message unmodified.) The reply can also be
+delayed by a constant time (echoDelay parameter).</p>
+
+<p>When <a href="TCPEchoApp-id220009.html">TCPEchoApp</a> receives data packets from <a href="TCP-id271256.html">TCP</a> (and such, when they can be
+echoed) depends on the sendQueue/receiveQueue setting of <a href="TCP-id271256.html">TCP</a>.
+With TCPVirtualBytesSendQueue/RcvQueue, <a href="TCP-id271256.html">TCP</a> passes up data to us
+as soon as a segment arrives, so it can be echoed immediately.
+With TCPMsgBasedSendQueue/RcvQueue, our local <a href="TCP-id271256.html">TCP</a> reproduces the same
+messages that the sender app passed down to its <a href="TCP-id271256.html">TCP</a> -- so if the sender
+app sent a single 100 MB message, it will be echoed only when all
+100 megabytes have arrived.</p>
+
+<p>Compatible with both IPv4 and <a href="IPv6-id232445.html">IPv6</a>.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id220009.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="TCPEchoApp-id220009.html" title="simple TCPEchoApp" alt="TCPEchoApp" coords="7,16,111,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">address</td>
+<td width="100"><i>string</i></td>
+<td><p>local address; may be left empty ("")</p>
+</td>
+</tr>
+<tr>
+<td width="150">port</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>port number to listen on</p>
+</td>
+</tr>
+<tr>
+<td width="150">echoFactor</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">echoDelay</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">tcpIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">tcpOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> TCPEchoApp
+    <span class="src-keyword">parameters</span>:
+        address: <span class="src-keyword">string</span>, <span class="src-comment">// local address; may be left empty ("")</span>
+        port: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// port number to listen on</span>
+        echoFactor: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        echoDelay: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> tcpIn;
+        <span class="src-keyword">out:</span> tcpOut;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

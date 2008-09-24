@@ -1,0 +1,353 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/OSPFv2/OSPFPacket.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="ExternalTOSInfo-id235037.html">ExternalTOSInfo</a><i> (struct)</i>
+</li>
+<li>
+<a href="LSARequest-id235339.html">LSARequest</a><i> (struct)</i>
+</li>
+<li>
+<a href="LSAType-id234538.html">LSAType</a><i> (enum)</i>
+</li>
+<li>
+<a href="Link-id234797.html">Link</a><i> (class)</i>
+</li>
+<li>
+<a href="LinkType-id234716.html">LinkType</a><i> (enum)</i>
+</li>
+<li>
+<a href="OSPFASExternalLSA-id235164.html">OSPFASExternalLSA</a><i> (class)</i>
+</li>
+<li>
+<a href="OSPFASExternalLSAContents-id235086.html">OSPFASExternalLSAContents</a><i> (class)</i>
+</li>
+<li>
+<a href="OSPFDDOptions-id235193.html">OSPFDDOptions</a><i> (struct)</i>
+</li>
+<li>
+<a href="OSPFDatabaseDescriptionPacket-id235275.html">OSPFDatabaseDescriptionPacket</a><i> (message)</i>
+</li>
+<li>
+<a href="OSPFHelloPacket-id234436.html">OSPFHelloPacket</a><i> (message)</i>
+</li>
+<li>
+<a href="OSPFLSA-id234690.html">OSPFLSA</a><i> (class)</i>
+</li>
+<li>
+<a href="OSPFLSAHeader-id234593.html">OSPFLSAHeader</a><i> (class)</i>
+</li>
+<li>
+<a href="OSPFLinkStateAcknowledgementPacket-id235483.html">OSPFLinkStateAcknowledgementPacket</a><i> (message)</i>
+</li>
+<li>
+<a href="OSPFLinkStateRequestPacket-id235379.html">OSPFLinkStateRequestPacket</a><i> (message)</i>
+</li>
+<li>
+<a href="OSPFLinkStateUpdatePacket-id235411.html">OSPFLinkStateUpdatePacket</a><i> (message)</i>
+</li>
+<li>
+<a href="OSPFNetworkLSA-id234948.html">OSPFNetworkLSA</a><i> (class)</i>
+</li>
+<li>
+<a href="OSPFOptions-id234399.html">OSPFOptions</a><i> (struct)</i>
+</li>
+<li>
+<a href="OSPFPacket-id234132.html">OSPFPacket</a><i> (message)</i>
+</li>
+<li>
+<a href="OSPFPacketType-id234343.html">OSPFPacketType</a><i> (enum)</i>
+</li>
+<li>
+<a href="OSPFRouterLSA-id234875.html">OSPFRouterLSA</a><i> (class)</i>
+</li>
+<li>
+<a href="OSPFSummaryLSA-id234988.html">OSPFSummaryLSA</a><i> (class)</i>
+</li>
+<li>
+<a href="TOSData-id234762.html">TOSData</a><i> (struct)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+cplusplus {{
+#include "IPAddress.h"
+}};
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPAddress;
+
+<span class="src-keyword">enum</span> OSPFPacketType {
+    HelloPacket                    = <span class="src-number">1</span>;
+    DatabaseDescriptionPacket      = <span class="src-number">2</span>;
+    LinkStateRequestPacket         = <span class="src-number">3</span>;
+    LinkStateUpdatePacket          = <span class="src-number">4</span>;
+    LinkStateAcknowledgementPacket = <span class="src-number">5</span>;
+};
+
+<span class="src-comment">// should be a byte long bitfield</span>
+<span class="src-keyword">struct</span> OSPFOptions {
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">bool</span> unused_1;
+        <span class="src-keyword">bool</span> E_ExternalRoutingCapability;
+        <span class="src-keyword">bool</span> MC_MulticastForwarding;
+        <span class="src-keyword">bool</span> NP_Type7LSA;
+        <span class="src-keyword">bool</span> EA_ForwardExternalLSAs;
+        <span class="src-keyword">bool</span> DC_DemandCircuits;
+        <span class="src-keyword">bool</span> unused_2;
+        <span class="src-keyword">bool</span> unused_3;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an OSPF packet header</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> OSPFPacket
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">char</span>   version = <span class="src-number">2</span>;
+        <span class="src-keyword">char</span>   type <span class="src-keyword">enum</span>(OSPFPacketType) = HelloPacket;
+        <span class="src-keyword">short</span>  packetLength = <span class="src-number">0</span>; 
+
+        IPAddress routerID;
+        IPAddress areaID;
+
+        <span class="src-keyword">short</span>  checksum = <span class="src-number">0</span>;
+        <span class="src-keyword">short</span>  authenticationType = <span class="src-number">0</span>;
+        <span class="src-keyword">char</span>   authentication[<span class="src-number">8</span>];
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an OSPF Hello packet</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> OSPFHelloPacket <span class="src-keyword">extends</span> OSPFPacket
+{
+    <span class="src-keyword">fields</span>:
+        IPAddress networkMask;
+
+        <span class="src-keyword">short</span>  helloInterval = <span class="src-number">5</span>;
+
+        OSPFOptions options;
+
+        <span class="src-keyword">char</span>   routerPriority = <span class="src-number">0</span>;
+        <span class="src-keyword">long</span>   routerDeadInterval = <span class="src-number">0</span>;
+
+        IPAddress designatedRouter;
+        IPAddress backupDesignatedRouter;
+        IPAddress neighbor[];
+};
+
+
+<span class="src-keyword">enum</span> LSAType {
+    RouterLSAType                    = <span class="src-number">1</span>;
+    NetworkLSAType                   = <span class="src-number">2</span>;
+    SummaryLSA_NetworksType          = <span class="src-number">3</span>;
+    SummaryLSA_ASBoundaryRoutersType = <span class="src-number">4</span>;
+    ASExternalLSAType                = <span class="src-number">5</span>;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an OSPF LSA header</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//class OSPFLSAHeader extends cObject</span>
+<span class="src-keyword">class</span> OSPFLSAHeader
+{
+    <span class="src-keyword">fields</span>:
+        unsigned <span class="src-keyword">short</span>  lsAge = <span class="src-number">0</span>;
+        OSPFOptions     lsOptions;
+        <span class="src-keyword">char</span>            lsType <span class="src-keyword">enum</span> (LSAType) = RouterLSAType;
+        unsigned <span class="src-keyword">long</span>   linkStateID;
+        IPAddress       advertisingRouter;
+        <span class="src-keyword">long</span>            lsSequenceNumber = <span class="src-number">0</span>;
+        <span class="src-keyword">short</span>           lsChecksum = <span class="src-number">0</span>;
+        unsigned <span class="src-keyword">short</span>  length = <span class="src-number">0</span>;
+}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// common ancestor type for all LSAs</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//class OSPFLSA extends cObject</span>
+<span class="src-keyword">class</span> OSPFLSA
+{
+    <span class="src-keyword">fields</span>:
+        OSPFLSAHeader   header;
+}
+
+<span class="src-keyword">enum</span> LinkType {
+    PointToPointLink = <span class="src-number">1</span>;
+    TransitLink      = <span class="src-number">2</span>;
+    StubLink         = <span class="src-number">3</span>;
+    VirtualLink      = <span class="src-number">4</span>;
+};
+
+<span class="src-keyword">struct</span> TOSData {
+    <span class="src-keyword">fields</span>:
+        unsigned <span class="src-keyword">char</span>   tos;
+        unsigned <span class="src-keyword">char</span>   tosMetric[<span class="src-number">3</span>];
+};
+
+<span class="src-comment">//class Link extends cObject</span>
+<span class="src-keyword">class</span> Link
+{
+    <span class="src-keyword">fields</span>:
+        IPAddress      linkID;
+        unsigned <span class="src-keyword">long</span>  linkData = <span class="src-number">0</span>;
+        unsigned <span class="src-keyword">char</span>  type <span class="src-keyword">enum</span> (LinkType) = PointToPointLink;
+        unsigned <span class="src-keyword">char</span>  numberOfTOS = <span class="src-number">0</span>;
+        unsigned <span class="src-keyword">long</span>  linkCost = <span class="src-number">1</span>;
+        TOSData        tosData[];
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an OSPF Router LSA</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> OSPFRouterLSA <span class="src-keyword">extends</span> OSPFLSA
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">bool</span>            V_VirtualLinkEndpoint = <span class="src-keyword">false</span>;
+        <span class="src-keyword">bool</span>            E_ASBoundaryRouter = <span class="src-keyword">false</span>;
+        <span class="src-keyword">bool</span>            B_AreaBorderRouter = <span class="src-keyword">false</span>;
+        unsigned <span class="src-keyword">short</span>  numberOfLinks = <span class="src-number">0</span>;
+        Link            links[];
+}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an OSPF Network LSA</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> OSPFNetworkLSA <span class="src-keyword">extends</span> OSPFLSA
+{
+    <span class="src-keyword">fields</span>:
+        IPAddress       networkMask;
+        IPAddress       attachedRouters[];
+}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an OSPF Summary LSA</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> OSPFSummaryLSA <span class="src-keyword">extends</span> OSPFLSA
+{
+    <span class="src-keyword">fields</span>:
+        IPAddress     networkMask;
+        unsigned <span class="src-keyword">long</span> routeCost = <span class="src-number">1</span>;
+        TOSData       tosData[];
+}
+
+<span class="src-keyword">struct</span>  ExternalTOSInfo {
+    <span class="src-keyword">fields</span>:
+        TOSData   tosData;
+        <span class="src-keyword">bool</span>      E_ExternalMetricType;
+        IPAddress forwardingAddress;
+        <span class="src-keyword">long</span>      externalRouteTag;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents the contents of an OSPF AS External LSA</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> OSPFASExternalLSAContents
+{
+    <span class="src-keyword">fields</span>:
+        IPAddress       networkMask;
+        <span class="src-keyword">bool</span>            E_ExternalMetricType = <span class="src-keyword">false</span>;
+        unsigned <span class="src-keyword">long</span>   routeCost = <span class="src-number">1</span>;
+        IPAddress       forwardingAddress;
+        <span class="src-keyword">long</span>            externalRouteTag = <span class="src-number">0</span>;
+        ExternalTOSInfo externalTOSInfo[];
+}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an OSPF AS External LSA</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> OSPFASExternalLSA <span class="src-keyword">extends</span> OSPFLSA
+{
+    <span class="src-keyword">fields</span>:
+        OSPFASExternalLSAContents contents;
+}
+
+
+<span class="src-comment">// should be a byte long bitfield</span>
+<span class="src-keyword">struct</span> OSPFDDOptions {
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">bool</span> unused_1;
+        <span class="src-keyword">bool</span> unused_2;
+        <span class="src-keyword">bool</span> unused_3;
+        <span class="src-keyword">bool</span> unused_4;
+        <span class="src-keyword">bool</span> unused_5;
+        <span class="src-keyword">bool</span> I_Init;
+        <span class="src-keyword">bool</span> M_More;
+        <span class="src-keyword">bool</span> MS_MasterSlave;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an OSPF Database Description packet</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> OSPFDatabaseDescriptionPacket <span class="src-keyword">extends</span> OSPFPacket
+{
+    <span class="src-keyword">fields</span>:
+        unsigned <span class="src-keyword">short</span>  interfaceMTU;
+        OSPFOptions     options;
+        OSPFDDOptions   ddOptions;
+        unsigned <span class="src-keyword">long</span>   ddSequenceNumber;
+        OSPFLSAHeader   lsaHeaders[];
+}
+
+<span class="src-keyword">struct</span> LSARequest
+{
+    <span class="src-keyword">fields</span>:
+        unsigned <span class="src-keyword">long</span>   lsType;
+        unsigned <span class="src-keyword">long</span>   linkStateID;
+        IPAddress       advertisingRouter;
+}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an OSPF Link State Request packet</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> OSPFLinkStateRequestPacket <span class="src-keyword">extends</span> OSPFPacket
+{
+    <span class="src-keyword">fields</span>:
+        LSARequest    requests[];
+}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an OSPF Link State Update packet</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> OSPFLinkStateUpdatePacket <span class="src-keyword">extends</span> OSPFPacket
+{
+    <span class="src-keyword">fields</span>:
+        unsigned <span class="src-keyword">long</span>     numberOfLSAs;
+        OSPFRouterLSA     routerLSAs[];
+        OSPFNetworkLSA    networkLSAs[];
+        OSPFSummaryLSA    summaryLSAs[];
+        OSPFASExternalLSA asExternalLSAs[];
+}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an OSPF Link State Acknowledgement packet</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> OSPFLinkStateAcknowledgementPacket <span class="src-keyword">extends</span> OSPFPacket
+{
+    <span class="src-keyword">fields</span>:
+        OSPFLSAHeader   lsaHeaders[];
+}
+</pre>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Enum <i>UDPStatusInd</i>
+</h2>
+<p><b>File: <a href="file-id269296.html">Transport/Contract/UDPControlInfo.msg</a></b></p>
+<p>UDP indications, sent by <a href="UDP-id272076.html">UDP</a> to the application. <a href="UDP-id272076.html">UDP</a> will set these
+constants as message kind on messages it sends to the application.</p>
+
+<p><b>See also:</b> <a href="UDPControlInfo-id269416.html">UDPControlInfo</a>, <a href="UDPCommandCode-id269217.html">UDPCommandCode</a>, <a href="UDP-id272076.html">UDP</a></p>
+
+<h3 class="subtitle">Enum values:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">UDP_I_DATA</td>
+<td width="100"><i>0</i></td>
+<td><p>data packet (set on data packet)</p>
+</td>
+</tr>
+<tr>
+<td width="150">UDP_I_ERROR</td>
+<td width="100"><i>1</i></td>
+<td><p><a href="ICMP-id230662.html">ICMP</a> error received on a sent datagram</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">enum</span> UDPStatusInd
+{
+    UDP_I_DATA = <span class="src-number">0</span>;        <span class="src-comment">// data packet (set on data packet)</span>
+    UDP_I_ERROR = <span class="src-number">1</span>; <span class="src-comment">// ICMP error received on a sent datagram</span>
+};</pre>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>MACRelayUnitPP</i>
+</h2>
+<p><b>File: <a href="file-id243760.html">NetworkInterfaces/EtherSwitch/MACRelayUnitPP.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_m_a_c_relay_unit_p_p.html" target="_top">click here</a></b></p>
+<p>A <a href="MACRelayUnit-id243370.html">MACRelayUnit</a> implementation which models one CPU assigned to each
+incoming port, working with shared memory but separate queues.</p>
+
+<p>It also models fixed delay for precessing each frame.
+Finite memory is taken into account by dropping frames if
+total number of bits enqueued exceed a given limit.</p>
+
+<p>A simple scheme for sending PAUSE frames is built in (although
+users will probably change it). When the buffer level goes
+above a high watermark, PAUSE frames are sent on all ports.
+The watermark and the pause time is configurable; use zero
+values to disable the PAUSE feature.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id243803.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="MACRelayUnitPP-id243803.html" title="simple MACRelayUnitPP" alt="MACRelayUnitPP" coords="7,16,143,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">addressTableFile</td>
+<td width="100"><i>string</i></td>
+<td><p>see <a href="MACRelayUnit-id243370.html">MACRelayUnit</a></p>
+</td>
+</tr>
+<tr>
+<td width="150">addressTableSize</td>
+<td width="100"><i>numeric</i></td>
+<td><p>see <a href="MACRelayUnit-id243370.html">MACRelayUnit</a></p>
+</td>
+</tr>
+<tr>
+<td width="150">agingTime</td>
+<td width="100"><i>numeric</i></td>
+<td><p>see <a href="MACRelayUnit-id243370.html">MACRelayUnit</a></p>
+</td>
+</tr>
+<tr>
+<td width="150">processingTime</td>
+<td width="100"><i>numeric</i></td>
+<td><p>processing time of one frame</p>
+</td>
+</tr>
+<tr>
+<td width="150">bufferSize</td>
+<td width="100"><i>numeric</i></td>
+<td><p>memory (bytes)</p>
+</td>
+</tr>
+<tr>
+<td width="150">highWatermark</td>
+<td width="100"><i>numeric</i></td>
+<td><p>buffer usage threshold to send PAUSE frame (bytes)</p>
+</td>
+</tr>
+<tr>
+<td width="150">pauseUnits</td>
+<td width="100"><i>numeric</i></td>
+<td><p>time to put in PAUSE frames (in units of 512 bit times)</p>
+</td>
+</tr>
+<tr>
+<td width="150">writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">lowerLayerIn [ ]</td>
+<td width="100"><i>input</i></td>
+<td><p>see <a href="MACRelayUnit-id243370.html">MACRelayUnit</a></p>
+</td>
+</tr>
+<tr>
+<td width="150">lowerLayerOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td><p>see <a href="MACRelayUnit-id243370.html">MACRelayUnit</a></p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> MACRelayUnitPP
+    <span class="src-keyword">parameters</span>:
+        addressTableFile : <span class="src-keyword">string</span>,  <span class="src-comment">// see MACRelayUnit</span>
+        addressTableSize : <span class="src-keyword">numeric</span>, <span class="src-comment">// see MACRelayUnit</span>
+        agingTime : <span class="src-keyword">numeric</span>,        <span class="src-comment">// see MACRelayUnit</span>
+        processingTime : <span class="src-keyword">numeric</span>,   <span class="src-comment">// processing time of one frame</span>
+        bufferSize : <span class="src-keyword">numeric</span>,       <span class="src-comment">// memory (bytes)</span>
+        highWatermark : <span class="src-keyword">numeric</span>,    <span class="src-comment">// buffer usage threshold to send PAUSE frame (bytes)</span>
+        pauseUnits : <span class="src-keyword">numeric</span>,       <span class="src-comment">// time to put in PAUSE frames (in units of 512 bit times)</span>
+        writeScalars: <span class="src-keyword">bool</span>;         <span class="src-comment">// enable/disable recording statistics in omnetpp.sca</span>
+
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span>  lowerLayerIn[];       <span class="src-comment">// see MACRelayUnit</span>
+        <span class="src-keyword">out:</span> lowerLayerOut[];      <span class="src-comment">// see MACRelayUnit</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

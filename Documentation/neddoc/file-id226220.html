@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Mobility/LinearMobility.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="LinearMobility-id226428.html">LinearMobility</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Author: Emin Ilker Cetinbas (niw3_at_yahoo_d0t_com)</span>
+<span class="src-comment">// Copyright (C) 2005 Emin Ilker Cetinbas</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+<span class="src-comment">//</span>
+<span class="src-comment">// This is a linear mobility model with speed, angle and acceleration parameters.</span>
+<span class="src-comment">// Angle only changes when the mobile node hits a wall: then it reflects</span>
+<span class="src-comment">// off the wall at the same angle.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see ChannelControl</span>
+<span class="src-comment">// @author Emin Ilker Cetinbas</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> LinearMobility
+    <span class="src-keyword">parameters</span>:
+        debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        x: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// start x coordinate (-1 = display string position, or random if it's missing)</span>
+        y: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// start y coordinate (-1 = display string position, or random if it's missing)</span>
+        speed: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// speed of the host (in m/s)</span>
+        angle: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// angle of linear motion (degreees)</span>
+        acceleration: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// acceleration of linear motion (m/s2)</span>
+        updateInterval : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// time interval to update the hosts position</span>
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

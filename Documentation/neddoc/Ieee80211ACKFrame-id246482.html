@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>Ieee80211ACKFrame</i>
+</h2>
+<p><b>File: <a href="file-id246288.html">NetworkInterfaces/Ieee80211/Mac/Ieee80211Frame.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_a_c_k_frame.html" target="_top">click here</a></b></p>
+<p>Format of the 802.11 ACK frame</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id246482.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="Ieee80211ACKFrame-id246482.html" title="message Ieee80211ACKFrame" alt="Ieee80211ACKFrame" coords="29,88,176,112">
+<area shape="rect" href="Ieee80211OneAddressFrame-id246465.html" title="message Ieee80211OneAddressFrame" alt="Ieee80211OneAddressFrame" coords="7,16,199,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="Ieee80211OneAddressFrame-id246465.html">Ieee80211OneAddressFrame</a></td>
+<td><p>Format of a 802.11 frame with address1 present, like ACK and CTS</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">type</td>
+<td width="100"><i></i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> Ieee80211ACKFrame <span class="src-keyword">extends</span> Ieee80211OneAddressFrame
+{
+    <span class="src-keyword">fields</span>:
+       type = ST_ACK;
+};</pre>
+</body>
+</html>

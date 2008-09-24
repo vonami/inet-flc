@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>TCPGenericSrvApp</i>
+</h2>
+<p><b>File: <a href="file-id220759.html">Applications/TCPApp/TCPGenericSrvApp.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_t_c_p_generic_srv_app.html" target="_top">click here</a></b></p>
+<p>Generic server application for modelling <a href="TCP-id271256.html">TCP</a>-based request-reply style
+protocols or applications.</p>
+
+<p>Requires message object preserving sendQueue/receiveQueue classes
+to be used with <a href="TCP-id271256.html">TCP</a> (that is, TCPMsgBasedSendQueue and TCPMsgBasedRcvQueue;
+TCPVirtualBytesSendQueue/RcvQueue are not good).</p>
+
+<p>The module accepts any number of incoming TCP connections, and expects
+to receive messages of class <a href="GenericAppMsg-id224442.html">GenericAppMsg</a> on them. A message should
+contain how large the reply should be (number of bytes). <a href="TCPGenericSrvApp-id220613.html">TCPGenericSrvApp</a>
+will just change the length of the received message accordingly, and send
+back the same message object. The reply can be delayed by a constant time
+(replyDelay parameter).</p>
+
+<p>Compatible with both IPv4 and <a href="IPv6-id232445.html">IPv6</a>.</p>
+
+<p><b>See also:</b> <a href="GenericAppMsg-id224442.html">GenericAppMsg</a>, <a href="TCPBasicClientApp-id219784.html">TCPBasicClientApp</a>, <a href="TelnetApp-id224257.html">TelnetApp</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id220613.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="TCPGenericSrvApp-id220613.html" title="simple TCPGenericSrvApp" alt="TCPGenericSrvApp" coords="7,16,151,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">address</td>
+<td width="100"><i>string</i></td>
+<td><p>local address; may be left empty ("")</p>
+</td>
+</tr>
+<tr>
+<td width="150">port</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>port number to listen on</p>
+</td>
+</tr>
+<tr>
+<td width="150">replyDelay</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">tcpIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">tcpOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> TCPGenericSrvApp
+    <span class="src-keyword">parameters</span>:
+        address: <span class="src-keyword">string</span>, <span class="src-comment">// local address; may be left empty ("")</span>
+        port: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// port number to listen on</span>
+        replyDelay: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> tcpIn;
+        <span class="src-keyword">out:</span> tcpOut;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

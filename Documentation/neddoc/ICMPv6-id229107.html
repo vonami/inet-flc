@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>ICMPv6</i>
+</h2>
+<p><b>File: <a href="file-id229087.html">Network/ICMPv6/ICMPv6.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_c_m_pv6.html" target="_top">click here</a></b></p>
+<p><a href="ICMPv6-id229107.html">ICMPv6</a> implementation.</p>
+
+<p>To send <a href="ICMPv6-id229107.html">ICMPv6</a> Echo Request, send any message to port pingIn with <a href="IPv6ControlInfo-id228808.html">IPv6ControlInfo</a>
+attached. The message will be used as ping payload (encapsulated into an <a href="ICMPv6Message-id229703.html">ICMPv6Message</a>).
+When <a href="ICMPv6-id229107.html">ICMPv6</a> Echo Reply is received, the payload message will be sent to pingOut.</p>
+
+<p><b>See also:</b> <a href="IPv6-id232445.html">IPv6</a>, <a href="RoutingTable6-id232346.html">RoutingTable6</a>, <a href="IPv6NeighbourDiscovery-id229263.html">IPv6NeighbourDiscovery</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id229107.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="ICMPv6-id229107.html" title="simple ICMPv6" alt="ICMPv6" coords="29,88,101,112">
+<area shape="rect" href="NetworkLayer6-id261162.html" title="module NetworkLayer6" alt="NetworkLayer6" coords="7,16,124,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="NetworkLayer6-id261162.html">NetworkLayer6</a></td>
+<td><p>Represents an <a href="IPv6-id232445.html">IPv6</a> network layer (L3).</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">fromIPv6</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">toIPv6</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">pingIn</td>
+<td width="100"><i>input</i></td>
+<td><p>ping requests from app</p>
+</td>
+</tr>
+<tr>
+<td width="150">pingOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">errorOut</td>
+<td width="100"><i>output</i></td>
+<td><p>for errors</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> ICMPv6
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> fromIPv6;
+        <span class="src-keyword">out:</span> toIPv6;
+        <span class="src-keyword">in:</span> pingIn; <span class="src-comment">// ping requests from app</span>
+        <span class="src-keyword">out:</span> pingOut;
+	<span class="src-keyword">out:</span> errorOut;  <span class="src-comment">// for errors</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

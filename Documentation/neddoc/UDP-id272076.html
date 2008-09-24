@@ -1,0 +1,158 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>UDP</i>
+</h2>
+<p><b>File: <a href="file-id271990.html">Transport/UDP/UDP.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_u_d_p.html" target="_top">click here</a></b></p>
+<p><a href="UDP-id272076.html">UDP</a> protocol implementation, for IPv4 and <a href="IPv6-id232445.html">IPv6</a>.</p>
+
+<p>The UDP protocol header is represented by the class <a href="UDPPacket-id272161.html">UDPPacket</a>.</p>
+
+<p><b>Communication with clients (applications)</b></p>
+
+<p>The module can (should) be connected to several applications.
+For sending an UDP packet, the application should attach an <a href="UDPControlInfo-id269416.html">UDPControlInfo</a>
+object to the payload, and send it to <a href="UDP-id272076.html">UDP</a>.
+<a href="UDP-id272076.html">UDP</a> will also attach an <a href="UDPControlInfo-id269416.html">UDPControlInfo</a> object to any payload
+message in sends up to the application.</p>
+
+<p>For receiving UDP packets, the connected applications should first
+"bind" to the given UDP port. This can be done by sending an
+arbitrary message with message kind UDP_C_BIND and an <a href="UDPControlInfo-id269416.html">UDPControlInfo</a>
+attached with srcPort filled in.</p>
+
+<p>If there is only one app which doesn't bind to any port, it will
+receive all packets.</p>
+
+<p><b>Communication with the IP (IPv4/<a href="IPv6-id232445.html">IPv6</a>) layer</b></p>
+
+<p>The <a href="UDP-id272076.html">UDP</a> model relies on sending and receiving <a href="IPControlInfo-id228197.html">IPControlInfo</a>/<a href="IPv6ControlInfo-id228808.html">IPv6ControlInfo</a>
+objects attached to <a href="UDPPacket-id272161.html">UDPPacket</a> objects as control info
+(see cMessage::setControlInfo()).</p>
+
+<p><b>See also:</b> <a href="UDPPacket-id272161.html">UDPPacket</a>, <a href="UDPControlInfo-id269416.html">UDPControlInfo</a>, <a href="UDPCommandCode-id269217.html">UDPCommandCode</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id272076.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="UDP-id272076.html" title="simple UDP" alt="UDP" coords="467,88,539,112">
+<area shape="rect" href="MFMobileHost-id254785.html" title="module MFMobileHost" alt="MFMobileHost" coords="7,16,119,40">
+<area shape="rect" href="MobileHost-id255482.html" title="module MobileHost" alt="MobileHost" coords="143,16,231,40">
+<area shape="rect" href="QuaggaRouter-id258126.html" title="module QuaggaRouter" alt="QuaggaRouter" coords="255,16,364,40">
+<area shape="rect" href="StandardHost-id259540.html" title="module StandardHost" alt="StandardHost" coords="388,16,489,40">
+<area shape="rect" href="StandardHost6-id262388.html" title="module StandardHost6" alt="StandardHost6" coords="513,16,623,40">
+<area shape="rect" href="LDP_LSR-id263362.html" title="module LDP_LSR" alt="LDP_LSR" coords="647,16,729,40">
+<area shape="rect" href="WirelessHost-id266620.html" title="module WirelessHost" alt="WirelessHost" coords="753,16,849,40">
+<area shape="rect" href="WirelessHostSimplified-id267586.html" title="module WirelessHostSimplified" alt="WirelessHostSimplified" coords="873,16,1039,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="MFMobileHost-id254785.html">MFMobileHost</a></td>
+<td><p>Models a mobile host with a wireless (802.11b) card in ad-hoc mode.
+This model contains the Mobility Framework's 802.11 implementation, <a href="Nic80211-id250122.html">Nic80211</a>,
+and <a href="IP-id231134.html">IP</a>, <a href="TCP-id271256.html">TCP</a> and <a href="UDP-id272076.html">UDP</a> protocols. The mobility model can be dynamically
+specified with the mobilityType parameter.</p>
+</td>
+</tr>
+<tr>
+<td><a href="MobileHost-id255482.html">MobileHost</a></td>
+<td><p>Models a mobile host with a wireless (802.11b) card in ad-hoc mode.
+This model contains the new IEEE 802.11 implementation, <a href="Ieee80211Nic-id244350.html">Ieee80211Nic</a>,
+and <a href="IP-id231134.html">IP</a>, <a href="TCP-id271256.html">TCP</a> and <a href="UDP-id272076.html">UDP</a> protocols. The mobility model can be
+dynamically specified with the mobilityType parameter.</p>
+</td>
+</tr>
+<tr>
+<td><a href="QuaggaRouter-id258126.html">QuaggaRouter</a></td>
+<td><p>Quagga-based IP router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="StandardHost-id259540.html">StandardHost</a></td>
+<td><p>IP host with <a href="TCP-id271256.html">TCP</a>, <a href="UDP-id272076.html">UDP</a> layers and applications.</p>
+</td>
+</tr>
+<tr>
+<td><a href="StandardHost6-id262388.html">StandardHost6</a></td>
+<td><p>IPv6 host with <a href="TCP-id271256.html">TCP</a>, <a href="UDP-id272076.html">UDP</a> layers and applications.</p>
+</td>
+</tr>
+<tr>
+<td><a href="LDP_LSR-id263362.html">LDP_LSR</a></td>
+<td><p>An <a href="LDP-id233136.html">LDP</a>-capable router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessHost-id266620.html">WirelessHost</a></td>
+<td><p>Models a host with one wireless (802.11b) card in infrastructure mode.
+This module is basically a <a href="StandardHost-id259540.html">StandardHost</a> with an <a href="Ieee80211NicSTA-id245326.html">Ieee80211NicSTA</a> added.
+It should be used in conjunction with <a href="WirelessAP-id265146.html">WirelessAP</a>, or any other AP model
+which contains <a href="Ieee80211NicAP-id244686.html">Ieee80211NicAP</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a></td>
+<td><p>Models a host with one wireless (802.11b) card in infrastructure mode,
+but using a simplified NIC that does not support handovers.
+This module is basically a <a href="StandardHost-id259540.html">StandardHost</a> with an <a href="Ieee80211NicSTASimplified-id245578.html">Ieee80211NicSTASimplified</a>
+added. It should be used in conjunction with <a href="WirelessAPSimplified-id265337.html">WirelessAPSimplified</a>,
+or any other AP model which contains <a href="Ieee80211NicAPSimplified-id245071.html">Ieee80211NicAPSimplified</a>.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">from_app [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">from_ip</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">from_ipv6</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">to_app [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">to_ip</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">to_ipv6</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> UDP
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> from_app[];
+        <span class="src-keyword">in:</span> from_ip;
+        <span class="src-keyword">in:</span> from_ipv6;
+        <span class="src-keyword">out:</span> to_app[];
+        <span class="src-keyword">out:</span> to_ip;
+        <span class="src-keyword">out:</span> to_ipv6;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

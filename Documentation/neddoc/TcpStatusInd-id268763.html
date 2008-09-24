@@ -1,0 +1,91 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Enum <i>TcpStatusInd</i>
+</h2>
+<p><b>File: <a href="file-id268653.html">Transport/Contract/TCPCommand.msg</a></b></p>
+<p>TCP indications, sent by <a href="TCP-id271256.html">TCP</a> to the application. <a href="TCP-id271256.html">TCP</a> will set these
+constants as message kind on messages it sends to the application.</p>
+
+<p><b>See also:</b> <a href="TCPCommand-id268543.html">TCPCommand</a>, <a href="TCPStatusInfo-id269015.html">TCPStatusInfo</a>, <a href="TCP-id271256.html">TCP</a></p>
+
+<h3 class="subtitle">Enum values:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">TCP_I_DATA</td>
+<td width="100"><i>1</i></td>
+<td><p>data packet (set on data packet)</p>
+</td>
+</tr>
+<tr>
+<td width="150">TCP_I_URGENT_DATA</td>
+<td width="100"><i>2</i></td>
+<td><p>urgent data (set on data packet)</p>
+</td>
+</tr>
+<tr>
+<td width="150">TCP_I_ESTABLISHED</td>
+<td width="100"><i>3</i></td>
+<td><p>connection established</p>
+</td>
+</tr>
+<tr>
+<td width="150">TCP_I_PEER_CLOSED</td>
+<td width="100"><i>4</i></td>
+<td><p>FIN received from remote <a href="TCP-id271256.html">TCP</a></p>
+</td>
+</tr>
+<tr>
+<td width="150">TCP_I_CLOSED</td>
+<td width="100"><i>5</i></td>
+<td><p>connection closed normally (via FIN exchange)</p>
+</td>
+</tr>
+<tr>
+<td width="150">TCP_I_CONNECTION_REFUSED</td>
+<td width="100"><i>6</i></td>
+<td><p>connection refused</p>
+</td>
+</tr>
+<tr>
+<td width="150">TCP_I_CONNECTION_RESET</td>
+<td width="100"><i>7</i></td>
+<td><p>connection reset</p>
+</td>
+</tr>
+<tr>
+<td width="150">TCP_I_TIMED_OUT</td>
+<td width="100"><i>8</i></td>
+<td><p>conn-estab timer went off, or max retransm. count reached</p>
+</td>
+</tr>
+<tr>
+<td width="150">TCP_I_STATUS</td>
+<td width="100"><i>9</i></td>
+<td><p>status info (will carry <a href="TCPStatusInfo-id269015.html">TCPStatusInfo</a>)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">enum</span> TcpStatusInd
+{
+    TCP_I_DATA = <span class="src-number">1</span>;              <span class="src-comment">// data packet (set on data packet)</span>
+    TCP_I_URGENT_DATA = <span class="src-number">2</span>;       <span class="src-comment">// urgent data (set on data packet)</span>
+    TCP_I_ESTABLISHED = <span class="src-number">3</span>;       <span class="src-comment">// connection established</span>
+    TCP_I_PEER_CLOSED = <span class="src-number">4</span>;       <span class="src-comment">// FIN received from remote TCP</span>
+    TCP_I_CLOSED = <span class="src-number">5</span>;            <span class="src-comment">// connection closed normally (via FIN exchange)</span>
+    TCP_I_CONNECTION_REFUSED = <span class="src-number">6</span>; <span class="src-comment">// connection refused</span>
+    TCP_I_CONNECTION_RESET = <span class="src-number">7</span>;  <span class="src-comment">// connection reset</span>
+    TCP_I_TIMED_OUT = <span class="src-number">8</span>;         <span class="src-comment">// conn-estab timer went off, or max retransm. count reached</span>
+    TCP_I_STATUS = <span class="src-number">9</span>;            <span class="src-comment">// status info (will carry TCPStatusInfo)</span>
+};</pre>
+</body>
+</html>

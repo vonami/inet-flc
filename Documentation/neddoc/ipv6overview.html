@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2> IPv6 model overview</h2>
+<p>IPv6 support is implemented by several cooperating modules. The <a href="IPv6-id232445.html">IPv6</a> module
+implements IPv6 datagram handling (sending, forwarding etc). It relies on
+<a href="RoutingTable6-id232346.html">RoutingTable6</a> to get access to the routes. <a href="RoutingTable6-id232346.html">RoutingTable6</a> also contains the
+neighbour discovery data structures (destination cache, neighbour cache,
+prefix list -- the latter effectively merged into the route table). Interface
+configuration (address, state, timeouts etc) is held in the <a href="InterfaceTable-id227840.html">InterfaceTable</a>,
+in <tt>IPv6InterfaceData</tt> objects attached to <tt>InterfaceEntry</tt>
+as its <tt>ipv6()</tt> member.</p>
+
+<p>The module <a href="IPv6NeighbourDiscovery-id229263.html">IPv6NeighbourDiscovery</a> implements all tasks associated with
+neighbour discovery and stateless address autoconfiguration. The data
+structures themselves (destination cache, neighbour cache, prefix list)
+are kept in <a href="RoutingTable6-id232346.html">RoutingTable6</a>, and are accessed via public C++ methods.
+Neighbour discovery packets are only sent and processed by this module --
+when <a href="IPv6-id232445.html">IPv6</a> receives one, it forwards the packet to <a href="IPv6NeighbourDiscovery-id229263.html">IPv6NeighbourDiscovery</a>.</p>
+
+<p>The rest of ICMPv6 (ICMP errors, echo request/reply etc) is implemented in
+the module <a href="ICMPv6-id229107.html">ICMPv6</a>, just like with IPv4. ICMP errors are sent into
+<a href="IPv6ErrorHandling-id232510.html">IPv6ErrorHandling</a>, which the user can extend or replace to get errors
+handled in any way they like.</p>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>Decider80211</i>
+</h2>
+<p><b>File: <a href="file-id251455.html">NetworkInterfaces/MF80211/phyLayer/decider/Decider80211.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_decider80211.html" target="_top">click here</a></b></p>
+<p>Decider module of the 802.11 modules</p>
+
+<p>This component has been taken over from Mobility Framework 1.0a5.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id251628.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="Decider80211-id251628.html" title="simple Decider80211" alt="Decider80211" coords="7,88,100,112">
+<area shape="rect" href="Nic80211-id250122.html" title="module Nic80211" alt="Nic80211" coords="17,16,89,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="Nic80211-id250122.html">Nic80211</a></td>
+<td><p>This NIC implements an 802.11 network interface card.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td width="150">snirThreshold</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">lowergateIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> Decider80211
+    <span class="src-keyword">parameters</span>:
+        debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        snirThreshold: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        bitrate: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">out:</span> uppergateOut;
+        <span class="src-keyword">in:</span> lowergateIn;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

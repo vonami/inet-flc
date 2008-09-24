@@ -1,0 +1,103 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>ChannelControl</i>
+</h2>
+<p><b>File: <a href="file-id272273.html">World/ChannelControl.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_channel_control.html" target="_top">click here</a></b></p>
+<p><a href="ChannelControl-id272488.html">ChannelControl</a> has exactly one instance in every network model that 
+contains mobile or wireless nodes. This module gets informed about the 
+location and movement of nodes, and determines which nodes are within
+communication or interference distance. This info is then used by the 
+radio interfaces of nodes at transmissions.</p>
+
+<p>Side effect: updates the containing compound module's display string
+according to the given playground size (sets <tt>"p=0,0;b=$playgroundSizeX,
+$playgroundSizeY"</tt>).</p>
+
+<p>This <a href="ChannelControl-id272488.html">ChannelControl</a> is a different implementation from the one in 
+Mobility Framework 1.0a5: here we use sendDirect(), while the MF version 
+used normal send() and dynamic connections.</p>
+
+<p><b>Author:</b> Andras Varga (based on MF's <a href="ChannelControl-id272488.html">ChannelControl</a> by Steffen Sroka and Daniel Willkomm)</p>
+
+<p><b>See also:</b> <a href="BasicMobility-id225842.html">BasicMobility</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id272488.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="ChannelControl-id272488.html" title="simple ChannelControl" alt="ChannelControl" coords="7,16,124,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">coreDebug</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>debug switch for core framework</p>
+</td>
+</tr>
+<tr>
+<td width="150">playgroundSizeX</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>x size of the playground (in meters)</p>
+</td>
+</tr>
+<tr>
+<td width="150">playgroundSizeY</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>y size of the playground (in meters)</p>
+</td>
+</tr>
+<tr>
+<td width="150">pMax</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>maximum sending power used for this network (in mW)</p>
+</td>
+</tr>
+<tr>
+<td width="150">sat</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>signal attenuation threshold (in dBm)</p>
+</td>
+</tr>
+<tr>
+<td width="150">alpha</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>path loss coefficient</p>
+</td>
+</tr>
+<tr>
+<td width="150">carrierFrequency</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>carrier frequency of the channel (in Hz)</p>
+</td>
+</tr>
+<tr>
+<td width="150">numChannels</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>number of radio channels (frequencies)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> ChannelControl
+    <span class="src-keyword">parameters</span>:
+        coreDebug: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// debug switch for core framework</span>
+        playgroundSizeX: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// x size of the playground (in meters)</span>
+        playgroundSizeY: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// y size of the playground (in meters)</span>
+        pMax: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// maximum sending power used for this network (in mW)</span>
+        sat: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// signal attenuation threshold (in dBm)</span>
+        alpha: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// path loss coefficient</span>
+        carrierFrequency: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// carrier frequency of the channel (in Hz)</span>
+        numChannels: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// number of radio channels (frequencies)</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

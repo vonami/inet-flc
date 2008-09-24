@@ -1,0 +1,83 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>AirFrame</i>
+</h2>
+<p><b>File: <a href="file-id252789.html">NetworkInterfaces/MFCore/AirFrame.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_air_frame.html" target="_top">click here</a></b></p>
+<p>Format of the messages that are sent to the channel</p>
+
+<p>subclass if you want to create your own <a href="AirFrame-id252991.html">AirFrame</a> message class</p>
+
+<p>This message format is used to send a packet from a snrEval module
+to the channel. All other snrEval modules that can 'hear' this
+message can evaluate noise, interference etc. from the information
+contained in this message:</p>
+
+<p>If you need more fields for whatever reason, please do NOT create
+your own message! Just extend (subclass) this message format (see Omnet
+manual,chapter Messages - Inheritance among message classes).</p>
+
+<p>This component has been taken over from Mobility Framework 1.0a5.</p>
+
+<p><b>TODO:</b> As soon as opp_msgc also supports pointers we should replace
+the id with a pointer to the nodes coordinates itself.</p>
+
+<p><b>Author:</b> Marc Loebbers</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id252991.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="AirFrame-id252991.html" title="message AirFrame" alt="AirFrame" coords="7,16,84,40">
+</map><h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">pSend</td>
+<td width="100"><i>double</i></td>
+<td><p>Power with which this packet is transmitted</p>
+</td>
+</tr>
+<tr>
+<td width="150">channelNumber</td>
+<td width="100"><i>int</i></td>
+<td><p>Channel on which the packet is sent</p>
+</td>
+</tr>
+<tr>
+<td width="150">duration</td>
+<td width="100"><i>double</i></td>
+<td><p>Time it takes to transmit the packet, in seconds!</p>
+</td>
+</tr>
+<tr>
+<td width="150">bitrate</td>
+<td width="100"><i>double</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">senderPos</td>
+<td width="100"><i>Coord</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> AirFrame
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">double</span> pSend; <span class="src-comment">// Power with which this packet is transmitted</span>
+        <span class="src-keyword">int</span> channelNumber; <span class="src-comment">// Channel on which the packet is sent</span>
+        <span class="src-keyword">double</span> duration; <span class="src-comment">// Time it takes to transmit the packet, in seconds!</span>
+        <span class="src-keyword">double</span> bitrate;
+        Coord senderPos;
+};</pre>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/MF80211/phyLayer/decider/SnrDecider.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="SnrDecider-id251834.html">SnrDecider</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//***************************************************************************</span>
+<span class="src-comment">// * file:        SnrDecider.ned</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * author:      Marc Loebbers</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * copyright:   (C) 2004 Telecommunication Networks Group (TKN) at</span>
+<span class="src-comment">// *              Technische Universitaet Berlin, Germany.</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// *              This program is free software; you can redistribute it</span>
+<span class="src-comment">// *              and/or modify it under the terms of the GNU General Public</span>
+<span class="src-comment">// *              License as published by the Free Software Foundation; either</span>
+<span class="src-comment">// *              version 2 of the License, or (at your option) any later</span>
+<span class="src-comment">// *              version.</span>
+<span class="src-comment">// *              For further information see file COPYING</span>
+<span class="src-comment">// *              in the top level directory</span>
+<span class="src-comment">// ***************************************************************************</span>
+<span class="src-comment">// * part of:     framework implementation developed by tkn</span>
+<span class="src-comment">// **************************************************************************/</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Decider module to be used with SnrEval</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This component has been taken over from Mobility Framework 1.0a5.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> SnrDecider
+    <span class="src-keyword">parameters</span>:
+       debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+       snrThresholdLevel: <span class="src-keyword">numeric</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">out:</span> uppergateOut;
+        <span class="src-keyword">in:</span> lowergateIn;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

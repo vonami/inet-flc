@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Enum <i>ICMPType</i>
+</h2>
+<p><b>File: <a href="file-id231468.html">Network/IPv4/ICMPMessage.msg</a></b></p>
+<p>Not the real <a href="ICMP-id230662.html">ICMP</a> codes; here it's set up so that codes above 128 are
+informational</p>
+
+<h3 class="subtitle">Enum values:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">ICMP_DESTINATION_UNREACHABLE</td>
+<td width="100"><i>13</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ICMP_REDIRECT</td>
+<td width="100"><i>5</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ICMP_TIME_EXCEEDED</td>
+<td width="100"><i>11</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ICMP_PARAMETER_PROBLEM</td>
+<td width="100"><i>12</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ICMP_ECHO_REQUEST</td>
+<td width="100"><i>128</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ICMP_ECHO_REPLY</td>
+<td width="100"><i>129</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ICMP_TIMESTAMP_REQUEST</td>
+<td width="100"><i>130</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ICMP_TIMESTAMP_REPLY</td>
+<td width="100"><i>131</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">enum</span> ICMPType
+{
+    ICMP_DESTINATION_UNREACHABLE = <span class="src-number">13</span>;
+    ICMP_REDIRECT = <span class="src-number">5</span>;
+    ICMP_TIME_EXCEEDED = <span class="src-number">11</span>;
+    ICMP_PARAMETER_PROBLEM = <span class="src-number">12</span>;
+
+    ICMP_ECHO_REQUEST = <span class="src-number">128</span>;
+    ICMP_ECHO_REPLY = <span class="src-number">129</span>;
+    ICMP_TIMESTAMP_REQUEST = <span class="src-number">130</span>;
+    ICMP_TIMESTAMP_REPLY = <span class="src-number">131</span>;
+};</pre>
+</body>
+</html>

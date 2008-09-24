@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/ARP/ARP.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="ARP-id227137.html">ARP</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Implements the Address Resolution Protocol for IPv4 and IEEE 802 6-byte </span>
+<span class="src-comment">// MAC addresses.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Expects IPRoutingDecision control info objects to be attached to packets</span>
+<span class="src-comment">// coming from higher layers. \ARP packets are represented by the ARPPacket</span>
+<span class="src-comment">// class. Datagrams to be sent and incoming \ARP packets are expected to</span>
+<span class="src-comment">// on gate ipIn.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// \ARP resolution is used over &lt;i&gt;broadcast&lt;/i&gt; interfaces only,</span>
+<span class="src-comment">// that is, over interfaces that have the &lt;tt&gt;isBroadcast()&lt;/tt&gt; flag set in </span>
+<span class="src-comment">// &lt;tt&gt;InterfaceEntry&lt;/tt&gt; (see InterfaceTable). Since routing files </span>
+<span class="src-comment">// (&lt;tt&gt;.irt&lt;/tt&gt; or &lt;tt&gt;.mrt&lt;/tt&gt; files, given as parameter to RoutingTable)</span>
+<span class="src-comment">// may modify the default interface configuration, you must take care that</span>
+<span class="src-comment">// these files don't contain the word &lt;tt&gt;BROADCAST&lt;/tt&gt; e.g. for PPP</span>
+<span class="src-comment">// interfaces.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> ARP
+    <span class="src-keyword">parameters</span>:
+        retryTimeout: <span class="src-keyword">numeric</span>, <span class="src-comment">// number seconds ARP waits between retries to resolve an \IP address</span>
+        retryCount: <span class="src-keyword">numeric</span>,   <span class="src-comment">// number of times ARP will attempt to resolve an \IP address</span>
+        cacheTimeout: <span class="src-keyword">numeric</span>, <span class="src-comment">// number seconds unused entries in the cache will time out</span>
+        proxyARP: <span class="src-keyword">bool</span>;        <span class="src-comment">// sets proxy \ARP mode (replying to \ARP requests for the addresses for which a routing table entry exists)</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> ipIn;
+        <span class="src-keyword">out:</span> nicOut[];
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

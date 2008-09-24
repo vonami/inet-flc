@@ -1,0 +1,37 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Transport/RTP/RTPApplication.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="RTPApplication-id269612.html">RTPApplication</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-keyword">simple</span> RTPApplication
+
+	<span class="src-keyword">parameters</span>:
+
+		commonName: <span class="src-keyword">string</span>,
+		profileName: <span class="src-keyword">string</span>,
+		bandwidth,
+		destinationAddress: <span class="src-keyword">string</span>,
+		portNumber,
+		fileName: <span class="src-keyword">string</span>,
+		payloadType,
+		sessionEnterDelay,
+		transmissionStartDelay,
+		transmissionStopDelay,
+		sessionLeaveDelay;
+
+	<span class="src-keyword">gates</span>:
+		<span class="src-keyword">out:</span> toRTP;
+		<span class="src-keyword">in:</span> fromRTP;
+
+
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

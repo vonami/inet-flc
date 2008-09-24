@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Applications/TCPApp/TCPSessionApp.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="TCPSessionApp-id220885.html">TCPSessionApp</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Single-connection TCP application: it opens a connection, sends</span>
+<span class="src-comment">// the given number of bytes, and closes. Sending may be one-off,</span>
+<span class="src-comment">// or may be controlled by a "script" which is a series of</span>
+<span class="src-comment">// (time, number of bytes) pairs. May act either as client or as server,</span>
+<span class="src-comment">// and works with TCPVirtualBytesSendQueue/RcvQueue as sendQueue/receiveQueue</span>
+<span class="src-comment">// setting for TCP.</span>
+<span class="src-comment">// Compatible with both IPv4 and IPv6.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;b&gt;Opening the connection&lt;/b&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Regarding the type of opening the connection, the application may</span>
+<span class="src-comment">// be either a client or a server. When active=false, the application</span>
+<span class="src-comment">// will listen on the given local port, and wait for an incoming connection.</span>
+<span class="src-comment">// When active=true, the application will bind to given local address:port,</span>
+<span class="src-comment">// and connect to the connectAddress:connectPort. To use an ephemeral port</span>
+<span class="src-comment">// as local port, set the port parameter to -1.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Even when in server mode (active=false), the application will only</span>
+<span class="src-comment">// serve one incoming connection. Further connect attempts will be</span>
+<span class="src-comment">// refused by TCP (it will send RST) for lack of LISTENing connections.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The time of opening the connection is in the tOpen parameter.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;b&gt;Sending data&lt;/b&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Regardless of the type of OPEN, the application can be made to send</span>
+<span class="src-comment">// data. One way of specifying sending is via the tSend, sendBytes</span>
+<span class="src-comment">// parameters, the other way is sendScript. With the former, sendBytes</span>
+<span class="src-comment">// bytes will be sent at tSend. With sendScript, the format is</span>
+<span class="src-comment">// "&lt;time&gt; &lt;numBytes&gt;;&lt;time&gt; &lt;numBytes&gt;;..."</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;b&gt;Closing the connection&lt;/b&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The application will issue a \TCP CLOSE at time tClose. If tClose=-1, no</span>
+<span class="src-comment">// CLOSE will be issued.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> TCPSessionApp
+    <span class="src-keyword">parameters</span>:
+        address: <span class="src-keyword">string</span>,
+        port: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        active: <span class="src-keyword">bool</span>,
+        connectAddress: <span class="src-keyword">string</span>,
+        connectPort: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        tOpen: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        tSend: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        sendBytes: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        sendScript: <span class="src-keyword">string</span>,
+        tClose: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> tcpIn;
+        <span class="src-keyword">out:</span> tcpOut;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

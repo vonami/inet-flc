@@ -1,0 +1,74 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>IPv6RoutingHeader</i>
+</h2>
+<p><b>File: <a href="file-id232873.html">Network/IPv6/IPv6ExtensionHeaders.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_pv6_routing_header.html" target="_top">click here</a></b></p>
+<p>Routing Header
+RFC 2460 Section 4.4
+Next Header Value: 43</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id232795.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="IPv6RoutingHeader-id232795.html" title="class IPv6RoutingHeader" alt="IPv6RoutingHeader" coords="12,88,156,112">
+<area shape="rect" href="IPv6ExtensionHeader-id232757.html" title="class IPv6ExtensionHeader" alt="IPv6ExtensionHeader" coords="7,16,161,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="IPv6ExtensionHeader-id232757.html">IPv6ExtensionHeader</a></td>
+<td><p>This serves as the base class for all the other extension headers.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">routingType</td>
+<td width="100"><i>unsigned char</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">segmentsLeft</td>
+<td width="100"><i>unsigned char</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">address</td>
+<td width="100"><i>IPv6Address[]</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> IPv6RoutingHeader <span class="src-keyword">extends</span> IPv6ExtensionHeader
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        unsigned <span class="src-keyword">char</span> routingType;
+        unsigned <span class="src-keyword">char</span> segmentsLeft;
+        IPv6Address address[];
+};</pre>
+</body>
+</html>

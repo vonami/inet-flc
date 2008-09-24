@@ -1,0 +1,199 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>PPPInterface</i>
+</h2>
+<p><b>File: <a href="file-id253401.html">NetworkInterfaces/PPP/PPPInterface.ned</a></b></p>
+<p>PPP interface. Complements the <a href="PPP-id253311.html">PPP</a> module with an output queue
+for QoS and RED support.</p>
+
+<p><b>See also:</b> <a href="PPPInterfaceNoQueue-id253676.html">PPPInterfaceNoQueue</a></p>
+
+<img class="screenshot" src="PPPInterface__NetworkInterfaces_PPP_PPPInterface_ned.png" ismap usemap="#screenshot" width="130" height="244"><map name="screenshot"><area shape="rect" coords="28,53 74,99" href="OutputQueue-id236035.html" title="queue: queueType like OutputQueue" alt="queue: queueType like OutputQueue">
+<area shape="rect" coords="56,133 102,179" href="PPP-id253311.html" title="ppp: PPP" alt="ppp: PPP"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id253450.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="PPPInterface-id253450.html" title="module PPPInterface" alt="PPPInterface" coords="724,88,823,112">
+<area shape="rect" href="OutputQueue-id236035.html" title="simple OutputQueue" alt="OutputQueue" coords="668,160,769,184">
+<area shape="rect" href="PPP-id253311.html" title="simple PPP" alt="PPP" coords="793,160,865,184">
+<area shape="rect" href="BurstHost-id256128.html" title="module BurstHost" alt="BurstHost" coords="7,16,84,40">
+<area shape="rect" href="OSPFRouter-id257692.html" title="module OSPFRouter" alt="OSPFRouter" coords="108,16,204,40">
+<area shape="rect" href="QuaggaRouter-id258126.html" title="module QuaggaRouter" alt="QuaggaRouter" coords="228,16,337,40">
+<area shape="rect" href="Router-id259068.html" title="module Router" alt="Router" coords="361,16,433,40">
+<area shape="rect" href="StandardHost-id259540.html" title="module StandardHost" alt="StandardHost" coords="457,16,559,40">
+<area shape="rect" href="TCPSpoofingHost-id260559.html" title="module TCPSpoofingHost" alt="TCPSpoofingHost" coords="583,16,713,40">
+<area shape="rect" href="Router6-id261869.html" title="module Router6" alt="Router6" coords="737,16,809,40">
+<area shape="rect" href="StandardHost6-id262388.html" title="module StandardHost6" alt="StandardHost6" coords="833,16,943,40">
+<area shape="rect" href="LDP_LSR-id263362.html" title="module LDP_LSR" alt="LDP_LSR" coords="967,16,1049,40">
+<area shape="rect" href="RSVP_LSR-id264429.html" title="module RSVP_LSR" alt="RSVP_LSR" coords="1073,16,1167,40">
+<area shape="rect" href="WirelessHost-id266620.html" title="module WirelessHost" alt="WirelessHost" coords="1191,16,1287,40">
+<area shape="rect" href="WirelessHostSimplified-id267586.html" title="module WirelessHostSimplified" alt="WirelessHostSimplified" coords="1311,16,1476,40">
+<area shape="rect" href="RTPHost-id269911.html" title="module RTPHost" alt="RTPHost" coords="1500,16,1572,40">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="OutputQueue-id236035.html">OutputQueue</a></td>
+<td><p>Prototype for per-NIC output queues. Concrete queues can implement
+drop-tail, RED etc. policy.</p>
+</td>
+</tr>
+<tr>
+<td><a href="PPP-id253311.html">PPP</a></td>
+<td><p>PPP implementation.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="BurstHost-id256128.html">BurstHost</a></td>
+<td><p>Definition of an <a href="IP-id231134.html">IP</a> node with a transport generator that connects
+to <a href="IP-id231134.html">IP</a> directly, without <a href="TCP-id271256.html">TCP</a> or <a href="UDP-id272076.html">UDP</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="OSPFRouter-id257692.html">OSPFRouter</a></td>
+<td><p>IP router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="QuaggaRouter-id258126.html">QuaggaRouter</a></td>
+<td><p>Quagga-based IP router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Router-id259068.html">Router</a></td>
+<td><p>IP router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="StandardHost-id259540.html">StandardHost</a></td>
+<td><p>IP host with <a href="TCP-id271256.html">TCP</a>, <a href="UDP-id272076.html">UDP</a> layers and applications.</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCPSpoofingHost-id260559.html">TCPSpoofingHost</a></td>
+<td><p>IP host with <a href="TCPSpoof-id223974.html">TCPSpoof</a> in the application layer.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Router6-id261869.html">Router6</a></td>
+<td><p>IPv6 router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="StandardHost6-id262388.html">StandardHost6</a></td>
+<td><p>IPv6 host with <a href="TCP-id271256.html">TCP</a>, <a href="UDP-id272076.html">UDP</a> layers and applications.</p>
+</td>
+</tr>
+<tr>
+<td><a href="LDP_LSR-id263362.html">LDP_LSR</a></td>
+<td><p>An <a href="LDP-id233136.html">LDP</a>-capable router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="RSVP_LSR-id264429.html">RSVP_LSR</a></td>
+<td><p>An RSVP-TE capable router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessHost-id266620.html">WirelessHost</a></td>
+<td><p>Models a host with one wireless (802.11b) card in infrastructure mode.
+This module is basically a <a href="StandardHost-id259540.html">StandardHost</a> with an <a href="Ieee80211NicSTA-id245326.html">Ieee80211NicSTA</a> added.
+It should be used in conjunction with <a href="WirelessAP-id265146.html">WirelessAP</a>, or any other AP model
+which contains <a href="Ieee80211NicAP-id244686.html">Ieee80211NicAP</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a></td>
+<td><p>Models a host with one wireless (802.11b) card in infrastructure mode,
+but using a simplified NIC that does not support handovers.
+This module is basically a <a href="StandardHost-id259540.html">StandardHost</a> with an <a href="Ieee80211NicSTASimplified-id245578.html">Ieee80211NicSTASimplified</a>
+added. It should be used in conjunction with <a href="WirelessAPSimplified-id265337.html">WirelessAPSimplified</a>,
+or any other AP model which contains <a href="Ieee80211NicAPSimplified-id245071.html">Ieee80211NicAPSimplified</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="RTPHost-id269911.html">RTPHost</a></td>
+<td><i>(no description)</i></td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">queueType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">physIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">physOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">netwIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">netwOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable"><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr></table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> PPPInterface
+    <span class="src-keyword">parameters</span>:
+        queueType: <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> physIn;
+        <span class="src-keyword">out:</span> physOut;
+        <span class="src-keyword">in:</span> netwIn;
+        <span class="src-keyword">out:</span> netwOut;
+    <span class="src-keyword">submodules</span>:
+        queue: queueType <span class="src-keyword">like</span> OutputQueue;
+            <span class="src-keyword">display</span>: "i=block/queue;p=<span class="src-number">60</span>,<span class="src-number">85</span>;q=l2queue";
+        ppp: PPP;
+            <span class="src-keyword">parameters</span>:
+                queueModule = "queue",
+                txQueueLimit = <span class="src-number">1</span>; <span class="src-comment">// queue sends one packet at a time</span>
+            <span class="src-keyword">display</span>: "i=block/rxtx;p=<span class="src-number">88</span>,<span class="src-number">165</span>";
+    <span class="src-keyword">connections</span>:
+        netwIn <span class="src-keyword">--&gt;</span> queue.in <span class="src-keyword">display</span> "m=n";
+        queue.out <span class="src-keyword">--&gt;</span> ppp.netwIn;
+        netwOut <span class="src-keyword">&lt;--</span> ppp.netwOut <span class="src-keyword">display</span> "m=n";
+        physIn <span class="src-keyword">--&gt;</span> ppp.physIn <span class="src-keyword">display</span> "m=s";
+        physOut <span class="src-keyword">&lt;--</span> ppp.physOut <span class="src-keyword">display</span> "m=s";
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

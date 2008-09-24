@@ -1,0 +1,221 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>Ieee80211NicAPSimplified</i>
+</h2>
+<p><b>File: <a href="file-id244984.html">NetworkInterfaces/Ieee80211/Ieee80211NicAPSimplified.ned</a></b></p>
+<p>This NIC implements an infrastructure mode 802.11 network interface card
+for a wireless Access Point (AP), but using a simplified mgmt module
+that does not support handovers.</p>
+
+<img class="screenshot" src="Ieee80211NicAPSimplified__NetworkInterfaces_Ieee80211_Ieee80211NicAPSimplified_ned.png" ismap usemap="#screenshot" width="174" height="303"><map name="screenshot"><area shape="rect" coords="64,37 110,83" href="Ieee80211MgmtAPSimplified-id247334.html" title="mgmt: Ieee80211MgmtAPSimplified" alt="mgmt: Ieee80211MgmtAPSimplified">
+<area shape="rect" coords="64,123 110,169" href="Ieee80211Mac-id246064.html" title="mac: Ieee80211Mac" alt="mac: Ieee80211Mac">
+<area shape="rect" coords="64,208 110,254" href="Ieee80211Radio-id254399.html" title="radio: Ieee80211Radio" alt="radio: Ieee80211Radio"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id245071.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="Ieee80211NicAPSimplified-id245071.html" title="module Ieee80211NicAPSimplified" alt="Ieee80211NicAPSimplified" coords="139,88,320,112">
+<area shape="rect" href="Ieee80211Mac-id246064.html" title="simple Ieee80211Mac" alt="Ieee80211Mac" coords="7,160,105,184">
+<area shape="rect" href="Ieee80211MgmtAPSimplified-id247334.html" title="simple Ieee80211MgmtAPSimplified" alt="Ieee80211MgmtAPSimplified" coords="129,160,329,184">
+<area shape="rect" href="Ieee80211Radio-id254399.html" title="simple Ieee80211Radio" alt="Ieee80211Radio" coords="353,160,460,184">
+<area shape="rect" href="WirelessAPSimplified-id265337.html" title="module WirelessAPSimplified" alt="WirelessAPSimplified" coords="47,16,204,40">
+<area shape="rect" href="WirelessAPWithEthSimplified-id265866.html" title="module WirelessAPWithEthSimplified" alt="WirelessAPWithEthSimplified" coords="228,16,441,40">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="Ieee80211Mac-id246064.html">Ieee80211Mac</a></td>
+<td><p>Implementation of the 802.11b MAC protocol. This module is intended
+to be used in combination with the <a href="Ieee80211Radio-id254399.html">Ieee80211Radio</a> module as the physical
+layer. (The <a href="SnrEval80211-id252310.html">SnrEval80211</a> and <a href="Decider80211-id251628.html">Decider80211</a> modules should also work if
+per-packet bitrate setting gets implemented.)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211MgmtAPSimplified-id247334.html">Ieee80211MgmtAPSimplified</a></td>
+<td><p>Used in 802.11 infrastructure mode: handles management frames for
+an access point (AP). It relies on a connected <a href="Ieee80211Mac-id246064.html">Ieee80211Mac</a> for actual
+reception and transmission of frames.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Radio-id254399.html">Ieee80211Radio</a></td>
+<td><p>Physical layer for the IEEE 802.11 models. Its external interface
+(including gates and how it communicates with other modules)
+is the same as the <a href="Radio-id254697.html">Radio</a> module's.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="WirelessAPSimplified-id265337.html">WirelessAPSimplified</a></td>
+<td><p>Models a 802.11 Access Point, but using a simplified NIC that does not
+support handovers. It should be used in conjunction with <a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a>,
+or any other host model containing WirelessNicSTASimplified.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessAPWithEthSimplified-id265866.html">WirelessAPWithEthSimplified</a></td>
+<td><p>Models a 802.11 Access Point with Ethernet ports, but using a simplified NIC
+that does not support handovers. It can be used in conjunction with
+<a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a>, or any other host model containing WirelessNicSTASimplified.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateIn</td>
+<td width="100"><i>input</i></td>
+<td><p>to upper layers</p>
+</td>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td><p>from upper layers</p>
+</td>
+</tr>
+<tr>
+<td width="150">radioIn</td>
+<td width="100"><i>input</i></td>
+<td><p>to receive AirFrames</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="Ieee80211MgmtAPSimplified-id247334.html">mgmt</a>.frameCapacity</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Ieee80211Mac-id246064.html">mac</a>.address</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address as hex string (12 hex digits), or
+"auto". "auto" values will be replaced by
+a generated MAC address in init stage 0.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Mac-id246064.html">mac</a>.maxQueueSize</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>max queue length in frames; only used if queueModule==""</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Mac-id246064.html">mac</a>.bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Ieee80211Mac-id246064.html">mac</a>.rtsThresholdBytes</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>longer messages will be sent using RTS/CTS; use 2346 for default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Mac-id246064.html">mac</a>.retryLimit</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>maximum number of retries per message, -1 means default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Mac-id246064.html">mac</a>.cwMinData</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>contention window for normal data frames, -1 means default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Mac-id246064.html">mac</a>.cwMinBroadcast</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>contention window for broadcast messages, -1 means default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Radio-id254399.html">radio</a>.channelNumber</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>channel identifier</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Radio-id254399.html">radio</a>.transmitterPower</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>power used for transmission of messages (in mW)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Radio-id254399.html">radio</a>.bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>(in bits/s)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Radio-id254399.html">radio</a>.thermalNoise</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>base noise level (dBm)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Radio-id254399.html">radio</a>.pathLossAlpha</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>used by the path loss calculation</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Radio-id254399.html">radio</a>.snirThreshold</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>if signal-noise ratio is below this threshold, frame is considered noise (in dB)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211Radio-id254399.html">radio</a>.sensitivity</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>received signals with power below sensitivity are ignored</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> Ieee80211NicAPSimplified
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn; <span class="src-comment">// to upper layers</span>
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// from upper layers</span>
+        <span class="src-keyword">in:</span> radioIn; <span class="src-comment">// to receive AirFrames</span>
+    <span class="src-keyword">submodules</span>:
+        mgmt: Ieee80211MgmtAPSimplified;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">96</span>,<span class="src-number">69</span>;i=block/cogwheel;q=wlanDataQueue";
+        mac: Ieee80211Mac;
+            <span class="src-keyword">parameters</span>:
+                queueModule = "mgmt";
+            <span class="src-keyword">display</span>: "p=<span class="src-number">96</span>,<span class="src-number">155</span>;i=block/layer";
+        radio: Ieee80211Radio;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">96</span>,<span class="src-number">240</span>;i=block/wrxtx";
+    <span class="src-keyword">connections</span>:
+        radioIn <span class="src-keyword">--&gt;</span> radio.radioIn;
+        radio.uppergateIn <span class="src-keyword">&lt;--</span> mac.lowergateOut;
+        radio.uppergateOut <span class="src-keyword">--&gt;</span> mac.lowergateIn;
+
+        mac.uppergateOut <span class="src-keyword">--&gt;</span> mgmt.macIn;
+        mac.uppergateIn <span class="src-keyword">&lt;--</span> mgmt.macOut;
+
+        mgmt.uppergateOut <span class="src-keyword">--&gt;</span> uppergateOut;
+        mgmt.uppergateIn <span class="src-keyword">&lt;--</span> uppergateIn;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

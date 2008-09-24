@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>ConstSpeedMobility</i>
+</h2>
+<p><b>File: <a href="file-id226227.html">Mobility/ConstSpeedMobility.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_const_speed_mobility.html" target="_top">click here</a></b></p>
+<p>Controls all movement related things of a host</p>
+
+<p><a href="ConstSpeedMobility-id226290.html">ConstSpeedMobility</a> does not use one of the standard mobility approaches.
+The user can define a velocity for each Host and an update interval. If
+the velocity is greater than zero (i.e. the Host is not stationary) the
+<a href="ConstSpeedMobility-id226290.html">ConstSpeedMobility</a> module calculates a random target position for the Host.
+Depending to the update interval and the velocity it calculates the number of
+steps to reach the destination and the step-size. Every update interval
+<a href="ConstSpeedMobility-id226290.html">ConstSpeedMobility</a> calculates the new position on its way to the target
+position and updates the display. Once the target position is reached
+<a href="ConstSpeedMobility-id226290.html">ConstSpeedMobility</a> calculates a new target position.</p>
+
+<p>This component has been taken over from Mobility Framework 1.0a5.</p>
+
+<p><b>See also:</b> <a href="ChannelControl-id272488.html">ChannelControl</a></p>
+
+<p><b>Author:</b> Steffen Sroka, Marc Loebbers, Daniel Willkomm</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id226290.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="ConstSpeedMobility-id226290.html" title="simple ConstSpeedMobility" alt="ConstSpeedMobility" coords="7,16,151,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td width="150">vHost</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>speed of the host (in m/s)</p>
+</td>
+</tr>
+<tr>
+<td width="150">updateInterval</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>time interval to update the hosts position</p>
+</td>
+</tr>
+<tr>
+<td width="150">x</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>start x coordinate (-1 = display string position, or random if it's missing)</p>
+</td>
+</tr>
+<tr>
+<td width="150">y</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>start y coordinate (-1 = display string position, or random if it's missing)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> ConstSpeedMobility
+    <span class="src-keyword">parameters</span>:
+    debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        vHost : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// speed of the host (in m/s)</span>
+        updateInterval : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// time interval to update the hosts position</span>
+        x: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// start x coordinate (-1 = display string position, or random if it's missing)</span>
+        y: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// start y coordinate (-1 = display string position, or random if it's missing)</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Struct <i>FEC_TLV</i>
+</h2>
+<p><b>File: <a href="file-id233301.html">Network/LDP/LDPPacket.msg</a></b></p>
+<p>(no description)</p>
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id233442.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="FEC_TLV-id233442.html" title="struct FEC_TLV" alt="FEC_TLV" coords="7,16,89,40">
+</map><h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">addr</td>
+<td width="100"><i>IPAddress</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">length</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">struct</span> FEC_TLV
+{
+<span class="src-comment">//</span>
+<span class="src-comment">// XXX FIXME mapping messages may contain multiple FEC elements (use std::vector)</span>
+<span class="src-comment">//</span>
+    <span class="src-keyword">fields</span>:
+        IPAddress addr;
+        <span class="src-keyword">int</span> length;
+};</pre>
+</body>
+</html>

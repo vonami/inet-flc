@@ -1,0 +1,65 @@
+- add IdealRadio, DistanceBasedRadio, GilbertElliotRadio.
+   in DistanceBasedRadio: decouple transmission range from interference range 
+   (ie use 2 different module parameters)
+--------
+- model link failures, via isDown() method of InterfaceEntry. L2 modules 
+  should understand isDown(), and FailureManager should be enhanced with
+  linkdown/linkup commands. See email on list archive on 9/17/2006 10:34 AM
+--------
+- create NetworkInterfaces/Base subdirectory: AirFrame, WirelessMacBase,
+  ChannelAccess, etc.
+--------
+- Ieee80211Mac to fire TxNotifDetails when Ack arrives for a frame. Mgmt layer 
+  to use this notification to learn when ProbeRequest or AssociationResponse
+  has been transmitted.
+--------
+- code consistency: use omit-get-verb everywhere, including the Ieee80211 models?
+--------
+- ChannelControl: grid; instead of having pMax parameter, it should ask all
+  radios and collect pMax from them! (or, directly the range!)
+--------
+- radio models: when calculating the probability of bit errors, snirMIN is 
+  assumed for the whole duration of the frame! This means that if snir 
+  changes along the packet duration, we overestimate the probability of 
+  bit error. (there should be proper integration there)
+--------
+- IReceptionModel: 
+  - improve it to be able to accomodate antenna gain: calculation function
+    should take node positions, antenna directions (maybe this should be in
+    some IDirectionalReceptionmodel, plugging into some AbstractDirectionalRadio?)
+  - allow for implementing "good/bad channel"-type radio models (Gilbert-Elliot)
+    e.g. containsBadChannelState(starttime, endtime)
+  - allow the radio model to add extra noise over time, or modify received power
+    over time, e.g. using functions like 
+      PowerList calculateReceivedPower(...)
+      PowerList ambientNoise(...)
+    (maybe this should be some IDetailedReceptionModel, plugging into
+    a specialized version of AbstractRadio?)
+--------
+- AbstractRadio: consider: don't sent up the packet if there're bit errors,
+  just fire some specific radio state change notification! would simplify the
+  Ieee80211Mac state machine a lot! 
+--------
+- tummiepiggy's TCP bug ("TCP_S_FIN_WAIT_1 timeout" on mailing list)
+--------
+- quagga/socketmsg: use base/bytearraymessage instead
+--------
+- implement ICMP rate limiting, see e.g bsd.mod/netinet/ip_icmp.c, badport_bandlim()
+- ICMP options: stopOnError (bool param), UDPBadPortSendICMP (bool param)
+--------
+- problem with NetworkConfigurator + RSVP's FailureManager: after deleting/recreating
+  LSR, configured IP addresses and host routes to PPP peers get lost.
+  Solution: implement failure/recovery with NF_FAILURE and NF_RECOVERY notifications!
+--------
+- check in Quagga documentation
+- rename Daemon to QuaggaDaemon
+--------
+- IPvXAddress: change get4()/get6() to v4()/v6()
+- Wrap RoutingEntry members into getter/setter methods!
+--------
+- "ack" in LinkStateMsg redundant? (never read)
+Q: what is the TELinkInfo.state flag?
+Q: what is UnResvBandwidth[8] indexed with? what is [4] and [7] that gets printed?
+
+--------
+- MPLS examples: there's heaps of ICMP errors coming from UDP ("port unreachable")

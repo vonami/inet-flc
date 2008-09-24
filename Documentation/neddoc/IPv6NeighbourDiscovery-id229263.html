@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>IPv6NeighbourDiscovery</i>
+</h2>
+<p><b>File: <a href="file-id229289.html">Network/ICMPv6/IPv6NeighbourDiscovery.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_pv6_neighbour_discovery.html" target="_top">click here</a></b></p>
+<p>Implements IPv6 Neighbour Discovery.</p>
+
+<p>An overview of the IPv6 implementation in the INET Framework is
+provided <a href="ipv6overview.html">here</a>.</p>
+
+<p><b>See also:</b> <a href="IPv6-id232445.html">IPv6</a>, <a href="RoutingTable6-id232346.html">RoutingTable6</a>, <a href="ICMPv6-id229107.html">ICMPv6</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id229263.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="IPv6NeighbourDiscovery-id229263.html" title="simple IPv6NeighbourDiscovery" alt="IPv6NeighbourDiscovery" coords="7,88,185,112">
+<area shape="rect" href="NetworkLayer6-id261162.html" title="module NetworkLayer6" alt="NetworkLayer6" coords="37,16,155,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="NetworkLayer6-id261162.html">NetworkLayer6</a></td>
+<td><p>Represents an <a href="IPv6-id232445.html">IPv6</a> network layer (L3).</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">fromIPv6</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">toIPv6</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> IPv6NeighbourDiscovery
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> fromIPv6;
+        <span class="src-keyword">out:</span> toIPv6;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>FlatNetworkConfigurator</i>
+</h2>
+<p><b>File: <a href="file-id227556.html">Network/AutoRouting/FlatNetworkConfigurator.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_flat_network_configurator.html" target="_top">click here</a></b></p>
+<p>Configures IP addresses and routing tables for a "flat" network,
+"flat" meaning that all hosts and routers will have the same
+network address and will only differ in the host part.</p>
+
+<p>This module does't connect to any other modules (it has no gates),
+and should have only one instance in the whole model. The module
+will only run once, at the beginning of the simulation.
+When it runs, it will:</p>
+
+  <ol><li>assign IP addresses to hosts and routers. All hosts and
+      routers will be in the same network (same network address).
+      For simplicity, it will assign the same address to all interfaces
+      of a router;</li>
+
+  <li>then it'll discover the topology of the network (using OMNeT++'s
+      cTopology class), and calculate shortest paths;</li>
+
+  <li>finally, it will add routes which correspond to the shortest
+      paths to the routing tables (see <a href="RoutingTable-id231049.html">RoutingTable</a>::addRoutingEntry()).</li></ol>
+
+<p>How does it know which modules are routers, hosts, et.c that need to
+be configured, and what is the network topology? The configurator
+picks all modules of types listed in the moduleTypes parameter and
+their connections, and builds a graph from it. Then it runs Dijstra's
+shortest path algorithm on it, and configures all modules which are
+IP nodes, that is, not listed in the nonIPModuleTypes parameter.</p>
+
+<p>It is assumed that the routing table (<a href="RoutingTable-id231049.html">RoutingTable</a> module) is the
+"routingTable" or "networkLayer.routingTable" submodule in all hosts
+and routers.</p>
+
+<p>To avoid interference with the above algorithm, it's recommended that
+no host or router should have its address set explicitly, and
+no routes are set up manually. Practically, routing files (.irt, .mrt)
+should be missing or empty.</p>
+
+<p>All the above takes place in initialization stage 2. (In stage 0,
+interfaces register themselves in the <a href="InterfaceTable-id227840.html">InterfaceTable</a> modules, and
+in stage 1, routing files are read.)</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id227631.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="FlatNetworkConfigurator-id227631.html" title="simple FlatNetworkConfigurator" alt="FlatNetworkConfigurator" coords="7,16,191,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">moduleTypes</td>
+<td width="100"><i>string</i></td>
+<td><p>all module types to be considered part of the topology</p>
+</td>
+</tr>
+<tr>
+<td width="150">nonIPModuleTypes</td>
+<td width="100"><i>string</i></td>
+<td><p>module types which don't need IP configuration
+(e.g. Ethernet hub, switch or bus)</p>
+</td>
+</tr>
+<tr>
+<td width="150">networkAddress</td>
+<td width="100"><i>string</i></td>
+<td><p>network part of the address (see netmask parameter)</p>
+</td>
+</tr>
+<tr>
+<td width="150">netmask</td>
+<td width="100"><i>string</i></td>
+<td><p>host part of addresses are autoconfigured</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> FlatNetworkConfigurator
+    <span class="src-keyword">parameters</span>:
+        moduleTypes: <span class="src-keyword">string</span>, <span class="src-comment">// all module types to be considered part of the topology</span>
+        nonIPModuleTypes: <span class="src-keyword">string</span>, <span class="src-comment">// module types which don't need \IP configuration</span>
+                                  <span class="src-comment">// (e.g. Ethernet hub, switch or bus)</span>
+        networkAddress: <span class="src-keyword">string</span>, <span class="src-comment">// network part of the address (see netmask parameter)</span>
+        netmask: <span class="src-keyword">string</span>; <span class="src-comment">// host part of addresses are autoconfigured</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

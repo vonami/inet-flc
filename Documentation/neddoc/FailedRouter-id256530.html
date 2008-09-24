@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>FailedRouter</i>
+</h2>
+<p><b>File: <a href="file-id256497.html">Nodes/INET/FailedRouter.ned</a></b></p>
+<p>A failed IP router. Simply discards all packets it receives, and that's all.</p>
+
+<img class="screenshot" src="FailedRouter__Nodes_INET_FailedRouter_ned.png" ismap usemap="#screenshot" width="198" height="90"><map name="screenshot"><area shape="rect" coords="78,26 120,52" href="Dummy-id228968.html" title="dummy: Dummy" alt="dummy: Dummy"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id256530.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="FailedRouter-id256530.html" title="module FailedRouter" alt="FailedRouter" coords="7,16,103,40">
+<area shape="rect" href="Dummy-id228968.html" title="simple Dummy" alt="Dummy" coords="19,88,91,112">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="Dummy-id228968.html">Dummy</a></td>
+<td><p>Implementation of a failed router. Does nothing and simply discards any
+incoming messages. </p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">namid</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">routingFile</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ethIn [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ethOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable"><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr></table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> FailedRouter
+    <span class="src-keyword">parameters</span>:
+        namid: <span class="src-keyword">numeric</span>,
+        routingFile: <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+        <span class="src-keyword">in:</span> ethIn[];
+        <span class="src-keyword">out:</span> ethOut[];
+    <span class="src-keyword">submodules</span>:
+        dummy: Dummy;
+            <span class="src-keyword">parameters</span>:
+                namid = namid;
+            <span class="src-keyword">gatesizes</span>:
+                in[<span class="src-keyword">sizeof</span>(in)],
+                out[<span class="src-keyword">sizeof</span>(out)],
+                ethIn[<span class="src-keyword">sizeof</span>(ethIn)],
+                ethOut[<span class="src-keyword">sizeof</span>(ethOut)];
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(out)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> dummy.in[i];
+            dummy.out[i] <span class="src-keyword">--&gt;</span> out[i];
+        <span class="src-keyword">endfor</span>;
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(ethOut)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            ethIn[i] <span class="src-keyword">--&gt;</span> dummy.ethIn[i];
+            dummy.ethOut[i] <span class="src-keyword">--&gt;</span> ethOut[i];
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>TCPSegment</i>
+</h2>
+<p><b>File: <a href="file-id271171.html">Transport/TCP/TCPSegment.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_t_c_p_segment.html" target="_top">click here</a></b></p>
+<p>Represents a TCP segment, to be used with the <a href="TCP-id271256.html">TCP</a> module.</p>
+
+<p>TCP header fields not explicitly modelled:</p>
+
+  <ul><li>Data Offset (number of 32 bit words in the header): represented
+  by cMessage::length().</li>
+
+  <li>Reserved (reserved for future use)</li>
+
+  <li>Checksum (header checksum): modelled by cMessage::hasBitError()</li>
+
+  <li>Options: none supported currently (MSS comes from config)</li>
+
+  <li>Padding</li></ul>
+
+<p>cMessage::kind() may be set to an arbitrary value: <a href="TCP-id271256.html">TCP</a> entities will
+ignore it and use only the header fields (synBit, ackBit, rstBit).</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id271106.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="TCPSegment-id271106.html" title="message TCPSegment" alt="TCPSegment" coords="7,16,105,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td>cMessage</td>
+<td><i>(unknown -- not in documented files)</i></td>
+</tr></table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">customize</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">srcPort</td>
+<td width="100"><i>short</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">destPort</td>
+<td width="100"><i>short</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">sequenceNo</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ackNo</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">urgBit</td>
+<td width="100"><i>bool</i></td>
+<td><p>URG: urgent pointer field significant if set</p>
+</td>
+</tr>
+<tr>
+<td width="150">ackBit</td>
+<td width="100"><i>bool</i></td>
+<td><p>ACK: ackNo significant if set</p>
+</td>
+</tr>
+<tr>
+<td width="150">pshBit</td>
+<td width="100"><i>bool</i></td>
+<td><p>PSH: push function</p>
+</td>
+</tr>
+<tr>
+<td width="150">rstBit</td>
+<td width="100"><i>bool</i></td>
+<td><p>RST: reset the connection</p>
+</td>
+</tr>
+<tr>
+<td width="150">synBit</td>
+<td width="100"><i>bool</i></td>
+<td><p>SYN: synchronize seq. numbers</p>
+</td>
+</tr>
+<tr>
+<td width="150">finBit</td>
+<td width="100"><i>bool</i></td>
+<td><p>FIN: no more data from sender</p>
+</td>
+</tr>
+<tr>
+<td width="150">window</td>
+<td width="100"><i>unsigned long</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">urgentPointer</td>
+<td width="100"><i>unsigned long</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">payloadLength</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">payload</td>
+<td width="100"><i>TCPPayloadMessage[]</i></td>
+<td><p>Message objects (cMessages) that travel in this segment as data.
+(This field is used only with TCPMsgBasedSendQueue/RcvQueue and
+not with TCPVirtualBytesSendQueue/RcvQueue.)  Every message object
+is put into the <a href="TCPSegment-id271106.html">TCPSegment</a> that would (in real life) carry its
+last octet. That is, if message object 'msg' with length=100 bytes
+occupies sequence number range 10000..10099, it will travel in the
+<a href="TCPSegment-id271106.html">TCPSegment</a> which carries the octet 10099. This way it is easily achieved
+that the receiving <a href="TCP-id271256.html">TCP</a> passes up the message object to its client
+when the last byte of the message has arrived.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> TCPSegment <span class="src-keyword">extends</span> cMessage
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+        customize=<span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-comment">// Source Port</span>
+        <span class="src-keyword">short</span> srcPort;
+
+        <span class="src-comment">// Destination Port</span>
+        <span class="src-keyword">short</span> destPort;
+
+        <span class="src-comment">// Sequence Number: first sequence number of the first data octet</span>
+        <span class="src-comment">// in the respective segment (except if SYN is set; then the the</span>
+        <span class="src-comment">// seq. number is the initial seq. number (ISS) and the first data</span>
+        <span class="src-comment">// octet is ISS+1)</span>
+        unsigned <span class="src-keyword">int</span> sequenceNo;
+
+        <span class="src-comment">// Acknowledgement Number: if ACK flag is set, this field contains</span>
+        <span class="src-comment">// the next sequence number the sender of this segment is expecting</span>
+        <span class="src-comment">// to receive</span>
+        unsigned <span class="src-keyword">int</span> ackNo;
+
+        <span class="src-keyword">bool</span> urgBit; <span class="src-comment">// URG: urgent pointer field significant if set</span>
+        <span class="src-keyword">bool</span> ackBit; <span class="src-comment">// ACK: ackNo significant if set</span>
+        <span class="src-keyword">bool</span> pshBit; <span class="src-comment">// PSH: push function</span>
+        <span class="src-keyword">bool</span> rstBit; <span class="src-comment">// RST: reset the connection</span>
+        <span class="src-keyword">bool</span> synBit; <span class="src-comment">// SYN: synchronize seq. numbers</span>
+        <span class="src-keyword">bool</span> finBit; <span class="src-comment">// FIN: no more data from sender</span>
+
+        <span class="src-comment">// Window: the number of data octets beginning with the one indicated</span>
+        <span class="src-comment">// in the acknowledgement field which the sender of this segment is</span>
+        <span class="src-comment">// willing to accept</span>
+        unsigned <span class="src-keyword">long</span> window;
+
+        <span class="src-comment">// Urgent Pointer: communicates the current value of the urgent pointer</span>
+        <span class="src-comment">// as a positive offset from the sequence number in this segment. The</span>
+        <span class="src-comment">// urgent pointer points to the sequence number of the octet following</span>
+        <span class="src-comment">// the urgent data. This field is only be interpreted in segments with</span>
+        <span class="src-comment">// the URG control bit set.</span>
+        unsigned <span class="src-keyword">long</span> urgentPointer;
+
+        <span class="src-comment">// Payload length in octets (not an actual \TCP header field).</span>
+        <span class="src-comment">// This may not always be the same as encapsulatedPacket()-&gt;length()*8;</span>
+        <span class="src-comment">// e.g. when simulating a virtual data stream there's no encapsulated</span>
+        <span class="src-comment">// packet at all.</span>
+        <span class="src-keyword">int</span> payloadLength;
+
+        <span class="src-comment">// Message objects (cMessages) that travel in this segment as data.</span>
+        <span class="src-comment">// (This field is used only with TCPMsgBasedSendQueue/RcvQueue and</span>
+        <span class="src-comment">// not with TCPVirtualBytesSendQueue/RcvQueue.)  Every message object</span>
+        <span class="src-comment">// is put into the TCPSegment that would (in real life) carry its</span>
+        <span class="src-comment">// last octet. That is, if message object 'msg' with length=100 bytes</span>
+        <span class="src-comment">// occupies sequence number range 10000..10099, it will travel in the</span>
+        <span class="src-comment">// TCPSegment which carries the octet 10099. This way it is easily achieved</span>
+        <span class="src-comment">// that the receiving TCP passes up the message object to its client</span>
+        <span class="src-comment">// when the last byte of the message has arrived.</span>
+        <span class="src-keyword">abstract</span> TCPPayloadMessage payload[];
+};</pre>
+</body>
+</html>

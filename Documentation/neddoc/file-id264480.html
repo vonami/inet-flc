@@ -1,0 +1,125 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Nodes/MPLS/RSVP_LSR.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="RSVP_LSR-id264429.html">RSVP_LSR</a><i> (compound-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// This library is free software, you can redistribute it</span>
+<span class="src-comment">// and/or modify</span>
+<span class="src-comment">// it under  the terms of the GNU Lesser General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation;</span>
+<span class="src-comment">// either version 2 of the License, or any later version.</span>
+<span class="src-comment">// The library is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="src-comment">// See the GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-keyword">import</span>
+    "NotificationBoard",
+    "NetworkLayer",
+    "MPLS",
+    "LIBTable",
+    "RoutingTable",
+    "InterfaceTable",
+    "SimpleClassifier",
+    "RSVP",
+    "LinkStateRouting",
+    "TED",
+    "NAMTraceWriter";
+
+<span class="src-comment">//</span>
+<span class="src-comment">// An \RSVP-TE capable router.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// \RSVP occupies the Transport layer; however, it is not a transport protocol</span>
+<span class="src-comment">// itself. \RSVP uses transport protocols to route packets. TED is used</span>
+<span class="src-comment">// to calculate shortest paths.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">module</span> RSVP_LSR
+    <span class="src-keyword">parameters</span>:
+    
+        namid : <span class="src-keyword">numeric</span>,
+    
+        peers: <span class="src-keyword">string</span>,
+        routerId: <span class="src-keyword">string</span>,
+        routingFile: <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+
+    <span class="src-keyword">submodules</span>:
+        notificationBoard: NotificationBoard;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">74</span>,<span class="src-number">57</span>;i=block/control";
+        routingTable: RoutingTable;
+            <span class="src-keyword">parameters</span>:
+                IPForward = <span class="src-keyword">true</span>,
+                routerId = routerId,
+                routingFile = routingFile;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">68</span>,<span class="src-number">138</span>;i=block/table";
+        interfaceTable: InterfaceTable;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">68</span>,<span class="src-number">208</span>;i=block/table";
+        ted: TED;
+            <span class="src-keyword">display</span>: "i=block/table;p=<span class="src-number">312</span>,<span class="src-number">203</span>";
+        linkStateRouting: LinkStateRouting;
+            <span class="src-keyword">parameters</span>:
+                peers = peers;
+            <span class="src-keyword">display</span>: "i=block/network2;p=<span class="src-number">254</span>,<span class="src-number">115</span>";
+        rsvp: RSVP;
+            <span class="src-keyword">parameters</span>:
+                peers = peers;
+            <span class="src-keyword">display</span>: "i=block/control;p=<span class="src-number">156</span>,<span class="src-number">67</span>";
+        classifier: SimpleClassifier;
+            <span class="src-keyword">display</span>: "i=block/classifier;p=<span class="src-number">330</span>,<span class="src-number">67</span>";
+        networkLayer: NetworkLayer;
+            <span class="src-keyword">gatesizes</span>:
+                ifIn[<span class="src-keyword">sizeof</span>(out)],
+                ifOut[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">192</span>,<span class="src-number">195</span>;i=block/fork";
+        ppp: PPPInterface[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">88</span>,<span class="src-number">329</span>,row,<span class="src-number">90</span>;q=l2queue;i=block/ifcard";
+        mpls: MPLS;
+            <span class="src-keyword">parameters</span>:
+                <span class="src-comment">//peers = peers;</span>
+                classifier = "classifier";
+            <span class="src-keyword">gatesizes</span>:
+                netwIn[<span class="src-keyword">sizeof</span>(out)],
+                netwOut[<span class="src-keyword">sizeof</span>(out)],
+                ifIn[<span class="src-keyword">sizeof</span>(out)],
+                ifOut[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "o=#ff8000;p=<span class="src-number">192</span>,<span class="src-number">270</span>;b=<span class="src-number">66</span>,<span class="src-number">14</span>";
+        libTable: LIBTable;
+            <span class="src-keyword">display</span>: "i=block/table2;p=<span class="src-number">312</span>,<span class="src-number">268</span>";
+        namTrace: NAMTraceWriter;
+            <span class="src-keyword">parameters</span>:
+                 namid = namid;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">70</span>,<span class="src-number">270</span>;i=old/floppy1";
+
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        linkStateRouting.to_ip <span class="src-keyword">--&gt;</span> networkLayer.OSPFIn;
+        linkStateRouting.from_ip <span class="src-keyword">&lt;--</span> networkLayer.OSPFOut;
+
+        rsvp.to_ip <span class="src-keyword">--&gt;</span> networkLayer.RSVPIn;
+        rsvp.from_ip <span class="src-keyword">&lt;--</span> networkLayer.RSVPOut;
+
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(out)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> ppp[i].physIn;
+            out[i] <span class="src-keyword">&lt;--</span> ppp[i].physOut;
+
+            ppp[i].netwOut <span class="src-keyword">--&gt;</span> mpls.ifIn[i];
+            ppp[i].netwIn <span class="src-keyword">&lt;--</span> mpls.ifOut[i];
+
+            mpls.netwOut[i] <span class="src-keyword">--&gt;</span> networkLayer.ifIn[i];
+            mpls.netwIn[i] <span class="src-keyword">&lt;--</span> networkLayer.ifOut[i];
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span>
+</pre>
+</body>
+</html>

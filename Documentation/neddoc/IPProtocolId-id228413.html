@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Enum <i>IPProtocolId</i>
+</h2>
+<p><b>File: <a href="file-id228349.html">Network/Contract/IPProtocolId.msg</a></b></p>
+<p>Protocol field: taken from RFC 1700.
+Replacing old RFC1700 with newer (28/06/01) Protocol Numbers</p>
+
+<h3 class="subtitle">Enum values:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">IP_PROT_ICMP</td>
+<td width="100"><i>1</i></td>
+<td><p>IP_PROT_HOPOPT    = 0;</p>
+</td>
+</tr>
+<tr>
+<td width="150">IP_PROT_IGMP</td>
+<td width="100"><i>2</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IP_PROT_IP</td>
+<td width="100"><i>4</i></td>
+<td><p>used for <a href="IP-id231134.html">IP</a> tunneling. FIXME: RFC1700 specifies =3 (old IPSuite) ???</p>
+</td>
+</tr>
+<tr>
+<td width="150">IP_PROT_TCP</td>
+<td width="100"><i>6</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IP_PROT_EGP</td>
+<td width="100"><i>8</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IP_PROT_IGP</td>
+<td width="100"><i>9</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IP_PROT_UDP</td>
+<td width="100"><i>17</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IP_PROT_XTP</td>
+<td width="100"><i>36</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IP_PROT_IPv6</td>
+<td width="100"><i>41</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IP_PROT_RSVP</td>
+<td width="100"><i>46</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IP_PROT_IPv6_ICMP</td>
+<td width="100"><i>58</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IP_PROT_NONE</td>
+<td width="100"><i>59</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IP_PROT_IPv6_MOBILITY</td>
+<td width="100"><i>62</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IP_PROT_OSPF</td>
+<td width="100"><i>89</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IP_PROT_SCTP</td>
+<td width="100"><i>132</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IP_PROT_MANET</td>
+<td width="100"><i>254</i></td>
+<td><p>XXX Use for simplicity</p>
+</td>
+</tr>
+<tr>
+<td width="150">IP_PROT_IPv6EXT_HOP</td>
+<td width="100"><i>0</i></td>
+<td><p>Hop-by-hop option header.</p>
+</td>
+</tr>
+<tr>
+<td width="150">IP_PROT_IPv6EXT_DEST</td>
+<td width="100"><i>60</i></td>
+<td><p>Destination options header.</p>
+</td>
+</tr>
+<tr>
+<td width="150">IP_PROT_IPv6EXT_ROUTING</td>
+<td width="100"><i>43</i></td>
+<td><p>Routing header.</p>
+</td>
+</tr>
+<tr>
+<td width="150">IP_PROT_IPv6EXT_FRAGMENT</td>
+<td width="100"><i>44</i></td>
+<td><p>Fragmentation/reassembly header.</p>
+</td>
+</tr>
+<tr>
+<td width="150">IP_PROT_IPv6EXT_AUTH</td>
+<td width="100"><i>51</i></td>
+<td><p>Authentication header.</p>
+</td>
+</tr>
+<tr>
+<td width="150">IP_PROT_IPv6EXT_ESP</td>
+<td width="100"><i>50</i></td>
+<td><p>Encapsulating security payload.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">enum</span> IPProtocolId
+{
+<span class="src-comment">//  IP_PROT_HOPOPT    = 0;</span>
+  IP_PROT_ICMP      = <span class="src-number">1</span>;
+  IP_PROT_IGMP      = <span class="src-number">2</span>;
+  IP_PROT_IP        = <span class="src-number">4</span>; <span class="src-comment">// used for IP tunneling. FIXME: RFC1700 specifies =3 (old IPSuite) ???</span>
+  IP_PROT_TCP       = <span class="src-number">6</span>;
+  IP_PROT_EGP       = <span class="src-number">8</span>;
+  IP_PROT_IGP       = <span class="src-number">9</span>;
+  IP_PROT_UDP       = <span class="src-number">17</span>;
+  IP_PROT_XTP       = <span class="src-number">36</span>;
+  IP_PROT_IPv6      = <span class="src-number">41</span>;
+  IP_PROT_RSVP      = <span class="src-number">46</span>;
+  IP_PROT_IPv6_ICMP = <span class="src-number">58</span>;
+  IP_PROT_NONE      = <span class="src-number">59</span>;
+  IP_PROT_IPv6_MOBILITY = <span class="src-number">62</span>;
+  IP_PROT_OSPF      = <span class="src-number">89</span>;
+  IP_PROT_SCTP      = <span class="src-number">132</span>;
+  IP_PROT_MANET      = <span class="src-number">254</span>; <span class="src-comment">//XXX Use for simplicity</span>
+
+  IP_PROT_IPv6EXT_HOP = <span class="src-number">0</span>;       <span class="src-comment">// Hop-by-hop option header.</span>
+  IP_PROT_IPv6EXT_DEST = <span class="src-number">60</span>;     <span class="src-comment">// Destination options header.</span>
+  IP_PROT_IPv6EXT_ROUTING = <span class="src-number">43</span>;  <span class="src-comment">// Routing header.</span>
+  IP_PROT_IPv6EXT_FRAGMENT = <span class="src-number">44</span>; <span class="src-comment">// Fragmentation/reassembly header.</span>
+  IP_PROT_IPv6EXT_AUTH = <span class="src-number">51</span>;     <span class="src-comment">// Authentication header.</span>
+  IP_PROT_IPv6EXT_ESP = <span class="src-number">50</span>;      <span class="src-comment">// Encapsulating security payload.</span>
+}</pre>
+</body>
+</html>

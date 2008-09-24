@@ -1,0 +1,105 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/Contract/IPControlInfo.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="IPControlInfo-id228197.html">IPControlInfo</a><i> (class)</i>
+</li>
+<li>
+<a href="IPRoutingDecision-id228218.html">IPRoutingDecision</a><i> (class)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2000 Institut fuer Telematik, Universitaet Karlsruhe</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU Lesser General Public</span>
+<span class="src-comment">// License as published by the Free Software Foundation; either</span>
+<span class="src-comment">// version 2.1 of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU Lesser General Public</span>
+<span class="src-comment">// License along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-keyword">enum</span> IPProtocolId;
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPAddress;
+
+cplusplus {{
+#include "IPAddress.h"
+#include "IPProtocolId_m.h"
+}}
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Control information for sending/receiving packets over \IP.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// To send a packet over \IP, fill in an IPControlInfo object,</span>
+<span class="src-comment">// attach it to the packet with the C++ method setControlInfo(),</span>
+<span class="src-comment">// the send it to the IP module.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// When IP delivers packets to higher layers, it also attaches</span>
+<span class="src-comment">// similar IPControlInfo objects to them.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// When sending, the following fields are required:</span>
+<span class="src-comment">// - protocol: a value from IPProtocolId</span>
+<span class="src-comment">// - destAddr</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Optional fields:</span>
+<span class="src-comment">// - srcAddr: it will be set to the address of the outgoing interface</span>
+<span class="src-comment">// - diffServCodePoint: used in DS_Field (RFC 2474) instead of TOS (default: 0)</span>
+<span class="src-comment">// - timeToLive: default defined as module parameter</span>
+<span class="src-comment">// - dontFragment: default: false</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Not supported:</span>
+<span class="src-comment">// - options: \IP Options currently not used</span>
+<span class="src-comment">// - Identifier is currently always chosen by the \IP layer</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> IPControlInfo
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+        customize = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        IPAddress destAddr;   <span class="src-comment">// destination IP address</span>
+        IPAddress srcAddr;    <span class="src-comment">// source IP address</span>
+        <span class="src-keyword">int</span> interfaceId = <span class="src-number">-1</span>; <span class="src-comment">// interface on which dgram was received/should</span>
+                              <span class="src-comment">// be sent (see InterfaceTable)</span>
+        <span class="src-keyword">short</span> protocol <span class="src-keyword">enum</span>(IPProtocolId);  <span class="src-comment">// encapsulated protocol</span>
+        unsigned <span class="src-keyword">char</span> diffServCodePoint;  <span class="src-comment">// for QoS</span>
+        <span class="src-keyword">short</span> timeToLive;     <span class="src-comment">// maximum hop count</span>
+        <span class="src-keyword">bool</span> dontFragment;    <span class="src-comment">// "don't fragment" bit</span>
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Control info attached to packets sent from IP to ARP.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Next hop address is used on a LAN to determine the MAC destination</span>
+<span class="src-comment">// address (and it may be used on other multicast networks for similar</span>
+<span class="src-comment">// addressing purpose).</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> IPRoutingDecision
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> interfaceId = <span class="src-number">-1</span>; <span class="src-comment">// interface on which dgram should be sent (see InterfaceTable)</span>
+        IPAddress nextHopAddr;
+};
+</pre>
+</body>
+</html>

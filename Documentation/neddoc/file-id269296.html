@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Transport/Contract/UDPControlInfo.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="UDPCommandCode-id269217.html">UDPCommandCode</a><i> (enum)</i>
+</li>
+<li>
+<a href="UDPControlInfo-id269416.html">UDPControlInfo</a><i> (class)</i>
+</li>
+<li>
+<a href="UDPStatusInd-id269289.html">UDPStatusInd</a><i> (enum)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2000 Institut fuer Telematik, Universitaet Karlsruhe</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+cplusplus {{
+#include "IPvXAddress.h"
+}}
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPvXAddress;
+
+<span class="src-comment">//</span>
+<span class="src-comment">// \UDP command codes, sent by the application to UDP. These constants</span>
+<span class="src-comment">// should be set as message kind on a message sent to the UDP entity.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see UDPControlInfo, UDPStatusInd, UDP</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> UDPCommandCode
+{
+    UDP_C_DATA = <span class="src-number">0</span>;    <span class="src-comment">// datagram to send (must carry UDPControlInfo)</span>
+    UDP_C_BIND = <span class="src-number">1</span>;    <span class="src-comment">// fill srcPort and srcAddr in UDPControlInfo</span>
+    UDP_C_CONNECT = <span class="src-number">2</span>; <span class="src-comment">// fill destAddr and destPort in UDPControlInfo</span>
+    UDP_C_UNBIND = <span class="src-number">3</span>;  <span class="src-comment">// fill sockId in UDPControlInfo</span>
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// \UDP indications, sent by UDP to the application. UDP will set these</span>
+<span class="src-comment">// constants as message kind on messages it sends to the application.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see UDPControlInfo, UDPCommandCode, UDP</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> UDPStatusInd
+{
+    UDP_I_DATA = <span class="src-number">0</span>;        <span class="src-comment">// data packet (set on data packet)</span>
+    UDP_I_ERROR = <span class="src-number">1</span>; <span class="src-comment">// ICMP error received on a sent datagram</span>
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Control info for sending/receiving data via \UDP. Travels between</span>
+<span class="src-comment">// application and the UDP module.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The most convenient way to handle UDP is the UDPSocket class, which hides</span>
+<span class="src-comment">// UDPControlInfo completely from you. But even if you manage talking</span>
+<span class="src-comment">// to UDP yourself without help from UDPSocket, sockId must be obtained</span>
+<span class="src-comment">// from UDPSocket::generateSocketId().</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//# TODO explain userId, sockId, etc.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see UDPCommandCode</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> UDPControlInfo
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> sockId = <span class="src-number">-1</span>;   <span class="src-comment">// uniquely identifies the \UDP socket</span>
+        <span class="src-keyword">int</span> userId = <span class="src-number">-1</span>;   <span class="src-comment">// id than can be freely used by the app</span>
+        IPvXAddress srcAddr;  <span class="src-comment">// source \IP or \IPv6 address, or local address with BIND</span>
+        IPvXAddress destAddr; <span class="src-comment">// destination \IP or \IPv6 address</span>
+        <span class="src-keyword">int</span> srcPort;   <span class="src-comment">// \UDP source port in packet, or local port with BIND</span>
+        <span class="src-keyword">int</span> destPort;  <span class="src-comment">// \UDP destination port in packet</span>
+        <span class="src-keyword">int</span> interfaceId = <span class="src-number">-1</span>; <span class="src-comment">// interface on which pk was received/should be sent (see InterfaceTable)</span>
+};
+</pre>
+</body>
+</html>

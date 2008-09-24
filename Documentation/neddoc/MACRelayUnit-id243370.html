@@ -1,0 +1,133 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>MACRelayUnit</i>
+</h2>
+<p><b>File: <a href="file-id243321.html">NetworkInterfaces/EtherSwitch/MACRelayUnit.ned</a></b></p>
+<p>Prototype for modules providing Ethernet switch functionality.
+These modules handle the mapping between ports and MAC addresses,
+and forward frames (<a href="EtherFrame-id242304.html">EtherFrame</a>) to appropriate ports.</p>
+
+<p>Functions:</p>
+
+  <ul><li>relays frames based on their dest MAC addresses (dest--&gt;port mapping)</li>
+
+  <li>models finite buffer size (drops) and finite processing power (latency, queueing)</li></ul>
+
+<p>Address caching is modeled by a fixed-size lookup table.
+When the table is full, the oldest address is kicked out of the cache.</p>
+
+<p>Entries are also deleted if their age exceeds a certain limit.</p>
+
+<p>If needed, address tables can be pre-loaded from text files at the beginning
+of the simulation; this controlled by the addressTableFile module parameter.</p>
+
+<p>This module is not a concrete implementation, it just defines gates and
+parameters a <a href="MACRelayUnit-id243370.html">MACRelayUnit</a> should have. Concrete inplementations add
+capacity and performance aspects to the model (number of frames processed
+per second, amount of memory available in the switch, etc.)
+C++ implementations can subclass from the class <tt>MACRelayUnitBase</tt>.</p>
+
+<p>Known implementations are <a href="MACRelayUnitNP-id243601.html">MACRelayUnitNP</a> and <a href="MACRelayUnitPP-id243803.html">MACRelayUnitPP</a>.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id243370.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="MACRelayUnit-id243370.html" title="simple MACRelayUnit" alt="MACRelayUnit" coords="188,88,308,112">
+<area shape="rect" href="EtherSwitch-id242754.html" title="module EtherSwitch" alt="EtherSwitch" coords="7,16,100,40">
+<area shape="rect" href="EtherSwitch2-id243162.html" title="module EtherSwitch2" alt="EtherSwitch2" coords="124,16,225,40">
+<area shape="rect" href="WirelessAPWithEth-id265538.html" title="module WirelessAPWithEth" alt="WirelessAPWithEth" coords="249,16,396,40">
+<area shape="rect" href="WirelessAPWithEthSimplified-id265866.html" title="module WirelessAPWithEthSimplified" alt="WirelessAPWithEthSimplified" coords="420,16,633,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="EtherSwitch-id242754.html">EtherSwitch</a></td>
+<td><p>Model of an Ethernet switch.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherSwitch2-id243162.html">EtherSwitch2</a></td>
+<td><p>Model of an Ethernet switch built with <a href="EtherMAC2-id240348.html">EtherMAC2</a>, which means
+that all ports are operating in strictly full-duplex mode.
+Use <a href="EtherSwitch-id242754.html">EtherSwitch</a> if you need half-duplex operation on some ports.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessAPWithEth-id265538.html">WirelessAPWithEth</a></td>
+<td><p>Models a 802.11 Access Point with Ethernet ports.
+It can be used in conjunction with <a href="WirelessHost-id266620.html">WirelessHost</a>, or any other host model
+containing WirelessNicSTA.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessAPWithEthSimplified-id265866.html">WirelessAPWithEthSimplified</a></td>
+<td><p>Models a 802.11 Access Point with Ethernet ports, but using a simplified NIC
+that does not support handovers. It can be used in conjunction with
+<a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a>, or any other host model containing WirelessNicSTASimplified.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">addressTableFile</td>
+<td width="100"><i>string</i></td>
+<td><p>set to empty string if not used</p>
+</td>
+</tr>
+<tr>
+<td width="150">addressTableSize</td>
+<td width="100"><i>numeric</i></td>
+<td><p>max size of address table</p>
+</td>
+</tr>
+<tr>
+<td width="150">agingTime</td>
+<td width="100"><i>numeric</i></td>
+<td><p>max idle time for address table entries
+(if expires, entry is removed from the table)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">lowerLayerIn [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">lowerLayerOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> MACRelayUnit
+    <span class="src-keyword">parameters</span>:
+        addressTableFile : <span class="src-keyword">string</span>,  <span class="src-comment">// set to empty string if not used</span>
+        addressTableSize : <span class="src-keyword">numeric</span>, <span class="src-comment">// max size of address table</span>
+        agingTime : <span class="src-keyword">numeric</span>;        <span class="src-comment">// max idle time for address table entries</span>
+                                    <span class="src-comment">// (if expires, entry is removed from the table)</span>
+
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span>  lowerLayerIn[];
+        <span class="src-keyword">out:</span> lowerLayerOut[];
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

@@ -1,0 +1,571 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>WirelessHostSimplified</i>
+</h2>
+<p><b>File: <a href="file-id267433.html">Nodes/Wireless/WirelessHostSimplified.ned</a></b></p>
+<p>Models a host with one wireless (802.11b) card in infrastructure mode,
+but using a simplified NIC that does not support handovers.
+This module is basically a <a href="StandardHost-id259540.html">StandardHost</a> with an <a href="Ieee80211NicSTASimplified-id245578.html">Ieee80211NicSTASimplified</a>
+added. It should be used in conjunction with <a href="WirelessAPSimplified-id265337.html">WirelessAPSimplified</a>,
+or any other AP model which contains <a href="Ieee80211NicAPSimplified-id245071.html">Ieee80211NicAPSimplified</a>.</p>
+
+<p><b>See also:</b> <a href="WirelessAP-id265146.html">WirelessAP</a>, <a href="WirelessAPSimplified-id265337.html">WirelessAPSimplified</a>, <a href="WirelessAPWithEth-id265538.html">WirelessAPWithEth</a>, <a href="WirelessAPWithEthSimplified-id265866.html">WirelessAPWithEthSimplified</a></p>
+
+<p><b>See also:</b> <a href="WirelessHost-id266620.html">WirelessHost</a>, <a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a></p>
+
+<p><b>See also:</b> <a href="MobileHost-id255482.html">MobileHost</a>, <a href="MFMobileHost-id254785.html">MFMobileHost</a></p>
+
+<img class="screenshot" src="WirelessHostSimplified__Nodes_Wireless_WirelessHostSimplified_ned.png" ismap usemap="#screenshot" width="368" height="411"><map name="screenshot"><area shape="rect" coords="28,38 74,84" href="NotificationBoard-id225662.html" title="notificationBoard: NotificationBoard" alt="notificationBoard: NotificationBoard">
+<area shape="rect" coords="28,118 74,164" href="InterfaceTable-id227840.html" title="interfaceTable: InterfaceTable" alt="interfaceTable: InterfaceTable">
+<area shape="rect" coords="28,198 74,244" href="RoutingTable-id231049.html" title="routingTable: RoutingTable" alt="routingTable: RoutingTable">
+<area shape="rect" coords="131,35 177,81" href="TCPApp-id219687.html" title="tcpApp: tcpAppType like TCPApp" alt="tcpApp: tcpAppType like TCPApp">
+<area shape="rect" coords="131,122 177,168" href="TCP-id271256.html" title="tcp: TCP" alt="tcp: TCP">
+<area shape="rect" coords="240,35 286,81" href="UDPApp-id224556.html" title="udpApp: udpAppType like UDPApp" alt="udpApp: udpAppType like UDPApp">
+<area shape="rect" coords="240,122 286,168" href="UDP-id272076.html" title="udp: UDP" alt="udp: UDP">
+<area shape="rect" coords="311,168 357,214" href="PingApp-id221440.html" title="pingApp: PingApp" alt="pingApp: PingApp">
+<area shape="rect" coords="216,215 262,261" href="NetworkLayer-id256856.html" title="networkLayer: NetworkLayer" alt="networkLayer: NetworkLayer">
+<area shape="rect" coords="173,318 219,364" href="PPPInterface-id253450.html" title="ppp: PPPInterface" alt="ppp: PPPInterface">
+<area shape="rect" coords="208,318 254,364" href="EthernetInterface-id241239.html" title="eth: EthernetInterface" alt="eth: EthernetInterface">
+<area shape="rect" coords="88,318 134,364" href="Ieee80211NicSTASimplified-id245578.html" title="wlan: Ieee80211NicSTASimplified" alt="wlan: Ieee80211NicSTASimplified">
+<area shape="rect" coords="34,277 64,307" href="BasicMobility-id225842.html" title="mobility: mobilityType like BasicMobility" alt="mobility: mobilityType like BasicMobility"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id267586.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="WirelessHostSimplified-id267586.html" title="module WirelessHostSimplified" alt="WirelessHostSimplified" coords="681,16,847,40">
+<area shape="rect" href="PingApp-id221440.html" title="simple PingApp" alt="PingApp" coords="7,88,79,112">
+<area shape="rect" href="TCPApp-id219687.html" title="simple TCPApp" alt="TCPApp" coords="103,88,175,112">
+<area shape="rect" href="UDPApp-id224556.html" title="simple UDPApp" alt="UDPApp" coords="199,88,273,112">
+<area shape="rect" href="NotificationBoard-id225662.html" title="simple NotificationBoard" alt="NotificationBoard" coords="297,88,431,112">
+<area shape="rect" href="BasicMobility-id225842.html" title="module BasicMobility" alt="BasicMobility" coords="455,88,559,112">
+<area shape="rect" href="InterfaceTable-id227840.html" title="simple InterfaceTable" alt="InterfaceTable" coords="583,88,689,112">
+<area shape="rect" href="RoutingTable-id231049.html" title="simple RoutingTable" alt="RoutingTable" coords="713,88,815,112">
+<area shape="rect" href="EthernetInterface-id241239.html" title="module EthernetInterface" alt="EthernetInterface" coords="839,88,967,112">
+<area shape="rect" href="Ieee80211NicSTASimplified-id245578.html" title="module Ieee80211NicSTASimplified" alt="Ieee80211NicSTASimplified" coords="991,88,1180,112">
+<area shape="rect" href="PPPInterface-id253450.html" title="module PPPInterface" alt="PPPInterface" coords="1204,88,1303,112">
+<area shape="rect" href="NetworkLayer-id256856.html" title="module NetworkLayer" alt="NetworkLayer" coords="1327,88,1439,112">
+<area shape="rect" href="TCP-id271256.html" title="simple TCP" alt="TCP" coords="1463,88,1535,112">
+<area shape="rect" href="UDP-id272076.html" title="simple UDP" alt="UDP" coords="1559,88,1631,112">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="BasicMobility-id225842.html">BasicMobility</a></td>
+<td><p>This is not an actual mobility model, but a prototype for other mobility models.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">EthernetInterface</a></td>
+<td><p>Ethernet network interface. Corresponds to the prototype <a href="NetworkInterface-id238963.html">NetworkInterface</a>.
+Complements <a href="EtherMAC-id240352.html">EtherMAC</a> and <a href="EtherEncap-id241164.html">EtherEncap</a> with an output queue for QoS and
+RED support.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">Ieee80211NicSTASimplified</a></td>
+<td><p>This NIC implements an infrastructure mode 802.11 network interface card
+for a host (STA), but using a simplified mgmt module that does not
+support handovers.</p>
+</td>
+</tr>
+<tr>
+<td><a href="InterfaceTable-id227840.html">InterfaceTable</a></td>
+<td><p>Keeps the table of network interfaces.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">NetworkLayer</a></td>
+<td><p>Network layer of an IP node.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NotificationBoard-id225662.html">NotificationBoard</a></td>
+<td><p>Using <a href="NotificationBoard-id225662.html">NotificationBoard</a>, modules can now notify each other about
+"events" such as routing table changes, interface status changes (up/down),
+interface configuration changes, wireless handovers, changes in the state
+of the wireless channel, mobile node position changes, etc.</p>
+</td>
+</tr>
+<tr>
+<td><a href="PPPInterface-id253450.html">PPPInterface</a></td>
+<td><p>PPP interface. Complements the <a href="PPP-id253311.html">PPP</a> module with an output queue
+for QoS and RED support.</p>
+</td>
+</tr>
+<tr>
+<td><a href="PingApp-id221440.html">PingApp</a></td>
+<td><p>Generates ping requests and calculates the packet loss and round trip
+parameters of the replies. </p>
+</td>
+</tr>
+<tr>
+<td><a href="RoutingTable-id231049.html">RoutingTable</a></td>
+<td><p>Stores the routing table. (Per-interface configuration is stored in 
+<a href="InterfaceTable-id227840.html">InterfaceTable</a>.)</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">TCP</a></td>
+<td><p>TCP protocol implementation. Supports RFC 793, RFC 1122, RFC 2001.
+Compatible with both IPv4 and <a href="IPv6-id232445.html">IPv6</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCPApp-id219687.html">TCPApp</a></td>
+<td><p>Template for <a href="TCP-id271256.html">TCP</a> applications.</p>
+</td>
+</tr>
+<tr>
+<td><a href="UDP-id272076.html">UDP</a></td>
+<td><p><a href="UDP-id272076.html">UDP</a> protocol implementation, for IPv4 and <a href="IPv6-id232445.html">IPv6</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="UDPApp-id224556.html">UDPApp</a></td>
+<td><p>Template for <a href="UDP-id272076.html">UDP</a> applications.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">numTcpApps</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">numUdpApps</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">tcpAppType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">udpAppType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">IPForward</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">routingFile</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">mobilityType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ethIn [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ethOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">radioIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">tcp</a>.mss</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>maximum segment size</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">tcp</a>.advertisedWindow</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>in bytes (Note: normally, NIC queues should be at least this size)</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">tcp</a>.tcpAlgorithmClass</td>
+<td width="100"><i>string</i></td>
+<td><p>TCPTahoe/TCPReno/TCPNoCongestionControl/DumbTCP</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">tcp</a>.sendQueueClass</td>
+<td width="100"><i>string</i></td>
+<td><p>TCPVirtualDataSendQueue/TCPMsgBasedSendQueue</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">tcp</a>.receiveQueueClass</td>
+<td width="100"><i>string</i></td>
+<td><p>TCPVirtualDataRcvQueue/TCPMsgBasedRcvQueue</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCP-id271256.html">tcp</a>.recordStats</td>
+<td width="100"><i>bool</i></td>
+<td><p>recording seqNum etc. into output vectors on/off</p>
+</td>
+</tr>
+<tr>
+<td><a href="PingApp-id221440.html">pingApp</a>.destAddr</td>
+<td width="100"><i>string</i></td>
+<td><p>destination <a href="IP-id231134.html">IP</a> or <a href="IPv6-id232445.html">IPv6</a> address</p>
+</td>
+</tr>
+<tr>
+<td><a href="PingApp-id221440.html">pingApp</a>.srcAddr</td>
+<td width="100"><i>string</i></td>
+<td><p>source <a href="IP-id231134.html">IP</a> or <a href="IPv6-id232445.html">IPv6</a> address (useful with multi-homing)</p>
+</td>
+</tr>
+<tr>
+<td><a href="PingApp-id221440.html">pingApp</a>.packetSize</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>of ping payload, in bytes</p>
+</td>
+</tr>
+<tr>
+<td><a href="PingApp-id221440.html">pingApp</a>.interval</td>
+<td width="100"><i>numeric</i></td>
+<td><p>time to wait between pings (can be random)</p>
+</td>
+</tr>
+<tr>
+<td><a href="PingApp-id221440.html">pingApp</a>.hopLimit</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>TTL or hopLimit for <a href="IP-id231134.html">IP</a> packets</p>
+</td>
+</tr>
+<tr>
+<td><a href="PingApp-id221440.html">pingApp</a>.count</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>stop after count ping requests, 0 means continuously</p>
+</td>
+</tr>
+<tr>
+<td><a href="PingApp-id221440.html">pingApp</a>.startTime</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>send first ping at startTime</p>
+</td>
+</tr>
+<tr>
+<td><a href="PingApp-id221440.html">pingApp</a>.stopTime</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>send no pings after stopTime, 0 means forever </p>
+</td>
+</tr>
+<tr>
+<td><a href="PingApp-id221440.html">pingApp</a>.printPing</td>
+<td width="100"><i>bool</i></td>
+<td><p>dump on stdout</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="IP-id231134.html">ip</a>.procDelay</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.retryTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number seconds <a href="ARP-id227137.html">ARP</a> waits between retries to resolve an IP address</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.retryCount</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number of times <a href="ARP-id227137.html">ARP</a> will attempt to resolve an IP address</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.cacheTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number seconds unused entries in the cache will time out</p>
+</td>
+</tr>
+<tr>
+<td><a href="PPPInterface-id253450.html">ppp[*]</a>.queueType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.queueType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.promiscuous</td>
+<td width="100"><i>bool</i></td>
+<td><p>if true, all packets are received, otherwise only the
+ones with matching destination MAC address</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.address</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address as hex string (12 hex digits), or
+"auto". "auto" values will be replaced by
+a generated MAC address in init stage 0.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.txrate</td>
+<td width="100"><i>numeric</i></td>
+<td><p>maximum data rate supported by this station (bit/s);
+actually chosen speed may be lower due to auto-
+configuration. 0 means fully auto-configured.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.duplexEnabled</td>
+<td width="100"><i>bool</i></td>
+<td><p>whether duplex mode can be enabled or not; whether
+MAC will actually use duplex mode depends on the result
+of the auto-configuration process (duplex is only
+possible with DTE-to-DTE connection).</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherMAC-id240352.html">mac</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface-id241239.html">eth[*]</a>.<a href="EtherEncap-id241164.html">encap</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211MgmtSTASimplified-id247554.html">mgmt</a>.accessPointAddress</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address of associate AP</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211MgmtSTASimplified-id247554.html">mgmt</a>.frameCapacity</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.address</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address as hex string (12 hex digits), or
+"auto". "auto" values will be replaced by
+a generated MAC address in init stage 0.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.maxQueueSize</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>max queue length in frames; only used if queueModule==""</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.rtsThresholdBytes</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>longer messages will be sent using RTS/CTS; use 2346 for default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.retryLimit</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>maximum number of retries per message, -1 means default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.cwMinData</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>contention window for normal data frames, -1 means default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.cwMinBroadcast</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>contention window for broadcast messages, -1 means default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.channelNumber</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>channel identifier</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.transmitterPower</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>power used for transmission of messages (in mW)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>(in bits/s)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.thermalNoise</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>base noise level (dBm)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.pathLossAlpha</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>used by the path loss calculation</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.snirThreshold</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>if signal-noise ratio is below this threshold, frame is considered noise (in dB)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicSTASimplified-id245578.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.sensitivity</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>received signals with power below sensitivity are ignored</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> WirelessHostSimplified
+    <span class="src-keyword">parameters</span>:
+        numTcpApps: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        numUdpApps: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        tcpAppType: <span class="src-keyword">string</span>,
+        udpAppType: <span class="src-keyword">string</span>,
+        IPForward: <span class="src-keyword">bool</span>,
+        routingFile: <span class="src-keyword">string</span>,
+        mobilityType: <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+        <span class="src-keyword">in:</span> ethIn[];
+        <span class="src-keyword">out:</span> ethOut[];
+        <span class="src-keyword">in:</span> radioIn;
+    <span class="src-keyword">submodules</span>:
+        notificationBoard: NotificationBoard;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">60</span>,<span class="src-number">70</span>;i=block/control";
+        interfaceTable: InterfaceTable;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">60</span>,<span class="src-number">150</span>;i=block/table";
+        routingTable: RoutingTable;
+            <span class="src-keyword">parameters</span>:
+                IPForward = IPForward,
+                routerId = "",
+                routingFile = routingFile;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">60</span>,<span class="src-number">230</span>;i=block/table";
+        tcpApp: tcpAppType[numTcpApps] <span class="src-keyword">like</span> TCPApp;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">163</span>,<span class="src-number">67</span>;i=block/app";
+        tcp: TCP;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">163</span>,<span class="src-number">154</span>;i=block/wheelbarrow";
+        udpApp: udpAppType[numUdpApps] <span class="src-keyword">like</span> UDPApp;
+            <span class="src-keyword">display</span>: "i=block/app;p=<span class="src-number">272</span>,<span class="src-number">67</span>";
+        udp: UDP;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">272</span>,<span class="src-number">154</span>;i=block/transport";
+        pingApp: PingApp;
+            <span class="src-keyword">display</span>: "i=block/app;p=<span class="src-number">343</span>,<span class="src-number">200</span>";
+        networkLayer: NetworkLayer;
+            <span class="src-keyword">parameters</span>:
+                proxyARP = <span class="src-keyword">false</span>;
+            <span class="src-keyword">gatesizes</span>:
+                ifIn[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)+<span class="src-number">1</span>],
+                ifOut[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)+<span class="src-number">1</span>];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">248</span>,<span class="src-number">247</span>;i=block/fork;q=queue";
+        ppp: PPPInterface[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">205</span>,<span class="src-number">350</span>,row,<span class="src-number">90</span>;q=txQueue;i=block/ifcard";
+        eth: EthernetInterface[<span class="src-keyword">sizeof</span>(ethOut)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">240</span>,<span class="src-number">350</span>,row,<span class="src-number">90</span>;q=txQueue;i=block/ifcard";
+        wlan: Ieee80211NicSTASimplified;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">120</span>,<span class="src-number">350</span>;q=queue;i=block/ifcard";
+        mobility: mobilityType <span class="src-keyword">like</span> BasicMobility;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">58</span>,<span class="src-number">301</span>;i=block/cogwheel_s";
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span>numTcpApps-<span class="src-number">1</span> <span class="src-keyword">do</span>
+            tcpApp[i].tcpOut <span class="src-keyword">--&gt;</span> tcp.from_appl++;
+            tcpApp[i].tcpIn <span class="src-keyword">&lt;--</span> tcp.to_appl++;
+        <span class="src-keyword">endfor</span>;
+
+        tcp.to_ip <span class="src-keyword">--&gt;</span> networkLayer.TCPIn;
+        tcp.from_ip <span class="src-keyword">&lt;--</span> networkLayer.TCPOut;
+
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span>numUdpApps-<span class="src-number">1</span> <span class="src-keyword">do</span>
+            udpApp[i].to_udp <span class="src-keyword">--&gt;</span> udp.from_app++;
+            udpApp[i].from_udp <span class="src-keyword">&lt;--</span> udp.to_app++;
+        <span class="src-keyword">endfor</span>;
+
+        udp.to_ip <span class="src-keyword">--&gt;</span> networkLayer.UDPIn;
+        udp.from_ip <span class="src-keyword">&lt;--</span> networkLayer.UDPOut;
+
+        networkLayer.pingOut <span class="src-keyword">--&gt;</span> pingApp.pingIn;
+        networkLayer.pingIn <span class="src-keyword">&lt;--</span> pingApp.pingOut;
+
+        <span class="src-comment">// connections to network outside</span>
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(out)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> ppp[i].physIn;
+            out[i] <span class="src-keyword">&lt;--</span> ppp[i].physOut;
+            ppp[i].netwOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[i];
+            ppp[i].netwIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[i];
+        <span class="src-keyword">endfor</span>;
+
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(ethOut)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            ethIn[i] <span class="src-keyword">--&gt;</span> eth[i].physIn;
+            ethOut[i] <span class="src-keyword">&lt;--</span> eth[i].physOut;
+            eth[i].netwOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[<span class="src-keyword">sizeof</span>(out)+i];
+            eth[i].netwIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[<span class="src-keyword">sizeof</span>(out)+i];
+        <span class="src-keyword">endfor</span>;
+
+        radioIn <span class="src-keyword">--&gt;</span> wlan.radioIn;
+        wlan.uppergateOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)];
+        wlan.uppergateIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[<span class="src-keyword">sizeof</span>(out)+<span class="src-keyword">sizeof</span>(ethOut)];
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

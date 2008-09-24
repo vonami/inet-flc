@@ -1,0 +1,140 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>EthernetInterfaceNoQueue</i>
+</h2>
+<p><b>File: <a href="file-id242006.html">NetworkInterfaces/Ethernet/EthernetInterfaceNoQueue.ned</a></b></p>
+<p>Ethernet network interface. Assumes inifinite queue.</p>
+
+<p><b>See also:</b> <a href="EthernetInterface-id241239.html">EthernetInterface</a></p>
+
+<img class="screenshot" src="EthernetInterfaceNoQueue__NetworkInterfaces_Ethernet_EthernetInterfaceNoQueue_ned.png" ismap usemap="#screenshot" width="182" height="234"><map name="screenshot"><area shape="rect" coords="68,128 114,174" href="EtherMAC-id240352.html" title="mac: EtherMAC" alt="mac: EtherMAC">
+<area shape="rect" coords="68,48 114,94" href="EtherEncap-id241164.html" title="encap: EtherEncap" alt="encap: EtherEncap"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id242071.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="EthernetInterfaceNoQueue-id242071.html" title="module EthernetInterfaceNoQueue" alt="EthernetInterfaceNoQueue" coords="12,16,204,40">
+<area shape="rect" href="EtherEncap-id241164.html" title="simple EtherEncap" alt="EtherEncap" coords="7,88,97,112">
+<area shape="rect" href="EtherMAC-id240352.html" title="simple EtherMAC" alt="EtherMAC" coords="121,88,207,112">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="EtherEncap-id241164.html">EtherEncap</a></td>
+<td><p>Performs Ethernet II encapsulation/decapsulation.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">EtherMAC</a></td>
+<td><p>Ethernet MAC layer. MAC performs transmission and reception of frames.
+Doesn't do encapsulation/decapsulation; see <a href="EtherLLC-id240022.html">EtherLLC</a> and <a href="EtherEncap-id241164.html">EtherEncap</a> for
+that.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">physIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">netwIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">physOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">netwOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac</a>.promiscuous</td>
+<td width="100"><i>bool</i></td>
+<td><p>if true, all packets are received, otherwise only the
+ones with matching destination MAC address</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac</a>.address</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address as hex string (12 hex digits), or
+"auto". "auto" values will be replaced by
+a generated MAC address in init stage 0.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac</a>.txrate</td>
+<td width="100"><i>numeric</i></td>
+<td><p>maximum data rate supported by this station (bit/s);
+actually chosen speed may be lower due to auto-
+configuration. 0 means fully auto-configured.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac</a>.duplexEnabled</td>
+<td width="100"><i>bool</i></td>
+<td><p>whether duplex mode can be enabled or not; whether
+MAC will actually use duplex mode depends on the result
+of the auto-configuration process (duplex is only
+possible with DTE-to-DTE connection).</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherEncap-id241164.html">encap</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> EthernetInterfaceNoQueue
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> physIn, netwIn;
+        <span class="src-keyword">out:</span> physOut, netwOut;
+    <span class="src-keyword">submodules</span>:
+        mac: EtherMAC;
+            <span class="src-keyword">parameters</span>: 
+                queueModule = "",
+                txQueueLimit = <span class="src-number">100000</span>; <span class="src-comment">// prevents overflow in bogus simulations</span>
+            <span class="src-keyword">display</span>: "i=block/rxtx;p=<span class="src-number">100</span>,<span class="src-number">160</span>;q=txQueue";
+        encap: EtherEncap;
+            <span class="src-keyword">display</span>: "i=block/square;p=<span class="src-number">100</span>,<span class="src-number">80</span>";
+    <span class="src-keyword">connections</span>:
+        netwIn <span class="src-keyword">--&gt;</span> encap.upperLayerIn;
+        netwOut <span class="src-keyword">&lt;--</span> encap.upperLayerOut;
+        encap.lowerLayerOut <span class="src-keyword">--&gt;</span> mac.upperLayerIn;
+        encap.lowerLayerIn <span class="src-keyword">&lt;--</span> mac.upperLayerOut;
+        mac.physIn <span class="src-keyword">&lt;--</span> physIn;
+        mac.physOut <span class="src-keyword">--&gt;</span> physOut;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

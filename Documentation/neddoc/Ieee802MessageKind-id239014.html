@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Enum <i>Ieee802MessageKind</i>
+</h2>
+<p><b>File: <a href="file-id239055.html">NetworkInterfaces/Contract/Ieee802Ctrl.msg</a></b></p>
+<p>Message kind values used with in communication between L3 and IEEE 802 L2</p>
+
+<h3 class="subtitle">Enum values:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">IEEE802CTRL_DATA</td>
+<td width="100"><i>2003</i></td>
+<td><p>data to/from higher layer</p>
+</td>
+</tr>
+<tr>
+<td width="150">IEEE802CTRL_REGISTER_DSAP</td>
+<td width="100"><i>2004</i></td>
+<td><p>higher layer registers itself in LLC</p>
+</td>
+</tr>
+<tr>
+<td width="150">IEEE802CTRL_DEREGISTER_DSAP</td>
+<td width="100"><i>2005</i></td>
+<td><p>higher layer deregisters itself in LLC</p>
+</td>
+</tr>
+<tr>
+<td width="150">IEEE802CTRL_SENDPAUSE</td>
+<td width="100"><i>2006</i></td>
+<td><p>higher layer wants MAC to send PAUSE frame</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">enum</span> Ieee802MessageKind
+{
+    IEEE802CTRL_DATA =            <span class="src-number">2003</span>;  <span class="src-comment">// data to/from higher layer</span>
+    IEEE802CTRL_REGISTER_DSAP =   <span class="src-number">2004</span>;  <span class="src-comment">// higher layer registers itself in LLC</span>
+    IEEE802CTRL_DEREGISTER_DSAP = <span class="src-number">2005</span>;  <span class="src-comment">// higher layer deregisters itself in LLC</span>
+    IEEE802CTRL_SENDPAUSE =       <span class="src-number">2006</span>;  <span class="src-comment">// higher layer wants MAC to send PAUSE frame</span>
+};</pre>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>Ieee80211Prim_BSSDescription</i>
+</h2>
+<p><b>File: <a href="file-id249388.html">NetworkInterfaces/Ieee80211/Mgmt/Ieee80211Primitives.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_prim___b_s_s_description.html" target="_top">click here</a></b></p>
+<p>(no description)</p>
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id249755.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="Ieee80211Prim_BSSDescription-id249755.html" title="class Ieee80211Prim_BSSDescription" alt="Ieee80211Prim_BSSDescription" coords="7,16,217,40">
+</map><h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">channelNumber</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">BSSID</td>
+<td width="100"><i>MACAddress</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">SSID</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">supportedRates</td>
+<td width="100"><i>Ieee80211SupportedRatesElement</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">beaconInterval</td>
+<td width="100"><i>double</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">rxPower</td>
+<td width="100"><i>double</i></td>
+<td><p>received power from AP; not part of the standard</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> Ieee80211Prim_BSSDescription
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> channelNumber;
+        MACAddress BSSID;
+        <span class="src-keyword">string</span> SSID;
+        Ieee80211SupportedRatesElement supportedRates;
+        <span class="src-keyword">double</span> beaconInterval;
+
+        <span class="src-keyword">double</span> rxPower; <span class="src-comment">// received power from AP; not part of the standard</span>
+};</pre>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/TED/TED.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="TEDChangeInfo-id238851.html">TEDChangeInfo</a><i> (class)</i>
+</li>
+<li>
+<a href="TELinkStateInfo-id238678.html">TELinkStateInfo</a><i> (struct)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// (C) 2005 Vojtech Janota</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This library is free software, you can redistribute it</span>
+<span class="src-comment">// and/or modify</span>
+<span class="src-comment">// it under  the terms of the GNU Lesser General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation;</span>
+<span class="src-comment">// either version 2 of the License, or any later version.</span>
+<span class="src-comment">// The library is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="src-comment">// See the GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+
+
+cplusplus {{
+#include "IPAddress.h"
+
+#define LINK_STATE_MESSAGE      <span class="src-number">1</span>
+
+typedef std::vector&lt;<span class="src-keyword">struct</span> TELinkStateInfo&gt; TELinkStateInfoVector;
+}}
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPAddress;
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents a link in the TED and in LinkStateMsg packets.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> TELinkStateInfo
+{
+    <span class="src-keyword">fields</span>:
+        IPAddress advrouter; <span class="src-comment">// routerId of originator of this link state entry</span>
+        IPAddress linkid;    <span class="src-comment">// identifies link within advrouter; set to peer's address</span>
+        IPAddress local;     <span class="src-comment">// address of local interface of this link</span>
+        IPAddress remote;    <span class="src-comment">// address of "gateway" to peer</span>
+        <span class="src-keyword">double</span> metric;       <span class="src-comment">// link metric</span>
+        <span class="src-keyword">double</span> MaxBandwidth; <span class="src-comment">// maximum bandwidth (bps)</span>
+        <span class="src-keyword">double</span> UnResvBandwidth[<span class="src-number">8</span>]; <span class="src-comment">// unreserved bandwidths --FIXME indexed by what?</span>
+
+        <span class="src-keyword">double</span> timestamp;    <span class="src-comment">// time of originating this entry</span>
+        unsigned <span class="src-keyword">int</span> sourceId;  <span class="src-comment">// FIXME looks like this is the same as advrouter -- really needed?</span>
+        unsigned <span class="src-keyword">int</span> messageId; <span class="src-comment">// id assigned to originating LinkStateMsg (FIXME or?)</span>
+        <span class="src-keyword">bool</span> state;          <span class="src-comment">// false = down, true = up</span>
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Data structure supplied with NF_TED_CHANGE NotificationBoard notifications.</span>
+<span class="src-comment">// This triggers the link state protocol to send out up-to-date link state info</span>
+<span class="src-comment">// about the given links.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> TEDChangeInfo
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> tedLinkIndices[];
+};
+</pre>
+</body>
+</html>

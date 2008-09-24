@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>EtherFrameWithSNAP</i>
+</h2>
+<p><b>File: <a href="file-id242421.html">NetworkInterfaces/Ethernet/EtherFrame.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ether_frame_with_s_n_a_p.html" target="_top">click here</a></b></p>
+<p>Ethernet frame with 802.3 LLC and SNAP headers.</p>
+
+<p>The fields ssap, dsap and control are not included in the class because
+they are always set to fixed values: 0xAA, 0xAA, 0x03.</p>
+
+<p>Header length: src(6)+dest(6)+length(2)+ssap(1)+dsap(1)+control(1)+
+orgCode(3)+localCode(2) = 22 bytes</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id242494.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="EtherFrameWithSNAP-id242494.html" title="message EtherFrameWithSNAP" alt="EtherFrameWithSNAP" coords="7,88,175,112">
+<area shape="rect" href="EtherFrame-id242304.html" title="message EtherFrame" alt="EtherFrame" coords="45,16,136,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="EtherFrame-id242304.html">EtherFrame</a></td>
+<td><p>Common base class for classes representing Ethernet II and 802.3 frame types,
+containing their common header fields.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">orgCode</td>
+<td width="100"><i>long</i></td>
+<td><p>SNAP organization code, 0 for <a href="IP-id231134.html">IP</a> and <a href="ARP-id227137.html">ARP</a></p>
+</td>
+</tr>
+<tr>
+<td width="150">localcode</td>
+<td width="100"><i>int</i></td>
+<td><p>SNAP local code (stores <a href="EtherType-id239180.html">EtherType</a> for <a href="IP-id231134.html">IP</a> and <a href="ARP-id227137.html">ARP</a>)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> EtherFrameWithSNAP <span class="src-keyword">extends</span> EtherFrame
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">long</span> orgCode;  <span class="src-comment">// SNAP organization code, 0 for IP and ARP</span>
+        <span class="src-keyword">int</span> localcode; <span class="src-comment">// SNAP local code (stores EtherType for IP and ARP)</span>
+};</pre>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/Extras/FailureManager.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="FailureManager-id229111.html">FailureManager</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2005 Vojtech Janota</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Module for managing node failure and recovery in the network. If used,</span>
+<span class="src-comment">// it should have exactly one instance in the whole network.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// FailureManager does not send or receive messages, and has no parameters</span>
+<span class="src-comment">// either. Instead, it is invoked from ScenarioManager scripts, for example:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;pre&gt;&lt;nohtml&gt;</span>
+<span class="src-comment">// &lt;scenario&gt;</span>
+<span class="src-comment">//   &lt;at t="2"&gt;</span>
+<span class="src-comment">//     &lt;shutdown module="failureManager" target="LSR2"/&gt;</span>
+<span class="src-comment">//   &lt;/at&gt;</span>
+<span class="src-comment">//   &lt;at t="10"&gt;</span>
+<span class="src-comment">//     &lt;startup module="failureManager" target="LSR2"/&gt;</span>
+<span class="src-comment">//   &lt;/at&gt;</span>
+<span class="src-comment">// &lt;/scenario&gt;</span>
+<span class="src-comment">// &lt;/nohtml&gt;&lt;/pre&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// It is currently only used with MPLS simulations, and supports the following</span>
+<span class="src-comment">// commands:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// - &lt;code&gt;shutdown&lt;/code&gt;: replaces a router module named by the &lt;tt&gt;target&lt;/tt&gt; attribute</span>
+<span class="src-comment">//   with another module that represents a failed router. It currently replaces</span>
+<span class="src-comment">//   RSVP_LSR with RSVP_FAILED, LDP_LSR with LDP_FAILED, and QuaggaRouter with</span>
+<span class="src-comment">//   FailedRouter.</span>
+<span class="src-comment">// - &lt;code&gt;startup&lt;/code&gt;: the inverse of &lt;tt&gt;shutdown&lt;/tt&gt;: replaces a &lt;i&gt;failed&lt;/i&gt;</span>
+<span class="src-comment">//   router model named by the &lt;tt&gt;target&lt;/tt&gt; attribute with an operational host/router</span>
+<span class="src-comment">//   module type.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The operation of FailureManager is likely to get refined and generalized in next</span>
+<span class="src-comment">// versions.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> FailureManager
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

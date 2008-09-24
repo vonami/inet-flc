@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>World/ScenarioManager.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="ScenarioManager-id272727.html">ScenarioManager</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2005 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// ScenarioManager is for setting up and controlling simulation experiments.</span>
+<span class="src-comment">// You can schedule certain events to take place at specified times,</span>
+<span class="src-comment">// like changing a parameter value, changing the bit error rate of</span>
+<span class="src-comment">// a connection, removing or adding connections, removing or</span>
+<span class="src-comment">// adding routes in a routing table, etc, so that you can observe the</span>
+<span class="src-comment">// transient behaviour.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// ScenarioManager executes a script specified in XML. It has a few</span>
+<span class="src-comment">// built-in commands, while other commands are dispatched to be carried out</span>
+<span class="src-comment">// by given simple modules. (The C++ class of these simple modules' needs</span>
+<span class="src-comment">// to implement the IScriptable interface, and the processCommand() method</span>
+<span class="src-comment">// must be redefined accordingly).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// An example script:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;pre&gt;</span>
+<span class="src-comment">// &lt;scenario&gt;</span>
+<span class="src-comment">//     &lt;set-param t="10" module="host[1].mobility" par="speed" value="5"/&gt;</span>
+<span class="src-comment">//     &lt;set-param t="20" module="host[1].mobility" par="speed" value="30"/&gt;</span>
+<span class="src-comment">//     &lt;at t="50"&gt;</span>
+<span class="src-comment">//         &lt;set-param module="host[2].mobility" par="speed" value="10"/&gt;</span>
+<span class="src-comment">//         &lt;set-param module="host[3].mobility" par="speed" value="10"/&gt;</span>
+<span class="src-comment">//     &lt;/at&gt;</span>
+<span class="src-comment">// &lt;/scenario&gt;</span>
+<span class="src-comment">// &lt;/pre&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Built-in commands: &lt;set-param&gt;, &lt;set-channel-attr&gt;, &lt;at&gt;.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// All commands have a t attribute which carries the simulation time</span>
+<span class="src-comment">// at which the command has to be carried out. You can group several commands</span>
+<span class="src-comment">// to be carried out at the same simulation time using &lt;at&gt;, and</span>
+<span class="src-comment">// then only the &lt;at&gt; command is needed to have a t attribute.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Supported attributes:</span>
+<span class="src-comment">//    - &lt;set-param&gt;: module, par, value.</span>
+<span class="src-comment">//    - &lt;set-channel-attr&gt;: src-module, src-gate, attr, value.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> ScenarioManager
+    <span class="src-keyword">parameters</span>:
+        script: xml;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

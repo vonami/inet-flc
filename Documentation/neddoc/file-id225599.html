@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Base/NotificationBoard.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="NotificationBoard-id225662.html">NotificationBoard</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2005 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Using NotificationBoard, modules can now notify each other about</span>
+<span class="src-comment">// "events" such as routing table changes, interface status changes (up/down),</span>
+<span class="src-comment">// interface configuration changes, wireless handovers, changes in the state</span>
+<span class="src-comment">// of the wireless channel, mobile node position changes, etc.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The NotificationBoard has exactly one instance within a host or router</span>
+<span class="src-comment">// model, and acts as a intermediary between module where state changes</span>
+<span class="src-comment">// can occur and modules which are interested in learning about those</span>
+<span class="src-comment">// changes.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// NotificationBoard is accessed via direct C++ method calls (not</span>
+<span class="src-comment">// message exchange). Modules can "subscribe" to categories of changes</span>
+<span class="src-comment">// (e.g. "routing table changed" or "radio channel became empty").</span>
+<span class="src-comment">// When such a change occurs, the corresponding module (e.g. the RoutingTable</span>
+<span class="src-comment">// or the physical layer module) will let NotificationBoard know, and</span>
+<span class="src-comment">// it will disseminate this information to all interested modules.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> NotificationBoard
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

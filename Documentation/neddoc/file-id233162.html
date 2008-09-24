@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/LDP/LDP.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="LDP-id233136.html">LDP</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// (C) 2005 Vojta Janota</span>
+<span class="src-comment">// (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This library is free software, you can redistribute it</span>
+<span class="src-comment">// and/or modify</span>
+<span class="src-comment">// it under  the terms of the GNU Lesser General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation;</span>
+<span class="src-comment">// either version 2 of the License, or any later version.</span>
+<span class="src-comment">// The library is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="src-comment">// See the GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Handles and processes LDP messages.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The LDP protocol is used by one LSR (Label Switched \Router) to inform</span>
+<span class="src-comment">// another LSR of the label bindings it has made. The LSR uses this protocol</span>
+<span class="src-comment">// to establish label switched paths through a network by mapping network layer</span>
+<span class="src-comment">// routing information directly to data-link layer switched paths.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Operations</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// All LDP message types are subclassed from LDPPacket, and include</span>
+<span class="src-comment">// LDPHello, LDPNotify, LDPLabelRequest, LDPIni and LDPAddress.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Message processing in the LDP module is explained in</span>
+<span class="src-comment">// &lt;a href="ldp-processing.html"&gt;LDP Message Processing&lt;/a&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @author Andras Varga, Vojta Janota</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> LDP
+    <span class="src-keyword">parameters</span>:
+        holdTime : <span class="src-keyword">numeric</span>,
+        helloInterval : <span class="src-keyword">numeric</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> tcpIn;
+        <span class="src-keyword">in:</span> udpIn;
+        <span class="src-keyword">out:</span> tcpOut;
+        <span class="src-keyword">out:</span> udpOut;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

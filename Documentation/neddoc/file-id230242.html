@@ -1,0 +1,189 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/ICMPv6/IPv6NDMessage.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="IPv6NDMessage-id230159.html">IPv6NDMessage</a><i> (message)</i>
+</li>
+<li>
+<a href="IPv6NDPrefixInformation-id230079.html">IPv6NDPrefixInformation</a><i> (class)</i>
+</li>
+<li>
+<a href="IPv6NeighbourAdvertisement-id230500.html">IPv6NeighbourAdvertisement</a><i> (message)</i>
+</li>
+<li>
+<a href="IPv6NeighbourSolicitation-id230452.html">IPv6NeighbourSolicitation</a><i> (message)</i>
+</li>
+<li>
+<a href="IPv6Redirect-id230577.html">IPv6Redirect</a><i> (message)</i>
+</li>
+<li>
+<a href="IPv6RouterAdvertisement-id230337.html">IPv6RouterAdvertisement</a><i> (message)</i>
+</li>
+<li>
+<a href="IPv6RouterSolicitation-id230206.html">IPv6RouterSolicitation</a><i> (message)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2005 Wei Yang, Ng</span>
+<span class="src-comment">// Copyright (C) 2005 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU Lesser General Public</span>
+<span class="src-comment">// License as published by the Free Software Foundation; either</span>
+<span class="src-comment">// version 2.1 of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU Lesser General Public</span>
+<span class="src-comment">// License along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+cplusplus {{
+#include "ICMPv6Message_m.h"
+#include "IPv6Address.h"
+#include "MACAddress.h"
+}}
+
+<span class="src-keyword">message</span> ICMPv6Message;
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPv6Address;
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> MACAddress;
+
+<span class="src-comment">//</span>
+<span class="src-comment">// IPv6ND Prefix Information</span>
+<span class="src-comment">// RFC 2461 Section 4.6.2</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> IPv6NDPrefixInformation
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        unsigned <span class="src-keyword">int</span> prefixLength;
+        <span class="src-keyword">bool</span> onlinkFlag;
+        <span class="src-keyword">bool</span> autoAddressConfFlag;
+        unsigned <span class="src-keyword">int</span> validLifetime;
+        unsigned <span class="src-keyword">int</span> preferredLifetime;
+        IPv6Address prefix;
+}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Neighbour Discovery for IPv6.</span>
+<span class="src-comment">// RFC 2461</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// ICMP fields inherited from ICMPv6Message:</span>
+<span class="src-comment">//    - Type</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// ICMP fields not implemented:</span>
+<span class="src-comment">//    - Checksum</span>
+<span class="src-comment">//    - Reserved</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> IPv6NDMessage <span class="src-keyword">extends</span> ICMPv6Message
+{
+    <span class="src-keyword">properties</span>:
+        <span class="src-comment">//customize=true;</span>
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> code = <span class="src-number">0</span>;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Router Solicitation Message Format</span>
+<span class="src-comment">// RFC 2461 Section 4.1</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> IPv6RouterSolicitation <span class="src-keyword">extends</span> IPv6NDMessage
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-comment">//Possible Options</span>
+        MACAddress sourceLinkLayerAddress;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Router Advertisement Message Format</span>
+<span class="src-comment">// RFC 2461 Section 4.2</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> IPv6RouterAdvertisement <span class="src-keyword">extends</span> IPv6NDMessage
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-comment">//Additional ICMP fields</span>
+        unsigned <span class="src-keyword">int</span> curHopLimit;
+        <span class="src-keyword">bool</span> managedAddrConfFlag;
+        <span class="src-keyword">bool</span> otherStatefulConfFlag;
+        unsigned <span class="src-keyword">short</span> routerLifetime;  <span class="src-comment">// 0 indicates router is not a default router</span>
+        unsigned <span class="src-keyword">int</span> reachableTime;
+        unsigned <span class="src-keyword">int</span> retransTimer;
+
+        <span class="src-comment">//Possible Options</span>
+        MACAddress sourceLinkLayerAddress;
+        unsigned <span class="src-keyword">int</span> MTU;
+        IPv6NDPrefixInformation prefixInformation[];
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Neighbour Solicitation Message Format</span>
+<span class="src-comment">// RFC 2461 Section 4.3</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> IPv6NeighbourSolicitation <span class="src-keyword">extends</span> IPv6NDMessage
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-comment">//Additional ICMP fields</span>
+        IPv6Address targetAddress;<span class="src-comment">// MUST NOT be a multicast address.</span>
+
+        <span class="src-comment">//Possible Options</span>
+        MACAddress sourceLinkLayerAddress;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Neighbour Advertisement Message Format</span>
+<span class="src-comment">// RFC 2461 Section 4.4</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> IPv6NeighbourAdvertisement <span class="src-keyword">extends</span> IPv6NDMessage
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-comment">//Additional ICMP fields</span>
+        <span class="src-keyword">bool</span> routerFlag;
+        <span class="src-keyword">bool</span> solicitedFlag;
+        <span class="src-keyword">bool</span> overrideFlag;
+        IPv6Address targetAddress;<span class="src-comment">// MUST NOT be a multicast address.</span>
+
+        <span class="src-comment">//Possible Options</span>
+        MACAddress targetLinkLayerAddress;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Redirect Message Format</span>
+<span class="src-comment">// RFC 2461 Section 4.5</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> IPv6Redirect <span class="src-keyword">extends</span> IPv6NDMessage
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-comment">//Additional ICMP fields</span>
+        IPv6Address targetAddress;
+        IPv6Address destinationAddress;
+
+        <span class="src-comment">//Possible Options</span>
+        MACAddress targetLinkLayerAddress;
+        <span class="src-comment">//Redirected Header Encapsulated Msg</span>
+};
+</pre>
+</body>
+</html>

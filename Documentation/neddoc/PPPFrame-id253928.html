@@ -1,0 +1,32 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>PPPFrame</i>
+</h2>
+<p><b>File: <a href="file-id253939.html">NetworkInterfaces/PPP/PPPFrame.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_p_p_p_frame.html" target="_top">click here</a></b></p>
+<p><a href="PPP-id253311.html">PPP</a> frame.</p>
+
+<p>Constant-value header fields are not modelled:
+Flag (=0x7e), address (=0xff), control (=0x03), CRC (bitError())</p>
+
+<p>CRC is modelled only via cMessage's bit error attribute.</p>
+
+<p>Protocol field is not modelled because types of encapsulated messages
+wil be determined from their class (using C++ dynamic_cast).</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id253928.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="PPPFrame-id253928.html" title="message PPPFrame" alt="PPPFrame" coords="7,16,89,40">
+</map><h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> PPPFrame
+{
+    <span class="src-keyword">fields</span>:
+};</pre>
+</body>
+</html>

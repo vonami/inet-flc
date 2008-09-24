@@ -1,0 +1,197 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/Ieee80211/Mac/Ieee80211Frame.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="Ieee80211ACKFrame-id246482.html">Ieee80211ACKFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211CTSFrame-id246580.html">Ieee80211CTSFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211DataFrame-id246660.html">Ieee80211DataFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211DataOrMgmtFrame-id246609.html">Ieee80211DataOrMgmtFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211Frame-id246263.html">Ieee80211Frame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211FrameType-id246102.html">Ieee80211FrameType</a><i> (enum)</i>
+</li>
+<li>
+<a href="Ieee80211ManagementFrame-id246704.html">Ieee80211ManagementFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211OneAddressFrame-id246465.html">Ieee80211OneAddressFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211RTSFrame-id246551.html">Ieee80211RTSFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211TwoAddressFrame-id246510.html">Ieee80211TwoAddressFrame</a><i> (message)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2006 Andras Varga</span>
+<span class="src-comment">// Copyright (C) 2001 Eric Wu and Steve Woon, Monash University, Melbourne, Australia</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Required for MACAddress declarations</span>
+<span class="src-comment">//</span>
+cplusplus
+{{
+<span class="src-comment">//FIXME use consts for frame lengths!!! account for LLC(3)+SNAP(5) headers in data frames!!! +add SNAP orgcode, localcode into the msg?</span>
+#include "MACAddress.h"
+}};
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> MACAddress;
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// 802.11 frame type constants (type+subtype), for the "type" field of</span>
+<span class="src-comment">// Ieee80211FrameControl</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> Ieee80211FrameType
+{
+      <span class="src-comment">// management:</span>
+      ST_ASSOCIATIONREQUEST    = <span class="src-number">0</span>x00;
+      ST_ASSOCIATIONRESPONSE   = <span class="src-number">0</span>x01;
+      ST_REASSOCIATIONREQUEST  = <span class="src-number">0</span>x02;
+      ST_REASSOCIATIONRESPONSE = <span class="src-number">0</span>x03;
+      ST_PROBEREQUEST          = <span class="src-number">0</span>x04;
+      ST_PROBERESPONSE         = <span class="src-number">0</span>x05;
+      ST_BEACON                = <span class="src-number">0</span>x08;
+      ST_ATIM                  = <span class="src-number">0</span>x09;
+      ST_DISASSOCIATION        = <span class="src-number">0</span>x0a;
+      ST_AUTHENTICATION        = <span class="src-number">0</span>x0b;
+      ST_DEAUTHENTICATION      = <span class="src-number">0</span>x0c;
+
+      <span class="src-comment">// control (CFEND/CFEND_CFACK omitted):</span>
+      ST_PSPOLL = <span class="src-number">0</span>x1a;
+      ST_RTS    = <span class="src-number">0</span>x1b;
+      ST_CTS    = <span class="src-number">0</span>x1c;
+      ST_ACK    = <span class="src-number">0</span>x1d;
+
+      <span class="src-comment">// data (CFPOLL/CFACK subtypes omitted):</span>
+      ST_DATA   = <span class="src-number">0</span>x20;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// The common part of 802.11 frames. </span>
+<span class="src-comment">//</span>
+<span class="src-comment">// NOTE:</span>
+<span class="src-comment">// FCS value is not explicitly modeled, but it is included in the length.</span>
+<span class="src-comment">// Frame control format fields not supported by this model are omitted:</span>
+<span class="src-comment">// MoreFlag, PowerMgmt, MoreData, WEP, Order.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211Frame
+{
+    <span class="src-keyword">fields</span>:
+        byteLength = <span class="src-number">14</span>;
+        <span class="src-keyword">short</span> type <span class="src-keyword">enum</span>(Ieee80211FrameType); <span class="src-comment">// type and subtype</span>
+        <span class="src-keyword">bool</span> toDS;
+        <span class="src-keyword">bool</span> fromDS;
+        <span class="src-keyword">bool</span> retry;
+        <span class="src-keyword">bool</span> moreFragments;
+        <span class="src-keyword">double</span> duration = <span class="src-number">-1</span>; <span class="src-comment">// "duration" in the Duration/ID field (-1=no duration)</span>
+        <span class="src-keyword">short</span> AID = <span class="src-number">-1</span>;      <span class="src-comment">// "id" (Association ID) in the Duration/ID field (-1=no ID)</span>
+        MACAddress receiverAddress; <span class="src-comment">// aka address1</span>
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Format of a 802.11 frame with address1 present, like ACK and CTS</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211OneAddressFrame <span class="src-keyword">extends</span> Ieee80211Frame
+{
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Format of the 802.11 ACK frame</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211ACKFrame <span class="src-keyword">extends</span> Ieee80211OneAddressFrame
+{
+    <span class="src-keyword">fields</span>:
+       type = ST_ACK;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Format of a 802.11 frame with address1 and address2 present</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211TwoAddressFrame <span class="src-keyword">extends</span> Ieee80211OneAddressFrame
+{
+    <span class="src-keyword">fields</span>:
+        byteLength = <span class="src-number">20</span>;
+        MACAddress transmitterAddress; <span class="src-comment">// aka address2</span>
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Format of the 802.11 RTS frame</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211RTSFrame <span class="src-keyword">extends</span> Ieee80211TwoAddressFrame
+{
+    <span class="src-keyword">fields</span>:
+       type = ST_RTS;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Format of the 802.11 CTS frame</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211CTSFrame <span class="src-keyword">extends</span> Ieee80211OneAddressFrame
+{
+    <span class="src-keyword">fields</span>:
+       type = ST_CTS;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Common base class for 802.11 data and management frames</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211DataOrMgmtFrame <span class="src-keyword">extends</span> Ieee80211TwoAddressFrame
+{
+    <span class="src-keyword">fields</span>:
+        byteLength = <span class="src-number">28</span>;
+        MACAddress address3;
+        <span class="src-keyword">short</span> fragmentNumber;
+        <span class="src-keyword">short</span> sequenceNumber;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Format of the 802.11 data frame</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211DataFrame <span class="src-keyword">extends</span> Ieee80211DataOrMgmtFrame
+{
+    <span class="src-keyword">fields</span>:
+        type = ST_DATA;
+        byteLength = <span class="src-number">34</span>;
+        MACAddress address4;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Base class for 802.11 management frames (subclasses will add frame body contents)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211ManagementFrame <span class="src-keyword">extends</span> Ieee80211DataOrMgmtFrame
+{
+};
+</pre>
+</body>
+</html>

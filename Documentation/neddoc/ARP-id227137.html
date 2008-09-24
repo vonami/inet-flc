@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>ARP</i>
+</h2>
+<p><b>File: <a href="file-id227312.html">Network/ARP/ARP.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_a_r_p.html" target="_top">click here</a></b></p>
+<p>Implements the Address Resolution Protocol for IPv4 and IEEE 802 6-byte 
+MAC addresses.</p>
+
+<p>Expects <a href="IPRoutingDecision-id228218.html">IPRoutingDecision</a> control info objects to be attached to packets
+coming from higher layers. ARP packets are represented by the <a href="ARPPacket-id227492.html">ARPPacket</a>
+class. Datagrams to be sent and incoming ARP packets are expected to
+on gate ipIn.</p>
+
+<p>ARP resolution is used over <i>broadcast</i> interfaces only,
+that is, over interfaces that have the <tt>isBroadcast()</tt> flag set in 
+<tt>InterfaceEntry</tt> (see <a href="InterfaceTable-id227840.html">InterfaceTable</a>). Since routing files 
+(<tt>.irt</tt> or <tt>.mrt</tt> files, given as parameter to <a href="RoutingTable-id231049.html">RoutingTable</a>)
+may modify the default interface configuration, you must take care that
+these files don't contain the word <tt>BROADCAST</tt> e.g. for <a href="PPP-id253311.html">PPP</a>
+interfaces.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id227137.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="ARP-id227137.html" title="simple ARP" alt="ARP" coords="27,88,99,112">
+<area shape="rect" href="NetworkLayer-id256856.html" title="module NetworkLayer" alt="NetworkLayer" coords="7,16,119,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="NetworkLayer-id256856.html">NetworkLayer</a></td>
+<td><p>Network layer of an IP node.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">retryTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number seconds <a href="ARP-id227137.html">ARP</a> waits between retries to resolve an IP address</p>
+</td>
+</tr>
+<tr>
+<td width="150">retryCount</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number of times <a href="ARP-id227137.html">ARP</a> will attempt to resolve an IP address</p>
+</td>
+</tr>
+<tr>
+<td width="150">cacheTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number seconds unused entries in the cache will time out</p>
+</td>
+</tr>
+<tr>
+<td width="150">proxyARP</td>
+<td width="100"><i>bool</i></td>
+<td><p>sets proxy ARP mode (replying to ARP requests for the addresses for which a routing table entry exists)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">ipIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">nicOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> ARP
+    <span class="src-keyword">parameters</span>:
+        retryTimeout: <span class="src-keyword">numeric</span>, <span class="src-comment">// number seconds ARP waits between retries to resolve an \IP address</span>
+        retryCount: <span class="src-keyword">numeric</span>,   <span class="src-comment">// number of times ARP will attempt to resolve an \IP address</span>
+        cacheTimeout: <span class="src-keyword">numeric</span>, <span class="src-comment">// number seconds unused entries in the cache will time out</span>
+        proxyARP: <span class="src-keyword">bool</span>;        <span class="src-comment">// sets proxy \ARP mode (replying to \ARP requests for the addresses for which a routing table entry exists)</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> ipIn;
+        <span class="src-keyword">out:</span> nicOut[];
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/ICMPv6/ICMPv6Message.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="ICMPv6DEST_UN-id229547.html">ICMPv6DEST_UN</a><i> (enum)</i>
+</li>
+<li>
+<a href="ICMPv6DestUnreachableMsg-id229748.html">ICMPv6DestUnreachableMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="ICMPv6EchoReplyMsg-id229989.html">ICMPv6EchoReplyMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="ICMPv6EchoRequestMsg-id229920.html">ICMPv6EchoRequestMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="ICMPv6Message-id229703.html">ICMPv6Message</a><i> (message)</i>
+</li>
+<li>
+<a href="ICMPv6PacketTooBigMsg-id229790.html">ICMPv6PacketTooBigMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="ICMPv6ParamProblemMsg-id229880.html">ICMPv6ParamProblemMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="ICMPv6TimeExceededMsg-id229841.html">ICMPv6TimeExceededMsg</a><i> (message)</i>
+</li>
+<li>
+<a href="ICMPv6Type-id229410.html">ICMPv6Type</a><i> (enum)</i>
+</li>
+<li>
+<a href="ICMPv6_PARAMETER_PROB-id229663.html">ICMPv6_PARAMETER_PROB</a><i> (enum)</i>
+</li>
+<li>
+<a href="ICMPv6_TIME_EX-id229630.html">ICMPv6_TIME_EX</a><i> (enum)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2001 CTIE, Monash University</span>
+<span class="src-comment">// Copyright (C) 2005 Andras Varga</span>
+<span class="src-comment">// Copyright (C) 2005 Wei Yang, Ng</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+cplusplus {{
+#include "INETDefs.h"
+#define ICMPv6_HEADER_BYTES  <span class="src-number">8</span>
+}}
+
+<span class="src-comment">//</span>
+<span class="src-comment">//# TODO consolidate this file's contents with ICMPMessage.msg</span>
+<span class="src-comment">//</span>
+
+<span class="src-keyword">enum</span> ICMPv6Type
+{
+    ICMPv6_UNSPECIFIED = <span class="src-number">0</span>;
+    ICMPv6_DESTINATION_UNREACHABLE = <span class="src-number">1</span>;
+    ICMPv6_PACKET_TOO_BIG = <span class="src-number">2</span>;
+    ICMPv6_TIME_EXCEEDED = <span class="src-number">3</span>;
+    ICMPv6_PARAMETER_PROBLEM = <span class="src-number">4</span>;
+    ICMPv6_ECHO_REQUEST = <span class="src-number">128</span>;
+    ICMPv6_ECHO_REPLY = <span class="src-number">129</span>;
+    ICMPv6_MLD_QUERY = <span class="src-number">130</span>;
+    ICMPv6_MLD_REPORT = <span class="src-number">131</span>;
+    ICMPv6_MLD_DONE = <span class="src-number">132</span>;
+    ICMPv6_ROUTER_SOL = <span class="src-number">133</span>;
+    ICMPv6_ROUTER_AD = <span class="src-number">134</span>;
+    ICMPv6_NEIGHBOUR_SOL = <span class="src-number">135</span>;
+    ICMPv6_NEIGHBOUR_AD = <span class="src-number">136</span>;
+    ICMPv6_REDIRECT = <span class="src-number">137</span>;
+    ICMPv6_MLDv2_REPORT = <span class="src-number">143</span>;
+};
+
+
+<span class="src-comment">//cplusplus {{</span>
+<span class="src-comment">//typedef int ICMPv6Code;</span>
+<span class="src-comment">//}}</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// ICMPv6 "codes" for type ICMPv6_DESTINATION_UNREACHABLE</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> ICMPv6DEST_UN
+{
+  NO_ROUTE_TO_DEST = <span class="src-number">0</span>;
+  COMM_WITH_DEST_PROHIBITED = <span class="src-number">1</span>;
+  <span class="src-comment">//2 - NOT ASSIGNED</span>
+  ADDRESS_UNREACHABLE = <span class="src-number">3</span>;
+  PORT_UNREACHABLE = <span class="src-number">4</span>;
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// ICMPv6 "codes" for type ICMPv6_TIME_EXCEEDED</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> ICMPv6_TIME_EX
+{
+    ND_HOP_LIMIT_EXCEEDED = <span class="src-number">0</span>;
+    ND_FRAGMENT_REASSEMBLY_TIME = <span class="src-number">1</span>;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// ICMPv6 "codes" for type ICMPv6_PARAMETER_PROBLEM</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> ICMPv6_PARAMETER_PROB
+{
+    ERROREOUS_HDR_FIELD = <span class="src-number">0</span>;
+    UNRECOGNIZED_NEXT_HDR_TYPE = <span class="src-number">1</span>;
+    UNRECOGNIZED_IPV6_OPTION = <span class="src-number">2</span>;
+}
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents an ICMPv6 packet.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Notes:</span>
+<span class="src-comment">//    1. number of octets excluding the error datagram that is usually appended</span>
+<span class="src-comment">//       in optInfo, i.e. the Type|CODE|CHECKSUM|UNUSED/POINTER/MTU/OTHER</span>
+<span class="src-comment">//       as defined in RFC2463</span>
+<span class="src-comment">//    2. Any ICMP type with MSB set, i.e. &gt;=128 is an Informational ICMP message</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> ICMPv6Message
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> type <span class="src-keyword">enum</span>(ICMPv6Type);
+        <span class="src-comment">//int code; //TODO: this should be specific to different ICMP types.</span>
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Notes:</span>
+<span class="src-comment">//   1. As defined in RFC2463: Section 3</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> ICMPv6DestUnreachableMsg <span class="src-keyword">extends</span> ICMPv6Message
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> code <span class="src-keyword">enum</span>(ICMPv6DEST_UN);
+}
+
+<span class="src-keyword">message</span> ICMPv6PacketTooBigMsg <span class="src-keyword">extends</span> ICMPv6Message
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> code; <span class="src-comment">//Set to 0 by sender and ignored by receiver.</span>
+        <span class="src-keyword">int</span> MTU; <span class="src-comment">//MTU of next-hop link</span>
+}
+
+<span class="src-keyword">message</span> ICMPv6TimeExceededMsg <span class="src-keyword">extends</span> ICMPv6Message
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> code <span class="src-keyword">enum</span>(ICMPv6_TIME_EX);
+}
+
+<span class="src-keyword">message</span> ICMPv6ParamProblemMsg <span class="src-keyword">extends</span> ICMPv6Message
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> code <span class="src-keyword">enum</span>(ICMPv6_PARAMETER_PROB);
+}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// ICMPv6 Echo Request packet (RFC2463: Section 4).</span>
+<span class="src-comment">// Data is attached through encapsulation (see ICMPv6.cc)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> ICMPv6EchoRequestMsg <span class="src-keyword">extends</span> ICMPv6Message
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> code; <span class="src-comment">//set to 0.</span>
+        <span class="src-keyword">int</span> identifier; <span class="src-comment">// identifier to aid in matching Echo replies. May be Zero</span>
+        <span class="src-keyword">int</span> seqNumber; <span class="src-comment">// sequence number to aid in matching Echo replies. May be Zero</span>
+        <span class="src-comment">//Data is attached through encapsulation. See ICMPv6.cc</span>
+}
+
+<span class="src-comment">//</span>
+<span class="src-comment">// ICMPv6 Echo Reply packet. Data is attached through encapsulation (see ICMPv6.cc)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> ICMPv6EchoReplyMsg <span class="src-keyword">extends</span> ICMPv6Message
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> code; <span class="src-comment">//set to 0.</span>
+        <span class="src-keyword">int</span> identifier; <span class="src-comment">// identifier to aid in matching Echo replies. May be Zero</span>
+        <span class="src-keyword">int</span> seqNumber; <span class="src-comment">// sequence number to aid in matching Echo replies. May be Zero</span>
+}
+</pre>
+</body>
+</html>

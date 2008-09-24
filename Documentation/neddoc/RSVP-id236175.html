@@ -1,0 +1,172 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>RSVP</i>
+</h2>
+<p><b>File: <a href="file-id236166.html">Network/RSVP_TE/RSVP.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_r_s_v_p.html" target="_top">click here</a></b></p>
+<p>Implements RSVP-TE, a signalling protocol for <a href="MPLS-id233905.html">MPLS</a>. The module
+processes RSVP-TE messages, installs labels and does the reservation
+along LSP paths.</p>
+
+<p>Paths can be specified statically in an XML config file ("traffic"
+parameter), or can be set up and torn down dynamically with <a href="ScenarioManager-id272727.html">ScenarioManager</a>
+commands.</p>
+
+<p>An example traffic.xml file:</p>
+
+<p><pre>
+&lt;?xml version="1.0"?&gt;
+&lt;sessions&gt;
+    &lt;session&gt;
+        &lt;endpoint&gt;host3&lt;/endpoint&gt;
+        &lt;tunnel_id&gt;1&lt;/tunnel_id&gt;
+        &lt;paths&gt;
+            &lt;path&gt;
+                &lt;lspid&gt;100&lt;/lspid&gt;
+                &lt;bandwidth&gt;100000&lt;/bandwidth&gt;
+                &lt;route&gt;
+                    &lt;node&gt;10.1.1.1&lt;/node&gt;
+                    &lt;lnode&gt;10.1.2.1&lt;/lnode&gt;
+                    &lt;node&gt;10.1.4.1&lt;/node&gt;
+                    &lt;node&gt;10.1.5.1&lt;/node&gt;
+                &lt;/route&gt;
+                &lt;permanent&gt;true&lt;/permanent&gt;
+                &lt;color&gt;100&lt;/color&gt;
+            &lt;/path&gt;
+        &lt;/paths&gt;
+    &lt;/session&gt;
+&lt;/sessions&gt;
+</pre></p>
+
+<p>In the route, &lt;node&gt; stands for strict hop, and &lt;lnode&gt; for loose hop.</p>
+
+<p><a href="RSVP-id236175.html">RSVP</a> understands the "add-session" and "del-session" <a href="ScenarioManager-id272727.html">ScenarioManager</a>
+commands. The contents of the &lt;add-session&gt; element can be the same
+as the &lt;session&gt; element for the traffic.xml above.
+The &lt;del-command&gt; element syntax is also similar, but only
+&lt;endpoint&gt;, &lt;tunnel_id&gt; and &lt;lspid&gt; needs to be specified.</p>
+
+<p>The following is an example scenario.xml file:</p>
+
+<p><pre>
+&lt;?xml version="1.0"?&gt;
+&lt;scenario&gt;
+    &lt;at t="2"&gt;
+        &lt;add-session module="LSR1.rsvp"&gt;
+            &lt;endpoint&gt;10.2.1.1&lt;/endpoint&gt;
+            &lt;tunnel_id&gt;1&lt;/tunnel_id&gt;
+            &lt;paths&gt;
+                ...
+            &lt;/paths&gt;
+        &lt;/add-session&gt;
+    &lt;/at&gt;
+    &lt;at t="2.4"&gt;
+        &lt;del-session module="LSR1.rsvp"&gt;
+            &lt;endpoint&gt;10.2.1.1&lt;/endpoint&gt;
+            &lt;tunnel_id&gt;1&lt;/tunnel_id&gt;
+            &lt;paths&gt;
+                &lt;path&gt;
+                    &lt;lspid&gt;100&lt;/lspid&gt;
+                &lt;/path&gt;
+            &lt;/paths&gt;
+        &lt;/del-session&gt;
+    &lt;/at&gt;
+&lt;/scenario&gt;
+</pre></p>
+
+<p>RSVP messages are subclassed from <a href="RSVPMessage-id237252.html">RSVPMessage</a>, and include <a href="RSVPPathMsg-id237497.html">RSVPPathMsg</a>,
+<a href="RSVPPathTear-id237508.html">RSVPPathTear</a>, <a href="RSVPPathError-id237574.html">RSVPPathError</a>, <a href="RSVPResvMsg-id237721.html">RSVPResvMsg</a> and <a href="RSVPHelloMsg-id237029.html">RSVPHelloMsg</a>.</p>
+
+<p>RSVP-TE communicates with the following components in the system:
+<a href="TED-id238461.html">TED</a>, <a href="MPLS-id233905.html">MPLS</a>, and may receive commands from <a href="ScenarioManager-id272727.html">ScenarioManager</a>.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id236175.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="RSVP-id236175.html" title="simple RSVP" alt="RSVP" coords="17,88,89,112">
+<area shape="rect" href="RSVP_LSR-id264429.html" title="module RSVP_LSR" alt="RSVP_LSR" coords="7,16,100,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="RSVP_LSR-id264429.html">RSVP_LSR</a></td>
+<td><p>An RSVP-TE capable router.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">traffic</td>
+<td width="100"><i>xml</i></td>
+<td><p>specifies paths to set up</p>
+</td>
+</tr>
+<tr>
+<td width="150">peers</td>
+<td width="100"><i>string</i></td>
+<td><p>names of the interfaces towards <a href="RSVP-id236175.html">RSVP</a> peers</p>
+</td>
+</tr>
+<tr>
+<td width="150">helloInterval</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">helloTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">from_ip</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">to_ip</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">from_mpls_switch</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">from_app</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> RSVP
+    <span class="src-keyword">parameters</span>:
+        traffic : xml, <span class="src-comment">// specifies paths to set up</span>
+        peers : <span class="src-keyword">string</span>, <span class="src-comment">// names of the interfaces towards RSVP peers</span>
+        helloInterval : <span class="src-keyword">numeric</span>,
+        helloTimeout : <span class="src-keyword">numeric</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> from_ip;
+        <span class="src-keyword">out:</span> to_ip;
+        <span class="src-keyword">in:</span> from_mpls_switch;
+        <span class="src-keyword">in:</span> from_app;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

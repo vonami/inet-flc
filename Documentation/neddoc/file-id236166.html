@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/RSVP_TE/RSVP.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="RSVP-id236175.html">RSVP</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// (C) 2005 Vojtech Janota</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This library is free software, you can redistribute it</span>
+<span class="src-comment">// and/or modify</span>
+<span class="src-comment">// it under  the terms of the GNU Lesser General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation;</span>
+<span class="src-comment">// either version 2 of the License, or any later version.</span>
+<span class="src-comment">// The library is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="src-comment">// See the GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Implements \RSVP-TE, a signalling protocol for MPLS. The module</span>
+<span class="src-comment">// processes \RSVP-TE messages, installs labels and does the reservation</span>
+<span class="src-comment">// along LSP paths.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Paths can be specified statically in an XML config file ("traffic"</span>
+<span class="src-comment">// parameter), or can be set up and torn down dynamically with ScenarioManager</span>
+<span class="src-comment">// commands.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// An example traffic.xml file:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//# FIXME verify against the code, and document formally (DTD)!</span>
+<span class="src-comment">//# &lt;setup_pri&gt;, &lt;holding_pri&gt;, &lt;sender&gt;, &lt;owner&gt;, &lt;max_delay&gt; elements</span>
+<span class="src-comment">//# are implemented but missing from this doc!</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;pre&gt;</span>
+<span class="src-comment">// &lt;?xml version="1.0"?&gt;</span>
+<span class="src-comment">// &lt;sessions&gt;</span>
+<span class="src-comment">//     &lt;session&gt;</span>
+<span class="src-comment">//         &lt;endpoint&gt;host3&lt;/endpoint&gt;</span>
+<span class="src-comment">//         &lt;tunnel_id&gt;1&lt;/tunnel_id&gt;</span>
+<span class="src-comment">//         &lt;paths&gt;</span>
+<span class="src-comment">//             &lt;path&gt;</span>
+<span class="src-comment">//                 &lt;lspid&gt;100&lt;/lspid&gt;</span>
+<span class="src-comment">//                 &lt;bandwidth&gt;100000&lt;/bandwidth&gt;</span>
+<span class="src-comment">//                 &lt;route&gt;</span>
+<span class="src-comment">//                     &lt;node&gt;10.1.1.1&lt;/node&gt;</span>
+<span class="src-comment">//                     &lt;lnode&gt;10.1.2.1&lt;/lnode&gt;</span>
+<span class="src-comment">//                     &lt;node&gt;10.1.4.1&lt;/node&gt;</span>
+<span class="src-comment">//                     &lt;node&gt;10.1.5.1&lt;/node&gt;</span>
+<span class="src-comment">//                 &lt;/route&gt;</span>
+<span class="src-comment">//                 &lt;permanent&gt;true&lt;/permanent&gt;</span>
+<span class="src-comment">//                 &lt;color&gt;100&lt;/color&gt;</span>
+<span class="src-comment">//             &lt;/path&gt;</span>
+<span class="src-comment">//         &lt;/paths&gt;</span>
+<span class="src-comment">//     &lt;/session&gt;</span>
+<span class="src-comment">// &lt;/sessions&gt;</span>
+<span class="src-comment">// &lt;/pre&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// In the route, &lt;node&gt; stands for strict hop, and &lt;lnode&gt; for loose hop.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// RSVP understands the "add-session" and "del-session" ScenarioManager</span>
+<span class="src-comment">// commands. The contents of the &lt;add-session&gt; element can be the same</span>
+<span class="src-comment">// as the &lt;session&gt; element for the traffic.xml above.</span>
+<span class="src-comment">// The &lt;del-command&gt; element syntax is also similar, but only</span>
+<span class="src-comment">// &lt;endpoint&gt;, &lt;tunnel_id&gt; and &lt;lspid&gt; needs to be specified.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The following is an example scenario.xml file:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;pre&gt;</span>
+<span class="src-comment">// &lt;?xml version="1.0"?&gt;</span>
+<span class="src-comment">// &lt;scenario&gt;</span>
+<span class="src-comment">//     &lt;at t="2"&gt;</span>
+<span class="src-comment">//         &lt;add-session module="LSR1.rsvp"&gt;</span>
+<span class="src-comment">//             &lt;endpoint&gt;10.2.1.1&lt;/endpoint&gt;</span>
+<span class="src-comment">//             &lt;tunnel_id&gt;1&lt;/tunnel_id&gt;</span>
+<span class="src-comment">//             &lt;paths&gt;</span>
+<span class="src-comment">//                 ...</span>
+<span class="src-comment">//             &lt;/paths&gt;</span>
+<span class="src-comment">//         &lt;/add-session&gt;</span>
+<span class="src-comment">//     &lt;/at&gt;</span>
+<span class="src-comment">//     &lt;at t="2.4"&gt;</span>
+<span class="src-comment">//         &lt;del-session module="LSR1.rsvp"&gt;</span>
+<span class="src-comment">//             &lt;endpoint&gt;10.2.1.1&lt;/endpoint&gt;</span>
+<span class="src-comment">//             &lt;tunnel_id&gt;1&lt;/tunnel_id&gt;</span>
+<span class="src-comment">//             &lt;paths&gt;</span>
+<span class="src-comment">//                 &lt;path&gt;</span>
+<span class="src-comment">//                     &lt;lspid&gt;100&lt;/lspid&gt;</span>
+<span class="src-comment">//                 &lt;/path&gt;</span>
+<span class="src-comment">//             &lt;/paths&gt;</span>
+<span class="src-comment">//         &lt;/del-session&gt;</span>
+<span class="src-comment">//     &lt;/at&gt;</span>
+<span class="src-comment">// &lt;/scenario&gt;</span>
+<span class="src-comment">// &lt;/pre&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// \RSVP messages are subclassed from RSVPMessage, and include RSVPPathMsg,</span>
+<span class="src-comment">// RSVPPathTear, RSVPPathError, RSVPResvMsg and RSVPHelloMsg.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// \RSVP-TE communicates with the following components in the system:</span>
+<span class="src-comment">// TED, MPLS, and may receive commands from ScenarioManager.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> RSVP
+    <span class="src-keyword">parameters</span>:
+        traffic : xml, <span class="src-comment">// specifies paths to set up</span>
+        peers : <span class="src-keyword">string</span>, <span class="src-comment">// names of the interfaces towards RSVP peers</span>
+        helloInterval : <span class="src-keyword">numeric</span>,
+        helloTimeout : <span class="src-keyword">numeric</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> from_ip;
+        <span class="src-keyword">out:</span> to_ip;
+        <span class="src-keyword">in:</span> from_mpls_switch;
+        <span class="src-keyword">in:</span> from_app;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

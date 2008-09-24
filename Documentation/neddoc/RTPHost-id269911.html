@@ -1,0 +1,271 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>RTPHost</i>
+</h2>
+<p><b>File: <a href="file-id269776.html">Transport/RTP/RTPHost.ned</a></b></p>
+<p>(no description)</p>
+<img class="screenshot" src="RTPHost__Transport_RTP_RTPHost_ned.png" ismap usemap="#screenshot" width="235" height="356"><map name="screenshot"><area shape="rect" coords="47,30 89,56" href="RTPApplication-id269612.html" title="application: RTPApplication" alt="application: RTPApplication">
+<area shape="rect" coords="148,32 190,58" href="RTPLayer-id270474.html" title="rtpLayer: RTPLayer" alt="rtpLayer: RTPLayer">
+<area shape="rect" coords="150,142 192,168" href="unknown-module.html" title="socketLayer: SocketLayer" alt="socketLayer: SocketLayer">
+<area shape="rect" coords="55,134 101,180" href="unknown-module.html" title="udpModule: UDPModule" alt="udpModule: UDPModule">
+<area shape="rect" coords="55,210 101,256" href="NetworkLayer-id256856.html" title="networkLayer: NetworkLayer" alt="networkLayer: NetworkLayer">
+<area shape="rect" coords="48,268 94,314" href="PPPInterface-id253450.html" title="ppp: PPPInterface" alt="ppp: PPPInterface"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id269911.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="RTPHost-id269911.html" title="module RTPHost" alt="RTPHost" coords="219,16,291,40">
+<area shape="rect" href="PPPInterface-id253450.html" title="module PPPInterface" alt="PPPInterface" coords="7,88,105,112">
+<area shape="rect" href="NetworkLayer-id256856.html" title="module NetworkLayer" alt="NetworkLayer" coords="129,88,241,112">
+<area shape="rect" href="RTPApplication-id269612.html" title="simple RTPApplication" alt="RTPApplication" coords="265,88,385,112">
+<area shape="rect" href="RTPLayer-id270474.html" title="module RTPLayer" alt="RTPLayer" coords="409,88,492,112">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="NetworkLayer-id256856.html">NetworkLayer</a></td>
+<td><p>Network layer of an IP node.</p>
+</td>
+</tr>
+<tr>
+<td><a href="PPPInterface-id253450.html">PPPInterface</a></td>
+<td><p>PPP interface. Complements the <a href="PPP-id253311.html">PPP</a> module with an output queue
+for QoS and RED support.</p>
+</td>
+</tr>
+<tr>
+<td><a href="RTPApplication-id269612.html">RTPApplication</a></td>
+<td><i>(no description)</i></td>
+</tr>
+<tr>
+<td><a href="RTPLayer-id270474.html">RTPLayer</a></td>
+<td><i>(no description)</i></td>
+</tr>
+<tr>
+<td>SocketLayer</td>
+<td><i>(unknown -- not in documented files)</i></td>
+</tr>
+<tr>
+<td>UDPModule</td>
+<td><i>(unknown -- not in documented files)</i></td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">debug</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">profileName</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">destinationAddress</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">portNumber</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">bandwidth</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">fileName</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">payloadType</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">numOfProcessors</td>
+<td width="100"><i>numeric</i></td>
+<td><p>network information</p>
+</td>
+</tr>
+<tr>
+<td width="150">routingFile</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="RTPApplication-id269612.html">application</a>.commonName</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="RTPApplication-id269612.html">application</a>.sessionEnterDelay</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="RTPApplication-id269612.html">application</a>.transmissionStartDelay</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="RTPApplication-id269612.html">application</a>.transmissionStopDelay</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="RTPApplication-id269612.html">application</a>.sessionLeaveDelay</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.proxyARP</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="IP-id231134.html">ip</a>.procDelay</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.retryTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number seconds <a href="ARP-id227137.html">ARP</a> waits between retries to resolve an IP address</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.retryCount</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number of times <a href="ARP-id227137.html">ARP</a> will attempt to resolve an IP address</p>
+</td>
+</tr>
+<tr>
+<td><a href="NetworkLayer-id256856.html">networkLayer</a>.<a href="ARP-id227137.html">arp</a>.cacheTimeout</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number seconds unused entries in the cache will time out</p>
+</td>
+</tr>
+<tr>
+<td><a href="PPPInterface-id253450.html">ppp[*]</a>.queueType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> RTPHost
+
+    <span class="src-keyword">parameters</span>:
+        debug: <span class="src-keyword">bool</span>,
+        profileName : <span class="src-keyword">string</span>,
+        destinationAddress : <span class="src-keyword">string</span>,
+        portNumber : <span class="src-keyword">numeric</span>,
+        bandwidth : <span class="src-keyword">numeric</span>,
+        fileName : <span class="src-keyword">string</span>,
+        payloadType : <span class="src-keyword">numeric</span>,
+        <span class="src-comment">// network information</span>
+        numOfProcessors : <span class="src-keyword">numeric</span>,
+        routingFile : <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+
+    <span class="src-keyword">submodules</span>:
+        application: RTPApplication;
+            <span class="src-keyword">parameters</span>:
+                <span class="src-comment">//#commonName = nodename,</span>
+                profileName = profileName,
+                destinationAddress = destinationAddress,
+                portNumber = portNumber,
+                bandwidth = bandwidth,
+                fileName = fileName,
+                payloadType = payloadType;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">77</span>,<span class="src-number">52</span>;b=<span class="src-number">40</span>,<span class="src-number">24</span>";
+        rtpLayer: RTPLayer;
+            <span class="src-keyword">parameters</span>:
+                rtpModuleType = "RTPEndsystemModule",
+                rtcpModuleType = "RTCPEndsystemModule";
+            <span class="src-keyword">display</span>: "p=<span class="src-number">178</span>,<span class="src-number">54</span>;b=<span class="src-number">40</span>,<span class="src-number">24</span>";
+        socketLayer: SocketLayer;
+            <span class="src-keyword">parameters</span>:
+                debug = <span class="src-keyword">false</span>;
+            <span class="src-keyword">gatesizes</span>:
+                from_appl[<span class="src-number">2</span>],
+                to_appl[<span class="src-number">2</span>];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">180</span>,<span class="src-number">164</span>;b=<span class="src-number">40</span>,<span class="src-number">24</span>";
+        udpModule: UDPModule;
+            <span class="src-keyword">parameters</span>:
+                debug = <span class="src-keyword">false</span>;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">87</span>,<span class="src-number">166</span>;i=block/transport";
+        networkLayer: NetworkLayer;
+            <span class="src-keyword">parameters</span>:
+                IPForward = <span class="src-keyword">false</span>,
+                routingFile = routingFile;
+            <span class="src-keyword">gatesizes</span>:
+                ifIn[<span class="src-keyword">sizeof</span>(out)],
+                ifOut[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">87</span>,<span class="src-number">242</span>;i=block/fork";
+        ppp : PPPInterface[<span class="src-keyword">sizeof</span>(out)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">80</span>,<span class="src-number">300</span>,row;q=queue;i=block/ifcard";
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        <span class="src-comment">// transport connections</span>
+        application.toRTP <span class="src-keyword">--&gt;</span> rtpLayer.fromApp;
+        application.fromRTP <span class="src-keyword">&lt;--</span> rtpLayer.toApp;
+        rtpLayer.toSocketLayerRTP <span class="src-keyword">--&gt;</span> socketLayer.from_appl[<span class="src-number">0</span>];
+        rtpLayer.fromSocketLayerRTP <span class="src-keyword">&lt;--</span> socketLayer.to_appl[<span class="src-number">0</span>];
+        rtpLayer.toSocketLayerRTCP <span class="src-keyword">--&gt;</span> socketLayer.from_appl[<span class="src-number">1</span>];
+        rtpLayer.fromSocketLayerRTCP <span class="src-keyword">&lt;--</span> socketLayer.to_appl[<span class="src-number">1</span>];
+        socketLayer.to_udp <span class="src-keyword">--&gt;</span> udpModule.from_socket;
+        socketLayer.from_udp <span class="src-keyword">&lt;--</span> udpModule.to_socket;
+        networkLayer.UDPOut <span class="src-keyword">--&gt;</span> udpModule.from_ip;
+        networkLayer.UDPIn <span class="src-keyword">&lt;--</span> udpModule.to_ip;
+
+        <span class="src-comment">// connections to network outside</span>
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(out)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> ppp[i].physIn;
+            out[i] <span class="src-keyword">&lt;--</span> ppp[i].physOut;
+            ppp[i].netwOut <span class="src-keyword">--&gt;</span> networkLayer.ifIn[i];
+            ppp[i].netwIn <span class="src-keyword">&lt;--</span> networkLayer.ifOut[i];
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

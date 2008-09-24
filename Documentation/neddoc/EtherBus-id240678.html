@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>EtherBus</i>
+</h2>
+<p><b>File: <a href="file-id239718.html">NetworkInterfaces/Ethernet/EtherBus.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ether_bus.html" target="_top">click here</a></b></p>
+<p>A generic bus model.</p>
+
+<p>in[i], out[i] gate pairs represent taps. Messages arriving on a tap
+travel on the bus on both directions, and copies of it are sent out
+on every other tap after delays proportional to their distances.</p>
+
+<p>Tap connections should have zero delays and zero data rates!</p>
+
+<p>Messages are not interpreted by the bus model in any way, thus the bus
+model is not specific to Ethernet in any way. Messages may
+represent anything, from the beginning of a frame transmission to
+end (or abortion) of transmission.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id240678.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="EtherBus-id240678.html" title="simple EtherBus" alt="EtherBus" coords="7,16,81,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">positions</td>
+<td width="100"><i>string</i></td>
+<td><p>positions of taps on the cable in meters, as a sequence
+of numbers separated by spaces. If there are too
+few values, the distance between the last two positions
+is repeated, or 5 meters is used.</p>
+</td>
+</tr>
+<tr>
+<td width="150">propagationSpeed</td>
+<td width="100"><i>numeric</i></td>
+<td><p>signal propagation speed on the bus, in m/s
+(typically 200,000 m/s)</p>
+</td>
+</tr>
+<tr>
+<td width="150">writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in [ ]</td>
+<td width="100"><i>input</i></td>
+<td><p>to stations; each in[k], out[k] pair represents a tap</p>
+</td>
+</tr>
+<tr>
+<td width="150">out [ ]</td>
+<td width="100"><i>output</i></td>
+<td><p>to stations; each in[k], out[k] pair represents a tap</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> EtherBus
+    <span class="src-keyword">parameters</span>:
+        positions : <span class="src-keyword">string</span>,  <span class="src-comment">// positions of taps on the cable in meters, as a sequence</span>
+                             <span class="src-comment">// of numbers separated by spaces. If there are too</span>
+                             <span class="src-comment">// few values, the distance between the last two positions</span>
+                             <span class="src-comment">// is repeated, or 5 meters is used.</span>
+        propagationSpeed : <span class="src-keyword">numeric</span>,
+                             <span class="src-comment">// signal propagation speed on the bus, in m/s</span>
+                             <span class="src-comment">// (typically 200,000 m/s)</span>
+        writeScalars: <span class="src-keyword">bool</span>;  <span class="src-comment">// enable/disable recording statistics in omnetpp.sca</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];    <span class="src-comment">// to stations; each in[k], out[k] pair represents a tap</span>
+        <span class="src-keyword">out:</span> out[];  <span class="src-comment">// to stations; each in[k], out[k] pair represents a tap</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

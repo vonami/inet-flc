@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>UDPControlInfo</i>
+</h2>
+<p><b>File: <a href="file-id269296.html">Transport/Contract/UDPControlInfo.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_u_d_p_control_info.html" target="_top">click here</a></b></p>
+<p>Control info for sending/receiving data via UDP. Travels between
+application and the <a href="UDP-id272076.html">UDP</a> module.</p>
+
+<p>The most convenient way to handle <a href="UDP-id272076.html">UDP</a> is the UDPSocket class, which hides
+<a href="UDPControlInfo-id269416.html">UDPControlInfo</a> completely from you. But even if you manage talking
+to <a href="UDP-id272076.html">UDP</a> yourself without help from UDPSocket, sockId must be obtained
+from UDPSocket::generateSocketId().</p>
+
+<p><b>See also:</b> <a href="UDPCommandCode-id269217.html">UDPCommandCode</a></p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id269416.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="UDPControlInfo-id269416.html" title="class UDPControlInfo" alt="UDPControlInfo" coords="7,16,129,40">
+</map><h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">sockId</td>
+<td width="100"><i>int</i></td>
+<td><p>uniquely identifies the UDP socket</p>
+</td>
+</tr>
+<tr>
+<td width="150">userId</td>
+<td width="100"><i>int</i></td>
+<td><p>id than can be freely used by the app</p>
+</td>
+</tr>
+<tr>
+<td width="150">srcAddr</td>
+<td width="100"><i>IPvXAddress</i></td>
+<td><p>source IP or IPv6 address, or local address with BIND</p>
+</td>
+</tr>
+<tr>
+<td width="150">destAddr</td>
+<td width="100"><i>IPvXAddress</i></td>
+<td><p>destination IP or IPv6 address</p>
+</td>
+</tr>
+<tr>
+<td width="150">srcPort</td>
+<td width="100"><i>int</i></td>
+<td><p>UDP source port in packet, or local port with BIND</p>
+</td>
+</tr>
+<tr>
+<td width="150">destPort</td>
+<td width="100"><i>int</i></td>
+<td><p>UDP destination port in packet</p>
+</td>
+</tr>
+<tr>
+<td width="150">interfaceId</td>
+<td width="100"><i>int</i></td>
+<td><p>interface on which pk was received/should be sent (see <a href="InterfaceTable-id227840.html">InterfaceTable</a>)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> UDPControlInfo
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> sockId = <span class="src-number">-1</span>;   <span class="src-comment">// uniquely identifies the \UDP socket</span>
+        <span class="src-keyword">int</span> userId = <span class="src-number">-1</span>;   <span class="src-comment">// id than can be freely used by the app</span>
+        IPvXAddress srcAddr;  <span class="src-comment">// source \IP or \IPv6 address, or local address with BIND</span>
+        IPvXAddress destAddr; <span class="src-comment">// destination \IP or \IPv6 address</span>
+        <span class="src-keyword">int</span> srcPort;   <span class="src-comment">// \UDP source port in packet, or local port with BIND</span>
+        <span class="src-keyword">int</span> destPort;  <span class="src-comment">// \UDP destination port in packet</span>
+        <span class="src-keyword">int</span> interfaceId = <span class="src-number">-1</span>; <span class="src-comment">// interface on which pk was received/should be sent (see InterfaceTable)</span>
+};</pre>
+</body>
+</html>

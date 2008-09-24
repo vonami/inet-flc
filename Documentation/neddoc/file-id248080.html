@@ -1,0 +1,428 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/Ieee80211/Mgmt/Ieee80211MgmtFrames.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="Ieee80211AssociationRequestFrame-id248919.html">Ieee80211AssociationRequestFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211AssociationRequestFrameBody-id248464.html">Ieee80211AssociationRequestFrameBody</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211AssociationResponseFrame-id249015.html">Ieee80211AssociationResponseFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211AssociationResponseFrameBody-id248556.html">Ieee80211AssociationResponseFrameBody</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211AuthenticationFrame-id248729.html">Ieee80211AuthenticationFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211AuthenticationFrameBody-id248265.html">Ieee80211AuthenticationFrameBody</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211BeaconFrame-id249112.html">Ieee80211BeaconFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211BeaconFrameBody-id248635.html">Ieee80211BeaconFrameBody</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211CapabilityInformation-id248133.html">Ieee80211CapabilityInformation</a><i> (struct)</i>
+</li>
+<li>
+<a href="Ieee80211DeauthenticationFrame-id248776.html">Ieee80211DeauthenticationFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211DeauthenticationFrameBody-id248334.html">Ieee80211DeauthenticationFrameBody</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211DisassociationFrame-id248824.html">Ieee80211DisassociationFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211DisassociationFrameBody-id248374.html">Ieee80211DisassociationFrameBody</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211FrameBody-id248235.html">Ieee80211FrameBody</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211HandoverParameters-id247880.html">Ieee80211HandoverParameters</a><i> (struct)</i>
+</li>
+<li>
+<a href="Ieee80211ProbeRequestFrame-id248872.html">Ieee80211ProbeRequestFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211ProbeRequestFrameBody-id248415.html">Ieee80211ProbeRequestFrameBody</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211ProbeResponseFrame-id249155.html">Ieee80211ProbeResponseFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211ProbeResponseFrameBody-id248710.html">Ieee80211ProbeResponseFrameBody</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211ReasonCode-id247930.html">Ieee80211ReasonCode</a><i> (enum)</i>
+</li>
+<li>
+<a href="Ieee80211ReassociationRequestFrame-id248967.html">Ieee80211ReassociationRequestFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211ReassociationRequestFrameBody-id248513.html">Ieee80211ReassociationRequestFrameBody</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211ReassociationResponseFrame-id249063.html">Ieee80211ReassociationResponseFrame</a><i> (message)</i>
+</li>
+<li>
+<a href="Ieee80211ReassociationResponseFrameBody-id248616.html">Ieee80211ReassociationResponseFrameBody</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee80211StatusCode-id248018.html">Ieee80211StatusCode</a><i> (enum)</i>
+</li>
+<li>
+<a href="Ieee80211SupportedRatesElement-id248189.html">Ieee80211SupportedRatesElement</a><i> (struct)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2006 Andras Varga</span>
+<span class="src-comment">// Copyright (C) 2001 Eric Wu and Steve Woon, Monash University, Melbourne, Australia</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Required for MACAddress declarations</span>
+<span class="src-comment">//</span>
+cplusplus
+{{
+#include "MACAddress.h"
+#include "Ieee80211Frame_m.h"
+}};
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> MACAddress;
+<span class="src-keyword">message</span> Ieee80211ManagementFrame;
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Capability Information field format. This field is not used</span>
+<span class="src-comment">// by the model (and is omitted from management frame formats too),</span>
+<span class="src-comment">// because its fields are related to features not supported by this model</span>
+<span class="src-comment">// (PCF, privacy, and beacons in ad-hoc mode). It is only provided here</span>
+<span class="src-comment">// for completeness.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> Ieee80211CapabilityInformation
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">bool</span> ESS;
+        <span class="src-keyword">bool</span> IBSS;
+        <span class="src-keyword">bool</span> CFPollable;
+        <span class="src-keyword">bool</span> CFPollRequest;
+        <span class="src-keyword">bool</span> privacy;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Additional parameters for handover decisions</span>
+<span class="src-comment">// (Not part of standard, for experimental purposes)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> Ieee80211HandoverParameters
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">double</span> avgBackoffTime;
+        <span class="src-keyword">double</span> avgWaitTime;
+        <span class="src-keyword">double</span> avgErrorRate;
+        <span class="src-keyword">double</span> estAvailBW;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// 802.11 reason code; values correspond to the standard.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> Ieee80211ReasonCode
+{
+    RC_UNSPECIFIED = <span class="src-number">1</span>;
+    RC_PREV_AUTH_EXPIRED = <span class="src-number">2</span>;
+    RC_DEAUTH_MS_LEAVING = <span class="src-number">3</span>;
+    RC_DISASS_INACTIVITY = <span class="src-number">4</span>;
+    RC_DISASS_TOO_MANY_MS = <span class="src-number">5</span>;
+    RC_NONAUTH_CLASS2 = <span class="src-number">6</span>;
+    RC_NONASS_CLASS3 = <span class="src-number">7</span>;
+    RC_DIASS_MS_LEAVING = <span class="src-number">8</span>;
+    RC_NONAUTH_ASS_REQUEST = <span class="src-number">9</span>;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// 802.11 status code; values correspond to the standard.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> Ieee80211StatusCode
+{
+    SC_SUCCESSFUL = <span class="src-number">0</span>;
+    SC_UNSPECIFIED = <span class="src-number">1</span>;
+    SC_UNSUP_CAP = <span class="src-number">10</span>;
+    SC_REASS_DENIED = <span class="src-number">11</span>;
+    SC_ASS_DENIED_UNKNOWN = <span class="src-number">12</span>;
+    SC_AUTH_ALG0_UNSUP = <span class="src-number">13</span>;
+    SC_AUTH_OUT_OF_SEQ = <span class="src-number">14</span>;
+    SC_AUTH_CHALLENGE_FAIL = <span class="src-number">15</span>;
+    SC_AUTH_TIMEOUT = <span class="src-number">16</span>;
+    SC_ASS_TOO_MANY_MS = <span class="src-number">17</span>;
+    SC_DATARATE_UNSUP = <span class="src-number">18</span>;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Structure to store supported rates</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">struct</span> Ieee80211SupportedRatesElement
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">short</span> numRates; <span class="src-comment">// number of rates (max 8)</span>
+        <span class="src-keyword">double</span> rate[<span class="src-number">8</span>]; <span class="src-comment">// in Mbit/s; should be multiple of 500 kbit/s</span>
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Frame body base class used to hide various frame body types</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211FrameBody
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">short</span> bodyLength; <span class="src-comment">// not an actual frame field</span>
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Authentication frame body format.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Note: the "isLast" field is not part of the standard.</span>
+<span class="src-comment">// The authentication procedure is simulated by this model by exchanging</span>
+<span class="src-comment">// a number of "dummy" authentication frames without real contents;</span>
+<span class="src-comment">// the "isLast" field gets set by the AP to signal the STA that</span>
+<span class="src-comment">// the authentication procedure has completed and it does not need to</span>
+<span class="src-comment">// send any more Authentication frames.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211AuthenticationFrameBody <span class="src-keyword">extends</span> Ieee80211FrameBody
+{
+    <span class="src-keyword">fields</span>:
+        bodyLength = <span class="src-number">6</span>; <span class="src-comment">// add 2+len bytes for challenge text if present</span>
+        unsigned <span class="src-keyword">short</span> sequenceNumber;
+        <span class="src-keyword">int</span> statusCode <span class="src-keyword">enum</span>(Ieee80211StatusCode);
+        <span class="src-keyword">bool</span> isLast; <span class="src-comment">// not part of the standard; see above</span>
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// De-authentication frame body format</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211DeauthenticationFrameBody <span class="src-keyword">extends</span> Ieee80211FrameBody
+{
+    <span class="src-keyword">fields</span>:
+        bodyLength = <span class="src-number">2</span>;
+        <span class="src-keyword">int</span> reasonCode <span class="src-keyword">enum</span>(Ieee80211ReasonCode);
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Dis-association frame body format (same as De-authentication)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211DisassociationFrameBody <span class="src-keyword">extends</span> Ieee80211FrameBody
+{
+    <span class="src-keyword">fields</span>:
+        bodyLength = <span class="src-number">2</span>;
+        <span class="src-keyword">int</span> reasonCode <span class="src-keyword">enum</span>(Ieee80211ReasonCode);
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Probe request frame body format</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211ProbeRequestFrameBody <span class="src-keyword">extends</span> Ieee80211FrameBody
+{
+    <span class="src-keyword">fields</span>:
+        bodyLength = <span class="src-number">12</span>; <span class="src-comment">// assuming a 8-character SSID</span>
+        <span class="src-keyword">string</span> SSID;
+        Ieee80211SupportedRatesElement supportedRates;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Association request frame body format</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211AssociationRequestFrameBody <span class="src-keyword">extends</span> Ieee80211FrameBody
+{
+    <span class="src-keyword">fields</span>:
+        bodyLength = <span class="src-number">16</span>; <span class="src-comment">// assuming a 8-character SSID</span>
+        <span class="src-keyword">string</span> SSID;
+        Ieee80211SupportedRatesElement supportedRates;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Re-association request frame body format (same as association)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211ReassociationRequestFrameBody <span class="src-keyword">extends</span> Ieee80211AssociationRequestFrameBody
+{
+    <span class="src-keyword">fields</span>:
+        bodyLength = <span class="src-number">26</span>; <span class="src-comment">// assuming a 8-character SSID and 4 supported datarate</span>
+        MACAddress currentAP;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Association response frame body format</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211AssociationResponseFrameBody <span class="src-keyword">extends</span> Ieee80211FrameBody
+{
+    <span class="src-keyword">fields</span>:
+        bodyLength = <span class="src-number">26</span>; <span class="src-comment">// assuming a 8-character SSID and 4 supported datarate</span>
+        <span class="src-keyword">int</span> statusCode <span class="src-keyword">enum</span>(Ieee80211StatusCode);
+        <span class="src-keyword">short</span> aid;
+        Ieee80211SupportedRatesElement supportedRates;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Re-association response frame body format (same as AssociationResponse)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211ReassociationResponseFrameBody <span class="src-keyword">extends</span> Ieee80211AssociationResponseFrameBody
+{
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Beacon frame body format.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211BeaconFrameBody <span class="src-keyword">extends</span> Ieee80211FrameBody
+{
+    <span class="src-keyword">fields</span>:
+        bodyLength = <span class="src-number">50</span>; <span class="src-comment">// assuming a 8-character SSID, 4 supported datarate plus TIM</span>
+        <span class="src-keyword">string</span> SSID;
+        Ieee80211SupportedRatesElement supportedRates;
+        <span class="src-keyword">double</span> beaconInterval;
+        <span class="src-keyword">int</span> channelNumber;
+        Ieee80211HandoverParameters handoverParameters;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Probe response frame body format (same as Beacon)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee80211ProbeResponseFrameBody <span class="src-keyword">extends</span> Ieee80211BeaconFrameBody
+{
+};
+
+
+<span class="src-comment">//--------------------------------------------------------------</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Authentication frame format (management frame + body)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211AuthenticationFrame <span class="src-keyword">extends</span> Ieee80211ManagementFrame
+{
+    <span class="src-keyword">fields</span>:
+        type = ST_AUTHENTICATION;
+        byteLength = <span class="src-number">34</span>+getBody().getBodyLength();
+        Ieee80211AuthenticationFrameBody body;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// De-authentication frame format (management frame + body)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211DeauthenticationFrame <span class="src-keyword">extends</span> Ieee80211ManagementFrame
+{
+    <span class="src-keyword">fields</span>:
+        type = ST_DEAUTHENTICATION;
+        byteLength = <span class="src-number">34</span>+getBody().getBodyLength();
+        Ieee80211DeauthenticationFrameBody body;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Dis-association frame format (management frame + body) (same as De-authentication)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211DisassociationFrame <span class="src-keyword">extends</span> Ieee80211ManagementFrame
+{
+    <span class="src-keyword">fields</span>:
+        type = ST_DISASSOCIATION;
+        byteLength = <span class="src-number">34</span>+getBody().getBodyLength();
+        Ieee80211DisassociationFrameBody body;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Probe request frame format (management frame + body)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211ProbeRequestFrame <span class="src-keyword">extends</span> Ieee80211ManagementFrame
+{
+    <span class="src-keyword">fields</span>:
+        type = ST_PROBEREQUEST;
+        byteLength = <span class="src-number">34</span>+getBody().getBodyLength();
+        Ieee80211ProbeRequestFrameBody body;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Association request frame format (management frame + body)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211AssociationRequestFrame <span class="src-keyword">extends</span> Ieee80211ManagementFrame
+{
+    <span class="src-keyword">fields</span>:
+        type = ST_ASSOCIATIONREQUEST;
+        byteLength = <span class="src-number">34</span>+getBody().getBodyLength();
+        Ieee80211AssociationRequestFrameBody body;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Re-association request frame format (management frame + body) (same as association)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211ReassociationRequestFrame <span class="src-keyword">extends</span> Ieee80211ManagementFrame
+{
+    <span class="src-keyword">fields</span>:
+        type = ST_REASSOCIATIONREQUEST;
+        byteLength = <span class="src-number">34</span>+getBody().getBodyLength();
+        Ieee80211ReassociationRequestFrameBody body;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Association response frame format (management frame + body)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211AssociationResponseFrame <span class="src-keyword">extends</span> Ieee80211ManagementFrame
+{
+    <span class="src-keyword">fields</span>:
+        type = ST_ASSOCIATIONRESPONSE;
+        byteLength = <span class="src-number">34</span>+getBody().getBodyLength();
+        Ieee80211AssociationResponseFrameBody body;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Re-association response frame format (management frame + body)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211ReassociationResponseFrame <span class="src-keyword">extends</span> Ieee80211ManagementFrame
+{
+    <span class="src-keyword">fields</span>:
+        type = ST_REASSOCIATIONRESPONSE;
+        byteLength = <span class="src-number">34</span>+getBody().getBodyLength();
+        Ieee80211ReassociationResponseFrameBody body;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Beacon frame format (management frame + body)</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211BeaconFrame <span class="src-keyword">extends</span> Ieee80211ManagementFrame
+{
+    <span class="src-keyword">fields</span>:
+        type = ST_BEACON;
+        byteLength = <span class="src-number">34</span>+getBody().getBodyLength();
+        Ieee80211BeaconFrameBody body;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Probe response frame format (management frame + body); same as Beacon</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> Ieee80211ProbeResponseFrame <span class="src-keyword">extends</span> Ieee80211ManagementFrame
+{
+    <span class="src-keyword">fields</span>:
+        type = ST_PROBERESPONSE;
+        byteLength = <span class="src-number">34</span>+getBody().getBodyLength();
+        Ieee80211ProbeResponseFrameBody body;
+};
+</pre>
+</body>
+</html>

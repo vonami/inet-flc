@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>IPv6FragmentHeader</i>
+</h2>
+<p><b>File: <a href="file-id232873.html">Network/IPv6/IPv6ExtensionHeaders.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_pv6_fragment_header.html" target="_top">click here</a></b></p>
+<p>Fragment Header
+RFC 2460 Section 4.5
+Next Header Value: 44</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id232854.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="IPv6FragmentHeader-id232854.html" title="class IPv6FragmentHeader" alt="IPv6FragmentHeader" coords="7,88,161,112">
+<area shape="rect" href="IPv6ExtensionHeader-id232757.html" title="class IPv6ExtensionHeader" alt="IPv6ExtensionHeader" coords="7,16,161,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="IPv6ExtensionHeader-id232757.html">IPv6ExtensionHeader</a></td>
+<td><p>This serves as the base class for all the other extension headers.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">fragmentOffset</td>
+<td width="100"><i>unsigned short</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">identification</td>
+<td width="100"><i>unsigned int</i></td>
+<td><p>datagram ID: identifies which datagram this fragment belongs to.</p>
+</td>
+</tr>
+<tr>
+<td width="150">moreFragments</td>
+<td width="100"><i>bool</i></td>
+<td><p>Is this the last fragment?</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> IPv6FragmentHeader <span class="src-keyword">extends</span> IPv6ExtensionHeader
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        unsigned <span class="src-keyword">short</span> fragmentOffset;
+        unsigned <span class="src-keyword">int</span> identification;  <span class="src-comment">// datagram ID: identifies which datagram this fragment belongs to.</span>
+        <span class="src-keyword">bool</span> moreFragments; <span class="src-comment">//Is this the last fragment?</span>
+};</pre>
+</body>
+</html>

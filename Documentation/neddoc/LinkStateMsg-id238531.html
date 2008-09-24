@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>LinkStateMsg</i>
+</h2>
+<p><b>File: <a href="file-id238480.html">Network/TED/LinkStatePacket.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_link_state_msg.html" target="_top">click here</a></b></p>
+<p>Packet for disseminating link state information (<a href="TELinkStateInfo-id238678.html">TELinkStateInfo</a>[]) by the
+<a href="LinkStateRouting-id238439.html">LinkStateRouting</a> module which implements a minimalistic link state routing
+protocol.</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id238531.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="LinkStateMsg-id238531.html" title="message LinkStateMsg" alt="LinkStateMsg" coords="7,16,111,40">
+</map><h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">linkInfo</td>
+<td width="100"><i>TELinkStateInfo[]</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">request</td>
+<td width="100"><i>bool</i></td>
+<td><p>if true, receiver is expected to send back its own link state database to the sender --FIXME really needed?
+bool ack = false; -- apparently unused, removed -- TODO check with Vojta</p>
+</td>
+</tr>
+<tr>
+<td width="150">command</td>
+<td width="100"><i>int</i></td>
+<td><p>FIXME maybe do without this...</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> LinkStateMsg
+{
+    <span class="src-keyword">fields</span>:
+        TELinkStateInfo linkInfo[];
+
+        <span class="src-keyword">bool</span> request = <span class="src-keyword">false</span>; <span class="src-comment">// if true, receiver is expected to send back its own link state database to the sender --FIXME really needed?</span>
+        <span class="src-comment">// bool ack = false; -- apparently unused, removed -- TODO check with Vojta</span>
+
+        <span class="src-keyword">int</span> command = LINK_STATE_MESSAGE; <span class="src-comment">// FIXME maybe do without this...</span>
+};</pre>
+</body>
+</html>

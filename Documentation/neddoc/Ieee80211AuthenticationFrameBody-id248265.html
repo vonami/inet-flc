@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>Ieee80211AuthenticationFrameBody</i>
+</h2>
+<p><b>File: <a href="file-id248080.html">NetworkInterfaces/Ieee80211/Mgmt/Ieee80211MgmtFrames.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_authentication_frame_body.html" target="_top">click here</a></b></p>
+<p>Authentication frame body format.</p>
+
+<p>Note: the "isLast" field is not part of the standard.
+The authentication procedure is simulated by this model by exchanging
+a number of "dummy" authentication frames without real contents;
+the "isLast" field gets set by the AP to signal the STA that
+the authentication procedure has completed and it does not need to
+send any more Authentication frames.</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id248265.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="Ieee80211AuthenticationFrameBody-id248265.html" title="class Ieee80211AuthenticationFrameBody" alt="Ieee80211AuthenticationFrameBody" coords="7,88,252,112">
+<area shape="rect" href="Ieee80211FrameBody-id248235.html" title="class Ieee80211FrameBody" alt="Ieee80211FrameBody" coords="56,16,203,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="Ieee80211FrameBody-id248235.html">Ieee80211FrameBody</a></td>
+<td><p>Frame body base class used to hide various frame body types</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">bodyLength</td>
+<td width="100"><i></i></td>
+<td><p>add 2+len bytes for challenge text if present</p>
+</td>
+</tr>
+<tr>
+<td width="150">sequenceNumber</td>
+<td width="100"><i>unsigned short</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">statusCode</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">isLast</td>
+<td width="100"><i>bool</i></td>
+<td><p>not part of the standard; see above</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> Ieee80211AuthenticationFrameBody <span class="src-keyword">extends</span> Ieee80211FrameBody
+{
+    <span class="src-keyword">fields</span>:
+        bodyLength = <span class="src-number">6</span>; <span class="src-comment">// add 2+len bytes for challenge text if present</span>
+        unsigned <span class="src-keyword">short</span> sequenceNumber;
+        <span class="src-keyword">int</span> statusCode <span class="src-keyword">enum</span>(Ieee80211StatusCode);
+        <span class="src-keyword">bool</span> isLast; <span class="src-comment">// not part of the standard; see above</span>
+};</pre>
+</body>
+</html>

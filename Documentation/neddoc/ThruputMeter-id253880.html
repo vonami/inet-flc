@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>ThruputMeter</i>
+</h2>
+<p><b>File: <a href="file-id253841.html">NetworkInterfaces/PPP/ThruputMeter.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_thruput_meter.html" target="_top">click here</a></b></p>
+<p>Thruput measurement utility module.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id253880.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="ThruputMeter-id253880.html" title="simple ThruputMeter" alt="ThruputMeter" coords="7,16,113,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">startTime</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">batchSize</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">maxInterval</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> ThruputMeter
+    <span class="src-keyword">parameters</span>:
+        startTime: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        batchSize: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        maxInterval: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in;
+        <span class="src-keyword">out:</span> out;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

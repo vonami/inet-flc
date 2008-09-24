@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/Ieee80211/Ieee80211Nic.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="Ieee80211Nic-id244350.html">Ieee80211Nic</a><i> (compound-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2006 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+<span class="src-keyword">import</span>
+    "Ieee80211Mgmt",
+    "Ieee80211Mac",
+    "Ieee80211Radio";
+
+<span class="src-comment">//</span>
+<span class="src-comment">// This NIC implements an 802.11 network interface card.</span>
+<span class="src-comment">// It can be configured via the mgmtType parameter to act</span>
+<span class="src-comment">// as an AP or a STA, or for ad-hoc mode.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">module</span> Ieee80211Nic
+    <span class="src-keyword">parameters</span>:
+        mgmtType: <span class="src-keyword">string</span>; <span class="src-comment">// name of the management module type</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn; <span class="src-comment">// to upper layers</span>
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// from upper layers</span>
+        <span class="src-keyword">in:</span> radioIn; <span class="src-comment">// to receive AirFrames</span>
+    <span class="src-keyword">submodules</span>:
+        mgmt: mgmtType <span class="src-keyword">like</span> Ieee80211Mgmt;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">96</span>,<span class="src-number">69</span>;i=block/cogwheel;q=wlanDataQueue";
+        mac: Ieee80211Mac;
+            <span class="src-keyword">parameters</span>:
+                queueModule = "mgmt";
+            <span class="src-keyword">display</span>: "p=<span class="src-number">96</span>,<span class="src-number">155</span>;i=block/layer";
+        radio: Ieee80211Radio;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">96</span>,<span class="src-number">240</span>;i=block/wrxtx";
+    <span class="src-keyword">connections</span>:
+        radioIn <span class="src-keyword">--&gt;</span> radio.radioIn;
+        radio.uppergateIn <span class="src-keyword">&lt;--</span> mac.lowergateOut;
+        radio.uppergateOut <span class="src-keyword">--&gt;</span> mac.lowergateIn;
+
+        mac.uppergateOut <span class="src-keyword">--&gt;</span> mgmt.macIn;
+        mac.uppergateIn <span class="src-keyword">&lt;--</span> mgmt.macOut;
+
+        mgmt.uppergateOut <span class="src-keyword">--&gt;</span> uppergateOut;
+        mgmt.uppergateIn <span class="src-keyword">&lt;--</span> uppergateIn;
+
+<span class="src-keyword">endmodule</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/IPv4/RoutingTable.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="RoutingTable-id231049.html">RoutingTable</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">// Copyright (C) 2000 Institut fuer Telematik, Universitaet Karlsruhe</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Stores the routing table. (Per-interface configuration is stored in </span>
+<span class="src-comment">// InterfaceTable.)</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// For hosts, the routerId module parameter should be empty (""),</span>
+<span class="src-comment">// in which case the loopback IP address will be set to 127.0.0.1/8.</span>
+<span class="src-comment">// For routers which have a routerId set, the loopback address will be set to</span>
+<span class="src-comment">// routerId. (See also RFC 2072 "\Router Renumbering Guide".)</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// RouterId may also be set to the string &lt;tt&gt;"auto"&lt;/tt&gt;, in which case the</span>
+<span class="src-comment">// highest interface address will be chosen as routerId; the loopback address</span>
+<span class="src-comment">// will remain 127.0.0.1/8.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The routing table is read from a file (parameter routingFile);</span>
+<span class="src-comment">// the file can also fill in or overwrite interface settings.</span>
+<span class="src-comment">// The file format is documented &lt;a href="irt.html"&gt;here&lt;/a&gt;.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Note that many protocols don't require routerId to be routable, but some</span>
+<span class="src-comment">// others do -- so it is probably a good idea to set up routable routerIds.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This module has no gates; all functionality can be accessed via member</span>
+<span class="src-comment">// functions of the C++ module class. For detailed info, please see the C++</span>
+<span class="src-comment">// documentation of the class (Doxygen).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see InterfaceTable</span>
+<span class="src-comment">// @author: Jochen Reber, Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> RoutingTable
+    <span class="src-keyword">parameters</span>:
+        routerId: <span class="src-keyword">string</span>, <span class="src-comment">// for routers, the router id using IP address dotted</span>
+                          <span class="src-comment">// notation; specify "auto" to select the highest</span>
+                          <span class="src-comment">// interface address; should be left empty ("") for hosts</span>
+        IPForward: <span class="src-keyword">bool</span>,  <span class="src-comment">// turns IP forwarding on/off</span>
+        routingFile: <span class="src-keyword">string</span>;  <span class="src-comment">// routing table file name</span>
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

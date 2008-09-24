@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>EtherEncap</i>
+</h2>
+<p><b>File: <a href="file-id241081.html">NetworkInterfaces/Ethernet/EtherEncap.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ether_encap.html" target="_top">click here</a></b></p>
+<p>Performs Ethernet II encapsulation/decapsulation.</p>
+
+<p>Expected environment:</p>
+
+  <ul><li>lowerLayerIn, lowerLayerOut gates should be connected to Ethernet <a href="EtherMAC-id240352.html">EtherMAC</a></li>
+
+  <li>upperLayerIn, upperLayerOut gates should be connected to higher layer
+  protocol or application</li></ul>
+
+<p>Functionality:</p>
+
+  <ul><li>packets coming from upper layers will be encapsulated in <a href="EthernetIIFrame-id242350.html">EthernetIIFrame</a>
+  and sent to MAC. <a href="EtherType-id239180.html">EtherType</a> is taken from the <a href="Ieee802Ctrl-id239221.html">Ieee802Ctrl</a> structure attached
+  to the message as control info (see setControlInfo(), controlInfo()
+  methods). Src address will be filled in by <a href="EtherMAC-id240352.html">EtherMAC</a>.</li>
+
+  <li>also accepts SENDPAUSE command (message kind=IEEE802CTRL_SENDPAUSE) from
+  higher layer: send PAUSE frame, as described in
+  <a href="ether-pause.html">PAUSE frames</a>.</li>
+
+  <li>Ethernet frames arriving from MAC will be decapsulated, and sent up to the
+  higher layers. Accepts <a href="EtherFrameWithLLC-id242381.html">EtherFrameWithLLC</a> and <a href="EtherFrameWithSNAP-id242494.html">EtherFrameWithSNAP</a> too.</li></ul>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id241164.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="EtherEncap-id241164.html" title="simple EtherEncap" alt="EtherEncap" coords="181,88,272,112">
+<area shape="rect" href="EthernetInterface-id241239.html" title="module EthernetInterface" alt="EthernetInterface" coords="7,16,135,40">
+<area shape="rect" href="EthernetInterface2-id241696.html" title="module EthernetInterface2" alt="EthernetInterface2" coords="159,16,295,40">
+<area shape="rect" href="EthernetInterfaceNoQueue-id242071.html" title="module EthernetInterfaceNoQueue" alt="EthernetInterfaceNoQueue" coords="319,16,511,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="EthernetInterface-id241239.html">EthernetInterface</a></td>
+<td><p>Ethernet network interface. Corresponds to the prototype <a href="NetworkInterface-id238963.html">NetworkInterface</a>.
+Complements <a href="EtherMAC-id240352.html">EtherMAC</a> and <a href="EtherEncap-id241164.html">EtherEncap</a> with an output queue for QoS and
+RED support.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface2-id241696.html">EthernetInterface2</a></td>
+<td><p>Ethernet network interface, which supports full-duplex operation only.
+Corresponds to the prototype <a href="NetworkInterface-id238963.html">NetworkInterface</a>.
+Complements <a href="EtherMAC2-id240348.html">EtherMAC2</a> and <a href="EtherEncap-id241164.html">EtherEncap</a> with an output queue for QoS and
+RED support.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterfaceNoQueue-id242071.html">EthernetInterfaceNoQueue</a></td>
+<td><p>Ethernet network interface. Assumes inifinite queue.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">upperLayerIn</td>
+<td width="100"><i>input</i></td>
+<td><p>higher layer</p>
+</td>
+</tr>
+<tr>
+<td width="150">upperLayerOut</td>
+<td width="100"><i>output</i></td>
+<td><p>higher layer</p>
+</td>
+</tr>
+<tr>
+<td width="150">lowerLayerIn</td>
+<td width="100"><i>input</i></td>
+<td><p>to Ethernet MAC</p>
+</td>
+</tr>
+<tr>
+<td width="150">lowerLayerOut</td>
+<td width="100"><i>output</i></td>
+<td><p>to Ethernet MAC</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> EtherEncap
+    <span class="src-keyword">parameters</span>:
+        writeScalars: <span class="src-keyword">bool</span>; <span class="src-comment">// enable/disable recording statistics in omnetpp.sca</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> upperLayerIn;   <span class="src-comment">// higher layer</span>
+        <span class="src-keyword">out:</span> upperLayerOut; <span class="src-comment">// higher layer</span>
+        <span class="src-keyword">in:</span> lowerLayerIn;   <span class="src-comment">// to Ethernet MAC</span>
+        <span class="src-keyword">out:</span> lowerLayerOut; <span class="src-comment">// to Ethernet MAC</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

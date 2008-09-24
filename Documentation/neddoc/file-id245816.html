@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/Ieee80211/Mac/Ieee80211Mac.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="Ieee80211Mac-id246064.html">Ieee80211Mac</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2006 Andras Varga and Levente Mészáros</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Implementation of the 802.11b MAC protocol. This module is intended</span>
+<span class="src-comment">// to be used in combination with the Ieee80211Radio module as the physical</span>
+<span class="src-comment">// layer. (The SnrEval80211 and Decider80211 modules should also work if</span>
+<span class="src-comment">// per-packet bitrate setting gets implemented.)</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Encapsulation/decapsulation must be done in the upper layers. (It is</span>
+<span class="src-comment">// typically in the 802.11 management module, see in Ieee80211Nic).</span>
+<span class="src-comment">// The base class for 802.11 frame messages is Ieee80211Frame, but this</span>
+<span class="src-comment">// module expects Ieee80211DataOrMgmtFrame (a subclass) from upper layers</span>
+<span class="src-comment">// (the management module). This module will assign the transmitter address</span>
+<span class="src-comment">// (address 2) and the frame sequence number/fragment number fields in the</span>
+<span class="src-comment">// frames; all other fields must already be filled when this module gets</span>
+<span class="src-comment">// the frame for transmission.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The module has an internal queue, but usually it is to be used with an</span>
+<span class="src-comment">// external passive queue module (its name should be given in the queueModule</span>
+<span class="src-comment">// parameter; specifying "" causes the internal queue to be used). The passive</span>
+<span class="src-comment">// queue module is a simple module whose C++ class implements the IPassiveQueue</span>
+<span class="src-comment">// interface.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;b&gt;Limitations&lt;/b&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The following features not supported: 1) fragmentation, 2) power management,</span>
+<span class="src-comment">// 3) polling (PCF). Physical layer algorithms such as frequency hopping and </span>
+<span class="src-comment">// direct sequence spread spectrum are not modelled directly.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Fields related to the above unsupported features are omitted from</span>
+<span class="src-comment">// management frame formats as well (for example, FH/DS/CF parameter sets,</span>
+<span class="src-comment">// beacon/probe timestamp which is related to physical layer synchronization,</span>
+<span class="src-comment">// listen interval which is related to power management, capability information</span>
+<span class="src-comment">// which is related to PCF and other non-modelled features).</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> Ieee80211Mac
+    <span class="src-keyword">parameters</span>:
+        address : <span class="src-keyword">string</span>,       <span class="src-comment">// MAC address as hex string (12 hex digits), or</span>
+                                <span class="src-comment">// "auto". "auto" values will be replaced by</span>
+                                <span class="src-comment">// a generated MAC address in init stage 0.</span>
+        queueModule: <span class="src-keyword">string</span>,    <span class="src-comment">// name of optional external queue module</span>
+        maxQueueSize: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// max queue length in frames; only used if queueModule==""</span>
+        bitrate: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        rtsThresholdBytes: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// longer messages will be sent using RTS/CTS; use 2346 for default</span>
+        retryLimit: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// maximum number of retries per message, -1 means default</span>
+        cwMinData: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// contention window for normal data frames, -1 means default</span>
+        cwMinBroadcast: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// contention window for broadcast messages, -1 means default</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn;
+        <span class="src-keyword">out:</span> uppergateOut;
+        <span class="src-keyword">in:</span> lowergateIn;
+        <span class="src-keyword">out:</span> lowergateOut;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

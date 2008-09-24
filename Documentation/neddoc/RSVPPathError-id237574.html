@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>RSVPPathError</i>
+</h2>
+<p><b>File: <a href="file-id237408.html">Network/RSVP_TE/RSVPPathMsg.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_r_s_v_p_path_error.html" target="_top">click here</a></b></p>
+<p>FIXME missing documentation</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id237574.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="RSVPPathError-id237574.html" title="message RSVPPathError" alt="RSVPPathError" coords="7,88,127,112">
+<area shape="rect" href="RSVPPacket-id237278.html" title="message RSVPPacket" alt="RSVPPacket" coords="19,16,115,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="RSVPPacket-id237278.html">RSVPPacket</a></td>
+<td><p>FIXME missing documentation</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">customize</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">errorNode</td>
+<td width="100"><i>IPAddress</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">errorCode</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">sender_descriptor</td>
+<td width="100"><i>SenderDescriptor_t</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">rsvpKind</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> RSVPPathError <span class="src-keyword">extends</span> RSVPPacket
+{
+    <span class="src-keyword">properties</span>:
+        customize=<span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        IPAddress errorNode;
+        <span class="src-keyword">int</span> errorCode;
+        SenderDescriptor_t sender_descriptor;
+
+        <span class="src-keyword">int</span> rsvpKind = PERROR_MESSAGE;
+};</pre>
+</body>
+</html>

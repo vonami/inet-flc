@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/MFCore/AirFrame.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="AirFrame-id252991.html">AirFrame</a><i> (message)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//**************************************************************************</span>
+<span class="src-comment">// * file:        AirFrame.msg</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * author:      Marc Loebbers</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * copyright:   (C) 2004 Telecommunication Networks Group (TKN) at</span>
+<span class="src-comment">// *              Technische Universitaet Berlin, Germany.</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// *              This program is free software; you can redistribute it</span>
+<span class="src-comment">// *              and/or modify it under the terms of the GNU General Public</span>
+<span class="src-comment">// *              License as published by the Free Software Foundation; either</span>
+<span class="src-comment">// *              version 2 of the License, or (at your option) any later</span>
+<span class="src-comment">// *              version.</span>
+<span class="src-comment">// *              For further information see file COPYING</span>
+<span class="src-comment">// *              in the top level directory</span>
+<span class="src-comment">// ***************************************************************************</span>
+<span class="src-comment">// * part of:     framework implementation developed by tkn</span>
+<span class="src-comment">// **************************************************************************/</span>
+
+cplusplus {{
+#include "INETDefs.h"
+#include "Coord.h"
+}}
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> Coord;
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Format of the messages that are sent to the channel</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// subclass if you want to create your own AirFrame message class</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This message format is used to send a packet from a snrEval module</span>
+<span class="src-comment">// to the channel. All other snrEval modules that can 'hear' this</span>
+<span class="src-comment">// message can evaluate noise, interference etc. from the information</span>
+<span class="src-comment">// contained in this message:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// If you need more fields for whatever reason, please do NOT create</span>
+<span class="src-comment">// your own message! Just extend (subclass) this message format (see Omnet</span>
+<span class="src-comment">// manual,chapter Messages - Inheritance among message classes).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This component has been taken over from Mobility Framework 1.0a5.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @todo As soon as opp_msgc also supports pointers we should replace</span>
+<span class="src-comment">// the id with a pointer to the nodes coordinates itself.</span>
+<span class="src-comment">// @author Marc Loebbers</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> AirFrame
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">double</span> pSend; <span class="src-comment">// Power with which this packet is transmitted</span>
+        <span class="src-keyword">int</span> channelNumber; <span class="src-comment">// Channel on which the packet is sent</span>
+        <span class="src-keyword">double</span> duration; <span class="src-comment">// Time it takes to transmit the packet, in seconds!</span>
+        <span class="src-keyword">double</span> bitrate;
+        Coord senderPos;
+};
+</pre>
+</body>
+</html>

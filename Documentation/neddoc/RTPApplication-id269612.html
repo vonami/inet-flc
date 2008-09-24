@@ -1,0 +1,129 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>RTPApplication</i>
+</h2>
+<p><b>File: <a href="file-id269599.html">Transport/RTP/RTPApplication.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_r_t_p_application.html" target="_top">click here</a></b></p>
+<p>(no description)</p>
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id269612.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="RTPApplication-id269612.html" title="simple RTPApplication" alt="RTPApplication" coords="7,88,127,112">
+<area shape="rect" href="RTPHost-id269911.html" title="module RTPHost" alt="RTPHost" coords="31,16,103,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="RTPHost-id269911.html">RTPHost</a></td>
+<td><i>(no description)</i></td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">commonName</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">profileName</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">bandwidth</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">destinationAddress</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">portNumber</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">fileName</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">payloadType</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">sessionEnterDelay</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">transmissionStartDelay</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">transmissionStopDelay</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">sessionLeaveDelay</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">toRTP</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">fromRTP</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> RTPApplication
+
+	<span class="src-keyword">parameters</span>:
+
+		commonName: <span class="src-keyword">string</span>,
+		profileName: <span class="src-keyword">string</span>,
+		bandwidth,
+		destinationAddress: <span class="src-keyword">string</span>,
+		portNumber,
+		fileName: <span class="src-keyword">string</span>,
+		payloadType,
+		sessionEnterDelay,
+		transmissionStartDelay,
+		transmissionStopDelay,
+		sessionLeaveDelay;
+
+	<span class="src-keyword">gates</span>:
+		<span class="src-keyword">out:</span> toRTP;
+		<span class="src-keyword">in:</span> fromRTP;
+
+
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

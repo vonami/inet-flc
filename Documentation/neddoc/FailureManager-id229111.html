@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>FailureManager</i>
+</h2>
+<p><b>File: <a href="file-id229062.html">Network/Extras/FailureManager.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_failure_manager.html" target="_top">click here</a></b></p>
+<p>Module for managing node failure and recovery in the network. If used,
+it should have exactly one instance in the whole network.</p>
+
+<p><a href="FailureManager-id229111.html">FailureManager</a> does not send or receive messages, and has no parameters
+either. Instead, it is invoked from <a href="ScenarioManager-id272727.html">ScenarioManager</a> scripts, for example:</p>
+
+<p><pre>
+&lt;scenario&gt;
+  &lt;at t="2"&gt;
+    &lt;shutdown module="failureManager" target="LSR2"/&gt;
+  &lt;/at&gt;
+  &lt;at t="10"&gt;
+    &lt;startup module="failureManager" target="LSR2"/&gt;
+  &lt;/at&gt;
+&lt;/scenario&gt;
+</pre></p>
+
+<p>It is currently only used with <a href="MPLS-id233905.html">MPLS</a> simulations, and supports the following
+commands:</p>
+
+  <ul><li><code>shutdown</code>: replaces a router module named by the <tt>target</tt> attribute
+  with another module that represents a failed router. It currently replaces
+  <a href="RSVP_LSR-id264429.html">RSVP_LSR</a> with <a href="RSVP_FAILED-id264094.html">RSVP_FAILED</a>, <a href="LDP_LSR-id263362.html">LDP_LSR</a> with <a href="LDP_FAILED-id262980.html">LDP_FAILED</a>, and <a href="QuaggaRouter-id258126.html">QuaggaRouter</a> with
+  <a href="FailedRouter-id256530.html">FailedRouter</a>.</li>
+
+  <li><code>startup</code>: the inverse of <tt>shutdown</tt>: replaces a <i>failed</i>
+  router model named by the <tt>target</tt> attribute with an operational host/router
+  module type.</li></ul>
+
+<p>The operation of <a href="FailureManager-id229111.html">FailureManager</a> is likely to get refined and generalized in next
+versions.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id229111.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="FailureManager-id229111.html" title="simple FailureManager" alt="FailureManager" coords="7,16,124,40">
+</map><h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> FailureManager
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

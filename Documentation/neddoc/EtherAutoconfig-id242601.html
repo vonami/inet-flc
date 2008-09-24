@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>EtherAutoconfig</i>
+</h2>
+<p><b>File: <a href="file-id242421.html">NetworkInterfaces/Ethernet/EtherFrame.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ether_autoconfig.html" target="_top">click here</a></b></p>
+<p>Ethernet model components (<a href="EtherMAC-id240352.html">EtherMAC</a>, <a href="EtherHub-id241079.html">EtherHub</a> and <a href="EtherBus-id240678.html">EtherBus</a>) send this
+message at the beginning of the simulation, so that "auto"-valued "txrate"
+and "duplex" parameters of <a href="EtherMAC-id240352.html">EtherMAC</a> can be initialized. The purpose is
+similar to Ethernet Auto-Negotiation; however this is NOT meant to be
+the model of that Ethernet feature. (For example, <a href="EtherBus-id240678.html">EtherBus</a> also sends
+an <a href="EtherAutoconfig-id242601.html">EtherAutoconfig</a> message in the model, which obviously does not happen in
+a real Ethernet.)</p>
+
+  <ul><li>txrate: <a href="EtherMAC-id240352.html">EtherMAC</a> with non-auto txrate send configured txrate value;
+  <a href="EtherBus-id240678.html">EtherBus</a> sends 10Mbps (0 means not set). Lowest value will be chosen by
+  all EtherMACs, or if no txrate was advertised (all were 0), 100Mbps is chosen.</li>
+
+  <li>halfDuplex: <a href="EtherHub-id241079.html">EtherHub</a>, <a href="EtherBus-id240678.html">EtherBus</a>, plus <a href="EtherMAC-id240352.html">EtherMAC</a> with duplexEnabled=false setting
+  send true. Duplex operation only chosen by a MAC if nobody vetoed it by sending
+  halfDuplex=true.</li></ul>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id242601.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="EtherAutoconfig-id242601.html" title="message EtherAutoconfig" alt="EtherAutoconfig" coords="7,16,132,40">
+</map><h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">txrate</td>
+<td width="100"><i>double</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">halfDuplex</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> EtherAutoconfig
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">double</span> txrate = <span class="src-number">0</span>;
+        <span class="src-keyword">bool</span> halfDuplex = <span class="src-keyword">false</span>;
+};</pre>
+</body>
+</html>

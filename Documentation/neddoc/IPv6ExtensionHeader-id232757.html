@@ -1,0 +1,96 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>IPv6ExtensionHeader</i>
+</h2>
+<p><b>File: <a href="file-id232636.html">Network/IPv6/IPv6Datagram.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_pv6_extension_header.html" target="_top">click here</a></b></p>
+<p>This serves as the base class for all the other extension headers.</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id232757.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="IPv6ExtensionHeader-id232757.html" title="class IPv6ExtensionHeader" alt="IPv6ExtensionHeader" coords="519,16,673,40">
+<area shape="rect" href="IPv6HopByHopOptionsHeader-id232963.html" title="class IPv6HopByHopOptionsHeader" alt="IPv6HopByHopOptionsHeader" coords="7,88,223,112">
+<area shape="rect" href="IPv6RoutingHeader-id232795.html" title="class IPv6RoutingHeader" alt="IPv6RoutingHeader" coords="247,88,391,112">
+<area shape="rect" href="IPv6FragmentHeader-id232854.html" title="class IPv6FragmentHeader" alt="IPv6FragmentHeader" coords="415,88,569,112">
+<area shape="rect" href="IPv6DestinationOptionsHeader-id233039.html" title="class IPv6DestinationOptionsHeader" alt="IPv6DestinationOptionsHeader" coords="593,88,809,112">
+<area shape="rect" href="IPv6AuthenticationHeader-id233072.html" title="class IPv6AuthenticationHeader" alt="IPv6AuthenticationHeader" coords="833,88,1023,112">
+<area shape="rect" href="IPv6EncapsulatingSecurityPayloadHeader-id233103.html" title="class IPv6EncapsulatingSecurityPayloadHeader" alt="IPv6EncapsulatingSecurityPayloadHeader" coords="1047,88,1335,112">
+</map><h3 class="subtitle">Known subclasses:</h3>
+<table>
+<tr>
+<td><a href="IPv6HopByHopOptionsHeader-id232963.html">IPv6HopByHopOptionsHeader</a></td>
+<td><p>Hop-by-Hop Options Header.
+RFC 2460 Section 4.3
+Next Header Value: 0</p>
+</td>
+</tr>
+<tr>
+<td><a href="IPv6RoutingHeader-id232795.html">IPv6RoutingHeader</a></td>
+<td><p>Routing Header
+RFC 2460 Section 4.4
+Next Header Value: 43</p>
+</td>
+</tr>
+<tr>
+<td><a href="IPv6FragmentHeader-id232854.html">IPv6FragmentHeader</a></td>
+<td><p>Fragment Header
+RFC 2460 Section 4.5
+Next Header Value: 44</p>
+</td>
+</tr>
+<tr>
+<td><a href="IPv6DestinationOptionsHeader-id233039.html">IPv6DestinationOptionsHeader</a></td>
+<td><p>Destination Options Header
+RFC 2460 Section 4.6
+Next Header Value: 60</p>
+</td>
+</tr>
+<tr>
+<td><a href="IPv6AuthenticationHeader-id233072.html">IPv6AuthenticationHeader</a></td>
+<td><p>Authentication Header
+RFC 2402
+Not Implemented</p>
+</td>
+</tr>
+<tr>
+<td><a href="IPv6EncapsulatingSecurityPayloadHeader-id233103.html">IPv6EncapsulatingSecurityPayloadHeader</a></td>
+<td><p>Encapsulating Security Payload Header
+RFC 2406
+Not Implemented</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">customize</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> IPv6ExtensionHeader
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+        customize = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+};</pre>
+</body>
+</html>

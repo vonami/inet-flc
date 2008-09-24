@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>Ieee80211DataFrame</i>
+</h2>
+<p><b>File: <a href="file-id246288.html">NetworkInterfaces/Ieee80211/Mac/Ieee80211Frame.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_data_frame.html" target="_top">click here</a></b></p>
+<p>Format of the 802.11 data frame</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id246660.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="Ieee80211DataFrame-id246660.html" title="message Ieee80211DataFrame" alt="Ieee80211DataFrame" coords="36,88,180,112">
+<area shape="rect" href="Ieee80211DataOrMgmtFrame-id246609.html" title="message Ieee80211DataOrMgmtFrame" alt="Ieee80211DataOrMgmtFrame" coords="7,16,209,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="Ieee80211DataOrMgmtFrame-id246609.html">Ieee80211DataOrMgmtFrame</a></td>
+<td><p>Common base class for 802.11 data and management frames</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">type</td>
+<td width="100"><i></i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">byteLength</td>
+<td width="100"><i></i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">address4</td>
+<td width="100"><i>MACAddress</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> Ieee80211DataFrame <span class="src-keyword">extends</span> Ieee80211DataOrMgmtFrame
+{
+    <span class="src-keyword">fields</span>:
+        type = ST_DATA;
+        byteLength = <span class="src-number">34</span>;
+        MACAddress address4;
+};</pre>
+</body>
+</html>

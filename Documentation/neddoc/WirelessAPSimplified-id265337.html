@@ -1,0 +1,192 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>WirelessAPSimplified</i>
+</h2>
+<p><b>File: <a href="file-id265252.html">Nodes/Wireless/WirelessAPSimplified.ned</a></b></p>
+<p>Models a 802.11 Access Point, but using a simplified NIC that does not
+support handovers. It should be used in conjunction with <a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a>,
+or any other host model containing WirelessNicSTASimplified.</p>
+
+<p><b>See also:</b> <a href="WirelessAP-id265146.html">WirelessAP</a>, <a href="WirelessAPSimplified-id265337.html">WirelessAPSimplified</a>, <a href="WirelessAPWithEth-id265538.html">WirelessAPWithEth</a>, <a href="WirelessAPWithEthSimplified-id265866.html">WirelessAPWithEthSimplified</a></p>
+
+<p><b>See also:</b> <a href="WirelessHost-id266620.html">WirelessHost</a>, <a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a></p>
+
+<p><b>See also:</b> <a href="MobileHost-id255482.html">MobileHost</a>, <a href="MFMobileHost-id254785.html">MFMobileHost</a></p>
+
+<img class="screenshot" src="WirelessAPSimplified__Nodes_Wireless_WirelessAPSimplified_ned.png" ismap usemap="#screenshot" width="183" height="247"><map name="screenshot"><area shape="rect" coords="47,42 93,88" href="NotificationBoard-id225662.html" title="notificationBoard: NotificationBoard" alt="notificationBoard: NotificationBoard">
+<area shape="rect" coords="78,147 124,193" href="Ieee80211NicAPSimplified-id245071.html" title="wlan: Ieee80211NicAPSimplified" alt="wlan: Ieee80211NicAPSimplified">
+<area shape="rect" coords="120,46 150,76" href="NullMobility-id226704.html" title="mobility: NullMobility" alt="mobility: NullMobility"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id265337.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="WirelessAPSimplified-id265337.html" title="module WirelessAPSimplified" alt="WirelessAPSimplified" coords="135,16,292,40">
+<area shape="rect" href="NotificationBoard-id225662.html" title="simple NotificationBoard" alt="NotificationBoard" coords="7,88,140,112">
+<area shape="rect" href="NullMobility-id226704.html" title="simple NullMobility" alt="NullMobility" coords="164,88,263,112">
+<area shape="rect" href="Ieee80211NicAPSimplified-id245071.html" title="module Ieee80211NicAPSimplified" alt="Ieee80211NicAPSimplified" coords="287,88,468,112">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">Ieee80211NicAPSimplified</a></td>
+<td><p>This NIC implements an infrastructure mode 802.11 network interface card
+for a wireless Access Point (AP), but using a simplified mgmt module
+that does not support handovers.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NotificationBoard-id225662.html">NotificationBoard</a></td>
+<td><p>Using <a href="NotificationBoard-id225662.html">NotificationBoard</a>, modules can now notify each other about
+"events" such as routing table changes, interface status changes (up/down),
+interface configuration changes, wireless handovers, changes in the state
+of the wireless channel, mobile node position changes, etc.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NullMobility-id226704.html">NullMobility</a></td>
+<td><p>This mobility module does nothing; it can be used for stationary nodes.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">radioIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211MgmtAPSimplified-id247334.html">mgmt</a>.frameCapacity</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.address</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address as hex string (12 hex digits), or
+"auto". "auto" values will be replaced by
+a generated MAC address in init stage 0.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.maxQueueSize</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>max queue length in frames; only used if queueModule==""</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.rtsThresholdBytes</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>longer messages will be sent using RTS/CTS; use 2346 for default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.retryLimit</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>maximum number of retries per message, -1 means default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.cwMinData</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>contention window for normal data frames, -1 means default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.cwMinBroadcast</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>contention window for broadcast messages, -1 means default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.channelNumber</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>channel identifier</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.transmitterPower</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>power used for transmission of messages (in mW)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>(in bits/s)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.thermalNoise</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>base noise level (dBm)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.pathLossAlpha</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>used by the path loss calculation</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.snirThreshold</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>if signal-noise ratio is below this threshold, frame is considered noise (in dB)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAPSimplified-id245071.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.sensitivity</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>received signals with power below sensitivity are ignored</p>
+</td>
+</tr>
+<tr>
+<td><a href="NullMobility-id226704.html">mobility</a>.x</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>start x coordinate (-1 = display string position, or random if it's missing)</p>
+</td>
+</tr>
+<tr>
+<td><a href="NullMobility-id226704.html">mobility</a>.y</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>start y coordinate (-1 = display string position, or random if it's missing)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> WirelessAPSimplified
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> radioIn;
+    <span class="src-keyword">submodules</span>:
+        notificationBoard: NotificationBoard;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">79</span>,<span class="src-number">74</span>;i=block/control";
+        wlan: Ieee80211NicAPSimplified;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">110</span>,<span class="src-number">179</span>;q=queue;i=block/ifcard";
+        mobility: NullMobility;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">144</span>,<span class="src-number">70</span>;i=block/cogwheel_s";
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        radioIn <span class="src-keyword">--&gt;</span> wlan.radioIn <span class="src-keyword">display</span> "m=s";
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

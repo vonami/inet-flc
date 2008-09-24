@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>RTCPModule</i>
+</h2>
+<p><b>File: <a href="file-id269538.html">Transport/RTP/RTCPModule.ned</a></b></p>
+<p>(no description)</p>
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id269546.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="RTCPModule-id269546.html" title="simple RTCPModule" alt="RTCPModule" coords="7,88,111,112">
+<area shape="rect" href="RTPLayer-id270474.html" title="module RTPLayer" alt="RTPLayer" coords="17,16,100,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="RTPLayer-id270474.html">RTPLayer</a></td>
+<td><i>(no description)</i></td>
+</tr></table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">fromRTP</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">fromSocketLayer</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">toRTP</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">toSocketLayer</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> RTCPModule
+
+	<span class="src-keyword">gates</span>:
+		<span class="src-keyword">in:</span> fromRTP, fromSocketLayer;
+		<span class="src-keyword">out:</span> toRTP, toSocketLayer;
+
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Transport/TCP/TCPSegment.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="TCPPayloadMessage-id271741.html">TCPPayloadMessage</a><i> (struct)</i>
+</li>
+<li>
+<a href="TCPSegment-id271106.html">TCPSegment</a><i> (message)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+cplusplus {{
+#include &lt;iostream&gt;
+#include "INETDefs.h"
+
+#define TCP_HEADER_OCTETS  <span class="src-number">20</span>    <span class="src-comment">// without options</span>
+
+typedef cMessage *cMessagePtr;
+
+inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, cMessagePtr msg) {
+    return os &lt;&lt; "(" &lt;&lt; msg-&gt;className() &lt;&lt; ") " &lt;&lt; msg-&gt;name() &lt;&lt; ": " &lt;&lt; msg-&gt;info();
+}
+
+}};
+
+<span class="src-keyword">struct</span> cMessagePtr;
+
+<span class="src-keyword">struct</span> TCPPayloadMessage
+{
+    <span class="src-keyword">fields</span>:
+        unsigned <span class="src-keyword">int</span> endSequenceNo;
+        cMessagePtr msg;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Represents a \TCP segment, to be used with the TCP module.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// \TCP header fields not explicitly modelled:</span>
+<span class="src-comment">// - Data Offset (number of 32 bit words in the header): represented</span>
+<span class="src-comment">//   by cMessage::length().</span>
+<span class="src-comment">// - Reserved (reserved for future use)</span>
+<span class="src-comment">// - Checksum (header checksum): modelled by cMessage::hasBitError()</span>
+<span class="src-comment">// - Options: none supported currently (MSS comes from config)</span>
+<span class="src-comment">// - Padding</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// cMessage::kind() may be set to an arbitrary value: TCP entities will</span>
+<span class="src-comment">// ignore it and use only the header fields (synBit, ackBit, rstBit).</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> TCPSegment <span class="src-keyword">extends</span> cMessage
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+        customize=<span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-comment">// Source Port</span>
+        <span class="src-keyword">short</span> srcPort;
+
+        <span class="src-comment">// Destination Port</span>
+        <span class="src-keyword">short</span> destPort;
+
+        <span class="src-comment">// Sequence Number: first sequence number of the first data octet</span>
+        <span class="src-comment">// in the respective segment (except if SYN is set; then the the</span>
+        <span class="src-comment">// seq. number is the initial seq. number (ISS) and the first data</span>
+        <span class="src-comment">// octet is ISS+1)</span>
+        unsigned <span class="src-keyword">int</span> sequenceNo;
+
+        <span class="src-comment">// Acknowledgement Number: if ACK flag is set, this field contains</span>
+        <span class="src-comment">// the next sequence number the sender of this segment is expecting</span>
+        <span class="src-comment">// to receive</span>
+        unsigned <span class="src-keyword">int</span> ackNo;
+
+        <span class="src-keyword">bool</span> urgBit; <span class="src-comment">// URG: urgent pointer field significant if set</span>
+        <span class="src-keyword">bool</span> ackBit; <span class="src-comment">// ACK: ackNo significant if set</span>
+        <span class="src-keyword">bool</span> pshBit; <span class="src-comment">// PSH: push function</span>
+        <span class="src-keyword">bool</span> rstBit; <span class="src-comment">// RST: reset the connection</span>
+        <span class="src-keyword">bool</span> synBit; <span class="src-comment">// SYN: synchronize seq. numbers</span>
+        <span class="src-keyword">bool</span> finBit; <span class="src-comment">// FIN: no more data from sender</span>
+
+        <span class="src-comment">// Window: the number of data octets beginning with the one indicated</span>
+        <span class="src-comment">// in the acknowledgement field which the sender of this segment is</span>
+        <span class="src-comment">// willing to accept</span>
+        unsigned <span class="src-keyword">long</span> window;
+
+        <span class="src-comment">// Urgent Pointer: communicates the current value of the urgent pointer</span>
+        <span class="src-comment">// as a positive offset from the sequence number in this segment. The</span>
+        <span class="src-comment">// urgent pointer points to the sequence number of the octet following</span>
+        <span class="src-comment">// the urgent data. This field is only be interpreted in segments with</span>
+        <span class="src-comment">// the URG control bit set.</span>
+        unsigned <span class="src-keyword">long</span> urgentPointer;
+
+        <span class="src-comment">// Payload length in octets (not an actual \TCP header field).</span>
+        <span class="src-comment">// This may not always be the same as encapsulatedPacket()-&gt;length()*8;</span>
+        <span class="src-comment">// e.g. when simulating a virtual data stream there's no encapsulated</span>
+        <span class="src-comment">// packet at all.</span>
+        <span class="src-keyword">int</span> payloadLength;
+
+        <span class="src-comment">// Message objects (cMessages) that travel in this segment as data.</span>
+        <span class="src-comment">// (This field is used only with TCPMsgBasedSendQueue/RcvQueue and</span>
+        <span class="src-comment">// not with TCPVirtualBytesSendQueue/RcvQueue.)  Every message object</span>
+        <span class="src-comment">// is put into the TCPSegment that would (in real life) carry its</span>
+        <span class="src-comment">// last octet. That is, if message object 'msg' with length=100 bytes</span>
+        <span class="src-comment">// occupies sequence number range 10000..10099, it will travel in the</span>
+        <span class="src-comment">// TCPSegment which carries the octet 10099. This way it is easily achieved</span>
+        <span class="src-comment">// that the receiving TCP passes up the message object to its client</span>
+        <span class="src-comment">// when the last byte of the message has arrived.</span>
+        <span class="src-keyword">abstract</span> TCPPayloadMessage payload[];
+};
+</pre>
+</body>
+</html>

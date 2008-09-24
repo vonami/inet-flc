@@ -1,0 +1,183 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/LDP/LDPPacket.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="FEC_TLV-id233442.html">FEC_TLV</a><i> (struct)</i>
+</li>
+<li>
+<a href="LDPAddress-id233725.html">LDPAddress</a><i> (message)</i>
+</li>
+<li>
+<a href="LDPHello-id233592.html">LDPHello</a><i> (message)</i>
+</li>
+<li>
+<a href="LDPIni-id233668.html">LDPIni</a><i> (message)</i>
+</li>
+<li>
+<a href="LDPLabelMapping-id233528.html">LDPLabelMapping</a><i> (message)</i>
+</li>
+<li>
+<a href="LDPLabelRequest-id233564.html">LDPLabelRequest</a><i> (message)</i>
+</li>
+<li>
+<a href="LDPNotify-id233634.html">LDPNotify</a><i> (message)</i>
+</li>
+<li>
+<a href="LDPPacket-id233476.html">LDPPacket</a><i> (message)</i>
+</li>
+<li>
+<a href="LDP_MESSAGE_TYPES-id233375.html">LDP_MESSAGE_TYPES</a><i> (enum)</i>
+</li>
+<li>
+<a href="LDP_STATUS_TYPES-id233420.html">LDP_STATUS_TYPES</a><i> (enum)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// This library is free software, you can redistribute it</span>
+<span class="src-comment">// and/or modify</span>
+<span class="src-comment">// it under  the terms of the GNU Lesser General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation;</span>
+<span class="src-comment">// either version 2 of the License, or any later version.</span>
+<span class="src-comment">// The library is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="src-comment">// See the GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+
+
+cplusplus {{
+#include "IPAddress.h"
+
+<span class="src-comment">// base header: version, length, LSR ID, Label space</span>
+#define LDP_BASEHEADER_BYTES  <span class="src-number">10</span>
+
+<span class="src-comment">// FIXME: the length below is just a guess. TBD find lengths for individual TLVs</span>
+<span class="src-comment">// making up different LDP packet types, and determine length for each packet type</span>
+#define LDP_HEADER_BYTES  (LDP_BASEHEADER_BYTES+<span class="src-number">20</span>)
+}}
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPAddress;
+
+<span class="src-comment">//</span>
+<span class="src-comment">// LDP message types</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> LDP_MESSAGE_TYPES
+{
+    NOTIFICATION=<span class="src-number">10</span>;
+    HELLO=<span class="src-number">11</span>;
+    INITIALIZATION=<span class="src-number">12</span>;
+    KEEP_ALIVE=<span class="src-number">13</span>;
+    ADDRESS=<span class="src-number">14</span>;
+    ADDRESS_WITHDRAW=<span class="src-number">15</span>;
+    LABEL_MAPPING=<span class="src-number">16</span>;
+    LABEL_REQUEST=<span class="src-number">17</span>;
+    LABEL_WITHDRAW=<span class="src-number">18</span>;
+    LABEL_RELEASE=<span class="src-number">19</span>;
+    UNKNOWN=<span class="src-number">20</span>;
+};
+
+<span class="src-keyword">enum</span> LDP_STATUS_TYPES
+{
+    NO_ROUTE=<span class="src-number">13</span>;
+};
+
+<span class="src-keyword">struct</span> FEC_TLV
+{
+<span class="src-comment">//</span>
+<span class="src-comment">// XXX FIXME mapping messages may contain multiple FEC elements (use std::vector)</span>
+<span class="src-comment">//</span>
+    <span class="src-keyword">fields</span>:
+        IPAddress addr;
+        <span class="src-keyword">int</span> length;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Base class for LDP packets</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> LDPPacket
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> type;
+        IPAddress senderAddress;
+        IPAddress receiverAddress;
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// LDP Label Mapping Message</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> LDPLabelMapping <span class="src-keyword">extends</span> LDPPacket
+{
+    <span class="src-keyword">fields</span>:
+        FEC_TLV fec;
+        <span class="src-keyword">int</span> label;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// LDP Label Request Message</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> LDPLabelRequest <span class="src-keyword">extends</span> LDPPacket
+{
+    <span class="src-keyword">fields</span>:
+        FEC_TLV fec;
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// LDP Hello Message</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> LDPHello <span class="src-keyword">extends</span> LDPPacket
+{
+     <span class="src-keyword">fields</span>:
+         <span class="src-keyword">double</span> holdTime;
+         <span class="src-keyword">bool</span> tbit;
+         <span class="src-keyword">bool</span> rbit;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// LDP notification message</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> LDPNotify <span class="src-keyword">extends</span> LDPPacket
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> status;
+        FEC_TLV fec;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// LDP Ini Message</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//# FIXME currently unused</span>
+<span class="src-keyword">message</span> LDPIni <span class="src-keyword">extends</span> LDPPacket
+{
+     <span class="src-keyword">fields</span>:
+         <span class="src-keyword">double</span> keepAliveTime;
+         <span class="src-keyword">bool</span> abit;
+         <span class="src-keyword">bool</span> dbit;
+         <span class="src-keyword">int</span> pvLim;
+         <span class="src-keyword">string</span> receiverLDPIdentifier;
+};
+
+<span class="src-comment">//</span>
+<span class="src-comment">// LDP Address Message</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//# FIXME currently unused</span>
+<span class="src-keyword">message</span> LDPAddress <span class="src-keyword">extends</span> LDPPacket
+{
+     <span class="src-keyword">fields</span>:
+         <span class="src-keyword">bool</span> isWithdraw;
+         <span class="src-keyword">string</span> family;
+         <span class="src-keyword">string</span> addresses[];
+};
+</pre>
+</body>
+</html>

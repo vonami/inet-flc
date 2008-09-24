@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Struct <i>Ieee80211SupportedRatesElement</i>
+</h2>
+<p><b>File: <a href="file-id248080.html">NetworkInterfaces/Ieee80211/Mgmt/Ieee80211MgmtFrames.msg</a></b></p>
+<p>Structure to store supported rates</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id248189.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="Ieee80211SupportedRatesElement-id248189.html" title="struct Ieee80211SupportedRatesElement" alt="Ieee80211SupportedRatesElement" coords="7,16,233,40">
+</map><h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">numRates</td>
+<td width="100"><i>short</i></td>
+<td><p>number of rates (max 8)</p>
+</td>
+</tr>
+<tr>
+<td width="150">rate</td>
+<td width="100"><i>double[8]</i></td>
+<td><p>in Mbit/s; should be multiple of 500 kbit/s</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">struct</span> Ieee80211SupportedRatesElement
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">short</span> numRates; <span class="src-comment">// number of rates (max 8)</span>
+        <span class="src-keyword">double</span> rate[<span class="src-number">8</span>]; <span class="src-comment">// in Mbit/s; should be multiple of 500 kbit/s</span>
+};</pre>
+</body>
+</html>

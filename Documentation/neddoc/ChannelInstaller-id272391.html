@@ -1,0 +1,48 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>ChannelInstaller</i>
+</h2>
+<p><b>File: <a href="file-id272381.html">World/ChannelInstaller.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_channel_installer.html" target="_top">click here</a></b></p>
+<p>Replaces channel objects in the network.</p>
+
+<p>This module is a temporary solution until the NED infrastructure
+gets extended to accomodate channel classes.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id272391.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="ChannelInstaller-id272391.html" title="simple ChannelInstaller" alt="ChannelInstaller" coords="7,16,127,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">channelClass</td>
+<td width="100"><i>string</i></td>
+<td><p>e.g. "ThruputMeteringChannel"</p>
+</td>
+</tr>
+<tr>
+<td width="150">channelAttrs</td>
+<td width="100"><i>string</i></td>
+<td><p>params for the channel class, e.g. "format=N (U)"</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> ChannelInstaller
+    <span class="src-keyword">parameters</span>:
+        channelClass: <span class="src-keyword">string</span>, <span class="src-comment">// e.g. "ThruputMeteringChannel"</span>
+        channelAttrs: <span class="src-keyword">string</span>; <span class="src-comment">// params for the channel class, e.g. "format=N (U)"</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

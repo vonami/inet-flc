@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>RSVPHelloMsg</i>
+</h2>
+<p><b>File: <a href="file-id237047.html">Network/RSVP_TE/RSVPHello.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_r_s_v_p_hello_msg.html" target="_top">click here</a></b></p>
+<p>FIXME missing documentation</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id237029.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="RSVPHelloMsg-id237029.html" title="message RSVPHelloMsg" alt="RSVPHelloMsg" coords="7,88,124,112">
+<area shape="rect" href="RSVPMessage-id237252.html" title="message RSVPMessage" alt="RSVPMessage" coords="11,16,120,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="RSVPMessage-id237252.html">RSVPMessage</a></td>
+<td><p>RSVP message common part</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">customize</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">request</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ack</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">srcInstance</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">dstInstance</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">rsvpKind</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> RSVPHelloMsg <span class="src-keyword">extends</span> RSVPMessage
+{
+    <span class="src-keyword">properties</span>:
+        customize=<span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">bool</span> request;
+        <span class="src-keyword">bool</span> ack;
+
+        <span class="src-keyword">int</span> srcInstance;
+        <span class="src-keyword">int</span> dstInstance;
+
+        <span class="src-keyword">int</span> rsvpKind = HELLO_MESSAGE;
+};</pre>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Transport/Contract/TCPCommand.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="TCPCommand-id268543.html">TCPCommand</a><i> (class)</i>
+</li>
+<li>
+<a href="TCPConnectInfo-id268949.html">TCPConnectInfo</a><i> (class)</i>
+</li>
+<li>
+<a href="TCPErrorCode-id268526.html">TCPErrorCode</a><i> (enum)</i>
+</li>
+<li>
+<a href="TCPErrorInfo-id268608.html">TCPErrorInfo</a><i> (class)</i>
+</li>
+<li>
+<a href="TCPOpenCommand-id268798.html">TCPOpenCommand</a><i> (class)</i>
+</li>
+<li>
+<a href="TCPSendCommand-id268919.html">TCPSendCommand</a><i> (class)</i>
+</li>
+<li>
+<a href="TCPStatusInfo-id269015.html">TCPStatusInfo</a><i> (class)</i>
+</li>
+<li>
+<a href="TcpCommandCode-id268675.html">TcpCommandCode</a><i> (enum)</i>
+</li>
+<li>
+<a href="TcpStatusInd-id268763.html">TcpStatusInd</a><i> (enum)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+cplusplus {{
+#include "IPvXAddress.h"
+}}
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPvXAddress;
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// \TCP command codes, sent by the application to TCP. These constants</span>
+<span class="src-comment">// should be set as message kind on a message sent to the TCP entity.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see TCPCommand, TCPOpenCommand, TCP</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> TcpCommandCode
+{
+    TCP_C_OPEN_ACTIVE = <span class="src-number">1</span>;   <span class="src-comment">// active open (must carry TCPOpenCommand)</span>
+    TCP_C_OPEN_PASSIVE = <span class="src-number">2</span>;  <span class="src-comment">// passive open (must carry TCPOpenCommand)</span>
+    TCP_C_SEND = <span class="src-number">3</span>;          <span class="src-comment">// send data (set on data packet)</span>
+    TCP_C_CLOSE = <span class="src-number">5</span>;         <span class="src-comment">// "I have no more data to send"</span>
+    TCP_C_ABORT = <span class="src-number">6</span>;         <span class="src-comment">// abort connection</span>
+    TCP_C_STATUS = <span class="src-number">7</span>;        <span class="src-comment">// request status info (TCP_I_STATUS) from TCP</span>
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// \TCP indications, sent by TCP to the application. TCP will set these</span>
+<span class="src-comment">// constants as message kind on messages it sends to the application.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see TCPCommand, TCPStatusInfo, TCP</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> TcpStatusInd
+{
+    TCP_I_DATA = <span class="src-number">1</span>;              <span class="src-comment">// data packet (set on data packet)</span>
+    TCP_I_URGENT_DATA = <span class="src-number">2</span>;       <span class="src-comment">// urgent data (set on data packet)</span>
+    TCP_I_ESTABLISHED = <span class="src-number">3</span>;       <span class="src-comment">// connection established</span>
+    TCP_I_PEER_CLOSED = <span class="src-number">4</span>;       <span class="src-comment">// FIN received from remote TCP</span>
+    TCP_I_CLOSED = <span class="src-number">5</span>;            <span class="src-comment">// connection closed normally (via FIN exchange)</span>
+    TCP_I_CONNECTION_REFUSED = <span class="src-number">6</span>; <span class="src-comment">// connection refused</span>
+    TCP_I_CONNECTION_RESET = <span class="src-number">7</span>;  <span class="src-comment">// connection reset</span>
+    TCP_I_TIMED_OUT = <span class="src-number">8</span>;         <span class="src-comment">// conn-estab timer went off, or max retransm. count reached</span>
+    TCP_I_STATUS = <span class="src-number">9</span>;            <span class="src-comment">// status info (will carry TCPStatusInfo)</span>
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Currently not in use.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> TCPErrorCode
+{
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Control info for \TCP connections. This class is to be set as control info</span>
+<span class="src-comment">// (see cMessage::setControlInfo()) on all messages exchanged between TCP and</span>
+<span class="src-comment">// application, in both directions. Some commands and indications</span>
+<span class="src-comment">// (TCP_C_OPEN_xxx, TCP_I_STATUS) use subclasses.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// connId identifies the connection locally within the application (internally,</span>
+<span class="src-comment">// TCP uses the (app gate index, connId) pair to identify the socket).</span>
+<span class="src-comment">// connId is to be chosen by the application in the open command.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//# TODO explain userId</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see TcpCommandCode, TcpStatusInd, TCPOpenCommand, TCPStatusInfo, TCP</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> TCPCommand
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> connId = <span class="src-number">-1</span>;   <span class="src-comment">// identifies the socket within the application</span>
+        <span class="src-keyword">int</span> userId = <span class="src-number">-1</span>;   <span class="src-comment">// id than can be freely used by the app</span>
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Currently not in use.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> TCPErrorInfo <span class="src-keyword">extends</span> TCPCommand
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> errorCode <span class="src-keyword">enum</span>(TCPErrorCode);
+        <span class="src-keyword">string</span> messageText;
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Control info to be used for active or passive TCP open.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// localAddr, remoteAddr, localPort, remotePort should be self-explanatory.</span>
+<span class="src-comment">// localAddr is optional because TCP can learn it from IP when a packet</span>
+<span class="src-comment">// is received from the peer; localPort is optional because TCP supports</span>
+<span class="src-comment">// ephemeral ports.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The sendQueueClass, receiveQueueClass and tcpAlgorithmClass fields</span>
+<span class="src-comment">// allow per-connection TCP configuration. These fields may contain</span>
+<span class="src-comment">// names of classes subclassed from TCPSendQueue, TCPReceiveQueue</span>
+<span class="src-comment">// and TCPAlgorithm, respectively. If not set, module parameters with</span>
+<span class="src-comment">// similar names are used.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The fork parameter is used with passive open, and controls what happens</span>
+<span class="src-comment">// when an incoming connection is received. With fork=true, it emulates</span>
+<span class="src-comment">// the Unix accept(2) syscall semantics: a new connection structure</span>
+<span class="src-comment">// is created for the connection (with a new connId, see in TCPCommand),</span>
+<span class="src-comment">// and the connection structure with the old connId remains listening.</span>
+<span class="src-comment">// With fork=false, all the above does not happen: the first connection</span>
+<span class="src-comment">// is accepted (with the original connId), and further incoming connections</span>
+<span class="src-comment">// will be refused by TCP by sending an RST segment.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see TcpCommandCode, TCP</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> TCPOpenCommand <span class="src-keyword">extends</span> TCPCommand
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        IPvXAddress localAddr; <span class="src-comment">// may be left empty</span>
+        IPvXAddress remoteAddr;<span class="src-comment">// required for active open</span>
+        <span class="src-keyword">int</span> localPort = <span class="src-number">-1</span>;       <span class="src-comment">// required for passive open</span>
+        <span class="src-keyword">int</span> remotePort = <span class="src-number">-1</span>;      <span class="src-comment">// required for active open</span>
+        <span class="src-keyword">bool</span> fork = <span class="src-keyword">false</span>;        <span class="src-comment">// used only for passive open</span>
+        <span class="src-keyword">string</span> sendQueueClass;    <span class="src-comment">// may be left empty</span>
+        <span class="src-keyword">string</span> receiveQueueClass; <span class="src-comment">// may be left empty</span>
+        <span class="src-keyword">string</span> tcpAlgorithmClass; <span class="src-comment">// may be left empty</span>
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Control info to be used with the SEND command.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see TcpCommandCode, TCP</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> TCPSendCommand <span class="src-keyword">extends</span> TCPCommand
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Sent with message kind TCP_I_ESTABLISHED, to let the app know</span>
+<span class="src-comment">// about the local and remote IP address and port.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see TcpCommandCode, TCP</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> TCPConnectInfo <span class="src-keyword">extends</span> TCPCommand
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        IPvXAddress localAddr;
+        IPvXAddress remoteAddr;
+        <span class="src-keyword">int</span> localPort;
+        <span class="src-keyword">int</span> remotePort;
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Sent with message kind TCP_I_STATUS, in response to command TCP_C_STATUS.</span>
+<span class="src-comment">// For explanation of variables, see RFC 793 or TCPStateVariables in</span>
+<span class="src-comment">// TCPConnection.h.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see TcpStatusInd, TcpCommandCode, TCP</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> TCPStatusInfo <span class="src-keyword">extends</span> TCPCommand
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> state;
+        <span class="src-keyword">string</span> stateName;
+
+        IPvXAddress localAddr;
+        IPvXAddress remoteAddr;
+        <span class="src-keyword">int</span> localPort;
+        <span class="src-keyword">int</span> remotePort;
+
+        <span class="src-keyword">int</span> snd_mss;
+
+        unsigned <span class="src-keyword">int</span> snd_una;
+        unsigned <span class="src-keyword">int</span> snd_nxt;
+        unsigned <span class="src-keyword">int</span> snd_max;
+        unsigned <span class="src-keyword">int</span> snd_wnd;
+        unsigned <span class="src-keyword">int</span> snd_up;
+        unsigned <span class="src-keyword">int</span> snd_wl1;
+        unsigned <span class="src-keyword">int</span> snd_wl2;
+        unsigned <span class="src-keyword">int</span> iss;
+
+        unsigned <span class="src-keyword">int</span> rcv_nxt;
+        unsigned <span class="src-keyword">int</span> rcv_wnd;
+        unsigned <span class="src-keyword">int</span> rcv_up;
+        unsigned <span class="src-keyword">int</span> irs;
+
+        <span class="src-keyword">bool</span> fin_ack_rcvd;
+};
+</pre>
+</body>
+</html>

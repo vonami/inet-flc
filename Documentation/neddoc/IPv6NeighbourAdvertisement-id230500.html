@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>IPv6NeighbourAdvertisement</i>
+</h2>
+<p><b>File: <a href="file-id230242.html">Network/ICMPv6/IPv6NDMessage.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_pv6_neighbour_advertisement.html" target="_top">click here</a></b></p>
+<p>Neighbour Advertisement Message Format
+RFC 2461 Section 4.4</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id230500.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="IPv6NeighbourAdvertisement-id230500.html" title="message IPv6NeighbourAdvertisement" alt="IPv6NeighbourAdvertisement" coords="7,88,217,112">
+<area shape="rect" href="IPv6NDMessage-id230159.html" title="message IPv6NDMessage" alt="IPv6NDMessage" coords="51,16,173,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="IPv6NDMessage-id230159.html">IPv6NDMessage</a></td>
+<td><p>Neighbour Discovery for <a href="IPv6-id232445.html">IPv6</a>.
+RFC 2461</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">routerFlag</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">solicitedFlag</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">overrideFlag</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">targetAddress</td>
+<td width="100"><i>IPv6Address</i></td>
+<td><p>MUST NOT be a multicast address.</p>
+</td>
+</tr>
+<tr>
+<td width="150">targetLinkLayerAddress</td>
+<td width="100"><i>MACAddress</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> IPv6NeighbourAdvertisement <span class="src-keyword">extends</span> IPv6NDMessage
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-comment">//Additional ICMP fields</span>
+        <span class="src-keyword">bool</span> routerFlag;
+        <span class="src-keyword">bool</span> solicitedFlag;
+        <span class="src-keyword">bool</span> overrideFlag;
+        IPv6Address targetAddress;<span class="src-comment">// MUST NOT be a multicast address.</span>
+
+        <span class="src-comment">//Possible Options</span>
+        MACAddress targetLinkLayerAddress;
+};</pre>
+</body>
+</html>

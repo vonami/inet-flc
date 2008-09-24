@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>DropTailQoSQueue</i>
+</h2>
+<p><b>File: <a href="file-id235862.html">Network/Queue/DropTailQoSQueue.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_drop_tail_qo_s_queue.html" target="_top">click here</a></b></p>
+<p>Drop-tail queue with QoS support, to be used in network interfaces.
+Performs priority queueing.
+Conforms to the <a href="OutputQueue-id236035.html">OutputQueue</a> interface.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id235904.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="DropTailQoSQueue-id235904.html" title="simple DropTailQoSQueue" alt="DropTailQoSQueue" coords="7,16,148,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">frameCapacity</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>per-subqueue capacity</p>
+</td>
+</tr>
+<tr>
+<td width="150">classifierClass</td>
+<td width="100"><i>string</i></td>
+<td><p>class that inherits from IQoSClassifier</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> DropTailQoSQueue
+    <span class="src-keyword">parameters</span>:
+        frameCapacity: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,  <span class="src-comment">// per-subqueue capacity</span>
+        classifierClass: <span class="src-keyword">string</span>;  <span class="src-comment">// class that inherits from IQoSClassifier</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in;
+        <span class="src-keyword">out:</span> out;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

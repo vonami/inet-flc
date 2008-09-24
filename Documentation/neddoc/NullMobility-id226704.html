@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>NullMobility</i>
+</h2>
+<p><b>File: <a href="file-id226518.html">Mobility/NullMobility.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_null_mobility.html" target="_top">click here</a></b></p>
+<p>This mobility module does nothing; it can be used for stationary nodes.</p>
+
+<p><b>Author:</b> Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id226704.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="NullMobility-id226704.html" title="simple NullMobility" alt="NullMobility" coords="236,88,335,112">
+<area shape="rect" href="WirelessAP-id265146.html" title="module WirelessAP" alt="WirelessAP" coords="7,16,95,40">
+<area shape="rect" href="WirelessAPSimplified-id265337.html" title="module WirelessAPSimplified" alt="WirelessAPSimplified" coords="119,16,276,40">
+<area shape="rect" href="WirelessAPWithEth-id265538.html" title="module WirelessAPWithEth" alt="WirelessAPWithEth" coords="300,16,447,40">
+<area shape="rect" href="WirelessAPWithEthSimplified-id265866.html" title="module WirelessAPWithEthSimplified" alt="WirelessAPWithEthSimplified" coords="471,16,684,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="WirelessAP-id265146.html">WirelessAP</a></td>
+<td><p>Models a 802.11 Access Point. It can be used in conjunction with
+<a href="WirelessHost-id266620.html">WirelessHost</a>, or any other host model containing WirelessNicSTA.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessAPSimplified-id265337.html">WirelessAPSimplified</a></td>
+<td><p>Models a 802.11 Access Point, but using a simplified NIC that does not
+support handovers. It should be used in conjunction with <a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a>,
+or any other host model containing WirelessNicSTASimplified.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessAPWithEth-id265538.html">WirelessAPWithEth</a></td>
+<td><p>Models a 802.11 Access Point with Ethernet ports.
+It can be used in conjunction with <a href="WirelessHost-id266620.html">WirelessHost</a>, or any other host model
+containing WirelessNicSTA.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessAPWithEthSimplified-id265866.html">WirelessAPWithEthSimplified</a></td>
+<td><p>Models a 802.11 Access Point with Ethernet ports, but using a simplified NIC
+that does not support handovers. It can be used in conjunction with
+<a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a>, or any other host model containing WirelessNicSTASimplified.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">x</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>start x coordinate (-1 = display string position, or random if it's missing)</p>
+</td>
+</tr>
+<tr>
+<td width="150">y</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>start y coordinate (-1 = display string position, or random if it's missing)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> NullMobility
+    <span class="src-keyword">parameters</span>:
+        x: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// start x coordinate (-1 = display string position, or random if it's missing)</span>
+        y: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// start y coordinate (-1 = display string position, or random if it's missing)</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

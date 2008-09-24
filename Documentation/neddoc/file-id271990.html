@@ -1,0 +1,74 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Transport/UDP/UDP.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="UDP-id272076.html">UDP</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2000 Institut fuer Telematik, Universitaet Karlsruhe</span>
+<span class="src-comment">// Copyright (C) 2004,2005 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// UDP protocol implementation, for IPv4 and IPv6.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The \UDP protocol header is represented by the class UDPPacket.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;b&gt;Communication with clients (applications)&lt;/b&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The module can (should) be connected to several applications.</span>
+<span class="src-comment">// For sending an \UDP packet, the application should attach an UDPControlInfo</span>
+<span class="src-comment">// object to the payload, and send it to UDP.</span>
+<span class="src-comment">// UDP will also attach an UDPControlInfo object to any payload</span>
+<span class="src-comment">// message in sends up to the application.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// For receiving \UDP packets, the connected applications should first</span>
+<span class="src-comment">// "bind" to the given \UDP port. This can be done by sending an</span>
+<span class="src-comment">// arbitrary message with message kind UDP_C_BIND and an UDPControlInfo</span>
+<span class="src-comment">// attached with srcPort filled in.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// If there is only one app which doesn't bind to any port, it will</span>
+<span class="src-comment">// receive all packets.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;b&gt;Communication with the \IP (IPv4/IPv6) layer&lt;/b&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The UDP model relies on sending and receiving IPControlInfo/IPv6ControlInfo</span>
+<span class="src-comment">// objects attached to UDPPacket objects as control info</span>
+<span class="src-comment">// (see cMessage::setControlInfo()).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see UDPPacket, UDPControlInfo, UDPCommandCode</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> UDP
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> from_app[];
+        <span class="src-keyword">in:</span> from_ip;
+        <span class="src-keyword">in:</span> from_ipv6;
+        <span class="src-keyword">out:</span> to_app[];
+        <span class="src-keyword">out:</span> to_ip;
+        <span class="src-keyword">out:</span> to_ipv6;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

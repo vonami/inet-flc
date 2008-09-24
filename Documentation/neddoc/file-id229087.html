@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/ICMPv6/ICMPv6.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="ICMPv6-id229107.html">ICMPv6</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2005 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU Lesser General Public</span>
+<span class="src-comment">// License as published by the Free Software Foundation; either</span>
+<span class="src-comment">// version 2.1 of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU Lesser General Public</span>
+<span class="src-comment">// License along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// ICMPv6 implementation.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// To send ICMPv6 Echo Request, send any message to port pingIn with IPv6ControlInfo</span>
+<span class="src-comment">// attached. The message will be used as ping payload (encapsulated into an ICMPv6Message).</span>
+<span class="src-comment">// When ICMPv6 Echo Reply is received, the payload message will be sent to pingOut.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see IPv6, RoutingTable6, IPv6NeighbourDiscovery</span>
+<span class="src-comment">//#FIXME gate descriptions needed...</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> ICMPv6
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> fromIPv6;
+        <span class="src-keyword">out:</span> toIPv6;
+        <span class="src-keyword">in:</span> pingIn; <span class="src-comment">// ping requests from app</span>
+        <span class="src-keyword">out:</span> pingOut;
+	<span class="src-keyword">out:</span> errorOut;  <span class="src-comment">// for errors</span>
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

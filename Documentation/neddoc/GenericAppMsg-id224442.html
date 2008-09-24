@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>GenericAppMsg</i>
+</h2>
+<p><b>File: <a href="file-id224448.html">Applications/TCPApp/GenericAppMsg.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_generic_app_msg.html" target="_top">click here</a></b></p>
+<p>Message class for generic request-reply style applications.
+The client sends a <a href="GenericAppMsg-id224442.html">GenericAppMsg</a> which contains the number of
+bytes the client wants the server to send back as reply.</p>
+
+<p>This way intelligence (behaviour specific to the modelled application,
+e.g. HTTP, SMB, database protocol) needs only to be present in
+the client, and the server model can be kept simple and dumb.</p>
+
+<p><b>See also:</b> <a href="TCPGenericSrvApp-id220613.html">TCPGenericSrvApp</a>, TCPGenericCliAppBase (C++ only)</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id224442.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="GenericAppMsg-id224442.html" title="message GenericAppMsg" alt="GenericAppMsg" coords="7,16,127,40">
+</map><h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">expectedReplyLength</td>
+<td width="100"><i>int</i></td>
+<td><p>in bytes</p>
+</td>
+</tr>
+<tr>
+<td width="150">replyDelay</td>
+<td width="100"><i>double</i></td>
+<td><p>reply after this many seconds</p>
+</td>
+</tr>
+<tr>
+<td width="150">close</td>
+<td width="100"><i>bool</i></td>
+<td><p>with <a href="TCP-id271256.html">TCP</a>: if true, server should close the
+connection after sending the reply</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> GenericAppMsg
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> expectedReplyLength;  <span class="src-comment">// in bytes</span>
+        <span class="src-keyword">double</span> replyDelay;  <span class="src-comment">// reply after this many seconds</span>
+        <span class="src-keyword">bool</span> close;  <span class="src-comment">// with TCP: if true, server should close the</span>
+                     <span class="src-comment">// connection after sending the reply</span>
+};</pre>
+</body>
+</html>

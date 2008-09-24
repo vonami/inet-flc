@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Applications/TCPApp/TCPEchoApp.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="TCPEchoApp-id220009.html">TCPEchoApp</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Accepts any number of incoming TCP connections, and sends back the</span>
+<span class="src-comment">// messages that arrive on them, The lengths of the messages are</span>
+<span class="src-comment">// multiplied by echoFactor before sending them back (echoFactor=1 will</span>
+<span class="src-comment">// result in sending back the same message unmodified.) The reply can also be</span>
+<span class="src-comment">// delayed by a constant time (echoDelay parameter).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// When TCPEchoApp receives data packets from TCP (and such, when they can be</span>
+<span class="src-comment">// echoed) depends on the sendQueue/receiveQueue setting of TCP.</span>
+<span class="src-comment">// With TCPVirtualBytesSendQueue/RcvQueue, TCP passes up data to us</span>
+<span class="src-comment">// as soon as a segment arrives, so it can be echoed immediately.</span>
+<span class="src-comment">// With TCPMsgBasedSendQueue/RcvQueue, our local TCP reproduces the same</span>
+<span class="src-comment">// messages that the sender app passed down to its TCP -- so if the sender</span>
+<span class="src-comment">// app sent a single 100 MB message, it will be echoed only when all</span>
+<span class="src-comment">// 100 megabytes have arrived.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Compatible with both IPv4 and IPv6.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> TCPEchoApp
+    <span class="src-keyword">parameters</span>:
+        address: <span class="src-keyword">string</span>, <span class="src-comment">// local address; may be left empty ("")</span>
+        port: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// port number to listen on</span>
+        echoFactor: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        echoDelay: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> tcpIn;
+        <span class="src-keyword">out:</span> tcpOut;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

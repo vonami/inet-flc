@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>MPLS</i>
+</h2>
+<p><b>File: <a href="file-id233833.html">Network/MPLS/MPLS.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_m_p_l_s.html" target="_top">click here</a></b></p>
+<p>Implements the MPLS protocol.</p>
+
+<p><a href="MPLS-id233905.html">MPLS</a> module is added between layer 2 and 3 in the OSI model for fast packet
+switching. <a href="MPLS-id233905.html">MPLS</a> should be transparent to signalling protocols. Signalling
+protocol currently implemented in this simulation is RSVP-TE.</p>
+
+<p>Operations</p>
+
+<p><a href="MPLS-id233905.html">MPLS</a> packets are represented by the message class MPLSPacket.
+The local LIB (Label Information Base) is stored in a <a href="LIBTable-id233773.html">LIBTable</a> module
+in the LSR.</p>
+
+<p>For most of the time, the <a href="MPLS-id233905.html">MPLS</a> module will do the label swapping and
+message forwarding. Upon receiving a labelled packet from another LSR, the
+<a href="MPLS-id233905.html">MPLS</a> first extract the incoming interface and incoming label pair, and then
+look up the local LIB table. If an outgoing label and an outgoing interface
+can be found, the module will perform appropriate label operations (PUSH,
+POP, SWAP) based on the "outLabel" vector containing label and operation
+pairs.</p>
+
+<p>Collaborations</p>
+
+<p><a href="MPLS-id233905.html">MPLS</a> module is required to interact with L2 (<a href="Link-id234797.html">Link</a> Layer) and L3 (Network
+Layer) in the OSI model. In addition, it needs to obtain label information
+from the LIB component and label query result from the <a href="LDP-id233136.html">LDP</a> module. Messages
+the model communicates with L2 and Network Layers are L2 packets (<a href="PPP-id253311.html">PPP</a>,
+Frame Relay, ATM, Ethernet, etc.), and IP native packets. Specifically,
+<a href="MPLS-id233905.html">MPLS</a> module encapsulates IP packet and is encapsulated in L2 packet.
+Different L2 protocols may require different methods of encapsulation to
+inherit the L2's QoS. This implementation follows a generic approach; it
+assumes no information of QoS from the link layer.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id233905.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="MPLS-id233905.html" title="simple MPLS" alt="MPLS" coords="68,88,140,112">
+<area shape="rect" href="LDP_LSR-id263362.html" title="module LDP_LSR" alt="LDP_LSR" coords="7,16,89,40">
+<area shape="rect" href="RSVP_LSR-id264429.html" title="module RSVP_LSR" alt="RSVP_LSR" coords="113,16,207,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="LDP_LSR-id263362.html">LDP_LSR</a></td>
+<td><p>An <a href="LDP-id233136.html">LDP</a>-capable router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="RSVP_LSR-id264429.html">RSVP_LSR</a></td>
+<td><p>An RSVP-TE capable router.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">classifier</td>
+<td width="100"><i>string</i></td>
+<td><p>a module which implements the IClassifier C++ interface</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">netwIn [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">netwOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ifIn [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ifOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> MPLS
+    <span class="src-keyword">parameters</span>:
+        classifier : <span class="src-keyword">string</span>; <span class="src-comment">// a module which implements the IClassifier C++ interface</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> netwIn[];
+        <span class="src-keyword">out:</span> netwOut[];
+        <span class="src-keyword">in:</span> ifIn[];
+        <span class="src-keyword">out:</span> ifOut[];
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

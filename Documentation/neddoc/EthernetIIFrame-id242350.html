@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>EthernetIIFrame</i>
+</h2>
+<p><b>File: <a href="file-id242421.html">NetworkInterfaces/Ethernet/EtherFrame.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ethernet_i_i_frame.html" target="_top">click here</a></b></p>
+<p>Ethernet II headers contain a 16-bit <a href="EtherType-id239180.html">EtherType</a> to identify
+the encapsulated protocol.</p>
+
+<p>Header length: src(6)+dest(6)+etherType(2) = 14 bytes</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id242350.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="EthernetIIFrame-id242350.html" title="message EthernetIIFrame" alt="EthernetIIFrame" coords="7,88,129,112">
+<area shape="rect" href="EtherFrame-id242304.html" title="message EtherFrame" alt="EtherFrame" coords="23,16,113,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="EtherFrame-id242304.html">EtherFrame</a></td>
+<td><p>Common base class for classes representing Ethernet II and 802.3 frame types,
+containing their common header fields.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">etherType</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> EthernetIIFrame <span class="src-keyword">extends</span> EtherFrame
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> etherType;
+};</pre>
+</body>
+</html>

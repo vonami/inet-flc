@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>GilbertElliotSnr</i>
+</h2>
+<p><b>File: <a href="file-id251676.html">NetworkInterfaces/MF80211/phyLayer/snrEval/GilbertElliotSnr.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_gilbert_elliot_snr.html" target="_top">click here</a></b></p>
+<p>Gilbert-Elliot signal-noise evaluator</p>
+
+<p>This component has been taken over from Mobility Framework 1.0a5.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id251940.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="GilbertElliotSnr-id251940.html" title="simple GilbertElliotSnr" alt="GilbertElliotSnr" coords="7,16,121,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td width="150">transmitterPower</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">bitrate</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">headerLength</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">carrierFrequency</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">thermalNoise</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">pathLossAlpha</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">sensitivity</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">meanGood</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">meanBad</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">radioIn</td>
+<td width="100"><i>input</i></td>
+<td><p>to receive AirFrames</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> GilbertElliotSnr
+    <span class="src-keyword">parameters</span>:
+    debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        transmitterPower : <span class="src-keyword">numeric</span>,
+        bitrate: <span class="src-keyword">numeric</span>,
+        headerLength: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        carrierFrequency: <span class="src-keyword">numeric</span>,
+        thermalNoise: <span class="src-keyword">numeric</span>,
+        pathLossAlpha: <span class="src-keyword">numeric</span>,
+        sensitivity: <span class="src-keyword">numeric</span>,
+        meanGood: <span class="src-keyword">numeric</span>,
+        meanBad: <span class="src-keyword">numeric</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn;
+        <span class="src-keyword">out:</span> uppergateOut;
+        <span class="src-keyword">in:</span> radioIn; <span class="src-comment">// to receive AirFrames</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

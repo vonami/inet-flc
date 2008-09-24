@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>Ieee80211ProbeRequestFrameBody</i>
+</h2>
+<p><b>File: <a href="file-id248080.html">NetworkInterfaces/Ieee80211/Mgmt/Ieee80211MgmtFrames.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_probe_request_frame_body.html" target="_top">click here</a></b></p>
+<p>Probe request frame body format</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id248415.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="Ieee80211ProbeRequestFrameBody-id248415.html" title="class Ieee80211ProbeRequestFrameBody" alt="Ieee80211ProbeRequestFrameBody" coords="7,88,244,112">
+<area shape="rect" href="Ieee80211FrameBody-id248235.html" title="class Ieee80211FrameBody" alt="Ieee80211FrameBody" coords="52,16,199,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="Ieee80211FrameBody-id248235.html">Ieee80211FrameBody</a></td>
+<td><p>Frame body base class used to hide various frame body types</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">bodyLength</td>
+<td width="100"><i></i></td>
+<td><p>assuming a 8-character SSID</p>
+</td>
+</tr>
+<tr>
+<td width="150">SSID</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">supportedRates</td>
+<td width="100"><i>Ieee80211SupportedRatesElement</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> Ieee80211ProbeRequestFrameBody <span class="src-keyword">extends</span> Ieee80211FrameBody
+{
+    <span class="src-keyword">fields</span>:
+        bodyLength = <span class="src-number">12</span>; <span class="src-comment">// assuming a 8-character SSID</span>
+        <span class="src-keyword">string</span> SSID;
+        Ieee80211SupportedRatesElement supportedRates;
+};</pre>
+</body>
+</html>

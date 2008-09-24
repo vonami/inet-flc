@@ -1,0 +1,144 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>TelnetApp</i>
+</h2>
+<p><b>File: <a href="file-id224208.html">Applications/TCPApp/TelnetApp.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_telnet_app.html" target="_top">click here</a></b></p>
+<p>Models Telnet sessions with a specific user behaviour.
+The server app should be <a href="TCPGenericSrvApp-id220613.html">TCPGenericSrvApp</a>.
+Compatible with both IPv4 and <a href="IPv6-id232445.html">IPv6</a>.</p>
+
+<p>NOTE: This module emulates a very specific user behaviour, and as such,
+it should be viewed as an example rather than a generic Telnet model.
+If you want to model realistic Telnet traffic, you are encouraged
+to gather statistics from packet traces on a real network, and
+write your model accordingly.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id224257.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="TelnetApp-id224257.html" title="simple TelnetApp" alt="TelnetApp" coords="7,16,89,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">address</td>
+<td width="100"><i>string</i></td>
+<td><p>may be left empty ("")</p>
+</td>
+</tr>
+<tr>
+<td width="150">port</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>port number to listen on</p>
+</td>
+</tr>
+<tr>
+<td width="150">connectAddress</td>
+<td width="100"><i>string</i></td>
+<td><p>server address (may be symbolic)</p>
+</td>
+</tr>
+<tr>
+<td width="150">connectPort</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>port number to connect to</p>
+</td>
+</tr>
+<tr>
+<td width="150">startTime</td>
+<td width="100"><i>numeric</i></td>
+<td><p>time first session begins</p>
+</td>
+</tr>
+<tr>
+<td width="150">numCommands</td>
+<td width="100"><i>numeric</i></td>
+<td><p>user types this many commands in a session</p>
+</td>
+</tr>
+<tr>
+<td width="150">commandLength</td>
+<td width="100"><i>numeric</i></td>
+<td><p>commands are this many characters (plus Enter)</p>
+</td>
+</tr>
+<tr>
+<td width="150">keyPressDelay</td>
+<td width="100"><i>numeric</i></td>
+<td><p>delay between keypresses</p>
+</td>
+</tr>
+<tr>
+<td width="150">commandOutputLength</td>
+<td width="100"><i>numeric</i></td>
+<td><p>commands produce this much output (bytes)</p>
+</td>
+</tr>
+<tr>
+<td width="150">thinkTime</td>
+<td width="100"><i>numeric</i></td>
+<td><p>user waits this much before starting to type new command</p>
+</td>
+</tr>
+<tr>
+<td width="150">idleInterval</td>
+<td width="100"><i>numeric</i></td>
+<td><p>time gap between sessions</p>
+</td>
+</tr>
+<tr>
+<td width="150">reconnectInterval</td>
+<td width="100"><i>numeric</i></td>
+<td><p>if connection breaks, user waits this much before trying to reconnect</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">tcpIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">tcpOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> TelnetApp
+    <span class="src-keyword">parameters</span>:
+        address: <span class="src-keyword">string</span>, <span class="src-comment">// may be left empty ("")</span>
+        port: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// port number to listen on</span>
+        connectAddress: <span class="src-keyword">string</span>,  <span class="src-comment">// server address (may be symbolic)</span>
+        connectPort: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// port number to connect to</span>
+        startTime: <span class="src-keyword">numeric</span>, <span class="src-comment">// time first session begins</span>
+        numCommands: <span class="src-keyword">numeric</span>, <span class="src-comment">// user types this many commands in a session</span>
+        commandLength: <span class="src-keyword">numeric</span>, <span class="src-comment">// commands are this many characters (plus Enter)</span>
+        keyPressDelay: <span class="src-keyword">numeric</span>, <span class="src-comment">// delay between keypresses</span>
+        commandOutputLength: <span class="src-keyword">numeric</span>, <span class="src-comment">// commands produce this much output (bytes)</span>
+        thinkTime: <span class="src-keyword">numeric</span>, <span class="src-comment">// user waits this much before starting to type new command</span>
+        idleInterval: <span class="src-keyword">numeric</span>, <span class="src-comment">// time gap between sessions</span>
+        reconnectInterval;  <span class="src-comment">// if connection breaks, user waits this much before trying to reconnect</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> tcpIn;
+        <span class="src-keyword">out:</span> tcpOut;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

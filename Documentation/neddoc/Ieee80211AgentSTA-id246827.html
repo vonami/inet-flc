@@ -1,0 +1,114 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>Ieee80211AgentSTA</i>
+</h2>
+<p><b>File: <a href="file-id246774.html">NetworkInterfaces/Ieee80211/Mgmt/Ieee80211AgentSTA.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_agent_s_t_a.html" target="_top">click here</a></b></p>
+<p>Used in 802.11 infrastructure mode: in a station (STA), this module
+controls channel scanning, association and handovers, by sending commands
+(e.g. <a href="Ieee80211Prim_ScanRequest-id249633.html">Ieee80211Prim_ScanRequest</a>) to the management module (<a href="Ieee80211MgmtSTA-id247429.html">Ieee80211MgmtSTA</a>).</p>
+
+<p><b>Author:</b> Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id246827.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="Ieee80211AgentSTA-id246827.html" title="simple Ieee80211AgentSTA" alt="Ieee80211AgentSTA" coords="7,88,145,112">
+<area shape="rect" href="Ieee80211NicSTA-id245326.html" title="module Ieee80211NicSTA" alt="Ieee80211NicSTA" coords="15,16,137,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="Ieee80211NicSTA-id245326.html">Ieee80211NicSTA</a></td>
+<td><p>This NIC implements an 802.11 network interface card,
+in a STA, using infrastructure mode.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">activeScan</td>
+<td width="100"><i>bool</i></td>
+<td><p>selects between active and passive scanning</p>
+</td>
+</tr>
+<tr>
+<td width="150">channelsToScan</td>
+<td width="100"><i>string</i></td>
+<td><p>list of channel numbers to scan (space delimited); empty means all channels</p>
+</td>
+</tr>
+<tr>
+<td width="150">probeDelay</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>delay before sending a probe request during active scanning</p>
+</td>
+</tr>
+<tr>
+<td width="150">minChannelTime</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>min interval to spend on a channel during active scanning</p>
+</td>
+</tr>
+<tr>
+<td width="150">maxChannelTime</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>channel time for passive scanning, and max channel time for active scanning</p>
+</td>
+</tr>
+<tr>
+<td width="150">authenticationTimeout</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>timeout for the authentication procedure</p>
+</td>
+</tr>
+<tr>
+<td width="150">associationTimeout</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>timeout for the association procedure</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">mgmtIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">mgmtOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> Ieee80211AgentSTA
+    <span class="src-keyword">parameters</span>:
+        activeScan: <span class="src-keyword">bool</span>,  <span class="src-comment">// selects between active and passive scanning</span>
+        channelsToScan: <span class="src-keyword">string</span>,  <span class="src-comment">// list of channel numbers to scan (space delimited); empty means all channels</span>
+        probeDelay: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// delay before sending a probe request during active scanning</span>
+        minChannelTime: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// min interval to spend on a channel during active scanning</span>
+        maxChannelTime: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// channel time for passive scanning, and max channel time for active scanning</span>
+        authenticationTimeout: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// timeout for the authentication procedure</span>
+        associationTimeout: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// timeout for the association procedure</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> mgmtIn;
+        <span class="src-keyword">out:</span> mgmtOut;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

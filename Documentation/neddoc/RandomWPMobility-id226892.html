@@ -1,0 +1,89 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>RandomWPMobility</i>
+</h2>
+<p><b>File: <a href="file-id226803.html">Mobility/RandomWPMobility.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_random_w_p_mobility.html" target="_top">click here</a></b></p>
+<p>Random Waypoint mobility model.</p>
+
+<p>The node moves in line segments. For each line segment, a random destination
+position (distributed uniformly over the playground) and a random speed
+is chosen. You can define a speed as a variate from which a new value
+will be drawn for each line segment; it is customary to specify it as
+uniform(minSpeed, maxSpeed). When the node reaches the target position,
+it waits for the time waitTime which can also be defined as a variate.
+After this time the the algorithm calculates a new random position, etc.</p>
+
+<p>This model was written by Georg Lutz (GeorgLutz AT gmx DOT de) for his
+diploma thesis "Effizientes Modell fuer Funkverbindungen in 4G-Netzen fuer
+OMNeT++" (Efficient model for radio links in 4G networks for OMNeT++)
+at Institut fuer Telematik, Universitaet Karlsruhe (Institute for
+Telematics, University Karlsruhe, Germany), 2005-06-21. Slightly modified
+by Andras Varga 2005.06.22.</p>
+
+<p><b>Author:</b> Georg Lutz</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id226892.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="RandomWPMobility-id226892.html" title="simple RandomWPMobility" alt="RandomWPMobility" coords="7,16,159,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td width="150">x</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>start x coordinate (-1 = display string position, or random if it's missing)</p>
+</td>
+</tr>
+<tr>
+<td width="150">y</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>start y coordinate (-1 = display string position, or random if it's missing)</p>
+</td>
+</tr>
+<tr>
+<td width="150">updateInterval</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">speed</td>
+<td width="100"><i>numeric</i></td>
+<td><p>use uniform(minSpeed, maxSpeed) or another distribution</p>
+</td>
+</tr>
+<tr>
+<td width="150">waitTime</td>
+<td width="100"><i>numeric</i></td>
+<td><p>wait time between reaching a target and choosing a new one</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> RandomWPMobility
+    <span class="src-keyword">parameters</span>:
+        debug: <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        x: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// start x coordinate (-1 = display string position, or random if it's missing)</span>
+        y: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// start y coordinate (-1 = display string position, or random if it's missing)</span>
+        updateInterval: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        speed: <span class="src-keyword">numeric</span>, <span class="src-comment">// use uniform(minSpeed, maxSpeed) or another distribution</span>
+        waitTime: <span class="src-keyword">numeric</span>; <span class="src-comment">// wait time between reaching a target and choosing a new one</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

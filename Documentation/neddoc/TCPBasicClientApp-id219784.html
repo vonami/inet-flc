@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>TCPBasicClientApp</i>
+</h2>
+<p><b>File: <a href="file-id219810.html">Applications/TCPApp/TCPBasicClientApp.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_t_c_p_basic_client_app.html" target="_top">click here</a></b></p>
+<p>Client for a generic request-response style protocol over <a href="TCP-id271256.html">TCP</a>.
+May be used as a rough model of HTTP or FTP users.
+Compatible with both IPv4 and <a href="IPv6-id232445.html">IPv6</a>.</p>
+
+<p>The model communicates with the server in sessions. During a session,
+the client opens a single TCP connection to the server, sends several
+requests (always waiting for the complete reply to arrive before
+sending a new request), and closes the connection.</p>
+
+<p>The server app should be <a href="TCPGenericSrvApp-id220613.html">TCPGenericSrvApp</a>; the model sends <a href="GenericAppMsg-id224442.html">GenericAppMsg</a>
+messages.</p>
+
+<p>Example settings:</p>
+
+<p>FTP:
+<pre>
+   numRequestsPerSession = exponential(3)
+   requestLength = truncnormal(20,5)
+   replyLength = exponential(1000000)
+</pre></p>
+
+<p>Note that this module doesn't open separate TCP connections for commands
+and data transfer as the FTP protocol.</p>
+
+<p>HTTP:
+<pre>
+   numRequestsPerSession = 1 <i>(HTTP 1.0)</i>
+   numRequestsPerSession = exponential(5) <i>(HTTP 1.1, with keepalive)</i>
+   requestLength = truncnormal(350,20)
+   replyLength = exponential(2000)
+</pre></p>
+
+<p>Note that since most web pages contain images and may contain frames,
+applets etc, possibly from various servers, and browsers usually download
+these items in parallel to the main HTML document, this module cannot
+serve as a realistic web client.</p>
+
+<p>Also, with HTTP 1.0 it is the server that closes the connection after
+sending the response, while in this model it is the client.</p>
+
+<p><b>See also:</b> <a href="TCPGenericSrvApp-id220613.html">TCPGenericSrvApp</a>, <a href="GenericAppMsg-id224442.html">GenericAppMsg</a>, <a href="TelnetApp-id224257.html">TelnetApp</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id219784.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="TCPBasicClientApp-id219784.html" title="simple TCPBasicClientApp" alt="TCPBasicClientApp" coords="7,16,151,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">address</td>
+<td width="100"><i>string</i></td>
+<td><p>may be left empty ("")</p>
+</td>
+</tr>
+<tr>
+<td width="150">port</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>port number to listen on</p>
+</td>
+</tr>
+<tr>
+<td width="150">connectAddress</td>
+<td width="100"><i>string</i></td>
+<td><p>server address (may be symbolic)</p>
+</td>
+</tr>
+<tr>
+<td width="150">connectPort</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>port number to connect to</p>
+</td>
+</tr>
+<tr>
+<td width="150">startTime</td>
+<td width="100"><i>numeric</i></td>
+<td><p>time first session begins</p>
+</td>
+</tr>
+<tr>
+<td width="150">numRequestsPerSession</td>
+<td width="100"><i>numeric</i></td>
+<td><p>number of requests sent per session</p>
+</td>
+</tr>
+<tr>
+<td width="150">requestLength</td>
+<td width="100"><i>numeric</i></td>
+<td><p>length of a request (bytes)</p>
+</td>
+</tr>
+<tr>
+<td width="150">replyLength</td>
+<td width="100"><i>numeric</i></td>
+<td><p>length of a reply (bytes)</p>
+</td>
+</tr>
+<tr>
+<td width="150">thinkTime</td>
+<td width="100"><i>numeric</i></td>
+<td><p>time gap between requests</p>
+</td>
+</tr>
+<tr>
+<td width="150">idleInterval</td>
+<td width="100"><i>numeric</i></td>
+<td><p>time gap between sessions</p>
+</td>
+</tr>
+<tr>
+<td width="150">reconnectInterval</td>
+<td width="100"><i>numeric</i></td>
+<td><p>if connection breaks, waits this much before trying to reconnect</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">tcpIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">tcpOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> TCPBasicClientApp
+    <span class="src-keyword">parameters</span>:
+        address: <span class="src-keyword">string</span>, <span class="src-comment">// may be left empty ("")</span>
+        port: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// port number to listen on</span>
+        connectAddress: <span class="src-keyword">string</span>,  <span class="src-comment">// server address (may be symbolic)</span>
+        connectPort: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// port number to connect to</span>
+        startTime: <span class="src-keyword">numeric</span>, <span class="src-comment">// time first session begins</span>
+        numRequestsPerSession: <span class="src-keyword">numeric</span>,  <span class="src-comment">// number of requests sent per session</span>
+        requestLength: <span class="src-keyword">numeric</span>, <span class="src-comment">// length of a request (bytes)</span>
+        replyLength: <span class="src-keyword">numeric</span>, <span class="src-comment">// length of a reply (bytes)</span>
+        thinkTime: <span class="src-keyword">numeric</span>, <span class="src-comment">// time gap between requests</span>
+        idleInterval: <span class="src-keyword">numeric</span>, <span class="src-comment">// time gap between sessions</span>
+        reconnectInterval: <span class="src-keyword">numeric</span>;  <span class="src-comment">// if connection breaks, waits this much before trying to reconnect</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> tcpIn;
+        <span class="src-keyword">out:</span> tcpOut;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

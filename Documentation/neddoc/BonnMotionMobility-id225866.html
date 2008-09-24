@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>BonnMotionMobility</i>
+</h2>
+<p><b>File: <a href="file-id225856.html">Mobility/BonnMotionMobility.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_bonn_motion_mobility.html" target="_top">click here</a></b></p>
+<p>Uses the native file format of BonnMotion (http://www.cs.uni-bonn.de/IV/BonnMotion/).</p>
+
+<p>The file is a plain text file, where every line describes the motion
+of one host. A line consists of one or more (t, x, y) triplets of real
+numbers, like:</p>
+
+<p>t1 x1 y1 t2 x2 y2 t3 x3 y3 t4 x4 y4 ...</p>
+
+<p>The meaning is that the given node gets to (xk,yk) at tk. There's no
+separate notation for wait, so x and y coordinates will be repeated there.</p>
+
+<p><b>Author:</b> Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id225866.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="BonnMotionMobility-id225866.html" title="simple BonnMotionMobility" alt="BonnMotionMobility" coords="7,16,159,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td width="150">traceFile</td>
+<td width="100"><i>string</i></td>
+<td><p>the BonnMotion trace file</p>
+</td>
+</tr>
+<tr>
+<td width="150">nodeId</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>selects line in trace file; -1 gets substituted to parent module's index</p>
+</td>
+</tr>
+<tr>
+<td width="150">updateInterval</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>time interval to update the hosts position</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> BonnMotionMobility
+    <span class="src-keyword">parameters</span>:
+        debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        traceFile: <span class="src-keyword">string</span>, <span class="src-comment">// the BonnMotion trace file</span>
+        nodeId: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// selects line in trace file; -1 gets substituted to parent module's index</span>
+        updateInterval : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// time interval to update the hosts position</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

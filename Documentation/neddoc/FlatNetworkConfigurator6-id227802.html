@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>FlatNetworkConfigurator6</i>
+</h2>
+<p><b>File: <a href="file-id227622.html">Network/AutoRouting/FlatNetworkConfigurator6.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_flat_network_configurator6.html" target="_top">click here</a></b></p>
+<p>Configures IPv6 addresses and routing tables for a "flat" network,
+"flat" meaning that all hosts and routers will have the same
+network address and will only differ in the host part.</p>
+
+<p>FIXME: add documentation!</p>
+
+<p><b>See also:</b> <a href="FlatNetworkConfigurator-id227631.html">FlatNetworkConfigurator</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id227802.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="FlatNetworkConfigurator6-id227802.html" title="simple FlatNetworkConfigurator6" alt="FlatNetworkConfigurator6" coords="7,16,199,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">moduleTypes</td>
+<td width="100"><i>string</i></td>
+<td><p>all module types to be considered part of the topology</p>
+</td>
+</tr>
+<tr>
+<td width="150">nonIPModuleTypes</td>
+<td width="100"><i>string</i></td>
+<td><p>module types which don't need IP configuration
+(e.g. Ethernet hub, switch or bus)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> FlatNetworkConfigurator6
+    <span class="src-keyword">parameters</span>:
+        moduleTypes: <span class="src-keyword">string</span>, <span class="src-comment">// all module types to be considered part of the topology</span>
+        nonIPModuleTypes: <span class="src-keyword">string</span>; <span class="src-comment">// module types which don't need \IP configuration</span>
+                                  <span class="src-comment">// (e.g. Ethernet hub, switch or bus)</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

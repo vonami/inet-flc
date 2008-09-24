@@ -1,0 +1,235 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>EthernetInterface</i>
+</h2>
+<p><b>File: <a href="file-id241247.html">NetworkInterfaces/Ethernet/EthernetInterface.ned</a></b></p>
+<p>Ethernet network interface. Corresponds to the prototype <a href="NetworkInterface-id238963.html">NetworkInterface</a>.
+Complements <a href="EtherMAC-id240352.html">EtherMAC</a> and <a href="EtherEncap-id241164.html">EtherEncap</a> with an output queue for QoS and
+RED support.</p>
+
+<p><b>See also:</b> <a href="EthernetInterface2-id241696.html">EthernetInterface2</a>, <a href="EthernetInterfaceNoQueue-id242071.html">EthernetInterfaceNoQueue</a></p>
+
+<img class="screenshot" src="EthernetInterface__NetworkInterfaces_Ethernet_EthernetInterface_ned.png" ismap usemap="#screenshot" width="190" height="296"><map name="screenshot"><area shape="rect" coords="60,39 106,85" href="OutputQueue-id236035.html" title="queue: queueType like OutputQueue" alt="queue: queueType like OutputQueue">
+<area shape="rect" coords="84,199 130,245" href="EtherMAC-id240352.html" title="mac: EtherMAC" alt="mac: EtherMAC">
+<area shape="rect" coords="84,119 130,165" href="EtherEncap-id241164.html" title="encap: EtherEncap" alt="encap: EtherEncap"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id241239.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="EthernetInterface-id241239.html" title="module EthernetInterface" alt="EthernetInterface" coords="483,88,611,112">
+<area shape="rect" href="OutputQueue-id236035.html" title="simple OutputQueue" alt="OutputQueue" coords="376,160,477,184">
+<area shape="rect" href="EtherEncap-id241164.html" title="simple EtherEncap" alt="EtherEncap" coords="501,160,592,184">
+<area shape="rect" href="EtherMAC-id240352.html" title="simple EtherMAC" alt="EtherMAC" coords="616,160,701,184">
+<area shape="rect" href="OSPFRouter-id257692.html" title="module OSPFRouter" alt="OSPFRouter" coords="7,16,103,40">
+<area shape="rect" href="QuaggaRouter-id258126.html" title="module QuaggaRouter" alt="QuaggaRouter" coords="127,16,236,40">
+<area shape="rect" href="Router-id259068.html" title="module Router" alt="Router" coords="260,16,332,40">
+<area shape="rect" href="StandardHost-id259540.html" title="module StandardHost" alt="StandardHost" coords="356,16,457,40">
+<area shape="rect" href="TCPSpoofingHost-id260559.html" title="module TCPSpoofingHost" alt="TCPSpoofingHost" coords="481,16,612,40">
+<area shape="rect" href="Router6-id261869.html" title="module Router6" alt="Router6" coords="636,16,708,40">
+<area shape="rect" href="StandardHost6-id262388.html" title="module StandardHost6" alt="StandardHost6" coords="732,16,841,40">
+<area shape="rect" href="WirelessHost-id266620.html" title="module WirelessHost" alt="WirelessHost" coords="865,16,961,40">
+<area shape="rect" href="WirelessHostSimplified-id267586.html" title="module WirelessHostSimplified" alt="WirelessHostSimplified" coords="985,16,1151,40">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="EtherEncap-id241164.html">EtherEncap</a></td>
+<td><p>Performs Ethernet II encapsulation/decapsulation.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">EtherMAC</a></td>
+<td><p>Ethernet MAC layer. MAC performs transmission and reception of frames.
+Doesn't do encapsulation/decapsulation; see <a href="EtherLLC-id240022.html">EtherLLC</a> and <a href="EtherEncap-id241164.html">EtherEncap</a> for
+that.</p>
+</td>
+</tr>
+<tr>
+<td><a href="OutputQueue-id236035.html">OutputQueue</a></td>
+<td><p>Prototype for per-NIC output queues. Concrete queues can implement
+drop-tail, RED etc. policy.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="OSPFRouter-id257692.html">OSPFRouter</a></td>
+<td><p>IP router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="QuaggaRouter-id258126.html">QuaggaRouter</a></td>
+<td><p>Quagga-based IP router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Router-id259068.html">Router</a></td>
+<td><p>IP router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="StandardHost-id259540.html">StandardHost</a></td>
+<td><p>IP host with <a href="TCP-id271256.html">TCP</a>, <a href="UDP-id272076.html">UDP</a> layers and applications.</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCPSpoofingHost-id260559.html">TCPSpoofingHost</a></td>
+<td><p>IP host with <a href="TCPSpoof-id223974.html">TCPSpoof</a> in the application layer.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Router6-id261869.html">Router6</a></td>
+<td><p>IPv6 router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="StandardHost6-id262388.html">StandardHost6</a></td>
+<td><p>IPv6 host with <a href="TCP-id271256.html">TCP</a>, <a href="UDP-id272076.html">UDP</a> layers and applications.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessHost-id266620.html">WirelessHost</a></td>
+<td><p>Models a host with one wireless (802.11b) card in infrastructure mode.
+This module is basically a <a href="StandardHost-id259540.html">StandardHost</a> with an <a href="Ieee80211NicSTA-id245326.html">Ieee80211NicSTA</a> added.
+It should be used in conjunction with <a href="WirelessAP-id265146.html">WirelessAP</a>, or any other AP model
+which contains <a href="Ieee80211NicAP-id244686.html">Ieee80211NicAP</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a></td>
+<td><p>Models a host with one wireless (802.11b) card in infrastructure mode,
+but using a simplified NIC that does not support handovers.
+This module is basically a <a href="StandardHost-id259540.html">StandardHost</a> with an <a href="Ieee80211NicSTASimplified-id245578.html">Ieee80211NicSTASimplified</a>
+added. It should be used in conjunction with <a href="WirelessAPSimplified-id265337.html">WirelessAPSimplified</a>,
+or any other AP model which contains <a href="Ieee80211NicAPSimplified-id245071.html">Ieee80211NicAPSimplified</a>.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">queueType</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">physIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">netwIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">physOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">netwOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac</a>.promiscuous</td>
+<td width="100"><i>bool</i></td>
+<td><p>if true, all packets are received, otherwise only the
+ones with matching destination MAC address</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac</a>.address</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address as hex string (12 hex digits), or
+"auto". "auto" values will be replaced by
+a generated MAC address in init stage 0.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac</a>.txrate</td>
+<td width="100"><i>numeric</i></td>
+<td><p>maximum data rate supported by this station (bit/s);
+actually chosen speed may be lower due to auto-
+configuration. 0 means fully auto-configured.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac</a>.duplexEnabled</td>
+<td width="100"><i>bool</i></td>
+<td><p>whether duplex mode can be enabled or not; whether
+MAC will actually use duplex mode depends on the result
+of the auto-configuration process (duplex is only
+possible with DTE-to-DTE connection).</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherEncap-id241164.html">encap</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> EthernetInterface
+    <span class="src-keyword">parameters</span>:
+        queueType: <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> physIn;
+        <span class="src-keyword">in:</span> netwIn;
+        <span class="src-keyword">out:</span> physOut;
+        <span class="src-keyword">out:</span> netwOut;
+    <span class="src-keyword">submodules</span>:
+        queue: queueType <span class="src-keyword">like</span> OutputQueue;
+            <span class="src-keyword">display</span>: "i=block/queue;p=<span class="src-number">92</span>,<span class="src-number">71</span>;q=l2queue";
+        mac: EtherMAC;
+            <span class="src-keyword">parameters</span>:
+                queueModule = "queue",
+                txQueueLimit = <span class="src-number">1</span>; <span class="src-comment">// queue sends one packet at a time</span>
+            <span class="src-keyword">display</span>: "i=block/rxtx;p=<span class="src-number">116</span>,<span class="src-number">231</span>";
+        encap: EtherEncap;
+            <span class="src-keyword">display</span>: "i=block/square;p=<span class="src-number">116</span>,<span class="src-number">151</span>";
+    <span class="src-keyword">connections</span>:
+        netwIn <span class="src-keyword">--&gt;</span> queue.in;
+        queue.out <span class="src-keyword">--&gt;</span> encap.upperLayerIn;
+        netwOut <span class="src-keyword">&lt;--</span> encap.upperLayerOut <span class="src-keyword">display</span> "m=n";
+        encap.lowerLayerOut <span class="src-keyword">--&gt;</span> mac.upperLayerIn;
+        encap.lowerLayerIn <span class="src-keyword">&lt;--</span> mac.upperLayerOut;
+        mac.physIn <span class="src-keyword">&lt;--</span> physIn;
+        mac.physOut <span class="src-keyword">--&gt;</span> physOut;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/Contract/Ieee802Ctrl.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="EtherType-id239180.html">EtherType</a><i> (enum)</i>
+</li>
+<li>
+<a href="Ieee802Ctrl-id239221.html">Ieee802Ctrl</a><i> (class)</i>
+</li>
+<li>
+<a href="Ieee802MessageKind-id239014.html">Ieee802MessageKind</a><i> (enum)</i>
+</li>
+<li>
+<a href="SAPCode-id239099.html">SAPCode</a><i> (enum)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2003 CTIE, Monash University</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+cplusplus {{
+#include "MACAddress.h"
+}};
+
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> MACAddress;
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Message kind values used with in communication between L3 and IEEE 802 L2</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> Ieee802MessageKind
+{
+    IEEE802CTRL_DATA =            <span class="src-number">2003</span>;  <span class="src-comment">// data to/from higher layer</span>
+    IEEE802CTRL_REGISTER_DSAP =   <span class="src-number">2004</span>;  <span class="src-comment">// higher layer registers itself in LLC</span>
+    IEEE802CTRL_DEREGISTER_DSAP = <span class="src-number">2005</span>;  <span class="src-comment">// higher layer deregisters itself in LLC</span>
+    IEEE802CTRL_SENDPAUSE =       <span class="src-number">2006</span>;  <span class="src-comment">// higher layer wants MAC to send PAUSE frame</span>
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Some 8-bit SAP values for IEEE 802.x LLC headers.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> SAPCode
+{
+    SAP_IBM_SNA     = <span class="src-number">0</span>x04;
+    SAP_IP          = <span class="src-number">0</span>x06;
+    SAP_3COM        = <span class="src-number">0</span>x80;
+    SAP_SNAP        = <span class="src-number">0</span>xAA;
+    SAP_BANYAN      = <span class="src-number">0</span>xBC;
+    SAP_NOVELL_IPX  = <span class="src-number">0</span>xE0;
+    SAP_LAN_MANAGER = <span class="src-number">0</span>xF4;
+    SAP_CLNS        = <span class="src-number">0</span>xFE;
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Some EtherType values (Ethernet II).</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> EtherType
+{
+    ETHERTYPE_IP    = <span class="src-number">0</span>x0800;
+    ETHERTYPE_ARP   = <span class="src-number">0</span>x0806;
+    ETHERTYPE_RARP  = <span class="src-number">0</span>x8035;
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Control structure for communication between LLC and higher layers</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> Ieee802Ctrl
+{
+    <span class="src-keyword">fields</span>:
+        MACAddress src;  <span class="src-comment">// src MAC address (can be left empty when sending)</span>
+        MACAddress dest; <span class="src-comment">// dest MAC address</span>
+        <span class="src-keyword">int</span> etherType;   <span class="src-comment">// used with EthernetIIFrame</span>
+        <span class="src-keyword">int</span> ssap;        <span class="src-comment">// used with IEEE 802 LLC (see EtherFrameWithLLC)</span>
+        <span class="src-keyword">int</span> dsap;        <span class="src-comment">// used with IEEE 802 LLC (see EtherFrameWithLLC)</span>
+        <span class="src-keyword">int</span> pauseUnits;  <span class="src-comment">// used with IEEE802CTRL_SENDPAUSE</span>
+        <span class="src-keyword">int</span> inputPort;   <span class="src-comment">// convenience field, used between IPv6 and IPv6ND</span>
+};
+</pre>
+</body>
+</html>

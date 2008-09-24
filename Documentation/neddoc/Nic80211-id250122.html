@@ -1,0 +1,208 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>Nic80211</i>
+</h2>
+<p><b>File: <a href="file-id250191.html">NetworkInterfaces/MF80211/Nic80211.ned</a></b></p>
+<p>This NIC implements an 802.11 network interface card.</p>
+
+<p>This component has been taken over from Mobility Framework 1.0a5.</p>
+
+<p><b>See also:</b> <a href="Mac80211-id251242.html">Mac80211</a>, <a href="Decider80211-id251628.html">Decider80211</a>, <a href="SnrEval80211-id252310.html">SnrEval80211</a></p>
+
+<p><b>Author:</b> Marc Loebbers</p>
+
+<img class="screenshot" src="Nic80211__NetworkInterfaces_MF80211_Nic80211_ned.png" ismap usemap="#screenshot" width="180" height="317"><map name="screenshot"><area shape="rect" coords="64,55 110,101" href="Mac80211-id251242.html" title="mac: Mac80211" alt="mac: Mac80211">
+<area shape="rect" coords="82,133 112,163" href="Decider80211-id251628.html" title="decider: Decider80211" alt="decider: Decider80211">
+<area shape="rect" coords="64,204 110,250" href="SnrEval80211-id252310.html" title="snrEval: SnrEval80211" alt="snrEval: SnrEval80211"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id250122.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="Nic80211-id250122.html" title="module Nic80211" alt="Nic80211" coords="113,88,185,112">
+<area shape="rect" href="Mac80211-id251242.html" title="simple Mac80211" alt="Mac80211" coords="7,160,79,184">
+<area shape="rect" href="Decider80211-id251628.html" title="simple Decider80211" alt="Decider80211" coords="103,160,196,184">
+<area shape="rect" href="SnrEval80211-id252310.html" title="simple SnrEval80211" alt="SnrEval80211" coords="220,160,316,184">
+<area shape="rect" href="MFMobileHost-id254785.html" title="module MFMobileHost" alt="MFMobileHost" coords="93,16,205,40">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="Decider80211-id251628.html">Decider80211</a></td>
+<td><p>Decider module of the 802.11 modules</p>
+</td>
+</tr>
+<tr>
+<td><a href="Mac80211-id251242.html">Mac80211</a></td>
+<td><p>Implementation of the 802.11b MAC protocol. This module is intended
+to be used in combination with the <a href="SnrEval80211-id252310.html">SnrEval80211</a> and <a href="Decider80211-id251628.html">Decider80211</a>
+modules as physical layer.</p>
+</td>
+</tr>
+<tr>
+<td><a href="SnrEval80211-id252310.html">SnrEval80211</a></td>
+<td><p>This component has been taken over from Mobility Framework 1.0a5.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="MFMobileHost-id254785.html">MFMobileHost</a></td>
+<td><p>Models a mobile host with a wireless (802.11b) card in ad-hoc mode.
+This model contains the Mobility Framework's 802.11 implementation, <a href="Nic80211-id250122.html">Nic80211</a>,
+and <a href="IP-id231134.html">IP</a>, <a href="TCP-id271256.html">TCP</a> and <a href="UDP-id272076.html">UDP</a> protocols. The mobility model can be dynamically
+specified with the mobilityType parameter.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateIn</td>
+<td width="100"><i>input</i></td>
+<td><p>to upper layers</p>
+</td>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td><p>from upper layers</p>
+</td>
+</tr>
+<tr>
+<td width="150">radioIn</td>
+<td width="100"><i>input</i></td>
+<td><p>to receive AirFrames</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="Mac80211-id251242.html">mac</a>.address</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address as hex string (12 hex digits), or
+"auto". "auto" values will be replaced by
+a generated MAC address in init stage 0.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Mac80211-id251242.html">mac</a>.maxQueueSize</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Mac80211-id251242.html">mac</a>.rtsCts</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Mac80211-id251242.html">mac</a>.bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Mac80211-id251242.html">mac</a>.broadcastBackoff</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Decider80211-id251628.html">decider</a>.debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td><a href="Decider80211-id251628.html">decider</a>.snirThreshold</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Decider80211-id251628.html">decider</a>.bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SnrEval80211-id252310.html">snrEval</a>.channelNumber</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>channel identifier</p>
+</td>
+</tr>
+<tr>
+<td><a href="SnrEval80211-id252310.html">snrEval</a>.debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td><a href="SnrEval80211-id252310.html">snrEval</a>.transmitterPower</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SnrEval80211-id252310.html">snrEval</a>.bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SnrEval80211-id252310.html">snrEval</a>.headerLength</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SnrEval80211-id252310.html">snrEval</a>.carrierFrequency</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SnrEval80211-id252310.html">snrEval</a>.thermalNoise</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SnrEval80211-id252310.html">snrEval</a>.pathLossAlpha</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SnrEval80211-id252310.html">snrEval</a>.sensitivity</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> Nic80211
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn; <span class="src-comment">// to upper layers</span>
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// from upper layers</span>
+        <span class="src-keyword">in:</span> radioIn; <span class="src-comment">// to receive AirFrames</span>
+    <span class="src-keyword">submodules</span>:
+        mac: Mac80211;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">96</span>,<span class="src-number">87</span>;i=block/layer";
+        decider: Decider80211;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">106</span>,<span class="src-number">157</span>;i=block/process_s";
+        snrEval: SnrEval80211;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">96</span>,<span class="src-number">236</span>;i=block/wrxtx";
+    <span class="src-keyword">connections</span>:
+        radioIn <span class="src-keyword">--&gt;</span> snrEval.radioIn;
+        decider.uppergateOut <span class="src-keyword">--&gt;</span> mac.lowergateIn <span class="src-keyword">display</span> "m=m,<span class="src-number">50</span>,<span class="src-number">50</span>,<span class="src-number">75</span>,<span class="src-number">0</span>";
+        snrEval.uppergateIn <span class="src-keyword">&lt;--</span> mac.lowergateOut <span class="src-keyword">display</span> "m=m,<span class="src-number">25</span>,<span class="src-number">0</span>,<span class="src-number">25</span>,<span class="src-number">0</span>";
+        snrEval.uppergateOut <span class="src-keyword">--&gt;</span> decider.lowergateIn <span class="src-keyword">display</span> "m=m,<span class="src-number">73</span>,<span class="src-number">0</span>,<span class="src-number">50</span>,<span class="src-number">50</span>";
+
+        mac.uppergateOut <span class="src-keyword">--&gt;</span> uppergateOut;
+        mac.uppergateIn <span class="src-keyword">&lt;--</span> uppergateIn;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

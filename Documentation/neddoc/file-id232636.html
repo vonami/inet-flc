@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/IPv6/IPv6Datagram.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="IPv6Datagram-id232560.html">IPv6Datagram</a><i> (message)</i>
+</li>
+<li>
+<a href="IPv6ExtensionHeader-id232757.html">IPv6ExtensionHeader</a><i> (class)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2005 Wei Yang, Ng</span>
+<span class="src-comment">// Copyright (C) 2005 Andras Varga</span>
+<span class="src-comment">// Copyright (C) 2001-2004 CTIE, Monash University</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU Lesser General Public</span>
+<span class="src-comment">// License as published by the Free Software Foundation; either</span>
+<span class="src-comment">// version 2.1 of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU Lesser General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU Lesser General Public</span>
+<span class="src-comment">// License along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+cplusplus {{
+#include &lt;iostream&gt;
+#include "IPv6Address.h"
+#include "IPProtocolId_m.h"
+<span class="src-keyword">class</span> IPv6ExtensionHeader;
+typedef IPv6ExtensionHeader *IPv6ExtensionHeaderPtr;
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, IPv6ExtensionHeaderPtr eh);
+}}
+
+<span class="src-keyword">enum</span> IPProtocolId;
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPv6Address;
+<span class="src-keyword">class</span> <span class="src-keyword">noncobject</span> IPv6ExtensionHeaderPtr;
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// IPv6 datagram. RFC 2460 Section 3.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Header fields not explicitly modelled:</span>
+<span class="src-comment">//    - version (=6): represented by the class name itself</span>
+<span class="src-comment">//    - payload length: will be calculated from encapsulated message length</span>
+<span class="src-comment">//      and extension headers' length</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> IPv6Datagram
+{
+    <span class="src-keyword">properties</span>:
+        customize=<span class="src-keyword">true</span>;
+        omitGetVerb = <span class="src-keyword">true</span>;
+
+    <span class="src-keyword">fields</span>:
+        IPv6Address srcAddress;
+        IPv6Address destAddress;
+        unsigned <span class="src-keyword">int</span> trafficClass;
+        unsigned <span class="src-keyword">int</span> flowLabel;
+        <span class="src-keyword">short</span> hopLimit = <span class="src-number">0</span>;
+        <span class="src-keyword">int</span> transportProtocol <span class="src-keyword">enum</span> (IPProtocolId);
+
+        IPv6ExtensionHeaderPtr extensionHeader[]; <span class="src-comment">// array of extension headers, subclassed from IPv6ExtensionHeader</span>
+};
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// This serves as the base class for all the other extension headers.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">class</span> IPv6ExtensionHeader
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+        customize = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+};
+</pre>
+</body>
+</html>

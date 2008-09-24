@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/MF80211/NicCsma.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="NicCsma-id250564.html">NicCsma</a><i> (compound-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//***************************************************************************</span>
+<span class="src-comment">// * file:        NicCsma.ned</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * author:      Marc Loebbers</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// * copyright:   (C) 2004 Telecommunication Networks Group (TKN) at</span>
+<span class="src-comment">// *              Technische Universitaet Berlin, Germany.</span>
+<span class="src-comment">// *</span>
+<span class="src-comment">// *              This program is free software; you can redistribute it</span>
+<span class="src-comment">// *              and/or modify it under the terms of the GNU General Public</span>
+<span class="src-comment">// *              License as published by the Free Software Foundation; either</span>
+<span class="src-comment">// *              version 2 of the License, or (at your option) any later</span>
+<span class="src-comment">// *              version.</span>
+<span class="src-comment">// *              For further information see file COPYING</span>
+<span class="src-comment">// *              in the top level directory</span>
+<span class="src-comment">// ***************************************************************************</span>
+<span class="src-comment">// * part of:     framework implementation developed by tkn</span>
+<span class="src-comment">// **************************************************************************/</span>
+
+<span class="src-keyword">import</span>
+    "CSMAMacLayer",
+    "BasicDecider",
+    "SnrEval";
+
+<span class="src-comment">//</span>
+<span class="src-comment">// The CsmaNic contains a csma-like MAC layer.</span>
+<span class="src-comment">// The SnrEval module is used as the mac needs a RadioState to be published.</span>
+<span class="src-comment">// However as still the BasicDecider is used all messages will be delivered to</span>
+<span class="src-comment">// the MAC and no packets get lost</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This nic is intended to be used in order to test the implementation</span>
+<span class="src-comment">// of the csma protocol.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// IMPORTANT:&lt;br&gt; In order to work with the ChannelControl module the snrEval</span>
+<span class="src-comment">// module has to be called "snrEval" in the ned file.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This component has been taken over from Mobility Framework 1.0a5.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see BasicMacLayer, BasicDecider, BasicSnrEval</span>
+<span class="src-comment">// @author Marc Loebbers</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">module</span> NicCsma
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn; <span class="src-comment">// to upper layers</span>
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// from upper layers</span>
+        <span class="src-keyword">in:</span> radioIn; <span class="src-comment">// to receive AirFrames</span>
+     <span class="src-keyword">submodules</span>:
+        mac: CSMAMacLayer;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">96</span>,<span class="src-number">87</span>;i=block/layer";
+        decider: BasicDecider;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">106</span>,<span class="src-number">157</span>;i=block/process_s";
+        snrEval: SnrEval;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">96</span>,<span class="src-number">236</span>;i=block/wrxtx";
+    <span class="src-keyword">connections</span>:
+        radioIn <span class="src-keyword">--&gt;</span> snrEval.radioIn;
+        decider.uppergateOut <span class="src-keyword">--&gt;</span> mac.lowergateIn <span class="src-keyword">display</span> "m=m,<span class="src-number">50</span>,<span class="src-number">50</span>,<span class="src-number">75</span>,<span class="src-number">0</span>";
+        snrEval.uppergateIn <span class="src-keyword">&lt;--</span> mac.lowergateOut <span class="src-keyword">display</span> "m=m,<span class="src-number">25</span>,<span class="src-number">0</span>,<span class="src-number">25</span>,<span class="src-number">0</span>";
+        snrEval.uppergateOut <span class="src-keyword">--&gt;</span> decider.lowergateIn <span class="src-keyword">display</span> "m=m,<span class="src-number">73</span>,<span class="src-number">0</span>,<span class="src-number">50</span>,<span class="src-number">50</span>";
+
+        mac.uppergateOut <span class="src-keyword">--&gt;</span> uppergateOut;
+        mac.uppergateIn <span class="src-keyword">&lt;--</span> uppergateIn;
+<span class="src-keyword">endmodule</span>
+</pre>
+</body>
+</html>

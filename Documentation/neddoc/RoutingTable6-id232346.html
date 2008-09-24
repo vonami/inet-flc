@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>RoutingTable6</i>
+</h2>
+<p><b>File: <a href="file-id232470.html">Network/IPv6/RoutingTable6.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_routing_table6.html" target="_top">click here</a></b></p>
+<p>IPv6 Routing Table and Neighbour Discovery data structures.</p>
+
+<p><b>See also:</b> <a href="IPv6-id232445.html">IPv6</a>, <a href="IPv6NeighbourDiscovery-id229263.html">IPv6NeighbourDiscovery</a>, <a href="ICMPv6-id229107.html">ICMPv6</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id232346.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="RoutingTable6-id232346.html" title="simple RoutingTable6" alt="RoutingTable6" coords="45,88,155,112">
+<area shape="rect" href="Router6-id261869.html" title="module Router6" alt="Router6" coords="7,16,79,40">
+<area shape="rect" href="StandardHost6-id262388.html" title="module StandardHost6" alt="StandardHost6" coords="103,16,212,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="Router6-id261869.html">Router6</a></td>
+<td><p>IPv6 router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="StandardHost6-id262388.html">StandardHost6</a></td>
+<td><p>IPv6 host with <a href="TCP-id271256.html">TCP</a>, <a href="UDP-id272076.html">UDP</a> layers and applications.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">routingTableFile</td>
+<td width="100"><i>xml</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">isRouter</td>
+<td width="100"><i>bool</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> RoutingTable6
+    <span class="src-keyword">parameters</span>:
+        routingTableFile: xml,
+        isRouter: <span class="src-keyword">bool</span>;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

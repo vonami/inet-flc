@@ -1,0 +1,105 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>IPv6Datagram</i>
+</h2>
+<p><b>File: <a href="file-id232636.html">Network/IPv6/IPv6Datagram.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_pv6_datagram.html" target="_top">click here</a></b></p>
+<p><a href="IPv6-id232445.html">IPv6</a> datagram. RFC 2460 Section 3.</p>
+
+<p>Header fields not explicitly modelled:</p>
+
+  <ul><ul><li>version (=6): represented by the class name itself</li>
+
+  <li>payload length: will be calculated from encapsulated message length
+     and extension headers' length</li></ul></ul>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id232560.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="IPv6Datagram-id232560.html" title="message IPv6Datagram" alt="IPv6Datagram" coords="7,16,116,40">
+</map><h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">customize</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">srcAddress</td>
+<td width="100"><i>IPv6Address</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">destAddress</td>
+<td width="100"><i>IPv6Address</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">trafficClass</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">flowLabel</td>
+<td width="100"><i>unsigned int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">hopLimit</td>
+<td width="100"><i>short</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">transportProtocol</td>
+<td width="100"><i>int</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">extensionHeader</td>
+<td width="100"><i>IPv6ExtensionHeaderPtr[]</i></td>
+<td><p>array of extension headers, subclassed from <a href="IPv6ExtensionHeader-id232757.html">IPv6ExtensionHeader</a></p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> IPv6Datagram
+{
+    <span class="src-keyword">properties</span>:
+        customize=<span class="src-keyword">true</span>;
+        omitGetVerb = <span class="src-keyword">true</span>;
+
+    <span class="src-keyword">fields</span>:
+        IPv6Address srcAddress;
+        IPv6Address destAddress;
+        unsigned <span class="src-keyword">int</span> trafficClass;
+        unsigned <span class="src-keyword">int</span> flowLabel;
+        <span class="src-keyword">short</span> hopLimit = <span class="src-number">0</span>;
+        <span class="src-keyword">int</span> transportProtocol <span class="src-keyword">enum</span> (IPProtocolId);
+
+        IPv6ExtensionHeaderPtr extensionHeader[]; <span class="src-comment">// array of extension headers, subclassed from IPv6ExtensionHeader</span>
+};</pre>
+</body>
+</html>

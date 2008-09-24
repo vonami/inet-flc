@@ -1,0 +1,131 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Mobility/TurtleMobility.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="TurtleMobility-id227222.html">TurtleMobility</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2005 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// A LOGO-style movement model, with the script coming from XML. It can be</span>
+<span class="src-comment">// useful for describing random as well as deterministic scenarios.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// First, a few examples.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Node will move along a square's borders:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;pre&gt;&lt;nohtml&gt;</span>
+<span class="src-comment">//     &lt;movement&gt;</span>
+<span class="src-comment">//         &lt;set speed="10" angle="180"/&gt;</span>
+<span class="src-comment">//         &lt;repeat n="4"&gt;</span>
+<span class="src-comment">//             &lt;forward d="50"/&gt;</span>
+<span class="src-comment">//             &lt;turn angle="90"/&gt;</span>
+<span class="src-comment">//         &lt;/repeat&gt;</span>
+<span class="src-comment">//     &lt;/movement&gt;</span>
+<span class="src-comment">// &lt;/nohtml&gt;&lt;/pre&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// MassMobility (in which the node is assumed to have a mass, and cannot turn</span>
+<span class="src-comment">// abruptly):</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;pre&gt;&lt;nohtml&gt;</span>
+<span class="src-comment">//     &lt;movement&gt;</span>
+<span class="src-comment">//         &lt;repeat&gt;</span>
+<span class="src-comment">//             &lt;set speed="uniform(10,20)"/&gt;</span>
+<span class="src-comment">//             &lt;turn angle="uniform(-30,30)"/&gt;</span>
+<span class="src-comment">//             &lt;forward t="uniform(0.1,1)"/&gt;</span>
+<span class="src-comment">//         &lt;/repeat&gt;</span>
+<span class="src-comment">//     &lt;/movement&gt;</span>
+<span class="src-comment">// &lt;/nohtml&gt;&lt;/pre&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Random Waypoint:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;pre&gt;&lt;nohtml&gt;</span>
+<span class="src-comment">//     &lt;movement&gt;</span>
+<span class="src-comment">//         &lt;repeat&gt;</span>
+<span class="src-comment">//             &lt;set speed="uniform(20,60)"/&gt;</span>
+<span class="src-comment">//             &lt;moveto x="uniform(0,$MAXX)" y="uniform(0,$MAXY)"/&gt;</span>
+<span class="src-comment">//         &lt;/repeat&gt;</span>
+<span class="src-comment">//     &lt;/movement&gt;</span>
+<span class="src-comment">// &lt;/nohtml&gt;&lt;/pre&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Commands (XML element names) are: repeat, set, forward, turn, wait,</span>
+<span class="src-comment">// moveto, and moveby.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Accepted attributes:</span>
+<span class="src-comment">//    - repeat: n (optional)</span>
+<span class="src-comment">//    - set: x, y, speed, angle, borderPolicy (all optional)</span>
+<span class="src-comment">//    - forward: d, t (at last one of them must be present)</span>
+<span class="src-comment">//    - turn: angle (required)</span>
+<span class="src-comment">//    - wait: t (required)</span>
+<span class="src-comment">//    - moveto: x, y, t (all optional)</span>
+<span class="src-comment">//    - moveby: x, y, t (all optional)</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Attribute values can be literal numbers (e.g. x="100"), or any</span>
+<span class="src-comment">// distribution accepted in omnetpp.ini (e.g. speed="uniform(10,20)").</span>
+<span class="src-comment">// A new value will be chosen each time the statement is executed.</span>
+<span class="src-comment">// The $MAXX and $MAXY strings will be substituted with the</span>
+<span class="src-comment">// playground width and height minus 1, respectively.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// t is time interval, calculated from the end of the previous movement.</span>
+<span class="src-comment">// x, y are absolute coordinates with &lt;set&gt; and &lt;moveto&gt;, and relative</span>
+<span class="src-comment">// with &lt;moveby&gt;. angle is clockwise in degrees, with 0 pointing west.</span>
+<span class="src-comment">// d is distance in meters (speed is m/s).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// borderPolicy controls what happens when a node reaches the edge of the</span>
+<span class="src-comment">// playground, and can take one of the values "reflect", "wrap",</span>
+<span class="src-comment">// "placerandomly". In the first case, the node reflects off the wall;</span>
+<span class="src-comment">// with "wrap", it'll come in on the other side (torus); and with</span>
+<span class="src-comment">// "placerandomly", it will be placed at a random position on the</span>
+<span class="src-comment">// playground.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// In addition to the node position, the module maintains two interval variables,</span>
+<span class="src-comment">// 'speed' and 'angle', which can be adjusted by &lt;set&gt; and &lt;turn&gt;.</span>
+<span class="src-comment">// The &lt;forward&gt; statement, if only t or d is given, uses the speed variable.</span>
+<span class="src-comment">// If you specify d and t together, that determines speed as well,</span>
+<span class="src-comment">// so the speed variable will be ignored completely.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Likewise, &lt;moveto&gt; and &lt;moveby&gt; will ignore the angle variable,</span>
+<span class="src-comment">// and will only use the speed variable if the t attribute is omitted.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// If the repeat count n is omitted for the &lt;repeat&gt; statement, that</span>
+<span class="src-comment">// means an infinite loop.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You can find the DTD with the sources: TurtleMobility.dtd.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see ChannelControl</span>
+<span class="src-comment">// @author Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> TurtleMobility
+    <span class="src-keyword">parameters</span>:
+        debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        turtleScript: xml, <span class="src-comment">// describes the movement</span>
+        updateInterval : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// time interval to update the hosts position</span>
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

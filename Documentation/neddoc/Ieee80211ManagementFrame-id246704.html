@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>Ieee80211ManagementFrame</i>
+</h2>
+<p><b>File: <a href="file-id246288.html">NetworkInterfaces/Ieee80211/Mac/Ieee80211Frame.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_management_frame.html" target="_top">click here</a></b></p>
+<p>Base class for 802.11 management frames (subclasses will add frame body contents)</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id246704.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="Ieee80211ManagementFrame-id246704.html" title="message Ieee80211ManagementFrame" alt="Ieee80211ManagementFrame" coords="1097,88,1297,112">
+<area shape="rect" href="Ieee80211AuthenticationFrame-id248729.html" title="message Ieee80211AuthenticationFrame" alt="Ieee80211AuthenticationFrame" coords="7,160,217,184">
+<area shape="rect" href="Ieee80211DeauthenticationFrame-id248776.html" title="message Ieee80211DeauthenticationFrame" alt="Ieee80211DeauthenticationFrame" coords="241,160,465,184">
+<area shape="rect" href="Ieee80211DisassociationFrame-id248824.html" title="message Ieee80211DisassociationFrame" alt="Ieee80211DisassociationFrame" coords="489,160,692,184">
+<area shape="rect" href="Ieee80211ProbeRequestFrame-id248872.html" title="message Ieee80211ProbeRequestFrame" alt="Ieee80211ProbeRequestFrame" coords="716,160,919,184">
+<area shape="rect" href="Ieee80211AssociationRequestFrame-id248919.html" title="message Ieee80211AssociationRequestFrame" alt="Ieee80211AssociationRequestFrame" coords="943,160,1183,184">
+<area shape="rect" href="Ieee80211ReassociationRequestFrame-id248967.html" title="message Ieee80211ReassociationRequestFrame" alt="Ieee80211ReassociationRequestFrame" coords="1207,160,1460,184">
+<area shape="rect" href="Ieee80211AssociationResponseFrame-id249015.html" title="message Ieee80211AssociationResponseFrame" alt="Ieee80211AssociationResponseFrame" coords="1484,160,1732,184">
+<area shape="rect" href="Ieee80211ReassociationResponseFrame-id249063.html" title="message Ieee80211ReassociationResponseFrame" alt="Ieee80211ReassociationResponseFrame" coords="1756,160,2017,184">
+<area shape="rect" href="Ieee80211BeaconFrame-id249112.html" title="message Ieee80211BeaconFrame" alt="Ieee80211BeaconFrame" coords="2041,160,2201,184">
+<area shape="rect" href="Ieee80211ProbeResponseFrame-id249155.html" title="message Ieee80211ProbeResponseFrame" alt="Ieee80211ProbeResponseFrame" coords="2225,160,2436,184">
+<area shape="rect" href="Ieee80211DataOrMgmtFrame-id246609.html" title="message Ieee80211DataOrMgmtFrame" alt="Ieee80211DataOrMgmtFrame" coords="1096,16,1299,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="Ieee80211DataOrMgmtFrame-id246609.html">Ieee80211DataOrMgmtFrame</a></td>
+<td><p>Common base class for 802.11 data and management frames</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Known subclasses:</h3>
+<table>
+<tr>
+<td><a href="Ieee80211AuthenticationFrame-id248729.html">Ieee80211AuthenticationFrame</a></td>
+<td><p>Authentication frame format (management frame + body)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211DeauthenticationFrame-id248776.html">Ieee80211DeauthenticationFrame</a></td>
+<td><p>De-authentication frame format (management frame + body)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211DisassociationFrame-id248824.html">Ieee80211DisassociationFrame</a></td>
+<td><p>Dis-association frame format (management frame + body) (same as De-authentication)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211ProbeRequestFrame-id248872.html">Ieee80211ProbeRequestFrame</a></td>
+<td><p>Probe request frame format (management frame + body)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211AssociationRequestFrame-id248919.html">Ieee80211AssociationRequestFrame</a></td>
+<td><p>Association request frame format (management frame + body)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211ReassociationRequestFrame-id248967.html">Ieee80211ReassociationRequestFrame</a></td>
+<td><p>Re-association request frame format (management frame + body) (same as association)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211AssociationResponseFrame-id249015.html">Ieee80211AssociationResponseFrame</a></td>
+<td><p>Association response frame format (management frame + body)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211ReassociationResponseFrame-id249063.html">Ieee80211ReassociationResponseFrame</a></td>
+<td><p>Re-association response frame format (management frame + body)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211BeaconFrame-id249112.html">Ieee80211BeaconFrame</a></td>
+<td><p>Beacon frame format (management frame + body)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211ProbeResponseFrame-id249155.html">Ieee80211ProbeResponseFrame</a></td>
+<td><p>Probe response frame format (management frame + body); same as Beacon</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> Ieee80211ManagementFrame <span class="src-keyword">extends</span> Ieee80211DataOrMgmtFrame
+{
+};</pre>
+</body>
+</html>

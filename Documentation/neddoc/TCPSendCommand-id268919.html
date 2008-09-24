@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>TCPSendCommand</i>
+</h2>
+<p><b>File: <a href="file-id268653.html">Transport/Contract/TCPCommand.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_t_c_p_send_command.html" target="_top">click here</a></b></p>
+<p>Control info to be used with the SEND command.</p>
+
+<p><b>See also:</b> <a href="TcpCommandCode-id268675.html">TcpCommandCode</a>, <a href="TCP-id271256.html">TCP</a></p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id268919.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="TCPSendCommand-id268919.html" title="class TCPSendCommand" alt="TCPSendCommand" coords="7,88,151,112">
+<area shape="rect" href="TCPCommand-id268543.html" title="class TCPCommand" alt="TCPCommand" coords="23,16,135,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="TCPCommand-id268543.html">TCPCommand</a></td>
+<td><p>Control info for TCP connections. This class is to be set as control info
+(see cMessage::setControlInfo()) on all messages exchanged between <a href="TCP-id271256.html">TCP</a> and
+application, in both directions. Some commands and indications
+(TCP_C_OPEN_xxx, TCP_I_STATUS) use subclasses.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> TCPSendCommand <span class="src-keyword">extends</span> TCPCommand
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+};</pre>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Enum <i>Ieee80211FrameType</i>
+</h2>
+<p><b>File: <a href="file-id246288.html">NetworkInterfaces/Ieee80211/Mac/Ieee80211Frame.msg</a></b></p>
+<p>802.11 frame type constants (type+subtype), for the "type" field of
+Ieee80211FrameControl</p>
+
+<h3 class="subtitle">Enum values:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">ST_ASSOCIATIONREQUEST</td>
+<td width="100"><i>0x00</i></td>
+<td><p>management:</p>
+</td>
+</tr>
+<tr>
+<td width="150">ST_ASSOCIATIONRESPONSE</td>
+<td width="100"><i>0x01</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ST_REASSOCIATIONREQUEST</td>
+<td width="100"><i>0x02</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ST_REASSOCIATIONRESPONSE</td>
+<td width="100"><i>0x03</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ST_PROBEREQUEST</td>
+<td width="100"><i>0x04</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ST_PROBERESPONSE</td>
+<td width="100"><i>0x05</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ST_BEACON</td>
+<td width="100"><i>0x08</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ST_ATIM</td>
+<td width="100"><i>0x09</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ST_DISASSOCIATION</td>
+<td width="100"><i>0x0a</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ST_AUTHENTICATION</td>
+<td width="100"><i>0x0b</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ST_DEAUTHENTICATION</td>
+<td width="100"><i>0x0c</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ST_PSPOLL</td>
+<td width="100"><i>0x1a</i></td>
+<td><p>control (CFEND/CFEND_CFACK omitted):</p>
+</td>
+</tr>
+<tr>
+<td width="150">ST_RTS</td>
+<td width="100"><i>0x1b</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ST_CTS</td>
+<td width="100"><i>0x1c</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ST_ACK</td>
+<td width="100"><i>0x1d</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ST_DATA</td>
+<td width="100"><i>0x20</i></td>
+<td><p>data (CFPOLL/CFACK subtypes omitted):</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">enum</span> Ieee80211FrameType
+{
+      <span class="src-comment">// management:</span>
+      ST_ASSOCIATIONREQUEST    = <span class="src-number">0</span>x00;
+      ST_ASSOCIATIONRESPONSE   = <span class="src-number">0</span>x01;
+      ST_REASSOCIATIONREQUEST  = <span class="src-number">0</span>x02;
+      ST_REASSOCIATIONRESPONSE = <span class="src-number">0</span>x03;
+      ST_PROBEREQUEST          = <span class="src-number">0</span>x04;
+      ST_PROBERESPONSE         = <span class="src-number">0</span>x05;
+      ST_BEACON                = <span class="src-number">0</span>x08;
+      ST_ATIM                  = <span class="src-number">0</span>x09;
+      ST_DISASSOCIATION        = <span class="src-number">0</span>x0a;
+      ST_AUTHENTICATION        = <span class="src-number">0</span>x0b;
+      ST_DEAUTHENTICATION      = <span class="src-number">0</span>x0c;
+
+      <span class="src-comment">// control (CFEND/CFEND_CFACK omitted):</span>
+      ST_PSPOLL = <span class="src-number">0</span>x1a;
+      ST_RTS    = <span class="src-number">0</span>x1b;
+      ST_CTS    = <span class="src-number">0</span>x1c;
+      ST_ACK    = <span class="src-number">0</span>x1d;
+
+      <span class="src-comment">// data (CFPOLL/CFACK subtypes omitted):</span>
+      ST_DATA   = <span class="src-number">0</span>x20;
+};</pre>
+</body>
+</html>

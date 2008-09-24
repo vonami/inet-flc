@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>MacPkt</i>
+</h2>
+<p><b>File: <a href="file-id251475.html">NetworkInterfaces/MF80211/macLayer/MacPkt.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_mac_pkt.html" target="_top">click here</a></b></p>
+<p>A basic MAC (Media Access Control) packet format definition</p>
+
+<p>subclass if you want to create your own MAC layer message class</p>
+
+<p>The basic MAC message only provides source and destination address
+and and the channel it should be send on</p>
+
+<p>This component has been taken over from Mobility Framework 1.0a5.</p>
+
+<p><b>Author:</b> Daniel Willkomm</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id251542.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="MacPkt-id251542.html" title="message MacPkt" alt="MacPkt" coords="19,16,91,40">
+<area shape="rect" href="Mac80211Pkt-id251348.html" title="message Mac80211Pkt" alt="Mac80211Pkt" coords="7,88,103,112">
+</map><h3 class="subtitle">Known subclasses:</h3>
+<table><tr>
+<td><a href="Mac80211Pkt-id251348.html">Mac80211Pkt</a></td>
+<td><p>Defines all fields of an 802.11 MAC frame</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">destAddr</td>
+<td width="100"><i>MACAddress</i></td>
+<td><p>destination mac address</p>
+</td>
+</tr>
+<tr>
+<td width="150">srcAddr</td>
+<td width="100"><i>MACAddress</i></td>
+<td><p>source mac address</p>
+</td>
+</tr>
+<tr>
+<td width="150">channelId</td>
+<td width="100"><i>int</i></td>
+<td><p>channel to send / receive on</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> MacPkt
+{
+    <span class="src-keyword">fields</span>:
+        MACAddress destAddr; <span class="src-comment">// destination mac address</span>
+        MACAddress srcAddr; <span class="src-comment">// source mac address</span>
+        <span class="src-keyword">int</span> channelId=<span class="src-number">1</span>; <span class="src-comment">// channel to send / receive on</span>
+}</pre>
+</body>
+</html>

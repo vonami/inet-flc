@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>OSPFDatabaseDescriptionPacket</i>
+</h2>
+<p><b>File: <a href="file-id234063.html">Network/OSPFv2/OSPFPacket.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_o_s_p_f_database_description_packet.html" target="_top">click here</a></b></p>
+<p>Represents an OSPF Database Description packet</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id235275.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="OSPFDatabaseDescriptionPacket-id235275.html" title="message OSPFDatabaseDescriptionPacket" alt="OSPFDatabaseDescriptionPacket" coords="7,88,233,112">
+<area shape="rect" href="OSPFPacket-id234132.html" title="message OSPFPacket" alt="OSPFPacket" coords="73,16,167,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="OSPFPacket-id234132.html">OSPFPacket</a></td>
+<td><p>Represents an OSPF packet header</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">interfaceMTU</td>
+<td width="100"><i>unsigned short</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">options</td>
+<td width="100"><i>OSPFOptions</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ddOptions</td>
+<td width="100"><i>OSPFDDOptions</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ddSequenceNumber</td>
+<td width="100"><i>unsigned long</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">lsaHeaders</td>
+<td width="100"><i>OSPFLSAHeader[]</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> OSPFDatabaseDescriptionPacket <span class="src-keyword">extends</span> OSPFPacket
+{
+    <span class="src-keyword">fields</span>:
+        unsigned <span class="src-keyword">short</span>  interfaceMTU;
+        OSPFOptions     options;
+        OSPFDDOptions   ddOptions;
+        unsigned <span class="src-keyword">long</span>   ddSequenceNumber;
+        OSPFLSAHeader   lsaHeaders[];
+}</pre>
+</body>
+</html>

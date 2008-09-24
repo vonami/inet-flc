@@ -1,0 +1,324 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>WirelessAPWithEth</i>
+</h2>
+<p><b>File: <a href="file-id265381.html">Nodes/Wireless/WirelessAPWithEth.ned</a></b></p>
+<p>Models a 802.11 Access Point with Ethernet ports.
+It can be used in conjunction with <a href="WirelessHost-id266620.html">WirelessHost</a>, or any other host model
+containing WirelessNicSTA.</p>
+
+<p><b>See also:</b> <a href="WirelessAP-id265146.html">WirelessAP</a>, <a href="WirelessAPSimplified-id265337.html">WirelessAPSimplified</a>, <a href="WirelessAPWithEth-id265538.html">WirelessAPWithEth</a>, <a href="WirelessAPWithEthSimplified-id265866.html">WirelessAPWithEthSimplified</a></p>
+
+<p><b>See also:</b> <a href="WirelessHost-id266620.html">WirelessHost</a>, <a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a></p>
+
+<p><b>See also:</b> <a href="MobileHost-id255482.html">MobileHost</a>, <a href="MFMobileHost-id254785.html">MFMobileHost</a></p>
+
+<img class="screenshot" src="WirelessAPWithEth__Nodes_Wireless_WirelessAPWithEth_ned.png" ismap usemap="#screenshot" width="234" height="279"><map name="screenshot"><area shape="rect" coords="141,96 179,134" href="MACRelayUnit-id243370.html" title="relayUnit: relayUnitType like MACRelayUnit" alt="relayUnit: relayUnitType like MACRelayUnit">
+<area shape="rect" coords="57,193 103,239" href="Ieee80211NicAP-id244686.html" title="wlan: Ieee80211NicAP" alt="wlan: Ieee80211NicAP">
+<area shape="rect" coords="142,193 188,239" href="EtherMAC-id240352.html" title="eth: EtherMAC" alt="eth: EtherMAC">
+<area shape="rect" coords="46,28 92,74" href="NotificationBoard-id225662.html" title="notificationBoard: NotificationBoard" alt="notificationBoard: NotificationBoard">
+<area shape="rect" coords="47,97 77,127" href="NullMobility-id226704.html" title="mobility: NullMobility" alt="mobility: NullMobility"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id265538.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="WirelessAPWithEth-id265538.html" title="module WirelessAPWithEth" alt="WirelessAPWithEth" coords="256,16,403,40">
+<area shape="rect" href="NotificationBoard-id225662.html" title="simple NotificationBoard" alt="NotificationBoard" coords="7,88,140,112">
+<area shape="rect" href="NullMobility-id226704.html" title="simple NullMobility" alt="NullMobility" coords="164,88,263,112">
+<area shape="rect" href="EtherMAC-id240352.html" title="simple EtherMAC" alt="EtherMAC" coords="287,88,372,112">
+<area shape="rect" href="MACRelayUnit-id243370.html" title="simple MACRelayUnit" alt="MACRelayUnit" coords="396,88,516,112">
+<area shape="rect" href="Ieee80211NicAP-id244686.html" title="module Ieee80211NicAP" alt="Ieee80211NicAP" coords="540,88,655,112">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="EtherMAC-id240352.html">EtherMAC</a></td>
+<td><p>Ethernet MAC layer. MAC performs transmission and reception of frames.
+Doesn't do encapsulation/decapsulation; see <a href="EtherLLC-id240022.html">EtherLLC</a> and <a href="EtherEncap-id241164.html">EtherEncap</a> for
+that.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">Ieee80211NicAP</a></td>
+<td><p>This NIC implements an 802.11 network interface card,
+in an AP, using infrastructure mode.</p>
+</td>
+</tr>
+<tr>
+<td><a href="MACRelayUnit-id243370.html">MACRelayUnit</a></td>
+<td><p>Prototype for modules providing Ethernet switch functionality.
+These modules handle the mapping between ports and MAC addresses,
+and forward frames (<a href="EtherFrame-id242304.html">EtherFrame</a>) to appropriate ports.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NotificationBoard-id225662.html">NotificationBoard</a></td>
+<td><p>Using <a href="NotificationBoard-id225662.html">NotificationBoard</a>, modules can now notify each other about
+"events" such as routing table changes, interface status changes (up/down),
+interface configuration changes, wireless handovers, changes in the state
+of the wireless channel, mobile node position changes, etc.</p>
+</td>
+</tr>
+<tr>
+<td><a href="NullMobility-id226704.html">NullMobility</a></td>
+<td><p>This mobility module does nothing; it can be used for stationary nodes.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">relayUnitType</td>
+<td width="100"><i>string</i></td>
+<td><p>type of the <a href="MACRelayUnit-id243370.html">MACRelayUnit</a> (<a href="MACRelayUnitNP-id243601.html">MACRelayUnitNP</a>, <a href="MACRelayUnitPP-id243803.html">MACRelayUnitPP</a>, etc)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">radioIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ethIn [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ethOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="MACRelayUnit-id243370.html">relayUnit</a>.addressTableFile</td>
+<td width="100"><i>string</i></td>
+<td><p>set to empty string if not used</p>
+</td>
+</tr>
+<tr>
+<td><a href="MACRelayUnit-id243370.html">relayUnit</a>.addressTableSize</td>
+<td width="100"><i>numeric</i></td>
+<td><p>max size of address table</p>
+</td>
+</tr>
+<tr>
+<td><a href="MACRelayUnit-id243370.html">relayUnit</a>.agingTime</td>
+<td width="100"><i>numeric</i></td>
+<td><p>max idle time for address table entries
+(if expires, entry is removed from the table)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211MgmtAP-id247223.html">mgmt</a>.ssid</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211MgmtAP-id247223.html">mgmt</a>.beaconInterval</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211MgmtAP-id247223.html">mgmt</a>.frameCapacity</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>maximum queue length</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211MgmtAP-id247223.html">mgmt</a>.numAuthSteps</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>use 2 for Open System auth, 4 for WEP
+dataRate: numeric; XXX TBD</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.address</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address as hex string (12 hex digits), or
+"auto". "auto" values will be replaced by
+a generated MAC address in init stage 0.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.maxQueueSize</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>max queue length in frames; only used if queueModule==""</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.rtsThresholdBytes</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>longer messages will be sent using RTS/CTS; use 2346 for default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.retryLimit</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>maximum number of retries per message, -1 means default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.cwMinData</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>contention window for normal data frames, -1 means default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Mac-id246064.html">mac</a>.cwMinBroadcast</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>contention window for broadcast messages, -1 means default</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.channelNumber</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>channel identifier</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.transmitterPower</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>power used for transmission of messages (in mW)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>(in bits/s)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.thermalNoise</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>base noise level (dBm)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.pathLossAlpha</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>used by the path loss calculation</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.snirThreshold</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>if signal-noise ratio is below this threshold, frame is considered noise (in dB)</p>
+</td>
+</tr>
+<tr>
+<td><a href="Ieee80211NicAP-id244686.html">wlan</a>.<a href="Ieee80211Radio-id254399.html">radio</a>.sensitivity</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>received signals with power below sensitivity are ignored</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">eth[*]</a>.address</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address as hex string (12 hex digits), or
+"auto". "auto" values will be replaced by
+a generated MAC address in init stage 0.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">eth[*]</a>.txrate</td>
+<td width="100"><i>numeric</i></td>
+<td><p>maximum data rate supported by this station (bit/s);
+actually chosen speed may be lower due to auto-
+configuration. 0 means fully auto-configured.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">eth[*]</a>.duplexEnabled</td>
+<td width="100"><i>bool</i></td>
+<td><p>whether duplex mode can be enabled or not; whether
+MAC will actually use duplex mode depends on the result
+of the auto-configuration process (duplex is only
+possible with DTE-to-DTE connection).</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">eth[*]</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+<tr>
+<td><a href="NullMobility-id226704.html">mobility</a>.x</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>start x coordinate (-1 = display string position, or random if it's missing)</p>
+</td>
+</tr>
+<tr>
+<td><a href="NullMobility-id226704.html">mobility</a>.y</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>start y coordinate (-1 = display string position, or random if it's missing)</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> WirelessAPWithEth
+    <span class="src-keyword">parameters</span>:
+        relayUnitType: <span class="src-keyword">string</span>; <span class="src-comment">// type of the MACRelayUnit (MACRelayUnitNP, MACRelayUnitPP, etc)</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> radioIn;
+        <span class="src-keyword">in:</span> ethIn[];
+        <span class="src-keyword">out:</span> ethOut[];
+    <span class="src-keyword">submodules</span>:
+        relayUnit: relayUnitType <span class="src-keyword">like</span> MACRelayUnit;
+            <span class="src-keyword">gatesizes</span>:
+                lowerLayerIn[<span class="src-keyword">sizeof</span>(ethIn)+<span class="src-number">1</span>],
+                lowerLayerOut[<span class="src-keyword">sizeof</span>(ethIn)+<span class="src-number">1</span>];
+            <span class="src-keyword">display</span>: "i=greenbox;p=<span class="src-number">169</span>,<span class="src-number">124</span>";
+        wlan: Ieee80211NicAP; <span class="src-comment">// see also Ieee80211NicAPSimplified</span>
+            <span class="src-keyword">display</span>: "p=<span class="src-number">89</span>,<span class="src-number">225</span>;q=queue;i=block/ifcard,#ff8000";
+        eth: EtherMAC[<span class="src-keyword">sizeof</span>(ethIn)];
+            <span class="src-keyword">parameters</span>:
+                promiscuous = <span class="src-keyword">true</span>,
+                txQueueLimit = <span class="src-number">1000</span>, <span class="src-comment">// increase if needed</span>
+                queueModule = "";
+            <span class="src-keyword">display</span>: "i=block/ifcard;p=<span class="src-number">174</span>,<span class="src-number">225</span>,row;q=queue";
+        notificationBoard: NotificationBoard;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">78</span>,<span class="src-number">60</span>;i=block/control";
+        mobility: NullMobility;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">71</span>,<span class="src-number">121</span>;i=block/cogwheel_s";
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        radioIn <span class="src-keyword">--&gt;</span> wlan.radioIn <span class="src-keyword">display</span> "m=s";
+        wlan.uppergateIn <span class="src-keyword">&lt;--</span> relayUnit.lowerLayerOut[<span class="src-number">0</span>];
+        wlan.uppergateOut <span class="src-keyword">--&gt;</span> relayUnit.lowerLayerIn[<span class="src-number">0</span>];
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(ethIn)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            eth[i].upperLayerIn <span class="src-keyword">&lt;--</span> relayUnit.lowerLayerOut[i+<span class="src-number">1</span>];
+            eth[i].upperLayerOut <span class="src-keyword">--&gt;</span> relayUnit.lowerLayerIn[i+<span class="src-number">1</span>];
+            eth[i].physIn <span class="src-keyword">&lt;--</span> ethIn[i];
+            eth[i].physOut <span class="src-keyword">--&gt;</span> ethOut[i];
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

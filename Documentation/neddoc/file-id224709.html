@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Applications/UDPApp/UDPBasicApp.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="UDPBasicApp-id224765.html">UDPBasicApp</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">// Copyright (C) 2000 Institut fuer Telematik, Universitaet Karlsruhe</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Sends \UDP packets to the given \IP address at the given interval.</span>
+<span class="src-comment">// Compatible with both IPv4 and IPv6.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The interval can be a constant or a random value (e.g. exponential(1)).</span>
+<span class="src-comment">// If the dest_addresses parameter contains more than one address, one</span>
+<span class="src-comment">// of them is randomly chosen for each packet. An address may be given in the</span>
+<span class="src-comment">// dotted decimal notation, or with the module name. (The IPAddressResolver</span>
+<span class="src-comment">// class is used to resolve the address.) To disable the model, set</span>
+<span class="src-comment">// dest_addresses to "".</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The peer can be UDPSink or another UDPBasicApp (it handles received packets</span>
+<span class="src-comment">// exactly like UDPSink).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//#FIXME change message length to BYTES</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> UDPBasicApp
+    <span class="src-keyword">parameters</span>:
+        local_port : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// if -1, app doesn't bind in UDP</span>
+        dest_port : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        message_length : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// (bits)</span>
+        message_freq : <span class="src-keyword">numeric</span>, <span class="src-comment">// should usually be a random value, e.g. exponential(1)</span>
+        dest_addresses: <span class="src-keyword">string</span>; <span class="src-comment">// list of \IP addresses, separated by spaces</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> from_udp;
+        <span class="src-keyword">out:</span> to_udp;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/Radio/Radio.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="Radio-id254697.html">Radio</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) Andras Varga, Levente Meszaros</span>
+<span class="src-comment">// Based on the Mobility Framework's SnrEval by Marc Loebbers</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Prototype for radio modules. Radio modules deal with the transmission</span>
+<span class="src-comment">// of frames over a wireless medium (the radio channel).</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;b&gt;Transmission&lt;/b&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Upper layers (wireless L2 protocols) can send frames to the radio</span>
+<span class="src-comment">// module. Frames will be encapsulated into AirFrame messages and</span>
+<span class="src-comment">// distributed to other network nodes within interference distance.</span>
+<span class="src-comment">// The AirFrame represents the signal in the radio channel, and</span>
+<span class="src-comment">// its fields hold properties of the transmission like the transmit power.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The global ChannelControl module keeps track of node positions,</span>
+<span class="src-comment">// and knows which nodes are within interference distance of others</span>
+<span class="src-comment">// (neighbour list). When transmitting, the radio module obtains the</span>
+<span class="src-comment">// neighbour list, and sends a copy of the AirFrame to each neighbour.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;b&gt;Reception&lt;/b&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Received AirFrame messages get delivered to the radioIn gate of the</span>
+<span class="src-comment">// module. If it was found to have been received correctly, it gets</span>
+<span class="src-comment">// decapsulated and the frame sent to the upper layer.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Note: currently the packet is also sent up if it was NOT received</span>
+<span class="src-comment">// incorrectly, with its message kind set to COLLISION or BITERROR.</span>
+<span class="src-comment">// This may change in the future, as erroneous receptions could also</span>
+<span class="src-comment">// be signalled via the NotificationBoard.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Determining whether the frame was received correctly is a complicated</span>
+<span class="src-comment">// process. The AbstractRadio C++ class from which the Ieee80211Radio</span>
+<span class="src-comment">// and GenericRadio are derived, basically first calculates the received</span>
+<span class="src-comment">// power of the frame, taking a path loss model into account.</span>
+<span class="src-comment">// Then it calculates the signal-noise ratio, thermal noise and other</span>
+<span class="src-comment">// frames being counted as noise. It is determined from the SNR</span>
+<span class="src-comment">// whether the packet was received correctly, taking modulation</span>
+<span class="src-comment">// scheme and possible forward error correction into account.</span>
+<span class="src-comment">// For details please see the C++ code and its documentation.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;b&gt;Monitoring the radio state&lt;/b&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Wireless L2 protocols and other modules within the node can monitor</span>
+<span class="src-comment">// radio transmissions and receptions by subscribing to the</span>
+<span class="src-comment">// &lt;code&gt;NF_RADIOSTATE_CHANGED&lt;/code&gt; category at the NotificationBoard</span>
+<span class="src-comment">// module of the node.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;b&gt;Dynamically configuring the radio&lt;/b&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The bitrate and the receive/transmit channel can be changed by sending</span>
+<span class="src-comment">// Radio a blank cMessage with &lt;tt&gt;PHY_C_CONFIGURERADIO&lt;/tt&gt; as message kind, and</span>
+<span class="src-comment">// a PhyControlInfo object attached to it as control info, to hold the</span>
+<span class="src-comment">// new bitrate and/or channel number. If the radio is currently transmitting,</span>
+<span class="src-comment">// the change will actually take place after the transmission is completed.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// It is also possible to specify a different bitrate for individual frames;</span>
+<span class="src-comment">// to do that, attach a PhyControlInfo with bitrate filled in to the frame.</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> Radio
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn;   <span class="src-comment">// from higher layer protocol (MAC)</span>
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// to higher layer protocol (MAC)</span>
+        <span class="src-keyword">in:</span> radioIn; <span class="src-comment">// to receive frames (AirFrame) on the radio channel</span>
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

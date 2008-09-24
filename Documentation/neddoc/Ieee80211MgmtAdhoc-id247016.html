@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>Ieee80211MgmtAdhoc</i>
+</h2>
+<p><b>File: <a href="file-id247028.html">NetworkInterfaces/Ieee80211/Mgmt/Ieee80211MgmtAdhoc.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_mgmt_adhoc.html" target="_top">click here</a></b></p>
+<p>802.11 management module used for ad-hoc mode.
+Relies on the MAC layer (<a href="Ieee80211Mac-id246064.html">Ieee80211Mac</a>) for reception and transmission of frames.</p>
+
+<p>This implementation never sends control or management frames, and discards
+any such frame received. Distributed beacon generation is not modelled.
+Only data frames are understood or sent at any time.</p>
+
+<p>This module never switches channels, that is, it will operate on the channel
+the physical layer is configured for (see channelNumber in <a href="Ieee80211Radio-id254399.html">Ieee80211Radio</a>).</p>
+
+<p><b>Author:</b> Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id247016.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="Ieee80211MgmtAdhoc-id247016.html" title="simple Ieee80211MgmtAdhoc" alt="Ieee80211MgmtAdhoc" coords="7,88,161,112">
+<area shape="rect" href="Ieee80211NicAdhoc-id244189.html" title="module Ieee80211NicAdhoc" alt="Ieee80211NicAdhoc" coords="16,16,152,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="Ieee80211NicAdhoc-id244189.html">Ieee80211NicAdhoc</a></td>
+<td><p>This NIC implements an 802.11 network interface card in ad-hoc mode.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">frameCapacity</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">macIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">macOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> Ieee80211MgmtAdhoc
+    <span class="src-keyword">parameters</span>:
+        frameCapacity: <span class="src-keyword">numeric</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn;
+        <span class="src-keyword">out:</span> uppergateOut;
+        <span class="src-keyword">in:</span> macIn;
+        <span class="src-keyword">out:</span> macOut;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

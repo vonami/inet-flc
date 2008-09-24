@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>TED</i>
+</h2>
+<p><b>File: <a href="file-id238488.html">Network/TED/TED.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_t_e_d.html" target="_top">click here</a></b></p>
+<p>Traffic Engineering Database. Stores network topology with detailed
+link information, including total and reserved bandwidths.</p>
+
+<p><a href="TED-id238461.html">TED</a> is filled in and kept up-to-date via link state routing protocols,
+like <a href="LinkStateRouting-id238439.html">LinkStateRouting</a> or (in the future) OSPF-TE.</p>
+
+<p>TED exposes several public methods for querying the current network state
+and allows <a href="RSVP-id236175.html">RSVP</a> and individual applications to calculate feasible LSPs
+meeting the chosen bandwidth criteria.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id238461.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="TED-id238461.html" title="simple TED" alt="TED" coords="68,88,140,112">
+<area shape="rect" href="LDP_LSR-id263362.html" title="module LDP_LSR" alt="LDP_LSR" coords="7,16,89,40">
+<area shape="rect" href="RSVP_LSR-id264429.html" title="module RSVP_LSR" alt="RSVP_LSR" coords="113,16,207,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="LDP_LSR-id263362.html">LDP_LSR</a></td>
+<td><p>An <a href="LDP-id233136.html">LDP</a>-capable router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="RSVP_LSR-id264429.html">RSVP_LSR</a></td>
+<td><p>An RSVP-TE capable router.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> TED
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

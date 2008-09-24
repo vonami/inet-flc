@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>RectangleMobility</i>
+</h2>
+<p><b>File: <a href="file-id226789.html">Mobility/RectangleMobility.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_rectangle_mobility.html" target="_top">click here</a></b></p>
+<p>Moves the node around a rectangle.</p>
+
+<p><b>See also:</b> <a href="ChannelControl-id272488.html">ChannelControl</a></p>
+
+<p><b>Author:</b> Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id226799.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="RectangleMobility-id226799.html" title="simple RectangleMobility" alt="RectangleMobility" coords="7,16,140,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td width="150">x1</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>rectangle is denoted by the (x1,y1) and (x2,y2) coords</p>
+</td>
+</tr>
+<tr>
+<td width="150">y1</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">x2</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">y2</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">startPos</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>in range [0.0,4.0): topleft=0, topright=1, bottomright=2, bottomleft=3</p>
+</td>
+</tr>
+<tr>
+<td width="150">speed</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>speed of the host (in m/s)</p>
+</td>
+</tr>
+<tr>
+<td width="150">updateInterval</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>time interval to update the hosts position</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> RectangleMobility
+    <span class="src-keyword">parameters</span>:
+        debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        x1: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// rectangle is denoted by the (x1,y1) and (x2,y2) coords</span>
+        y1: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        x2: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        y2: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        startPos: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// in range [0.0,4.0): topleft=0, topright=1, bottomright=2, bottomleft=3</span>
+        speed: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// speed of the host (in m/s)</span>
+        updateInterval : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// time interval to update the hosts position</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

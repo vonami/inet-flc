@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Network/IPv4/ICMPMessage.msg</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul>
+<li>
+<a href="ICMPMessage-id231457.html">ICMPMessage</a><i> (message)</i>
+</li>
+<li>
+<a href="ICMPType-id231540.html">ICMPType</a><i> (enum)</i>
+</li>
+</ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2000 Institut fuer Telematik, Universitaet Karlsruhe</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+cplusplus {{
+#include "INETDefs.h"
+}}
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Not the real ICMP codes; here it's set up so that codes above 128 are</span>
+<span class="src-comment">// informational</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> ICMPType
+{
+    ICMP_DESTINATION_UNREACHABLE = <span class="src-number">13</span>;
+    ICMP_REDIRECT = <span class="src-number">5</span>;
+    ICMP_TIME_EXCEEDED = <span class="src-number">11</span>;
+    ICMP_PARAMETER_PROBLEM = <span class="src-number">12</span>;
+
+    ICMP_ECHO_REQUEST = <span class="src-number">128</span>;
+    ICMP_ECHO_REPLY = <span class="src-number">129</span>;
+    ICMP_TIMESTAMP_REQUEST = <span class="src-number">130</span>;
+    ICMP_TIMESTAMP_REPLY = <span class="src-number">131</span>;
+};
+
+cplusplus {{
+typedef <span class="src-keyword">int</span> ICMPCode;
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Codes for type ICMP_DESTINATION_UNREACHABLE</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">enum</span> ICMPDestinationUnreachableCodes
+{
+    ICMP_DU_NETWORK_UNREACHABLE =                      <span class="src-number">0</span>,
+    ICMP_DU_HOST_UNREACHABLE =                         <span class="src-number">1</span>,
+    ICMP_DU_PROTOCOL_UNREACHABLE =                     <span class="src-number">2</span>,
+    ICMP_DU_PORT_UNREACHABLE =                         <span class="src-number">3</span>,
+    ICMP_DU_FRAGMENTATION_NEEDED =                     <span class="src-number">4</span>,
+    ICMP_DU_SOURCE_ROUTE_FAILED =                      <span class="src-number">5</span>,
+    ICMP_DU_DESTINATION_NETWORK_UNKNOWN =              <span class="src-number">6</span>,
+    ICMP_DU_DESTINATION_HOST_UNKNOWN =                 <span class="src-number">7</span>,
+    ICMP_DU_SOURCE_HOST_ISOLATED =                     <span class="src-number">8</span>,
+    ICMP_DU_NETWORK_PROHIBITED =                       <span class="src-number">9</span>,
+    ICMP_DU_HOST_PROHIBITED =                         <span class="src-number">10</span>,
+    ICMP_DU_NETWORK_UNREACHABLE_FOR_TYPE_OF_SERVICE = <span class="src-number">11</span>,
+    ICMP_DU_HOST_UNREACHABLE_FOR_TYPE_OF_SERVICE =    <span class="src-number">12</span>,
+    ICMP_DU_COMMUNICATION_PROHIBITED =                <span class="src-number">13</span>,
+    ICMP_DU_HOST_PRECEDENCE_VIOLATION =               <span class="src-number">14</span>,
+    ICMP_DU_PRECEDENCE_CUTOFF_IN_EFFECT =             <span class="src-number">15</span>,
+    ICMP_AODV_QUEUE_FULL =                            <span class="src-number">16</span>
+};
+
+}}
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// ICMP message class</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">message</span> ICMPMessage
+{
+  <span class="src-keyword">fields</span>:
+    <span class="src-keyword">int</span> type <span class="src-keyword">enum</span>(ICMPType);
+    <span class="src-keyword">int</span> code;
+};
+</pre>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Class <i>Ieee80211Prim_AssociateRequest</i>
+</h2>
+<p><b>File: <a href="file-id249388.html">NetworkInterfaces/Ieee80211/Mgmt/Ieee80211Primitives.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ieee80211_prim___associate_request.html" target="_top">click here</a></b></p>
+<p>Losely based on MLME-ASSOCIATE.request</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id249976.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="Ieee80211Prim_AssociateRequest-id249976.html" title="class Ieee80211Prim_AssociateRequest" alt="Ieee80211Prim_AssociateRequest" coords="13,88,237,112">
+<area shape="rect" href="Ieee80211Prim_ReassociateRequest-id250033.html" title="class Ieee80211Prim_ReassociateRequest" alt="Ieee80211Prim_ReassociateRequest" coords="7,160,244,184">
+<area shape="rect" href="Ieee80211PrimRequest-id249593.html" title="class Ieee80211PrimRequest" alt="Ieee80211PrimRequest" coords="48,16,203,40">
+</map><h3 class="subtitle">Extends:</h3>
+<table><tr>
+<td><a href="Ieee80211PrimRequest-id249593.html">Ieee80211PrimRequest</a></td>
+<td><p>Base class for request primitives</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Known subclasses:</h3>
+<table><tr>
+<td><a href="Ieee80211Prim_ReassociateRequest-id250033.html">Ieee80211Prim_ReassociateRequest</a></td>
+<td><p>MLME-REASSOCIATE.request is very similar to MLME-ASSOCIATE.request</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">address</td>
+<td width="100"><i>MACAddress</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">timeout</td>
+<td width="100"><i>double</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">class</span> Ieee80211Prim_AssociateRequest <span class="src-keyword">extends</span> Ieee80211PrimRequest
+{
+    <span class="src-keyword">fields</span>:
+        MACAddress address;
+        <span class="src-keyword">double</span> timeout;
+};</pre>
+</body>
+</html>

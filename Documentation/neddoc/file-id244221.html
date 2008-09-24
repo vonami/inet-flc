@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/Ieee80211/Ieee80211Doc.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2006 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// @page ieee80211.html, IEEE 802.11 Model</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This page provides an overview of the IEEE 802.11 model for the INET Framework.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// An IEEE 802.11 interface (NIC) comes in several flavours, differring</span>
+<span class="src-comment">// in their role (ad-hoc station, infrastructure mode station, or</span>
+<span class="src-comment">// access point) and their level of detail:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//  - Ieee80211Nic: a generic (configurable) NIC</span>
+<span class="src-comment">//  - Ieee80211NicAdhoc: for ad-hoc mode</span>
+<span class="src-comment">//  - Ieee80211NicAP, Ieee80211NicAPSimplified: for use in an access point</span>
+<span class="src-comment">//  - Ieee80211NicSTA, Ieee80211NicSTASimplified: for use in an</span>
+<span class="src-comment">//    infrastructure-mode station</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// NICs consist of four layers, which are the following (in top-down order):</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//  -# agent</span>
+<span class="src-comment">//  -# management</span>
+<span class="src-comment">//  -# MAC</span>
+<span class="src-comment">//  -# physical layer (radio)</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;i&gt;The physical layer&lt;/i&gt; modules (Ieee80211Radio; with some limitations, </span>
+<span class="src-comment">// SnrEval80211, Decider80211 can also be used) deal with modelling</span>
+<span class="src-comment">// transmission and reception of frames. They model the characteristics of</span>
+<span class="src-comment">// the radio channel, and determine if a frame was received correctly</span>
+<span class="src-comment">// (that is, it did not suffer bit errors due to low signal power or</span>
+<span class="src-comment">// interference in the radio channel). Frames received correctly are passed</span>
+<span class="src-comment">// up to the MAC. The implementation of these modules is based on the</span>
+<span class="src-comment">// Mobility Framework.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;i&gt;The MAC layer&lt;/i&gt; (Ieee80211Mac) performs transmission of frames according</span>
+<span class="src-comment">// to the CSMA/CA protocol. It receives data and management frames from</span>
+<span class="src-comment">// the upper layers, and transmits them.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;i&gt;The management layer&lt;/i&gt; performs encapsulation and decapsulation of data packets</span>
+<span class="src-comment">// for the MAC, and exchanges management frames via the MAC with its peer</span>
+<span class="src-comment">// management entities in other STAs and APs. Beacon, Probe Request/Response,</span>
+<span class="src-comment">// Authentication, Association Request/Response etc frames are generated</span>
+<span class="src-comment">// and interpreted by management entities, and transmitted/received via</span>
+<span class="src-comment">// the MAC layer. During scanning, it is the management entity that periodically</span>
+<span class="src-comment">// switches channels, and collects information from received beacons and</span>
+<span class="src-comment">// probe responses.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The management layer has several implementations which differ in their role</span>
+<span class="src-comment">// (STA/AP/ad-hoc) and level of detail: Ieee80211MgmtAdhoc,</span>
+<span class="src-comment">// Ieee80211MgmtAP, Ieee80211MgmtAPSimplified, Ieee80211MgmtSTA,</span>
+<span class="src-comment">// Ieee80211MgmtSTASimplified. The ..Simplified ones differ from the others</span>
+<span class="src-comment">// in that they do not model the scan-authenticate-associate process,</span>
+<span class="src-comment">// so they cannot be used in experiments involving handover.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;i&gt;The agent&lt;/i&gt; is what instructs the management layer to perform</span>
+<span class="src-comment">// scanning, authentication and association. The management layer itself</span>
+<span class="src-comment">// just carries out these commands by performing the scanning, authentication</span>
+<span class="src-comment">// and association procedures, and reports back the results to the agent.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The agent layer is currenly only present in the Ieee80211NicSTA NIC module,</span>
+<span class="src-comment">// as an Ieee80211AgentSTA module. The managament entities in other NIC</span>
+<span class="src-comment">// variants do not have as much freedom as to need an agent to control them.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// By modifying or replacing the agent, one can alter the dynamic behaviour</span>
+<span class="src-comment">// of STAs in the network, for example implement different handover strategies.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;b&gt;Limitations&lt;/b&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// See the documentation of Ieee80211Mac for features unsupported by this</span>
+<span class="src-comment">// model.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">//# further details about the implementation: what is modelled and what is</span>
+<span class="src-comment">//# not (beacons, auth, ...), communication between modules, frame formats,</span>
+<span class="src-comment">//# ...</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// &lt;b&gt;Notes&lt;/b&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// If you are new to 802.11, reading an </span>
+<span class="src-comment">// &lt;a href="http://www.wi-fiplanet.com/tutorials/article.php/1216351" target="_blank"&gt;introductory material&lt;/a&gt;</span>
+<span class="src-comment">// before the IEEE standard can help.</span>
+<span class="src-comment">//</span>
+</pre>
+</body>
+</html>

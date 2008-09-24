@@ -1,0 +1,115 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>OSPFPacket</i>
+</h2>
+<p><b>File: <a href="file-id234063.html">Network/OSPFv2/OSPFPacket.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_o_s_p_f_packet.html" target="_top">click here</a></b></p>
+<p>Represents an OSPF packet header</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id234132.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="OSPFPacket-id234132.html" title="message OSPFPacket" alt="OSPFPacket" coords="467,16,560,40">
+<area shape="rect" href="OSPFHelloPacket-id234436.html" title="message OSPFHelloPacket" alt="OSPFHelloPacket" coords="7,88,135,112">
+<area shape="rect" href="OSPFDatabaseDescriptionPacket-id235275.html" title="message OSPFDatabaseDescriptionPacket" alt="OSPFDatabaseDescriptionPacket" coords="159,88,385,112">
+<area shape="rect" href="OSPFLinkStateRequestPacket-id235379.html" title="message OSPFLinkStateRequestPacket" alt="OSPFLinkStateRequestPacket" coords="409,88,617,112">
+<area shape="rect" href="OSPFLinkStateUpdatePacket-id235411.html" title="message OSPFLinkStateUpdatePacket" alt="OSPFLinkStateUpdatePacket" coords="641,88,847,112">
+<area shape="rect" href="OSPFLinkStateAcknowledgementPacket-id235483.html" title="message OSPFLinkStateAcknowledgementPacket" alt="OSPFLinkStateAcknowledgementPacket" coords="871,88,1151,112">
+</map><h3 class="subtitle">Known subclasses:</h3>
+<table>
+<tr>
+<td><a href="OSPFHelloPacket-id234436.html">OSPFHelloPacket</a></td>
+<td><p>Represents an OSPF Hello packet</p>
+</td>
+</tr>
+<tr>
+<td><a href="OSPFDatabaseDescriptionPacket-id235275.html">OSPFDatabaseDescriptionPacket</a></td>
+<td><p>Represents an OSPF Database Description packet</p>
+</td>
+</tr>
+<tr>
+<td><a href="OSPFLinkStateRequestPacket-id235379.html">OSPFLinkStateRequestPacket</a></td>
+<td><p>Represents an OSPF <a href="Link-id234797.html">Link</a> State Request packet</p>
+</td>
+</tr>
+<tr>
+<td><a href="OSPFLinkStateUpdatePacket-id235411.html">OSPFLinkStateUpdatePacket</a></td>
+<td><p>Represents an OSPF <a href="Link-id234797.html">Link</a> State Update packet</p>
+</td>
+</tr>
+<tr>
+<td><a href="OSPFLinkStateAcknowledgementPacket-id235483.html">OSPFLinkStateAcknowledgementPacket</a></td>
+<td><p>Represents an OSPF <a href="Link-id234797.html">Link</a> State Acknowledgement packet</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">version</td>
+<td width="100"><i>char</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">type</td>
+<td width="100"><i>char</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">packetLength</td>
+<td width="100"><i>short</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">routerID</td>
+<td width="100"><i>IPAddress</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">areaID</td>
+<td width="100"><i>IPAddress</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">checksum</td>
+<td width="100"><i>short</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">authenticationType</td>
+<td width="100"><i>short</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">authentication</td>
+<td width="100"><i>char[8]</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> OSPFPacket
+{
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">char</span>   version = <span class="src-number">2</span>;
+        <span class="src-keyword">char</span>   type <span class="src-keyword">enum</span>(OSPFPacketType) = HelloPacket;
+        <span class="src-keyword">short</span>  packetLength = <span class="src-number">0</span>; 
+
+        IPAddress routerID;
+        IPAddress areaID;
+
+        <span class="src-keyword">short</span>  checksum = <span class="src-number">0</span>;
+        <span class="src-keyword">short</span>  authenticationType = <span class="src-number">0</span>;
+        <span class="src-keyword">char</span>   authentication[<span class="src-number">8</span>];
+};</pre>
+</body>
+</html>

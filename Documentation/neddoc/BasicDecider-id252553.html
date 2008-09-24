@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>BasicDecider</i>
+</h2>
+<p><b>File: <a href="file-id252463.html">NetworkInterfaces/MFCore/BasicDecider.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_basic_decider.html" target="_top">click here</a></b></p>
+<p>Module to decide whether a frame is received correctly or is
+lost due to bit errors, interference...</p>
+
+<p>The decider module only handles messages from lower layers. All
+messages from upper layers are directly passed to the snrEval layer
+and cannot be processed in the decider module</p>
+
+<p>This is the basic decider module which does not really decide
+anything. It only provides the basic functionality which all
+decider modules should have, namely message de- &amp; encapsulation
+(For further information about the functionality of the physical
+layer modules and the formats used for communication in between
+them have a look at the manual</p>
+
+<p>Every own decider module class should be derived from this class
+and only the handle*Msg functions may be redefined for your own
+needs. The other functions should usually NOT be changed.</p>
+
+<p>All decider modules should assume bits as a unit for the length
+fields.</p>
+
+<p>This component has been taken over from Mobility Framework 1.0a5.</p>
+
+<p><b>Author:</b> Marc Löbbers, Daniel Willkomm</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id252553.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="BasicDecider-id252553.html" title="simple BasicDecider" alt="BasicDecider" coords="7,88,103,112">
+<area shape="rect" href="NicCsma-id250564.html" title="module NicCsma" alt="NicCsma" coords="19,16,91,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="NicCsma-id250564.html">NicCsma</a></td>
+<td><p>The CsmaNic contains a csma-like MAC layer.
+The <a href="SnrEval-id252171.html">SnrEval</a> module is used as the mac needs a RadioState to be published.
+However as still the <a href="BasicDecider-id252553.html">BasicDecider</a> is used all messages will be delivered to
+the MAC and no packets get lost</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">coreDebug</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>debug switch for the core framework</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td><p>to MAC layer</p>
+</td>
+</tr>
+<tr>
+<td width="150">lowergateIn</td>
+<td width="100"><i>input</i></td>
+<td><p>from snrEval sub-module</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> BasicDecider
+    <span class="src-keyword">parameters</span>:
+        coreDebug : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// debug switch for the core framework</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// to MAC layer</span>
+        <span class="src-keyword">in:</span> lowergateIn; <span class="src-comment">// from snrEval sub-module</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

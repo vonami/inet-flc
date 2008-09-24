@@ -1,0 +1,106 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Message <i>ICMPv6Message</i>
+</h2>
+<p><b>File: <a href="file-id229550.html">Network/ICMPv6/ICMPv6Message.msg</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_c_m_pv6_message.html" target="_top">click here</a></b></p>
+<p>Represents an <a href="ICMPv6-id229107.html">ICMPv6</a> packet.</p>
+
+<p>Notes:
+   1. number of octets excluding the error datagram that is usually appended
+      in optInfo, i.e. the Type|CODE|CHECKSUM|UNUSED/POINTER/MTU/OTHER
+      as defined in RFC2463
+   2. Any <a href="ICMP-id230662.html">ICMP</a> type with MSB set, i.e. &gt;=128 is an Informational <a href="ICMP-id230662.html">ICMP</a> message</p>
+
+<h3 class="subtitle">Inheritance diagram:</h3>
+<p>The following diagram shows part of the inheritance hierarchy.
+   Unresolved types are missing from the diagram.
+   Click <a href="class-inheritance-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id229703.gif" ismap usemap="#inheritance-diagram"><map name="inheritance-diagram"><area shape="rect" href="ICMPv6Message-id229703.html" title="message ICMPv6Message" alt="ICMPv6Message" coords="704,16,827,40">
+<area shape="rect" href="ICMPv6DestUnreachableMsg-id229748.html" title="message ICMPv6DestUnreachableMsg" alt="ICMPv6DestUnreachableMsg" coords="7,88,215,112">
+<area shape="rect" href="ICMPv6PacketTooBigMsg-id229790.html" title="message ICMPv6PacketTooBigMsg" alt="ICMPv6PacketTooBigMsg" coords="239,88,428,112">
+<area shape="rect" href="ICMPv6TimeExceededMsg-id229841.html" title="message ICMPv6TimeExceededMsg" alt="ICMPv6TimeExceededMsg" coords="452,88,644,112">
+<area shape="rect" href="ICMPv6ParamProblemMsg-id229880.html" title="message ICMPv6ParamProblemMsg" alt="ICMPv6ParamProblemMsg" coords="668,88,863,112">
+<area shape="rect" href="ICMPv6EchoRequestMsg-id229920.html" title="message ICMPv6EchoRequestMsg" alt="ICMPv6EchoRequestMsg" coords="887,88,1071,112">
+<area shape="rect" href="ICMPv6EchoReplyMsg-id229989.html" title="message ICMPv6EchoReplyMsg" alt="ICMPv6EchoReplyMsg" coords="1095,88,1265,112">
+<area shape="rect" href="IPv6NDMessage-id230159.html" title="message IPv6NDMessage" alt="IPv6NDMessage" coords="1289,88,1412,112">
+</map><h3 class="subtitle">Known subclasses:</h3>
+<table>
+<tr>
+<td><a href="ICMPv6DestUnreachableMsg-id229748.html">ICMPv6DestUnreachableMsg</a></td>
+<td><p>Notes:
+  1. As defined in RFC2463: Section 3</p>
+</td>
+</tr>
+<tr>
+<td><a href="ICMPv6PacketTooBigMsg-id229790.html">ICMPv6PacketTooBigMsg</a></td>
+<td><i>(no description)</i></td>
+</tr>
+<tr>
+<td><a href="ICMPv6TimeExceededMsg-id229841.html">ICMPv6TimeExceededMsg</a></td>
+<td><i>(no description)</i></td>
+</tr>
+<tr>
+<td><a href="ICMPv6ParamProblemMsg-id229880.html">ICMPv6ParamProblemMsg</a></td>
+<td><i>(no description)</i></td>
+</tr>
+<tr>
+<td><a href="ICMPv6EchoRequestMsg-id229920.html">ICMPv6EchoRequestMsg</a></td>
+<td><p><a href="ICMPv6-id229107.html">ICMPv6</a> Echo Request packet (RFC2463: Section 4).
+Data is attached through encapsulation (see <a href="ICMPv6-id229107.html">ICMPv6</a>.cc)</p>
+</td>
+</tr>
+<tr>
+<td><a href="ICMPv6EchoReplyMsg-id229989.html">ICMPv6EchoReplyMsg</a></td>
+<td><p><a href="ICMPv6-id229107.html">ICMPv6</a> Echo Reply packet. Data is attached through encapsulation (see <a href="ICMPv6-id229107.html">ICMPv6</a>.cc)</p>
+</td>
+</tr>
+<tr>
+<td><a href="IPv6NDMessage-id230159.html">IPv6NDMessage</a></td>
+<td><p>Neighbour Discovery for <a href="IPv6-id232445.html">IPv6</a>.
+RFC 2461</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Properties:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">omitGetVerb</td>
+<td width="100"><i>true</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Fields:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">type</td>
+<td width="100"><i>int</i></td>
+<td><p>int code; //TODO: this should be specific to different <a href="ICMP-id230662.html">ICMP</a> types.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">message</span> ICMPv6Message
+{
+    <span class="src-keyword">properties</span>:
+        omitGetVerb = <span class="src-keyword">true</span>;
+    <span class="src-keyword">fields</span>:
+        <span class="src-keyword">int</span> type <span class="src-keyword">enum</span>(ICMPv6Type);
+        <span class="src-comment">//int code; //TODO: this should be specific to different ICMP types.</span>
+};</pre>
+</body>
+</html>

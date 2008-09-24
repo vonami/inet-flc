@@ -1,0 +1,113 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>TCPSpoof</i>
+</h2>
+<p><b>File: <a href="file-id223926.html">Applications/TCPApp/TCPSpoof.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_t_c_p_spoof.html" target="_top">click here</a></b></p>
+<p>Sends fabricated <a href="TCP-id271256.html">TCP</a> packets. This is a base implementation,
+you'll probably have to customize it in C++ according to
+what you want to send and when you want to send it.</p>
+
+<p>Compatible with both IPv4 and <a href="IPv6-id232445.html">IPv6</a>.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id223974.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="TCPSpoof-id223974.html" title="simple TCPSpoof" alt="TCPSpoof" coords="32,88,112,112">
+<area shape="rect" href="TCPSpoofingHost-id260559.html" title="module TCPSpoofingHost" alt="TCPSpoofingHost" coords="7,16,137,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="TCPSpoofingHost-id260559.html">TCPSpoofingHost</a></td>
+<td><p>IP host with <a href="TCPSpoof-id223974.html">TCPSpoof</a> in the application layer.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">srcAddress</td>
+<td width="100"><i>string</i></td>
+<td><p>local address; may be left empty ("")</p>
+</td>
+</tr>
+<tr>
+<td width="150">destAddress</td>
+<td width="100"><i>string</i></td>
+<td><p>destination address</p>
+</td>
+</tr>
+<tr>
+<td width="150">srcPort</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>local port number</p>
+</td>
+</tr>
+<tr>
+<td width="150">destPort</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>destination port number</p>
+</td>
+</tr>
+<tr>
+<td width="150">seqNo</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>sequence number (-1 for <a href="TCP-id271256.html">TCP</a> ISS)</p>
+</td>
+</tr>
+<tr>
+<td width="150">isSYN</td>
+<td width="100"><i>bool</i></td>
+<td><p>whether to set SYN bit on packet</p>
+</td>
+</tr>
+<tr>
+<td width="150">t</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>simulation time to send at</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">ipv4Out</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ipv6Out</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> TCPSpoof
+    <span class="src-keyword">parameters</span>:
+        srcAddress: <span class="src-keyword">string</span>,  <span class="src-comment">// local address; may be left empty ("")</span>
+        destAddress: <span class="src-keyword">string</span>, <span class="src-comment">// destination address</span>
+        srcPort: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// local port number</span>
+        destPort: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// destination port number</span>
+        seqNo: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// sequence number (-1 for TCP ISS)</span>
+        isSYN: <span class="src-keyword">bool</span>, <span class="src-comment">// whether to set SYN bit on packet</span>
+        t: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// simulation time to send at</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">out:</span> ipv4Out;
+        <span class="src-keyword">out:</span> ipv6Out;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

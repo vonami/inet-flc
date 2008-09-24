@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Applications/TCPApp/TCPBasicClientApp.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="TCPBasicClientApp-id219784.html">TCPBasicClientApp</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Client for a generic request-response style protocol over TCP.</span>
+<span class="src-comment">// May be used as a rough model of HTTP or FTP users.</span>
+<span class="src-comment">// Compatible with both IPv4 and IPv6.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The model communicates with the server in sessions. During a session,</span>
+<span class="src-comment">// the client opens a single \TCP connection to the server, sends several</span>
+<span class="src-comment">// requests (always waiting for the complete reply to arrive before</span>
+<span class="src-comment">// sending a new request), and closes the connection.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The server app should be TCPGenericSrvApp; the model sends GenericAppMsg</span>
+<span class="src-comment">// messages.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Example settings:</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// FTP:</span>
+<span class="src-comment">// &lt;pre&gt;</span>
+<span class="src-comment">//    numRequestsPerSession = exponential(3)</span>
+<span class="src-comment">//    requestLength = truncnormal(20,5)</span>
+<span class="src-comment">//    replyLength = exponential(1000000)</span>
+<span class="src-comment">// &lt;/pre&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Note that this module doesn't open separate \TCP connections for commands</span>
+<span class="src-comment">// and data transfer as the FTP protocol.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// HTTP:</span>
+<span class="src-comment">// &lt;pre&gt;</span>
+<span class="src-comment">//    numRequestsPerSession = 1 &lt;i&gt;(HTTP 1.0)&lt;/i&gt;</span>
+<span class="src-comment">//    numRequestsPerSession = exponential(5) &lt;i&gt;(HTTP 1.1, with keepalive)&lt;/i&gt;</span>
+<span class="src-comment">//    requestLength = truncnormal(350,20)</span>
+<span class="src-comment">//    replyLength = exponential(2000)</span>
+<span class="src-comment">// &lt;/pre&gt;</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Note that since most web pages contain images and may contain frames,</span>
+<span class="src-comment">// applets etc, possibly from various servers, and browsers usually download</span>
+<span class="src-comment">// these items in parallel to the main HTML document, this module cannot</span>
+<span class="src-comment">// serve as a realistic web client.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Also, with HTTP 1.0 it is the server that closes the connection after</span>
+<span class="src-comment">// sending the response, while in this model it is the client.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see TCPGenericSrvApp, GenericAppMsg, TelnetApp</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> TCPBasicClientApp
+    <span class="src-keyword">parameters</span>:
+        address: <span class="src-keyword">string</span>, <span class="src-comment">// may be left empty ("")</span>
+        port: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// port number to listen on</span>
+        connectAddress: <span class="src-keyword">string</span>,  <span class="src-comment">// server address (may be symbolic)</span>
+        connectPort: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// port number to connect to</span>
+        startTime: <span class="src-keyword">numeric</span>, <span class="src-comment">// time first session begins</span>
+        numRequestsPerSession: <span class="src-keyword">numeric</span>,  <span class="src-comment">// number of requests sent per session</span>
+        requestLength: <span class="src-keyword">numeric</span>, <span class="src-comment">// length of a request (bytes)</span>
+        replyLength: <span class="src-keyword">numeric</span>, <span class="src-comment">// length of a reply (bytes)</span>
+        thinkTime: <span class="src-keyword">numeric</span>, <span class="src-comment">// time gap between requests</span>
+        idleInterval: <span class="src-keyword">numeric</span>, <span class="src-comment">// time gap between sessions</span>
+        reconnectInterval: <span class="src-keyword">numeric</span>;  <span class="src-comment">// if connection breaks, waits this much before trying to reconnect</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> tcpIn;
+        <span class="src-keyword">out:</span> tcpOut;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

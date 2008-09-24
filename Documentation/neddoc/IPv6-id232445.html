@@ -1,0 +1,164 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>IPv6</i>
+</h2>
+<p><b>File: <a href="file-id232381.html">Network/IPv6/IPv6.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_pv6.html" target="_top">click here</a></b></p>
+<p>Implements the IPv6 protocol.</p>
+
+<p>An overview of the IPv6 implementation in the INET Framework is
+provided <a href="ipv6overview.html">here</a>.</p>
+
+<p>The IPv6 protocol header is represented by the <a href="IPv6Datagram-id232560.html">IPv6Datagram</a> message class.</p>
+
+<p><b>Interfacing with higher layer protocols</b></p>
+
+<p>To send a packet over IPv6 from a higher layer protocol, the module should
+fill in an <a href="IPv6ControlInfo-id228808.html">IPv6ControlInfo</a> object, attach it to the packet with cMessage's
+setControlInfo() method, the send it to the <a href="IPv6-id232445.html">IPv6</a> module.</p>
+
+<p>When <a href="IPv6-id232445.html">IPv6</a> sends up a packet to a higher layer protocol, it will also attach
+an <a href="IPv6ControlInfo-id228808.html">IPv6ControlInfo</a> to the packet, with the source and destination IPv6 address,
+etc. of the IPv6 datagram in which the packet arrived.</p>
+
+<p><a href="IPv6-id232445.html">IPv6</a> can serve several higher-layer protocols. When delivering packets
+to them, the output gate is determined from the Protocol field in the
+IPv6 datagram class. The protocol-to-gateindex mapping must be given
+in the protocolMapping string parameter, in the following format:
+<pre>
+protocolnumber:gateindex, protocolnumber:gateindex, ...
+</pre></p>
+
+<p>The recommended setting is:</p>
+
+  <ul><li>TCP (6) : 0</li>
+
+  <li>UDP (17) : 1</li>
+
+  <li>RSVP (46) : 2</li>
+
+  <li>ICMPv6 (89) : 3</li></ul>
+
+<p>That is, <tt>protocolMapping="6:0,17:1,46:2,89:3"</tt></p>
+
+<p><b>Routing and interfacing with lower layers</b></p>
+
+<p>The routing table is stored in the module <a href="RoutingTable6-id232346.html">RoutingTable6</a>. When a datagram
+needs to be routed, IPv6 queries <a href="RoutingTable6-id232346.html">RoutingTable6</a> for the output interface
+(or "port") and next hop address of the packet. This is done by directly
+calling C++ methods of <a href="RoutingTable6-id232346.html">RoutingTable6</a>. No message exchange with <a href="RoutingTable6-id232346.html">RoutingTable6</a>
+takes place.</p>
+
+<p>Routing protocol implementations can also query and manipulate the route table
+by calling <a href="RoutingTable6-id232346.html">RoutingTable6</a>'s methods in C++.</p>
+
+<p><b>Performance model, QoS</b></p>
+
+<p>In the current form, <a href="IPv6-id232445.html">IPv6</a> contains a FIFO which queues up IPv6 datagrams;
+datagrams are processed in order. The processing time is determined by the
+procDelay module parameter.</p>
+
+<p><b>See also:</b> <a href="RoutingTable6-id232346.html">RoutingTable6</a>, <a href="IPv6ControlInfo-id228808.html">IPv6ControlInfo</a>, <a href="IPv6NeighbourDiscovery-id229263.html">IPv6NeighbourDiscovery</a>, <a href="ICMPv6-id229107.html">ICMPv6</a></p>
+
+<p><b>Author:</b> Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id232445.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="IPv6-id232445.html" title="simple IPv6" alt="IPv6" coords="29,88,101,112">
+<area shape="rect" href="NetworkLayer6-id261162.html" title="module NetworkLayer6" alt="NetworkLayer6" coords="7,16,124,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="NetworkLayer6-id261162.html">NetworkLayer6</a></td>
+<td><p>Represents an <a href="IPv6-id232445.html">IPv6</a> network layer (L3).</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">procDelay</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">protocolMapping</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">transportIn [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">transportOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">queueIn [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">queueOut [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">icmpIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">icmpOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ndIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">ndOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> IPv6
+    <span class="src-keyword">parameters</span>:
+        procDelay : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        protocolMapping : <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> transportIn[];
+        <span class="src-keyword">out:</span> transportOut[];
+        <span class="src-keyword">in:</span> queueIn[];
+        <span class="src-keyword">out:</span> queueOut[];
+        <span class="src-keyword">in:</span> icmpIn;
+        <span class="src-keyword">out:</span> icmpOut;
+        <span class="src-keyword">in:</span> ndIn;
+        <span class="src-keyword">out:</span> ndOut;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

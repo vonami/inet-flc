@@ -1,0 +1,83 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>NAMTraceWriter</i>
+</h2>
+<p><b>File: <a href="file-id271966.html">Util/NAMTraceWriter.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_n_a_m_trace_writer.html" target="_top">click here</a></b></p>
+<p>When placed inside a host or router, it writes a NAM trace, based on 
+notifications it receives via the <a href="NotificationBoard-id225662.html">NotificationBoard</a>. Expects to find 
+a <a href="NAMTrace-id272601.html">NAMTrace</a> module named "nam" at network level.</p>
+
+<p>This module has no gates and does not process messages.</p>
+
+<p><b>See also:</b> <a href="NAMTrace-id272601.html">NAMTrace</a>, <a href="NotificationBoard-id225662.html">NotificationBoard</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id272225.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="NAMTraceWriter-id272225.html" title="simple NAMTraceWriter" alt="NAMTraceWriter" coords="289,88,423,112">
+<area shape="rect" href="QuaggaRouter-id258126.html" title="module QuaggaRouter" alt="QuaggaRouter" coords="7,16,116,40">
+<area shape="rect" href="Router-id259068.html" title="module Router" alt="Router" coords="140,16,212,40">
+<area shape="rect" href="StandardHost-id259540.html" title="module StandardHost" alt="StandardHost" coords="236,16,337,40">
+<area shape="rect" href="TCPSpoofingHost-id260559.html" title="module TCPSpoofingHost" alt="TCPSpoofingHost" coords="361,16,492,40">
+<area shape="rect" href="LDP_LSR-id263362.html" title="module LDP_LSR" alt="LDP_LSR" coords="516,16,599,40">
+<area shape="rect" href="RSVP_LSR-id264429.html" title="module RSVP_LSR" alt="RSVP_LSR" coords="623,16,716,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="QuaggaRouter-id258126.html">QuaggaRouter</a></td>
+<td><p>Quagga-based IP router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Router-id259068.html">Router</a></td>
+<td><p>IP router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="StandardHost-id259540.html">StandardHost</a></td>
+<td><p>IP host with <a href="TCP-id271256.html">TCP</a>, <a href="UDP-id272076.html">UDP</a> layers and applications.</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCPSpoofingHost-id260559.html">TCPSpoofingHost</a></td>
+<td><p>IP host with <a href="TCPSpoof-id223974.html">TCPSpoof</a> in the application layer.</p>
+</td>
+</tr>
+<tr>
+<td><a href="LDP_LSR-id263362.html">LDP_LSR</a></td>
+<td><p>An <a href="LDP-id233136.html">LDP</a>-capable router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="RSVP_LSR-id264429.html">RSVP_LSR</a></td>
+<td><p>An RSVP-TE capable router.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">namid</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> NAMTraceWriter
+    <span class="src-keyword">parameters</span>:
+        namid : <span class="src-keyword">numeric</span>;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

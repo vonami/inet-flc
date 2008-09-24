@@ -1,0 +1,165 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>EtherSwitch</i>
+</h2>
+<p><b>File: <a href="file-id242681.html">NetworkInterfaces/EtherSwitch/EtherSwitch.ned</a></b></p>
+<p>Model of an Ethernet switch.</p>
+
+<p>The duplexChannel attributes of the MACs must be set according to the
+medium connected to the port; if collisions are possible (it's a bus or hub)
+it must be set to false, otherwise it can be set to true.</p>
+
+<p>This model does not contain the spanning tree algorithm.</p>
+
+<img class="screenshot" src="EtherSwitch__NetworkInterfaces_EtherSwitch_EtherSwitch_ned.png" ismap usemap="#screenshot" width="240" height="198"><map name="screenshot"><area shape="rect" coords="172,22 210,60" href="MACRelayUnit-id243370.html" title="relayUnit: relayUnitType like MACRelayUnit" alt="relayUnit: relayUnitType like MACRelayUnit">
+<area shape="rect" coords="38,118 84,164" href="EtherMAC-id240352.html" title="mac: EtherMAC" alt="mac: EtherMAC"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id242754.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="EtherSwitch-id242754.html" title="module EtherSwitch" alt="EtherSwitch" coords="65,16,159,40">
+<area shape="rect" href="EtherMAC-id240352.html" title="simple EtherMAC" alt="EtherMAC" coords="7,88,92,112">
+<area shape="rect" href="MACRelayUnit-id243370.html" title="simple MACRelayUnit" alt="MACRelayUnit" coords="116,88,236,112">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="EtherMAC-id240352.html">EtherMAC</a></td>
+<td><p>Ethernet MAC layer. MAC performs transmission and reception of frames.
+Doesn't do encapsulation/decapsulation; see <a href="EtherLLC-id240022.html">EtherLLC</a> and <a href="EtherEncap-id241164.html">EtherEncap</a> for
+that.</p>
+</td>
+</tr>
+<tr>
+<td><a href="MACRelayUnit-id243370.html">MACRelayUnit</a></td>
+<td><p>Prototype for modules providing Ethernet switch functionality.
+These modules handle the mapping between ports and MAC addresses,
+and forward frames (<a href="EtherFrame-id242304.html">EtherFrame</a>) to appropriate ports.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">relayUnitType</td>
+<td width="100"><i>string</i></td>
+<td><p>type of the <a href="MACRelayUnit-id243370.html">MACRelayUnit</a>; currently possible
+values are <a href="MACRelayUnitNP-id243601.html">MACRelayUnitNP</a> and <a href="MACRelayUnitPP-id243803.html">MACRelayUnitPP</a></p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><a href="MACRelayUnit-id243370.html">relayUnit</a>.addressTableFile</td>
+<td width="100"><i>string</i></td>
+<td><p>set to empty string if not used</p>
+</td>
+</tr>
+<tr>
+<td><a href="MACRelayUnit-id243370.html">relayUnit</a>.addressTableSize</td>
+<td width="100"><i>numeric</i></td>
+<td><p>max size of address table</p>
+</td>
+</tr>
+<tr>
+<td><a href="MACRelayUnit-id243370.html">relayUnit</a>.agingTime</td>
+<td width="100"><i>numeric</i></td>
+<td><p>max idle time for address table entries
+(if expires, entry is removed from the table)</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac[*]</a>.address</td>
+<td width="100"><i>string</i></td>
+<td><p>MAC address as hex string (12 hex digits), or
+"auto". "auto" values will be replaced by
+a generated MAC address in init stage 0.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac[*]</a>.txrate</td>
+<td width="100"><i>numeric</i></td>
+<td><p>maximum data rate supported by this station (bit/s);
+actually chosen speed may be lower due to auto-
+configuration. 0 means fully auto-configured.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac[*]</a>.duplexEnabled</td>
+<td width="100"><i>bool</i></td>
+<td><p>whether duplex mode can be enabled or not; whether
+MAC will actually use duplex mode depends on the result
+of the auto-configuration process (duplex is only
+possible with DTE-to-DTE connection).</p>
+</td>
+</tr>
+<tr>
+<td><a href="EtherMAC-id240352.html">mac[*]</a>.writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> EtherSwitch
+    <span class="src-keyword">parameters</span>:
+        relayUnitType: <span class="src-keyword">string</span>; <span class="src-comment">// type of the MACRelayUnit; currently possible</span>
+                               <span class="src-comment">// values are MACRelayUnitNP and MACRelayUnitPP</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+
+    <span class="src-keyword">submodules</span>:
+        relayUnit: relayUnitType <span class="src-keyword">like</span> MACRelayUnit;
+            <span class="src-keyword">gatesizes</span>:
+                lowerLayerIn[<span class="src-keyword">sizeof</span>(in)],
+                lowerLayerOut[<span class="src-keyword">sizeof</span>(in)];
+            <span class="src-keyword">display</span>: "i=greenbox;p=<span class="src-number">200</span>,<span class="src-number">50</span>";
+        mac: EtherMAC[<span class="src-keyword">sizeof</span>(in)];
+            <span class="src-keyword">parameters</span>:
+                promiscuous = <span class="src-keyword">true</span>,
+                txQueueLimit = <span class="src-number">1000</span>, <span class="src-comment">// increase if needed</span>
+                queueModule = "";
+            <span class="src-keyword">display</span>: "i=block/queue;p=<span class="src-number">70</span>,<span class="src-number">150</span>,row;q=queue";
+    <span class="src-keyword">connections</span>:
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(in)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            mac[i].upperLayerIn <span class="src-keyword">&lt;--</span> relayUnit.lowerLayerOut[i];
+            mac[i].upperLayerOut <span class="src-keyword">--&gt;</span> relayUnit.lowerLayerIn[i];
+            mac[i].physIn <span class="src-keyword">&lt;--</span> in[i];
+            mac[i].physOut <span class="src-keyword">--&gt;</span> out[i];
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

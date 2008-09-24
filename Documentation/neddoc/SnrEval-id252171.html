@@ -1,0 +1,144 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>SnrEval</i>
+</h2>
+<p><b>File: <a href="file-id252077.html">NetworkInterfaces/MF80211/phyLayer/snrEval/SnrEval.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_snr_eval.html" target="_top">click here</a></b></p>
+<p>Represents the radio. Frames received from higher layers (typically the
+MAC protocol) are transmitted on the radio channel, using the global
+<a href="ChannelControl-id272488.html">ChannelControl</a> module. Frames received on the radio channel will have
+their signal-noise ratio evaluated and passed up to the decider.
+(It is the decider's task to determine whether the frame was received
+correctly, and pass it up to the MAC layer).</p>
+
+<p>The receive/transmit channel (frequency) can be changed by sending
+<a href="SnrEval-id252171.html">SnrEval</a> a blank cMessage with PHY_C_CONFIGURERADIO as message kind, and
+a <a href="PhyControlInfo-id239333.html">PhyControlInfo</a> object attached to it as control info, to hold the
+new channel number. If the radio is currently transmitting, the channel
+switch will actually take place after the transmission is completed.</p>
+
+<p>This component has been taken over from Mobility Framework 1.0a5.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id252171.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="SnrEval-id252171.html" title="simple SnrEval" alt="SnrEval" coords="55,88,127,112">
+<area shape="rect" href="NicCsma-id250564.html" title="module NicCsma" alt="NicCsma" coords="7,16,79,40">
+<area shape="rect" href="SnrNic-id250860.html" title="module SnrNic" alt="SnrNic" coords="103,16,175,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="NicCsma-id250564.html">NicCsma</a></td>
+<td><p>The CsmaNic contains a csma-like MAC layer.
+The <a href="SnrEval-id252171.html">SnrEval</a> module is used as the mac needs a RadioState to be published.
+However as still the <a href="BasicDecider-id252553.html">BasicDecider</a> is used all messages will be delivered to
+the MAC and no packets get lost</p>
+</td>
+</tr>
+<tr>
+<td><a href="SnrNic-id250860.html">SnrNic</a></td>
+<td><p>This is the easiest nic to implement "real" network behaviour. It uses
+the CsmaMacLayer and the <a href="SnrDecider-id251834.html">SnrDecider</a> and <a href="SnrEval-id252171.html">SnrEval</a> modules.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">channelNumber</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>channel identifier</p>
+</td>
+</tr>
+<tr>
+<td width="150">debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td width="150">transmitterPower</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">bitrate</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">headerLength</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">thermalNoise</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">pathLossAlpha</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">sensitivity</td>
+<td width="100"><i>numeric const</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">uppergateIn</td>
+<td width="100"><i>input</i></td>
+<td><p>from higher layer protocol (MAC)</p>
+</td>
+</tr>
+<tr>
+<td width="150">uppergateOut</td>
+<td width="100"><i>output</i></td>
+<td><p>to decider (decider connects to higher layer protocol, i.e. the MAC)</p>
+</td>
+</tr>
+<tr>
+<td width="150">radioIn</td>
+<td width="100"><i>input</i></td>
+<td><p>to receive frames (<a href="AirFrame-id252991.html">AirFrame</a>) on the radio channel</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> SnrEval
+    <span class="src-keyword">parameters</span>:
+        channelNumber: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// channel identifier</span>
+        debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        transmitterPower : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        bitrate: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        headerLength: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        thermalNoise: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        pathLossAlpha: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>,
+        sensitivity: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> uppergateIn;   <span class="src-comment">// from higher layer protocol (MAC)</span>
+        <span class="src-keyword">out:</span> uppergateOut; <span class="src-comment">// to decider (decider connects to higher layer protocol, i.e. the MAC)</span>
+        <span class="src-keyword">in:</span> radioIn; <span class="src-comment">// to receive frames (AirFrame) on the radio channel</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

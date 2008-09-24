@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Applications/UDPApp/UDPVideoStreamSvr.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="UDPVideoStreamSvr-id225110.html">UDPVideoStreamSvr</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2005 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Video stream server. To be used with UDPVideoStreamCli.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The server will wait for incoming "video streaming requests".</span>
+<span class="src-comment">// When a request arrives, it draws a random video stream size</span>
+<span class="src-comment">// using the videoSize parameter, and starts streaming to the client.</span>
+<span class="src-comment">// During streaming, it will send \UDP packets of size packetLen at every</span>
+<span class="src-comment">// waitInterval, until videoSize is reached. The parameters packetLen</span>
+<span class="src-comment">// and waitInterval can be set to constant values to create CBR traffic,</span>
+<span class="src-comment">// or to random values (e.g. waitInterval=uniform(1e-6, 1.01e-6)) to</span>
+<span class="src-comment">// accomodate jitter.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// The server can serve several clients, and several streams per client.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see UDPVideoStreamCli</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> UDPVideoStreamSvr
+    <span class="src-keyword">parameters</span>:
+        serverPort: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// port to listen on</span>
+        waitInterval: <span class="src-keyword">numeric</span>,     <span class="src-comment">// can be random, to accomodate jitter</span>
+        packetLen: <span class="src-keyword">numeric</span>,        <span class="src-comment">// bytes; can be random</span>
+        videoSize: <span class="src-keyword">numeric</span>;        <span class="src-comment">// bytes; can be random</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> from_udp;
+        <span class="src-keyword">out:</span> to_udp;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

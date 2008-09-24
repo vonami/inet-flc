@@ -1,0 +1,146 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>TurtleMobility</i>
+</h2>
+<p><b>File: <a href="file-id227202.html">Mobility/TurtleMobility.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_turtle_mobility.html" target="_top">click here</a></b></p>
+<p>A LOGO-style movement model, with the script coming from XML. It can be
+useful for describing random as well as deterministic scenarios.</p>
+
+<p>First, a few examples.</p>
+
+<p>Node will move along a square's borders:</p>
+
+<p><pre>
+    &lt;movement&gt;
+        &lt;set speed="10" angle="180"/&gt;
+        &lt;repeat n="4"&gt;
+            &lt;forward d="50"/&gt;
+            &lt;turn angle="90"/&gt;
+        &lt;/repeat&gt;
+    &lt;/movement&gt;
+</pre></p>
+
+<p><a href="MassMobility-id226628.html">MassMobility</a> (in which the node is assumed to have a mass, and cannot turn
+abruptly):</p>
+
+<p><pre>
+    &lt;movement&gt;
+        &lt;repeat&gt;
+            &lt;set speed="uniform(10,20)"/&gt;
+            &lt;turn angle="uniform(-30,30)"/&gt;
+            &lt;forward t="uniform(0.1,1)"/&gt;
+        &lt;/repeat&gt;
+    &lt;/movement&gt;
+</pre></p>
+
+<p>Random Waypoint:</p>
+
+<p><pre>
+    &lt;movement&gt;
+        &lt;repeat&gt;
+            &lt;set speed="uniform(20,60)"/&gt;
+            &lt;moveto x="uniform(0,$MAXX)" y="uniform(0,$MAXY)"/&gt;
+        &lt;/repeat&gt;
+    &lt;/movement&gt;
+</pre></p>
+
+<p>Commands (XML element names) are: repeat, set, forward, turn, wait,
+moveto, and moveby.</p>
+
+<p>Accepted attributes:</p>
+
+  <ul><ul><li>repeat: n (optional)</li>
+
+  <li>set: x, y, speed, angle, borderPolicy (all optional)</li>
+
+  <li>forward: d, t (at last one of them must be present)</li>
+
+  <li>turn: angle (required)</li>
+
+  <li>wait: t (required)</li>
+
+  <li>moveto: x, y, t (all optional)</li>
+
+  <li>moveby: x, y, t (all optional)</li></ul></ul>
+
+<p>Attribute values can be literal numbers (e.g. x="100"), or any
+distribution accepted in omnetpp.ini (e.g. speed="uniform(10,20)").
+A new value will be chosen each time the statement is executed.
+The $MAXX and $MAXY strings will be substituted with the
+playground width and height minus 1, respectively.</p>
+
+<p>t is time interval, calculated from the end of the previous movement.
+x, y are absolute coordinates with &lt;set&gt; and &lt;moveto&gt;, and relative
+with &lt;moveby&gt;. angle is clockwise in degrees, with 0 pointing west.
+d is distance in meters (speed is m/s).</p>
+
+<p>borderPolicy controls what happens when a node reaches the edge of the
+playground, and can take one of the values "reflect", "wrap",
+"placerandomly". In the first case, the node reflects off the wall;
+with "wrap", it'll come in on the other side (torus); and with
+"placerandomly", it will be placed at a random position on the
+playground.</p>
+
+<p>In addition to the node position, the module maintains two interval variables,
+'speed' and 'angle', which can be adjusted by &lt;set&gt; and &lt;turn&gt;.
+The &lt;forward&gt; statement, if only t or d is given, uses the speed variable.
+If you specify d and t together, that determines speed as well,
+so the speed variable will be ignored completely.</p>
+
+<p>Likewise, &lt;moveto&gt; and &lt;moveby&gt; will ignore the angle variable,
+and will only use the speed variable if the t attribute is omitted.</p>
+
+<p>If the repeat count n is omitted for the &lt;repeat&gt; statement, that
+means an infinite loop.</p>
+
+<p>You can find the DTD with the sources: <a href="TurtleMobility-id227222.html">TurtleMobility</a>.dtd.</p>
+
+<p><b>See also:</b> <a href="ChannelControl-id272488.html">ChannelControl</a></p>
+
+<p><b>Author:</b> Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id227222.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="TurtleMobility-id227222.html" title="simple TurtleMobility" alt="TurtleMobility" coords="7,16,116,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">debug</td>
+<td width="100"><i>bool</i></td>
+<td><p>debug switch</p>
+</td>
+</tr>
+<tr>
+<td width="150">turtleScript</td>
+<td width="100"><i>xml</i></td>
+<td><p>describes the movement</p>
+</td>
+</tr>
+<tr>
+<td width="150">updateInterval</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>time interval to update the hosts position</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> TurtleMobility
+    <span class="src-keyword">parameters</span>:
+        debug : <span class="src-keyword">bool</span>, <span class="src-comment">// debug switch</span>
+        turtleScript: xml, <span class="src-comment">// describes the movement</span>
+        updateInterval : <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>; <span class="src-comment">// time interval to update the hosts position</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

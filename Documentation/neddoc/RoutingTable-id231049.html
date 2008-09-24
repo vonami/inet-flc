@@ -1,0 +1,171 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>RoutingTable</i>
+</h2>
+<p><b>File: <a href="file-id231040.html">Network/IPv4/RoutingTable.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_routing_table.html" target="_top">click here</a></b></p>
+<p>Stores the routing table. (Per-interface configuration is stored in 
+<a href="InterfaceTable-id227840.html">InterfaceTable</a>.)</p>
+
+<p>For hosts, the routerId module parameter should be empty (""),
+in which case the loopback <a href="IP-id231134.html">IP</a> address will be set to 127.0.0.1/8.
+For routers which have a routerId set, the loopback address will be set to
+routerId. (See also RFC 2072 "Router Renumbering Guide".)</p>
+
+<p>RouterId may also be set to the string <tt>"auto"</tt>, in which case the
+highest interface address will be chosen as routerId; the loopback address
+will remain 127.0.0.1/8.</p>
+
+<p>The routing table is read from a file (parameter routingFile);
+the file can also fill in or overwrite interface settings.
+The file format is documented <a href="irt.html">here</a>.</p>
+
+<p>Note that many protocols don't require routerId to be routable, but some
+others do -- so it is probably a good idea to set up routable routerIds.</p>
+
+<p>This module has no gates; all functionality can be accessed via member
+functions of the C++ module class. For detailed info, please see the C++
+documentation of the class (Doxygen).</p>
+
+<p><b>See also:</b> <a href="InterfaceTable-id227840.html">InterfaceTable</a></p>
+
+<p><b>Author:</b>: Jochen Reber, Andras Varga</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id231049.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="RoutingTable-id231049.html" title="simple RoutingTable" alt="RoutingTable" coords="649,88,751,112">
+<area shape="rect" href="MFMobileHost-id254785.html" title="module MFMobileHost" alt="MFMobileHost" coords="7,16,119,40">
+<area shape="rect" href="MobileHost-id255482.html" title="module MobileHost" alt="MobileHost" coords="143,16,231,40">
+<area shape="rect" href="BurstHost-id256128.html" title="module BurstHost" alt="BurstHost" coords="255,16,332,40">
+<area shape="rect" href="OSPFRouter-id257692.html" title="module OSPFRouter" alt="OSPFRouter" coords="356,16,452,40">
+<area shape="rect" href="QuaggaRouter-id258126.html" title="module QuaggaRouter" alt="QuaggaRouter" coords="476,16,585,40">
+<area shape="rect" href="Router-id259068.html" title="module Router" alt="Router" coords="609,16,681,40">
+<area shape="rect" href="StandardHost-id259540.html" title="module StandardHost" alt="StandardHost" coords="705,16,807,40">
+<area shape="rect" href="TCPSpoofingHost-id260559.html" title="module TCPSpoofingHost" alt="TCPSpoofingHost" coords="831,16,961,40">
+<area shape="rect" href="LDP_LSR-id263362.html" title="module LDP_LSR" alt="LDP_LSR" coords="985,16,1068,40">
+<area shape="rect" href="RSVP_LSR-id264429.html" title="module RSVP_LSR" alt="RSVP_LSR" coords="1092,16,1185,40">
+<area shape="rect" href="WirelessHost-id266620.html" title="module WirelessHost" alt="WirelessHost" coords="1209,16,1305,40">
+<area shape="rect" href="WirelessHostSimplified-id267586.html" title="module WirelessHostSimplified" alt="WirelessHostSimplified" coords="1329,16,1495,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="MFMobileHost-id254785.html">MFMobileHost</a></td>
+<td><p>Models a mobile host with a wireless (802.11b) card in ad-hoc mode.
+This model contains the Mobility Framework's 802.11 implementation, <a href="Nic80211-id250122.html">Nic80211</a>,
+and <a href="IP-id231134.html">IP</a>, <a href="TCP-id271256.html">TCP</a> and <a href="UDP-id272076.html">UDP</a> protocols. The mobility model can be dynamically
+specified with the mobilityType parameter.</p>
+</td>
+</tr>
+<tr>
+<td><a href="MobileHost-id255482.html">MobileHost</a></td>
+<td><p>Models a mobile host with a wireless (802.11b) card in ad-hoc mode.
+This model contains the new IEEE 802.11 implementation, <a href="Ieee80211Nic-id244350.html">Ieee80211Nic</a>,
+and <a href="IP-id231134.html">IP</a>, <a href="TCP-id271256.html">TCP</a> and <a href="UDP-id272076.html">UDP</a> protocols. The mobility model can be
+dynamically specified with the mobilityType parameter.</p>
+</td>
+</tr>
+<tr>
+<td><a href="BurstHost-id256128.html">BurstHost</a></td>
+<td><p>Definition of an <a href="IP-id231134.html">IP</a> node with a transport generator that connects
+to <a href="IP-id231134.html">IP</a> directly, without <a href="TCP-id271256.html">TCP</a> or <a href="UDP-id272076.html">UDP</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="OSPFRouter-id257692.html">OSPFRouter</a></td>
+<td><p>IP router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="QuaggaRouter-id258126.html">QuaggaRouter</a></td>
+<td><p>Quagga-based IP router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="Router-id259068.html">Router</a></td>
+<td><p>IP router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="StandardHost-id259540.html">StandardHost</a></td>
+<td><p>IP host with <a href="TCP-id271256.html">TCP</a>, <a href="UDP-id272076.html">UDP</a> layers and applications.</p>
+</td>
+</tr>
+<tr>
+<td><a href="TCPSpoofingHost-id260559.html">TCPSpoofingHost</a></td>
+<td><p>IP host with <a href="TCPSpoof-id223974.html">TCPSpoof</a> in the application layer.</p>
+</td>
+</tr>
+<tr>
+<td><a href="LDP_LSR-id263362.html">LDP_LSR</a></td>
+<td><p>An <a href="LDP-id233136.html">LDP</a>-capable router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="RSVP_LSR-id264429.html">RSVP_LSR</a></td>
+<td><p>An RSVP-TE capable router.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessHost-id266620.html">WirelessHost</a></td>
+<td><p>Models a host with one wireless (802.11b) card in infrastructure mode.
+This module is basically a <a href="StandardHost-id259540.html">StandardHost</a> with an <a href="Ieee80211NicSTA-id245326.html">Ieee80211NicSTA</a> added.
+It should be used in conjunction with <a href="WirelessAP-id265146.html">WirelessAP</a>, or any other AP model
+which contains <a href="Ieee80211NicAP-id244686.html">Ieee80211NicAP</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a></td>
+<td><p>Models a host with one wireless (802.11b) card in infrastructure mode,
+but using a simplified NIC that does not support handovers.
+This module is basically a <a href="StandardHost-id259540.html">StandardHost</a> with an <a href="Ieee80211NicSTASimplified-id245578.html">Ieee80211NicSTASimplified</a>
+added. It should be used in conjunction with <a href="WirelessAPSimplified-id265337.html">WirelessAPSimplified</a>,
+or any other AP model which contains <a href="Ieee80211NicAPSimplified-id245071.html">Ieee80211NicAPSimplified</a>.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">routerId</td>
+<td width="100"><i>string</i></td>
+<td><p>for routers, the router id using <a href="IP-id231134.html">IP</a> address dotted
+notation; specify "auto" to select the highest
+interface address; should be left empty ("") for hosts</p>
+</td>
+</tr>
+<tr>
+<td width="150">IPForward</td>
+<td width="100"><i>bool</i></td>
+<td><p>turns <a href="IP-id231134.html">IP</a> forwarding on/off</p>
+</td>
+</tr>
+<tr>
+<td width="150">routingFile</td>
+<td width="100"><i>string</i></td>
+<td><p>routing table file name</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> RoutingTable
+    <span class="src-keyword">parameters</span>:
+        routerId: <span class="src-keyword">string</span>, <span class="src-comment">// for routers, the router id using IP address dotted</span>
+                          <span class="src-comment">// notation; specify "auto" to select the highest</span>
+                          <span class="src-comment">// interface address; should be left empty ("") for hosts</span>
+        IPForward: <span class="src-keyword">bool</span>,  <span class="src-comment">// turns IP forwarding on/off</span>
+        routingFile: <span class="src-keyword">string</span>;  <span class="src-comment">// routing table file name</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

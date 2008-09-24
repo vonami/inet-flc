@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>OutputQueue</i>
+</h2>
+<p><b>File: <a href="file-id236047.html">Network/Queue/OutputQueue.ned</a></b></p>
+<p>Prototype for per-NIC output queues. Concrete queues can implement
+drop-tail, RED etc. policy.</p>
+
+<p>Interface to Layer 2 modules: The C++ class implementing the queue
+must implement (i.e. subclass from) IPassiveQueue, and should
+send a packet whenever the L2 module asks for one by calling the
+requestPacket() method.</p>
+
+<p><b>See also:</b> <a href="DropTailQueue-id235937.html">DropTailQueue</a>, <a href="DropTailQoSQueue-id235904.html">DropTailQoSQueue</a>, <a href="REDQueue-id236337.html">REDQueue</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id236035.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="OutputQueue-id236035.html" title="simple OutputQueue" alt="OutputQueue" coords="176,88,277,112">
+<area shape="rect" href="EthernetInterface-id241239.html" title="module EthernetInterface" alt="EthernetInterface" coords="7,16,135,40">
+<area shape="rect" href="EthernetInterface2-id241696.html" title="module EthernetInterface2" alt="EthernetInterface2" coords="159,16,295,40">
+<area shape="rect" href="PPPInterface-id253450.html" title="module PPPInterface" alt="PPPInterface" coords="319,16,417,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="EthernetInterface-id241239.html">EthernetInterface</a></td>
+<td><p>Ethernet network interface. Corresponds to the prototype <a href="NetworkInterface-id238963.html">NetworkInterface</a>.
+Complements <a href="EtherMAC-id240352.html">EtherMAC</a> and <a href="EtherEncap-id241164.html">EtherEncap</a> with an output queue for QoS and
+RED support.</p>
+</td>
+</tr>
+<tr>
+<td><a href="EthernetInterface2-id241696.html">EthernetInterface2</a></td>
+<td><p>Ethernet network interface, which supports full-duplex operation only.
+Corresponds to the prototype <a href="NetworkInterface-id238963.html">NetworkInterface</a>.
+Complements <a href="EtherMAC2-id240348.html">EtherMAC2</a> and <a href="EtherEncap-id241164.html">EtherEncap</a> with an output queue for QoS and
+RED support.</p>
+</td>
+</tr>
+<tr>
+<td><a href="PPPInterface-id253450.html">PPPInterface</a></td>
+<td><p>PPP interface. Complements the <a href="PPP-id253311.html">PPP</a> module with an output queue
+for QoS and RED support.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> OutputQueue
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in;
+        <span class="src-keyword">out:</span> out;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

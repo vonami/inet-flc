@@ -1,0 +1,197 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>PingApp</i>
+</h2>
+<p><b>File: <a href="file-id221466.html">Applications/PingApp/PingApp.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ping_app.html" target="_top">click here</a></b></p>
+<p>Generates ping requests and calculates the packet loss and round trip
+parameters of the replies. </p>
+
+<p>Start/stop time, interval etc can be specified via parameters. To disable,
+specify empty destAddr or stopTime&lt;=startTime.</p>
+
+<p>Every ping request is sent out with a sequence number, and replies are
+expected to arrive in the same order. Whenever there's a jump in the
+in the received ping responses' sequence number (e.g. 1, 2, 3, 5), then
+the missing pings (number 4 in this example) is counted as lost.
+Then if it still arrives later (that is, a reply with a sequence number
+smaller than the largers one received so far) it will be counted as
+out-of-sequence arrival. So the number of really lost pings will be
+"lost" minus "out-of-order" (assuming there's no duplicate or bogus reply).</p>
+
+<p>Uses <a href="PingPayload-id219595.html">PingPayload</a> as payload for the <a href="ICMP-id230662.html">ICMP</a>(v6) Echo Request/Reply packets.</p>
+
+<p><b>See also:</b> <a href="PingPayload-id219595.html">PingPayload</a>, <a href="ICMP-id230662.html">ICMP</a>, ICMPv6Core</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id221440.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="PingApp-id221440.html" title="simple PingApp" alt="PingApp" coords="333,88,405,112">
+<area shape="rect" href="MFMobileHost-id254785.html" title="module MFMobileHost" alt="MFMobileHost" coords="7,16,119,40">
+<area shape="rect" href="MobileHost-id255482.html" title="module MobileHost" alt="MobileHost" coords="143,16,231,40">
+<area shape="rect" href="StandardHost-id259540.html" title="module StandardHost" alt="StandardHost" coords="255,16,356,40">
+<area shape="rect" href="StandardHost6-id262388.html" title="module StandardHost6" alt="StandardHost6" coords="380,16,489,40">
+<area shape="rect" href="WirelessHost-id266620.html" title="module WirelessHost" alt="WirelessHost" coords="513,16,609,40">
+<area shape="rect" href="WirelessHostSimplified-id267586.html" title="module WirelessHostSimplified" alt="WirelessHostSimplified" coords="633,16,799,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table>
+<tr>
+<td><a href="MFMobileHost-id254785.html">MFMobileHost</a></td>
+<td><p>Models a mobile host with a wireless (802.11b) card in ad-hoc mode.
+This model contains the Mobility Framework's 802.11 implementation, <a href="Nic80211-id250122.html">Nic80211</a>,
+and <a href="IP-id231134.html">IP</a>, <a href="TCP-id271256.html">TCP</a> and <a href="UDP-id272076.html">UDP</a> protocols. The mobility model can be dynamically
+specified with the mobilityType parameter.</p>
+</td>
+</tr>
+<tr>
+<td><a href="MobileHost-id255482.html">MobileHost</a></td>
+<td><p>Models a mobile host with a wireless (802.11b) card in ad-hoc mode.
+This model contains the new IEEE 802.11 implementation, <a href="Ieee80211Nic-id244350.html">Ieee80211Nic</a>,
+and <a href="IP-id231134.html">IP</a>, <a href="TCP-id271256.html">TCP</a> and <a href="UDP-id272076.html">UDP</a> protocols. The mobility model can be
+dynamically specified with the mobilityType parameter.</p>
+</td>
+</tr>
+<tr>
+<td><a href="StandardHost-id259540.html">StandardHost</a></td>
+<td><p>IP host with <a href="TCP-id271256.html">TCP</a>, <a href="UDP-id272076.html">UDP</a> layers and applications.</p>
+</td>
+</tr>
+<tr>
+<td><a href="StandardHost6-id262388.html">StandardHost6</a></td>
+<td><p>IPv6 host with <a href="TCP-id271256.html">TCP</a>, <a href="UDP-id272076.html">UDP</a> layers and applications.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessHost-id266620.html">WirelessHost</a></td>
+<td><p>Models a host with one wireless (802.11b) card in infrastructure mode.
+This module is basically a <a href="StandardHost-id259540.html">StandardHost</a> with an <a href="Ieee80211NicSTA-id245326.html">Ieee80211NicSTA</a> added.
+It should be used in conjunction with <a href="WirelessAP-id265146.html">WirelessAP</a>, or any other AP model
+which contains <a href="Ieee80211NicAP-id244686.html">Ieee80211NicAP</a>.</p>
+</td>
+</tr>
+<tr>
+<td><a href="WirelessHostSimplified-id267586.html">WirelessHostSimplified</a></td>
+<td><p>Models a host with one wireless (802.11b) card in infrastructure mode,
+but using a simplified NIC that does not support handovers.
+This module is basically a <a href="StandardHost-id259540.html">StandardHost</a> with an <a href="Ieee80211NicSTASimplified-id245578.html">Ieee80211NicSTASimplified</a>
+added. It should be used in conjunction with <a href="WirelessAPSimplified-id265337.html">WirelessAPSimplified</a>,
+or any other AP model which contains <a href="Ieee80211NicAPSimplified-id245071.html">Ieee80211NicAPSimplified</a>.</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">destAddr</td>
+<td width="100"><i>string</i></td>
+<td><p>destination <a href="IP-id231134.html">IP</a> or <a href="IPv6-id232445.html">IPv6</a> address</p>
+</td>
+</tr>
+<tr>
+<td width="150">srcAddr</td>
+<td width="100"><i>string</i></td>
+<td><p>source <a href="IP-id231134.html">IP</a> or <a href="IPv6-id232445.html">IPv6</a> address (useful with multi-homing)</p>
+</td>
+</tr>
+<tr>
+<td width="150">packetSize</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>of ping payload, in bytes</p>
+</td>
+</tr>
+<tr>
+<td width="150">interval</td>
+<td width="100"><i>numeric</i></td>
+<td><p>time to wait between pings (can be random)</p>
+</td>
+</tr>
+<tr>
+<td width="150">hopLimit</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>TTL or hopLimit for <a href="IP-id231134.html">IP</a> packets</p>
+</td>
+</tr>
+<tr>
+<td width="150">count</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>stop after count ping requests, 0 means continuously</p>
+</td>
+</tr>
+<tr>
+<td width="150">startTime</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>send first ping at startTime</p>
+</td>
+</tr>
+<tr>
+<td width="150">stopTime</td>
+<td width="100"><i>numeric const</i></td>
+<td><p>send no pings after stopTime, 0 means forever </p>
+</td>
+</tr>
+<tr>
+<td width="150">printPing</td>
+<td width="100"><i>bool</i></td>
+<td><p>dump on stdout</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">pingIn</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">pingOut</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">pingv6In</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">pingv6Out</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> PingApp
+    <span class="src-keyword">parameters</span>:
+        destAddr: <span class="src-keyword">string</span>, <span class="src-comment">// destination IP or IPv6 address</span>
+        srcAddr: <span class="src-keyword">string</span>, <span class="src-comment">// source IP or IPv6 address (useful with multi-homing)</span>
+        packetSize: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// of ping payload, in bytes</span>
+        interval: <span class="src-keyword">numeric</span>, <span class="src-comment">// time to wait between pings (can be random)</span>
+        hopLimit: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// TTL or hopLimit for IP packets</span>
+        count: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// stop after count ping requests, 0 means continuously</span>
+        startTime: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// send first ping at startTime</span>
+        stopTime: <span class="src-keyword">numeric</span> <span class="src-keyword">const</span>, <span class="src-comment">// send no pings after stopTime, 0 means forever </span>
+        printPing: <span class="src-keyword">bool</span>; <span class="src-comment">// dump on stdout</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> pingIn;
+        <span class="src-keyword">out:</span> pingOut;
+        <span class="src-keyword">in:</span> pingv6In;
+        <span class="src-keyword">out:</span> pingv6Out;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

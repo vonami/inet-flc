@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>UDPVideoStreamCli</i>
+</h2>
+<p><b>File: <a href="file-id224944.html">Applications/UDPApp/UDPVideoStreamCli.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_u_d_p_video_stream_cli.html" target="_top">click here</a></b></p>
+<p>Video streaming client.</p>
+
+<p><b>See also:</b> <a href="UDPVideoStreamSvr-id225110.html">UDPVideoStreamSvr</a></p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id224954.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="UDPVideoStreamCli-id224954.html" title="simple UDPVideoStreamCli" alt="UDPVideoStreamCli" coords="7,16,156,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">localPort</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">serverAddress</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">serverPort</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">startTime</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">from_udp</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">to_udp</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> UDPVideoStreamCli
+    <span class="src-keyword">parameters</span>:
+        localPort: <span class="src-keyword">numeric</span>,
+        serverAddress: <span class="src-keyword">string</span>,
+        serverPort: <span class="src-keyword">numeric</span>,
+        startTime: <span class="src-keyword">numeric</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> from_udp;
+        <span class="src-keyword">out:</span> to_udp;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

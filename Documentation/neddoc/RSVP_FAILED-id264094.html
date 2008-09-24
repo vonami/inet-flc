@@ -1,0 +1,106 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Compound Module <i>RSVP_FAILED</i>
+</h2>
+<p><b>File: <a href="file-id264109.html">Nodes/MPLS/RSVP_FAILED.ned</a></b></p>
+<p>Failed router. Discards all incoming traffic and generates nothing. Its
+interface (gates, parameters) is fully compatible with the <a href="RSVP_LSR-id264429.html">RSVP_LSR</a> router
+and node failures may thus be simulated by replacing the <a href="RSVP_LSR-id264429.html">RSVP_LSR</a>
+with FAILED_LSR.</p>
+
+<img class="screenshot" src="RSVP_FAILED__Nodes_MPLS_RSVP_FAILED_ned.png" ismap usemap="#screenshot" width="232" height="90"><map name="screenshot"><area shape="rect" coords="95,26 137,52" href="Dummy-id228968.html" title="dummy: Dummy" alt="dummy: Dummy"></map><h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id264094.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="RSVP_FAILED-id264094.html" title="module RSVP_FAILED" alt="RSVP_FAILED" coords="7,16,127,40">
+<area shape="rect" href="Dummy-id228968.html" title="simple Dummy" alt="Dummy" coords="31,88,103,112">
+</map><h3 class="subtitle">Contains the following modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="Dummy-id228968.html">Dummy</a></td>
+<td><p>Implementation of a failed router. Does nothing and simply discards any
+incoming messages. </p>
+</td>
+</tr></table>
+<h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">namid</td>
+<td width="100"><i>numeric</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">peers</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">routerId</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">routingFile</td>
+<td width="100"><i>string</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in [ ]</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out [ ]</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Unassigned submodule parameters:</h3>
+<table class="paramtable"><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr></table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">module</span> RSVP_FAILED
+    <span class="src-keyword">parameters</span>:
+        namid : <span class="src-keyword">numeric</span>,
+    
+        peers : <span class="src-keyword">string</span>,
+        routerId : <span class="src-keyword">string</span>,
+        routingFile : <span class="src-keyword">string</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in[];
+        <span class="src-keyword">out:</span> out[];
+
+    <span class="src-keyword">submodules</span>:
+        dummy: Dummy;
+            <span class="src-keyword">gatesizes</span>:
+                in[<span class="src-keyword">sizeof</span>(in)],
+                out[<span class="src-keyword">sizeof</span>(out)];
+
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(out)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            in[i] <span class="src-keyword">--&gt;</span> dummy.in[i];
+                dummy.out[i] <span class="src-keyword">--&gt;</span> out[i];
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span></pre>
+</body>
+</html>

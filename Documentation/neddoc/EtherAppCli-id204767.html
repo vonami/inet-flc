@@ -1,0 +1,111 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>EtherAppCli</i>
+</h2>
+<p><b>File: <a href="file-id204787.html">Applications/Ethernet/EtherAppCli.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_ether_app_cli.html" target="_top">click here</a></b></p>
+<p>Simple traffic generator for the Ethernet model and the 802.11 model;
+generally any L2 model that accepts Ieee80211Ctrl control info
+on the packets. It generates <a href="EtherAppReq-id223505.html">EtherAppReq</a> packets. It should be connected
+directly to <a href="EtherLLC-id240022.html">EtherLLC</a> or a Ieee802NicXXX module.</p>
+
+<p>Destination may be given with OMNeT++ path name or MAC address.</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id204767.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="EtherAppCli-id204767.html" title="simple EtherAppCli" alt="EtherAppCli" coords="7,16,103,40">
+</map><h3 class="subtitle">Parameters:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">destStation</td>
+<td width="100"><i>string</i></td>
+<td><p>module path name of destination station
+(must be blank if destAddress is given)</p>
+</td>
+</tr>
+<tr>
+<td width="150">destAddress</td>
+<td width="100"><i>string</i></td>
+<td><p>destination MAC address
+(must be blank if destStation is given)</p>
+</td>
+</tr>
+<tr>
+<td width="150">waitTime</td>
+<td width="100"><i>numeric</i></td>
+<td><p>interarrival time between sending requests; may be random value</p>
+</td>
+</tr>
+<tr>
+<td width="150">reqLength</td>
+<td width="100"><i>numeric</i></td>
+<td><p>length of request packets (bytes); may be random value</p>
+</td>
+</tr>
+<tr>
+<td width="150">respLength</td>
+<td width="100"><i>numeric</i></td>
+<td><p>length of response packets (bytes); may be random value</p>
+</td>
+</tr>
+<tr>
+<td width="150">registerSAP</td>
+<td width="100"><i>bool</i></td>
+<td><p>whether to sent IEEE802CTRL_REGISTER_DSAP on startup</p>
+</td>
+</tr>
+<tr>
+<td width="150">writeScalars</td>
+<td width="100"><i>bool</i></td>
+<td><p>enable/disable recording statistics in omnetpp.sca</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">in</td>
+<td width="100"><i>input</i></td>
+<td></td>
+</tr>
+<tr>
+<td width="150">out</td>
+<td width="100"><i>output</i></td>
+<td></td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> EtherAppCli
+    <span class="src-keyword">parameters</span>:
+        destStation: <span class="src-keyword">string</span>,  <span class="src-comment">// module path name of destination station</span>
+                              <span class="src-comment">// (must be blank if destAddress is given)</span>
+        destAddress: <span class="src-keyword">string</span>,  <span class="src-comment">// destination MAC address</span>
+                              <span class="src-comment">// (must be blank if destStation is given)</span>
+        waitTime: <span class="src-keyword">numeric</span>,    <span class="src-comment">// interarrival time between sending requests; may be random value</span>
+        reqLength: <span class="src-keyword">numeric</span>,   <span class="src-comment">// length of request packets (bytes); may be random value</span>
+        respLength: <span class="src-keyword">numeric</span>,  <span class="src-comment">// length of response packets (bytes); may be random value</span>
+        registerSAP : <span class="src-keyword">bool</span>,   <span class="src-comment">// whether to sent IEEE802CTRL_REGISTER_DSAP on startup</span>
+        writeScalars: <span class="src-keyword">bool</span>;   <span class="src-comment">// enable/disable recording statistics in omnetpp.sca</span>
+
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> in;
+        <span class="src-keyword">out:</span> out;
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

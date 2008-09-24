@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">Simple Module <i>ICMP</i>
+</h2>
+<p><b>File: <a href="file-id230688.html">Network/IPv4/ICMP.ned</a></b></p>
+<p><b>C++ definition: <a href="../doxy/class_i_c_m_p.html" target="_top">click here</a></b></p>
+<p><a href="ICMP-id230662.html">ICMP</a> implementation</p>
+
+<p>Receive <a href="ICMP-id230662.html">ICMP</a> message from localDeliver and process it:</p>
+
+  <ul><li>echo/timestamp reply: strip <a href="ICMP-id230662.html">ICMP</a> header and send to pingOut</li>
+
+  <li>echo/timestamp request: create reply and send to IPSend</li>
+
+  <li>destination unreachable: ignore/send to IPRouting (static)?</li>
+
+  <li>time exceeded: ignore ?</li>
+
+  <li>parameter problem: ignore ?</li>
+
+  <li>redirect ?</li></ul>
+
+<p>Receive echo/timestamp message from pingIn: encapsulate in <a href="ICMP-id230662.html">ICMP</a> header
+and send to IPSend</p>
+
+<p>author: Jochen Reber
+date: 2.5.00, 9.5.00, 20.5.00, 9.6.00
+redesign: Andras Varga 1.3.2004</p>
+
+<h3 class="subtitle">Usage diagram:</h3>
+<p>The following diagram shows usage relationships between modules,
+   networks and channels. Unresolved module (and channel) types are missing from the diagram.
+   Click <a href="full-usage-diagram.html">here</a> to see the full picture.</p>
+<img src="diag-id230662.gif" ismap usemap="#usage-diagram"><map name="usage-diagram"><area shape="rect" href="ICMP-id230662.html" title="simple ICMP" alt="ICMP" coords="27,88,99,112">
+<area shape="rect" href="NetworkLayer-id256856.html" title="module NetworkLayer" alt="NetworkLayer" coords="7,16,119,40">
+</map><h3 class="subtitle">Used in compound modules:</h3>
+<p>If a module type shows up more than once, that means it has been defined in more than one NED file.</p>
+<table><tr>
+<td><a href="NetworkLayer-id256856.html">NetworkLayer</a></td>
+<td><p>Network layer of an IP node.</p>
+</td>
+</tr></table>
+<h3 class="subtitle">Gates:</h3>
+<table class="paramtable">
+<tr>
+<th>Name</th>
+<th>Direction</th>
+<th>Description</th>
+</tr>
+<tr>
+<td width="150">localIn</td>
+<td width="100"><i>input</i></td>
+<td><p>delivered <a href="ICMP-id230662.html">ICMP</a> packets</p>
+</td>
+</tr>
+<tr>
+<td width="150">pingIn</td>
+<td width="100"><i>input</i></td>
+<td><p>ping requests from app</p>
+</td>
+</tr>
+<tr>
+<td width="150">pingOut</td>
+<td width="100"><i>output</i></td>
+<td><p>result of ping</p>
+</td>
+</tr>
+<tr>
+<td width="150">sendOut</td>
+<td width="100"><i>output</i></td>
+<td><p>towards network</p>
+</td>
+</tr>
+<tr>
+<td width="150">errorOut</td>
+<td width="100"><i>output</i></td>
+<td><p>errors</p>
+</td>
+</tr>
+</table>
+<h3 class="subtitle">Source code:</h3>
+<pre class="src"><span class="src-keyword">simple</span> ICMP
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> localIn;  <span class="src-comment">// delivered ICMP packets</span>
+        <span class="src-keyword">in:</span> pingIn;  <span class="src-comment">// ping requests from app</span>
+        <span class="src-keyword">out:</span> pingOut;  <span class="src-comment">// result of ping</span>
+        <span class="src-keyword">out:</span> sendOut;  <span class="src-comment">// towards network</span>
+        <span class="src-keyword">out:</span> errorOut;  <span class="src-comment">// errors</span>
+<span class="src-keyword">endsimple</span></pre>
+</body>
+</html>

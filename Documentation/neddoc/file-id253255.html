@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>NetworkInterfaces/PPP/PPP.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="PPP-id253311.html">PPP</a><i> (simple-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+
+<span class="src-comment">//</span>
+<span class="src-comment">// \PPP implementation.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Packets are encapsulated in PPPFrame.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// \PPP is a complex protocol with strong support for link configuration</span>
+<span class="src-comment">// and maintenance. This model ignores those details, and only performs</span>
+<span class="src-comment">// simple encapsulation/decapsulation and queuing.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// In routers, \PPP relies on an external queue module (see OutputQueue)</span>
+<span class="src-comment">// to model finite buffer, implement QoS and/or RED, and requests packets</span>
+<span class="src-comment">// from this external queue one-by-one.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// In hosts, no such queue is used, so \PPP contains an internal</span>
+<span class="src-comment">// queue named txQueue to queue up packets waiting for transmission.</span>
+<span class="src-comment">// Conceptually, txQueue is of infinite size, but for better diagnostics</span>
+<span class="src-comment">// one can specify a hard limit in the txQueueLimit parameter -- if this is</span>
+<span class="src-comment">// exceeded, the simulation stops with an error.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// There is no buffering done on received packets -- they are just decapsulated</span>
+<span class="src-comment">// and sent up immediately.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// @see PPPInterface, OutputQueue, PPPFrame</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">simple</span> PPP
+    <span class="src-keyword">parameters</span>:
+        txQueueLimit: <span class="src-keyword">numeric</span>,  <span class="src-comment">// only used if queueModule==""; zero means infinite</span>
+        queueModule: <span class="src-keyword">string</span>;    <span class="src-comment">// name of external (QoS,RED,etc) queue module</span>
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> physIn;
+        <span class="src-keyword">out:</span> physOut;
+        <span class="src-keyword">in:</span> netwIn;
+        <span class="src-keyword">out:</span> netwOut;
+<span class="src-keyword">endsimple</span>
+</pre>
+</body>
+</html>

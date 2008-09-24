@@ -1,0 +1,121 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h2 class="comptitle">File <i>Nodes/INET/NetworkLayer.ned</i>
+</h2>
+<h3 class="subtitle">Contains:</h3>
+<ul><li>
+<a href="NetworkLayer-id256856.html">NetworkLayer</a><i> (compound-module)</i>
+</li></ul>
+<pre class="src"><span class="src-comment">//</span>
+<span class="src-comment">// Copyright (C) 2004 Andras Varga</span>
+<span class="src-comment">// Copyright (C) 2000 Institut fuer Telematik, Universitaet Karlsruhe</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is free software; you can redistribute it and/or</span>
+<span class="src-comment">// modify it under the terms of the GNU General Public License</span>
+<span class="src-comment">// as published by the Free Software Foundation; either version 2</span>
+<span class="src-comment">// of the License, or (at your option) any later version.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// This program is distributed in the hope that it will be useful,</span>
+<span class="src-comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="src-comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="src-comment">// GNU General Public License for more details.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// You should have received a copy of the GNU General Public License</span>
+<span class="src-comment">// along with this program; if not, write to the Free Software</span>
+<span class="src-comment">// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span>
+<span class="src-comment">//</span>
+
+
+<span class="src-keyword">import</span>
+    "IP",
+    "ARP",
+    "ICMP",
+    "IGMP",
+    "ErrorHandling";
+
+<span class="src-comment">//</span>
+<span class="src-comment">// Network layer of an \IP node.</span>
+<span class="src-comment">//</span>
+<span class="src-comment">// Interfaces to transport layer: TCP, UDP, echo/ping, RSVP</span>
+<span class="src-comment">//</span>
+<span class="src-keyword">module</span> NetworkLayer
+    <span class="src-keyword">parameters</span>:
+        proxyARP: <span class="src-keyword">bool</span>;
+    <span class="src-keyword">gates</span>:
+        <span class="src-keyword">in:</span> ifIn[];
+        <span class="src-keyword">in:</span> TCPIn;
+        <span class="src-keyword">in:</span> UDPIn;
+        <span class="src-keyword">in:</span> RSVPIn;
+        <span class="src-keyword">in:</span> OSPFIn;
+        <span class="src-keyword">in:</span> pingIn;
+        <span class="src-keyword">out:</span> ifOut[];
+        <span class="src-keyword">out:</span> TCPOut;
+        <span class="src-keyword">out:</span> UDPOut;
+        <span class="src-keyword">out:</span> RSVPOut;
+        <span class="src-keyword">out:</span> OSPFOut;
+        <span class="src-keyword">out:</span> pingOut;
+
+    <span class="src-keyword">submodules</span>:
+        ip: IP;
+            <span class="src-keyword">parameters</span>:
+                timeToLive = <span class="src-number">32</span>,
+                multicastTimeToLive = <span class="src-number">32</span>,
+                fragmentTimeout = <span class="src-number">60</span>,
+                protocolMapping = "<span class="src-number">6</span>:<span class="src-number">0</span>,<span class="src-number">17</span>:<span class="src-number">1</span>,<span class="src-number">1</span>:<span class="src-number">2</span>,<span class="src-number">2</span>:<span class="src-number">3</span>,<span class="src-number">46</span>:<span class="src-number">4</span>,<span class="src-number">89</span>:<span class="src-number">5</span>";
+            <span class="src-keyword">gatesizes</span>:
+                transportIn[<span class="src-number">6</span>],
+                transportOut[<span class="src-number">6</span>],
+                queueIn[<span class="src-keyword">sizeof</span>(ifIn)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">85</span>,<span class="src-number">95</span>;i=block/routing;q=queue";
+        arp: ARP;
+            <span class="src-keyword">parameters</span>:
+                proxyARP = proxyARP;
+            <span class="src-keyword">gatesizes</span>:
+                nicOut[<span class="src-keyword">sizeof</span>(ifOut)];
+            <span class="src-keyword">display</span>: "p=<span class="src-number">163</span>,<span class="src-number">206</span>;i=block/layer;q=pendingQueue";
+        icmp: ICMP;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">160</span>,<span class="src-number">63</span>;i=block/control_s";
+        igmp: IGMP;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">160</span>,<span class="src-number">122</span>;i=block/cogwheel_s";
+        errorHandling: ErrorHandling;
+            <span class="src-keyword">display</span>: "p=<span class="src-number">239</span>,<span class="src-number">63</span>;i=block/process_s";
+    <span class="src-keyword">connections</span> <span class="src-keyword">nocheck</span>:
+        <span class="src-comment">// transport Layer</span>
+        ip.transportOut[<span class="src-number">0</span>] <span class="src-keyword">--&gt;</span> TCPOut;
+        ip.transportIn[<span class="src-number">0</span>] <span class="src-keyword">&lt;--</span> TCPIn;
+
+        ip.transportOut[<span class="src-number">1</span>] <span class="src-keyword">--&gt;</span> UDPOut;
+        ip.transportIn[<span class="src-number">1</span>] <span class="src-keyword">&lt;--</span> UDPIn;
+
+        ip.transportOut[<span class="src-number">2</span>] <span class="src-keyword">--&gt;</span> icmp.localIn;
+        ip.transportIn[<span class="src-number">2</span>] <span class="src-keyword">&lt;--</span> icmp.sendOut;
+
+        ip.transportOut[<span class="src-number">3</span>] <span class="src-keyword">--&gt;</span> igmp.localIn;
+        ip.transportIn[<span class="src-number">3</span>] <span class="src-keyword">&lt;--</span> igmp.sendOut;
+
+        ip.transportOut[<span class="src-number">4</span>] <span class="src-keyword">--&gt;</span> RSVPOut;
+        ip.transportIn[<span class="src-number">4</span>] <span class="src-keyword">&lt;--</span> RSVPIn;
+
+        ip.transportOut[<span class="src-number">5</span>] <span class="src-keyword">--&gt;</span> OSPFOut;
+        ip.transportIn[<span class="src-number">5</span>] <span class="src-keyword">&lt;--</span> OSPFIn;
+
+        icmp.pingOut <span class="src-keyword">--&gt;</span> pingOut;
+        icmp.pingIn <span class="src-keyword">&lt;--</span> pingIn;
+
+        icmp.errorOut <span class="src-keyword">--&gt;</span> errorHandling.in;
+
+        ip.queueOut <span class="src-keyword">--&gt;</span> arp.ipIn;
+
+        <span class="src-comment">// L2 interfaces to IP and from ARP</span>
+        <span class="src-keyword">for</span> i=<span class="src-number">0</span><span class="src-keyword">..</span><span class="src-keyword">sizeof</span>(ifOut)<span class="src-number">-1</span> <span class="src-keyword">do</span>
+            ifIn[i] <span class="src-keyword">--&gt;</span> ip.queueIn[i] <span class="src-keyword">display</span> "m=s";
+            ifOut[i] <span class="src-keyword">&lt;--</span> arp.nicOut[i] <span class="src-keyword">display</span> "m=s";
+        <span class="src-keyword">endfor</span>;
+<span class="src-keyword">endmodule</span>
+</pre>
+</body>
+</html>
