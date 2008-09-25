@@ -27,6 +27,12 @@ static std::ostream& operator<< (std::ostream& out, cMessage *msg)
     return out;
 }
 
+uint Ieee80211MgmtBase::queueLength()
+{
+    Enter_Method_Silent();
+    return dataQueue.length();
+}
+
 void Ieee80211MgmtBase::initialize(int stage)
 {
     if (stage==0)

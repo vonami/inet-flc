@@ -54,6 +54,9 @@ class INET_API Ieee80211MgmtBase : public PassiveQueueBase, public INotifiable
     cOutVector dataQueueLenVec;
     cOutVector dataQueueDropVec;
 
+  public:
+    uint queueLength();
+
   protected:
     virtual int numInitStages() const {return 2;}
     virtual void initialize(int);
