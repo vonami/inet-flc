@@ -58,6 +58,12 @@ void IP::initialize()
     statQueueLength.setName( "IP queue length" );
 }
 
+uint IP::queueLength()
+{
+    Enter_Method_Silent();
+    return queue.length();
+}
+
 void IP::updateDisplayString()
 {
     char buf[80] = "";

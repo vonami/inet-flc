@@ -137,6 +137,7 @@ class INET_API IP : public QueueBase
 
   public:
     IP() {}
+    uint queueLength();
 
   protected:
     /**
